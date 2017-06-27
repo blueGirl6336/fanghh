@@ -1,0 +1,31 @@
+
+package hitwh.fanghh.dao;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import hitwh.fanghh.pojo.Dynamiccontent;
+import hitwh.fanghh.util.PageCalculate;
+
+public interface DynamiccontentDao
+{
+	int deleteByPrimaryKey(Integer dcId);
+
+	int insert(Dynamiccontent record);
+
+	int insertSelective(Dynamiccontent record);
+
+	Dynamiccontent selectByPrimaryKey(Integer dcId);
+
+	List<Dynamiccontent> getAllDynamicContent();
+
+	int updateByPrimaryKeySelective(Dynamiccontent record);
+
+	int updateByPrimaryKey(Dynamiccontent record);
+
+	List<Dynamiccontent> getDynamicContentByBdiId(@Param("bdiId") int bdiId,
+			@Param("page") PageCalculate pageCalculate);
+
+	int countByBdiId(int bdiId);
+}

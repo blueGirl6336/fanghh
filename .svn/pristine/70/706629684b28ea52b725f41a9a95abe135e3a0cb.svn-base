@@ -1,0 +1,26 @@
+package hitwh.fanghh.service;
+
+
+import hitwh.fanghh.pojo.Dynamiccontent;
+
+
+
+/**
+ * 动态管理
+ *
+ * @ClassName: DynamiccontentService
+ * @Description: TODO
+ * @author: LSG
+ *
+ */
+
+public interface DynamiccontentService {
+
+	public Dynamiccontent getDynamiccontentByBdId(int dcId);
+
+	public boolean addDynamiccontent(Dynamiccontent dynamiccontent);
+	
+	public boolean deleteDynamiccontent(int dcId);
+	
+	public boolean updateDynamiccontent(Dynamiccontent dynamiccontent);
+}

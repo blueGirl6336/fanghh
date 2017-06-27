@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.HousevisitrecordDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Housevisitrecord">
+    <id column="hvr_id" jdbcType="INTEGER" property="hvrId" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="customer_id" jdbcType="INTEGER" property="customerId" />
+    <result column="admit_time" jdbcType="TIMESTAMP" property="admitTime" />
+    <result column="house_visited" jdbcType="VARCHAR" property="houseVisited" />
+    <result column="visit_status" jdbcType="VARCHAR" property="visitStatus" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    hvr_id, order_id, customer_id, admit_time, house_visited, visit_status, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.HouseVisitRecord
+    where hvr_id = #{hvrId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.HouseVisitRecord
+    where hvr_id = #{hvrId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Housevisitrecord">
+    insert into dbo.HouseVisitRecord (hvr_id, order_id, customer_id, 
+      admit_time, house_visited, visit_status, 
+      remark)
+    values (#{hvrId,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}, #{customerId,jdbcType=INTEGER}, 
+      #{admitTime,jdbcType=TIMESTAMP}, #{houseVisited,jdbcType=VARCHAR}, #{visitStatus,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Housevisitrecord">
+    insert into dbo.HouseVisitRecord
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="hvrId != null">
+        hvr_id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="admitTime != null">
+        admit_time,
+      </if>
+      <if test="houseVisited != null">
+        house_visited,
+      </if>
+      <if test="visitStatus != null">
+        visit_status,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="hvrId != null">
+        #{hvrId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="admitTime != null">
+        #{admitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="houseVisited != null">
+        #{houseVisited,jdbcType=VARCHAR},
+      </if>
+      <if test="visitStatus != null">
+        #{visitStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Housevisitrecord">
+    update dbo.HouseVisitRecord
+    <set>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="admitTime != null">
+        admit_time = #{admitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="houseVisited != null">
+        house_visited = #{houseVisited,jdbcType=VARCHAR},
+      </if>
+      <if test="visitStatus != null">
+        visit_status = #{visitStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where hvr_id = #{hvrId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Housevisitrecord">
+    update dbo.HouseVisitRecord
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=INTEGER},
+      admit_time = #{admitTime,jdbcType=TIMESTAMP},
+      house_visited = #{houseVisited,jdbcType=VARCHAR},
+      visit_status = #{visitStatus,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where hvr_id = #{hvrId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.ActivityDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Activity">
+    <id column="activity_id" jdbcType="INTEGER" property="activityId" />
+    <result column="activity_name" jdbcType="VARCHAR" property="activityName" />
+    <result column="picture" jdbcType="VARCHAR" property="picture" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="building_id" jdbcType="INTEGER" property="buildingId" />
+    <result column="total_cash" jdbcType="DECIMAL" property="totalCash" />
+    <result column="total_times" jdbcType="INTEGER" property="totalTimes" />
+    <result column="limit_times" jdbcType="INTEGER" property="limitTimes" />
+    <result column="start_date" jdbcType="VARCHAR" property="startDate" />
+    <result column="end_date" jdbcType="VARCHAR" property="endDate" />
+    <result column="current_times" jdbcType="INTEGER" property="currentTimes" />
+    <result column="left_cash" jdbcType="DECIMAL" property="leftCash" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    activity_id, activity_name, picture, url, building_id, total_cash, total_times, limit_times, 
+    start_date, end_date, current_times, left_cash, state
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.Activity
+    where activity_id = #{activityId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.Activity
+    where activity_id = #{activityId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Activity">
+    insert into dbo.Activity (activity_id, activity_name, picture, 
+      url, building_id, total_cash, 
+      total_times, limit_times, start_date, 
+      end_date, current_times, left_cash, 
+      state)
+    values (#{activityId,jdbcType=INTEGER}, #{activityName,jdbcType=VARCHAR}, #{picture,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR}, #{buildingId,jdbcType=INTEGER}, #{totalCash,jdbcType=DECIMAL}, 
+      #{totalTimes,jdbcType=INTEGER}, #{limitTimes,jdbcType=INTEGER}, #{startDate,jdbcType=VARCHAR}, 
+      #{endDate,jdbcType=VARCHAR}, #{currentTimes,jdbcType=INTEGER}, #{leftCash,jdbcType=DECIMAL}, 
+      #{state,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Activity">
+    insert into dbo.Activity
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="activityId != null">
+        activity_id,
+      </if>
+      <if test="activityName != null">
+        activity_name,
+      </if>
+      <if test="picture != null">
+        picture,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="buildingId != null">
+        building_id,
+      </if>
+      <if test="totalCash != null">
+        total_cash,
+      </if>
+      <if test="totalTimes != null">
+        total_times,
+      </if>
+      <if test="limitTimes != null">
+        limit_times,
+      </if>
+      <if test="startDate != null">
+        start_date,
+      </if>
+      <if test="endDate != null">
+        end_date,
+      </if>
+      <if test="currentTimes != null">
+        current_times,
+      </if>
+      <if test="leftCash != null">
+        left_cash,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="activityId != null">
+        #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="activityName != null">
+        #{activityName,jdbcType=VARCHAR},
+      </if>
+      <if test="picture != null">
+        #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingId != null">
+        #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="totalCash != null">
+        #{totalCash,jdbcType=DECIMAL},
+      </if>
+      <if test="totalTimes != null">
+        #{totalTimes,jdbcType=INTEGER},
+      </if>
+      <if test="limitTimes != null">
+        #{limitTimes,jdbcType=INTEGER},
+      </if>
+      <if test="startDate != null">
+        #{startDate,jdbcType=VARCHAR},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=VARCHAR},
+      </if>
+      <if test="currentTimes != null">
+        #{currentTimes,jdbcType=INTEGER},
+      </if>
+      <if test="leftCash != null">
+        #{leftCash,jdbcType=DECIMAL},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Activity">
+    update dbo.Activity
+    <set>
+      <if test="activityName != null">
+        activity_name = #{activityName,jdbcType=VARCHAR},
+      </if>
+      <if test="picture != null">
+        picture = #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingId != null">
+        building_id = #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="totalCash != null">
+        total_cash = #{totalCash,jdbcType=DECIMAL},
+      </if>
+      <if test="totalTimes != null">
+        total_times = #{totalTimes,jdbcType=INTEGER},
+      </if>
+      <if test="limitTimes != null">
+        limit_times = #{limitTimes,jdbcType=INTEGER},
+      </if>
+      <if test="startDate != null">
+        start_date = #{startDate,jdbcType=VARCHAR},
+      </if>
+      <if test="endDate != null">
+        end_date = #{endDate,jdbcType=VARCHAR},
+      </if>
+      <if test="currentTimes != null">
+        current_times = #{currentTimes,jdbcType=INTEGER},
+      </if>
+      <if test="leftCash != null">
+        left_cash = #{leftCash,jdbcType=DECIMAL},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where activity_id = #{activityId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Activity">
+    update dbo.Activity
+    set activity_name = #{activityName,jdbcType=VARCHAR},
+      picture = #{picture,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      building_id = #{buildingId,jdbcType=INTEGER},
+      total_cash = #{totalCash,jdbcType=DECIMAL},
+      total_times = #{totalTimes,jdbcType=INTEGER},
+      limit_times = #{limitTimes,jdbcType=INTEGER},
+      start_date = #{startDate,jdbcType=VARCHAR},
+      end_date = #{endDate,jdbcType=VARCHAR},
+      current_times = #{currentTimes,jdbcType=INTEGER},
+      left_cash = #{leftCash,jdbcType=DECIMAL},
+      state = #{state,jdbcType=VARCHAR}
+    where activity_id = #{activityId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.ClearancehouseinfoDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Clearancehouseinfo">
+    <id column="chi_id" jdbcType="INTEGER" property="chiId" />
+    <result column="activity_id" jdbcType="INTEGER" property="activityId" />
+    <result column="activity_pic" jdbcType="VARCHAR" property="activityPic" />
+    <result column="house_id" jdbcType="INTEGER" property="houseId" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="building_id" jdbcType="INTEGER" property="buildingId" />
+    <result column="rule_id" jdbcType="INTEGER" property="ruleId" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="hitwh.fanghh.pojo.Clearancehouseinfo">
+    <result column="purchase_note" jdbcType="LONGVARCHAR" property="purchaseNote" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    chi_id, activity_id, activity_pic, house_id, start_time, end_time, remark, building_id, 
+    rule_id
+  </sql>
+  <sql id="Blob_Column_List">
+    purchase_note
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from dbo.ClearanceHouseInfo
+    where chi_id = #{chiId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.ClearanceHouseInfo
+    where chi_id = #{chiId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Clearancehouseinfo">
+    insert into dbo.ClearanceHouseInfo (chi_id, activity_id, activity_pic, 
+      house_id, start_time, end_time, 
+      remark, building_id, rule_id, 
+      purchase_note)
+    values (#{chiId,jdbcType=INTEGER}, #{activityId,jdbcType=INTEGER}, #{activityPic,jdbcType=VARCHAR}, 
+      #{houseId,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR}, #{buildingId,jdbcType=INTEGER}, #{ruleId,jdbcType=INTEGER}, 
+      #{purchaseNote,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Clearancehouseinfo">
+    insert into dbo.ClearanceHouseInfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="chiId != null">
+        chi_id,
+      </if>
+      <if test="activityId != null">
+        activity_id,
+      </if>
+      <if test="activityPic != null">
+        activity_pic,
+      </if>
+      <if test="houseId != null">
+        house_id,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="buildingId != null">
+        building_id,
+      </if>
+      <if test="ruleId != null">
+        rule_id,
+      </if>
+      <if test="purchaseNote != null">
+        purchase_note,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="chiId != null">
+        #{chiId,jdbcType=INTEGER},
+      </if>
+      <if test="activityId != null">
+        #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="activityPic != null">
+        #{activityPic,jdbcType=VARCHAR},
+      </if>
+      <if test="houseId != null">
+        #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingId != null">
+        #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="ruleId != null">
+        #{ruleId,jdbcType=INTEGER},
+      </if>
+      <if test="purchaseNote != null">
+        #{purchaseNote,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Clearancehouseinfo">
+    update dbo.ClearanceHouseInfo
+    <set>
+      <if test="activityId != null">
+        activity_id = #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="activityPic != null">
+        activity_pic = #{activityPic,jdbcType=VARCHAR},
+      </if>
+      <if test="houseId != null">
+        house_id = #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingId != null">
+        building_id = #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="ruleId != null">
+        rule_id = #{ruleId,jdbcType=INTEGER},
+      </if>
+      <if test="purchaseNote != null">
+        purchase_note = #{purchaseNote,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where chi_id = #{chiId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="hitwh.fanghh.pojo.Clearancehouseinfo">
+    update dbo.ClearanceHouseInfo
+    set activity_id = #{activityId,jdbcType=INTEGER},
+      activity_pic = #{activityPic,jdbcType=INTEGER},
+      house_id = #{houseId,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      building_id = #{buildingId,jdbcType=INTEGER},
+      rule_id = #{ruleId,jdbcType=INTEGER},
+      purchase_note = #{purchaseNote,jdbcType=LONGVARCHAR}
+    where chi_id = #{chiId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Clearancehouseinfo">
+    update dbo.ClearanceHouseInfo
+    set activity_id = #{activityId,jdbcType=INTEGER},
+      activity_pic = #{activityPic,jdbcType=VARCHAR},
+      house_id = #{houseId,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      building_id = #{buildingId,jdbcType=INTEGER},
+      rule_id = #{ruleId,jdbcType=INTEGER}
+    where chi_id = #{chiId,jdbcType=INTEGER}
+  </update>
+</mapper>

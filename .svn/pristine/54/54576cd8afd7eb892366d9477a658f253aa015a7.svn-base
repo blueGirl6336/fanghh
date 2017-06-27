@@ -1,0 +1,152 @@
+angular.module("fhhStore", ["ngCookies"]).controller("storeCertCtl", function($scope, $http) {
+    var current_page = 1;
+    var page_num = 1;
+
+    // $http({
+    //     url:"authentication/getStoreAuthenticationPageNum",
+    //     method: "post",
+    //     headers: {
+	// 		'Content-Type': 'multipart/form-data'
+	// 	},
+    //     params: {
+    //         pageMaxNum: 8,
+    //     }
+    // }).success(function(response) {
+    //     if (response.success == true) {
+    //         var pages = [];
+    //         pages.push('<p class="first" ng-click="getPage(1)">首页</p>');
+    //         pages.push('<p class="before">上一页</p>');
+    //         for (var i = 0; i < response.data; i ++) {
+    //             pages.push('<p class="page-' + i + '" ng-click="getPage('+ i + ')>' + i + '</p>');
+    //         }
+    //         pages.push('<p class="next">下一页</p>');
+    //         pages.push('<p class="last" ng-click="getPage(2)>末页</p>');
+
+    //         $scope.pagesNum = pages.join(" ");
+
+    //     }
+    // });
+
+    //先获取第一页的
+    // $http({
+    //     url:"/authentication/getAllStore",
+    //     method: "post",
+    //     headers: {
+	// 		'Content-Type': 'multipart/form-data'
+	// 	},
+    //     params: {
+    //         pageMaxNum: 8,
+    //         pageNo:1
+    //     }
+    // }).success(function(response) {
+    //     if (response.success == true) {
+    //         $scope.items = response.data;
+    //     }
+    // });
+
+    // $scope.sub = function() {
+    //     //提交要查询的信息
+    //     $http({
+    //         url:"/authentication/getSingleStore",
+    //         method: "post",
+    //         headers: {
+    //             'Content-Type': 'multipart/form-data'
+    //         },
+    //         params: {
+    //             storeId: 8, 
+    //         }
+    //     }).success(function(response) {
+    //         if (response.success == true) {
+    //         }
+    //     });
+    // }
+
+    // //通过
+    // $scope.pass = function(id) {
+    //     $http({
+    //         url: "/authentication/authenticateStore",
+    //         method: "post",
+    //         headers: {
+    //             'Content-Type': 'multipart/form-data'
+    //         },
+    //         params: {
+    //             storeId: id,
+    //             status: true,
+    //             failedReason: ""
+    //         }
+    //     }).success(function(response) {
+    //         if (response.success) {
+    //             alert("审核通过");
+    //         }
+    //     })
+    // }
+
+    // //不通过
+    // $scope.notpass = function(id) {
+    //     $http({
+    //         url: "/authentication/authenticateStore",
+    //         method: "post",
+    //         headers: {
+    //             'Content-Type': 'multipart/form-data'
+    //         },
+    //         params: {
+    //             storeId: id,
+    //             status: false,
+    //             failedReason: ""
+    //         }
+    //     }).success(function(response) {
+    //         if (response.success) {
+    //             alert("审核不通过");
+    //         }
+    //     })
+    // }
+
+    // //通过选中
+    // $scope.passSelect = function() {
+
+    // }
+
+    // //不通过选中
+    // $scope.notPassSelect = function() {
+
+    // }
+
+    // $scope.getPage = function(pageNum) {
+    //     $http({
+    //         url:"/authentication/getAllStore",
+    //         method: "post",
+    //         headers: {
+    //             'Content-Type': 'multipart/form-data'
+    //         },
+    //         params: {
+    //             pageMaxNum: 8,
+    //             pageNo: pageNum
+    //         }
+    //     }).success(function(response) {
+    //         if (response.success == true) {
+    //             $scope.items = response.data;
+    //         }
+    //     });
+    // }
+
+    get_page(1);
+    function get_page(page_id) {
+        $http({
+            url:"authentication/getAllStore",
+            method: "post",
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            params: {
+                pageMaxNum: 8,
+                pageNo: page_id
+            }
+        }).success(function(response) {
+            if (response.success == true) {
+               current_page = page_id;
+            //    set_page_foot();
+               $scope.items = response.data;
+            }
+        });
+    }
+})

@@ -1,0 +1,57 @@
+angular
+	.module('manageBuildingCtrl', ['ngCookies'])
+	.controller('listHouseManagement', ['$scope', '$http', '$location', '$rootScope', '$cookieStore', function($scope, $http, $location, $rootScope, $cookieStore) {
+		$http({
+				url: 'houseStyle/getAllHouseStyle',
+				method: 'post',
+				// headers: {
+				// 	'Content-Type': 'multipart/form-data'
+				// },
+				params: {
+					buildingId:4,
+					pageMaxNum: 10,
+					pageNo:1
+				}
+			})
+			.success(function(response) {
+				var table = response.data;
+				//console.log(table[0].style[0]);
+				for(var i = 0; i < table.length; i++)
+				{
+					table[i].style = table[i].style.split(",");
+					// for(var j = 0;j<3;j++)
+					// {
+					// 	if(table[i].style[j] == null)
+					// 	{
+					// 		table[i].style[j] = "无";
+					// 	}
+					// 	if(table[i].style[j] == 1)
+					// 	{
+					// 		table[i].style[j] = "无";
+					// 	}
+					// 	if(table[i].style[j] == 2)
+					// 	{
+					// 		table[i].style[j] = "无";
+					// 	}
+					// 	if(table[i].style[j] == 3)
+					// 	{
+					// 		table[i].style[j] = "无";
+					// 	}
+					// 	if(table[i].style[j] == null)
+					// 	{
+					// 		table[i].style[j] = "无";
+					// 	}
+					// }
+				}
+				$scope.houseStyle = table;
+				alert(table[0].style[0]);
+
+				//var number = response.data.;
+				// var style = response.data.;
+				// var price = new array();
+				// var firstPay = new array();
+
+				// if()
+				
+		});
+	}])

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.AppoperationinfoDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Appoperationinfo">
+    <id column="info_id" jdbcType="INTEGER" property="infoId" />
+    <result column="operation_info" jdbcType="VARCHAR" property="operationInfo" />
+    <result column="date" jdbcType="TIMESTAMP" property="date" />
+    <result column="operation_code" jdbcType="VARCHAR" property="operationCode" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    info_id, operation_info, date, operation_code
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.AppOperationInfo
+    where info_id = #{infoId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.AppOperationInfo
+    where info_id = #{infoId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Appoperationinfo">
+    insert into dbo.AppOperationInfo (info_id, operation_info, date, 
+      operation_code)
+    values (#{infoId,jdbcType=INTEGER}, #{operationInfo,jdbcType=VARCHAR}, #{date,jdbcType=TIMESTAMP}, 
+      #{operationCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Appoperationinfo">
+    insert into dbo.AppOperationInfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="infoId != null">
+        info_id,
+      </if>
+      <if test="operationInfo != null">
+        operation_info,
+      </if>
+      <if test="date != null">
+        date,
+      </if>
+      <if test="operationCode != null">
+        operation_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="infoId != null">
+        #{infoId,jdbcType=INTEGER},
+      </if>
+      <if test="operationInfo != null">
+        #{operationInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operationCode != null">
+        #{operationCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Appoperationinfo">
+    update dbo.AppOperationInfo
+    <set>
+      <if test="operationInfo != null">
+        operation_info = #{operationInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null">
+        date = #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operationCode != null">
+        operation_code = #{operationCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where info_id = #{infoId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Appoperationinfo">
+    update dbo.AppOperationInfo
+    set operation_info = #{operationInfo,jdbcType=VARCHAR},
+      date = #{date,jdbcType=TIMESTAMP},
+      operation_code = #{operationCode,jdbcType=VARCHAR}
+    where info_id = #{infoId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.TraderecordDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Traderecord">
+    <id column="trade_id" jdbcType="INTEGER" property="tradeId" />
+    <result column="broker_id" jdbcType="INTEGER" property="brokerId" />
+    <result column="trade_time" jdbcType="TIMESTAMP" property="tradeTime" />
+    <result column="trade_catg" jdbcType="VARCHAR" property="tradeCatg" />
+    <result column="trade_type" jdbcType="VARCHAR" property="tradeType" />
+    <result column="trade_obj" jdbcType="VARCHAR" property="tradeObj" />
+    <result column="trade_money" jdbcType="DECIMAL" property="tradeMoney" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    trade_id, broker_id, trade_time, trade_catg, trade_type, trade_obj, trade_money, 
+    user_id, order_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.TradeRecord
+    where trade_id = #{tradeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.TradeRecord
+    where trade_id = #{tradeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Traderecord">
+    insert into dbo.TradeRecord (trade_id, broker_id, trade_time, 
+      trade_catg, trade_type, trade_obj, 
+      trade_money, user_id, order_id
+      )
+    values (#{tradeId,jdbcType=INTEGER}, #{brokerId,jdbcType=INTEGER}, #{tradeTime,jdbcType=TIMESTAMP}, 
+      #{tradeCatg,jdbcType=VARCHAR}, #{tradeType,jdbcType=VARCHAR}, #{tradeObj,jdbcType=VARCHAR}, 
+      #{tradeMoney,jdbcType=DECIMAL}, #{userId,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Traderecord">
+    insert into dbo.TradeRecord
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tradeId != null">
+        trade_id,
+      </if>
+      <if test="brokerId != null">
+        broker_id,
+      </if>
+      <if test="tradeTime != null">
+        trade_time,
+      </if>
+      <if test="tradeCatg != null">
+        trade_catg,
+      </if>
+      <if test="tradeType != null">
+        trade_type,
+      </if>
+      <if test="tradeObj != null">
+        trade_obj,
+      </if>
+      <if test="tradeMoney != null">
+        trade_money,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tradeId != null">
+        #{tradeId,jdbcType=INTEGER},
+      </if>
+      <if test="brokerId != null">
+        #{brokerId,jdbcType=INTEGER},
+      </if>
+      <if test="tradeTime != null">
+        #{tradeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tradeCatg != null">
+        #{tradeCatg,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeType != null">
+        #{tradeType,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeObj != null">
+        #{tradeObj,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeMoney != null">
+        #{tradeMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Traderecord">
+    update dbo.TradeRecord
+    <set>
+      <if test="brokerId != null">
+        broker_id = #{brokerId,jdbcType=INTEGER},
+      </if>
+      <if test="tradeTime != null">
+        trade_time = #{tradeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tradeCatg != null">
+        trade_catg = #{tradeCatg,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeType != null">
+        trade_type = #{tradeType,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeObj != null">
+        trade_obj = #{tradeObj,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeMoney != null">
+        trade_money = #{tradeMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where trade_id = #{tradeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Traderecord">
+    update dbo.TradeRecord
+    set broker_id = #{brokerId,jdbcType=INTEGER},
+      trade_time = #{tradeTime,jdbcType=TIMESTAMP},
+      trade_catg = #{tradeCatg,jdbcType=VARCHAR},
+      trade_type = #{tradeType,jdbcType=VARCHAR},
+      trade_obj = #{tradeObj,jdbcType=VARCHAR},
+      trade_money = #{tradeMoney,jdbcType=DECIMAL},
+      user_id = #{userId,jdbcType=INTEGER},
+      order_id = #{orderId,jdbcType=VARCHAR}
+    where trade_id = #{tradeId,jdbcType=INTEGER}
+  </update>
+</mapper>

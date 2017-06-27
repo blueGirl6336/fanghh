@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.SharerecordDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Sharerecord">
+    <id column="record_id" jdbcType="INTEGER" property="recordId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="activity_id" jdbcType="INTEGER" property="activityId" />
+    <result column="current_times" jdbcType="INTEGER" property="currentTimes" />
+    <result column="share_date" jdbcType="NVARCHAR" property="shareDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    record_id, user_id, activity_id, current_times, share_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.ShareRecord
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.ShareRecord
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Sharerecord">
+    insert into dbo.ShareRecord (record_id, user_id, activity_id, 
+      current_times, share_date)
+    values (#{recordId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{activityId,jdbcType=INTEGER}, 
+      #{currentTimes,jdbcType=INTEGER}, #{shareDate,jdbcType=NVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Sharerecord">
+    insert into dbo.ShareRecord
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="recordId != null">
+        record_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="activityId != null">
+        activity_id,
+      </if>
+      <if test="currentTimes != null">
+        current_times,
+      </if>
+      <if test="shareDate != null">
+        share_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="recordId != null">
+        #{recordId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="activityId != null">
+        #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="currentTimes != null">
+        #{currentTimes,jdbcType=INTEGER},
+      </if>
+      <if test="shareDate != null">
+        #{shareDate,jdbcType=NVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Sharerecord">
+    update dbo.ShareRecord
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="activityId != null">
+        activity_id = #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="currentTimes != null">
+        current_times = #{currentTimes,jdbcType=INTEGER},
+      </if>
+      <if test="shareDate != null">
+        share_date = #{shareDate,jdbcType=NVARCHAR},
+      </if>
+    </set>
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Sharerecord">
+    update dbo.ShareRecord
+    set user_id = #{userId,jdbcType=INTEGER},
+      activity_id = #{activityId,jdbcType=INTEGER},
+      current_times = #{currentTimes,jdbcType=INTEGER},
+      share_date = #{shareDate,jdbcType=NVARCHAR}
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,492 @@
+package hitwh.fanghh.controller;
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import hitwh.fanghh.bean.ClearanceActivityBean;
+import hitwh.fanghh.bean.GroupPurchaseActivityBean;
+import hitwh.fanghh.bean.HouseBean;
+import hitwh.fanghh.bean.PerferentialActivityBean;
+import hitwh.fanghh.service.ActivityService;
+import hitwh.fanghh.util.ResponseMapUtil;
+
+@RequestMapping("/activity")
+@Controller
+public class ActivityController
+{
+
+	@Autowired
+	private ActivityService activityService;
+
+	/**
+	 * 发布新捡漏活动
+	 *
+	 * @Title: addClearanceActivity
+	 * @version:
+	 * @author: LY
+	 * 
+	 * @param ClearanceActivityBean
+	 * @return true 成功 false 失败
+	 */
+
+	@RequestMapping("/addClearanceActivity")
+	@ResponseBody
+	public Map<String, Object> addClearanceActivity(@RequestBody ClearanceActivityBean clearanceActivityBean)
+	{
+		String res = activityService.addClearanceActivity(clearanceActivityBean);
+		if (res.equals("success"))
+		{
+			return ResponseMapUtil.responseSuccess(null);
+		} else
+		{
+			return ResponseMapUtil.responseError(res);
+		}
+	}
+
+	/**
+	 * 获取捡漏活动最大页数
+	 *
+	 * @Title: /getClearanceActivityPageNum
+	 * @version:
+	 * @author: LY
+	 * 
+	 * @param
+	 * @return
+	 */
+	@RequestMapping("/getClearanceActivityPageNum")
+	@ResponseBody
+	public Map<String, Object> getClearanceActivityPageNum(@RequestParam Integer cityId, @RequestParam Integer regionId,
+			@RequestParam String keyBuildingName, @RequestParam int pageMaxNum)
+	{
+		int num = activityService.getClearanceActivityPageNum(cityId, regionId, keyBuildingName, pageMaxNum);
+		return ResponseMapUtil.responseSuccess(num);
+	}
+
+	/**
+	 * 获取特惠活动最大页数
+	 *
+	 * @Title: /getClearanceActivityPageNum
+	 * @version:
+	 * @author: LY
+	 * 
+	 * @param
+	 * @return
+	 */
+	@RequestMapping("/getPerferentialActivityPageNum")
+	@ResponseBody
+	public Map<String, Object> getPerferentialActivityPageNum(@RequestParam Integer cityId,
+			@RequestParam Integer regionId, @RequestParam String keyBuildingName, @RequestParam int pageMaxNum)
+	{
+		int num = activityService.getPerferentialActivityPageNum(cityId, regionId, keyBuildingName, pageMaxNum);
+		return ResponseMapUtil.responseSuccess(num);
+	}
+
+	/**
+	 * 获取捡漏活动信息
+	 *
+	 * @Title: /getAllClearanceActivity
+	 * @version:
+	 * @author: LY
+	 * 
+	 * @param regionId地区关键字
+	 *            keyBuildingName 楼盘名称关键字 pageMaxNum 分页最大书目 pageNo 分页当前页数
+	 * @return
+	 */
+	@RequestMapping("/getAllClearanceActivity")
+	@ResponseBody
+	public Map<String, Object> getAllClearanceActivity(@RequestParam Integer regionId,
+			@RequestParam String keyBuildingName, @RequestParam int pageMaxNum, @RequestParam int pageNo)
+	{
+		List<ClearanceActivityBean> clearanceActivityList = activityService.getAllClearanceActivity(regionId,
+				keyBuildingName, pageMaxNum, pageNo);
+		return ResponseMapUtil.responseSuccess(clearanceActivityList);
+	}
+
+	/**
+	 * 获取单个捡漏活动信息
+	 * 
+	 * @param activityId
+	 * @return ClearanceActivityBean
+	 */
+	@RequestMapping("/getSingleClearanceActivity")
+	@ResponseBody
+	public Map<String, Object> getSingleClearanceActivity(@RequestParam int activityId)
+	{
+		ClearanceActivityBean res = activityService.getSingleClearanceActivity(activityId);
+
+		return ResponseMapUtil.responseSuccess(res);
+
+	}
+
+	/**
+	 * 更新捡漏活动
+	 *
+	 * @Title: updateClearanceActivity
+	 * @version:
+	 * @author: LY
+	 * 
+	 * @param ClearanceActivityBean
+	 * @return true 成功 false 失败
+	 */
+
+	@RequestMapping("/updateClearanceActivity")
+	@ResponseBody
+	public Map<String, Object> updateClearanceActivity(@RequestBody ClearanceActivityBean clearanceActivityBean)
+	{
+		String res = activityService.updateClearanceActivity(clearanceActivityBean);
+		if (res.equals("success"))
+		{
+			return ResponseMapUtil.responseSuccess(null);
+		} else
+		{
+			return ResponseMapUtil.responseError(res);
+		}
+	}
+
+	/**
+	 * 更新特惠活动
+	 *
+	 * @Title: updateClearanceActivity
+	 * @version:
+	 * @author: LY
+	 * 
+	 * @param ClearanceActivityBean
+	 * @return true 成功 false 失败
+	 */
+
+	@RequestMapping("/updatePerferentialActivity")
+	@ResponseBody
+	public Map<String, Object> updatePerferentialActivity(
+			@RequestBody PerferentialActivityBean perferentialActivityBean)
+	{
+		String res = activityService.updatePerferentialActivity(perferentialActivityBean);
+		if (res.equals("success"))
+		{
+			return ResponseMapUtil.responseSuccess(null);
+		} else
+		{
+			return ResponseMapUtil.responseError(res);
+		}
+	}
+
+	/**
+	 * 发布新特惠活动
+	 *
+	 * @Title: addActivity
+	 * @version:
+	 * @author: LY
+	 * 
+	 * @param PerferentialActivityBean
+	 * @return true 成功 false 失败
+	 */
+
+	@RequestMapping("/addPerferentialActivity")
+	@ResponseBody
+	public Map<String, Object> addPerferentialActivity(@RequestBody PerferentialActivityBean perferentialActivityBean)
+	{
+		String res = activityService.addPerferentialActivity(perferentialActivityBean);
+		if (res.equals("success"))
+		{
+			return ResponseMapUtil.responseSuccess(null);
+		} else
+		{
+			return ResponseMapUtil.responseError(res);
+		}
+	}
+
+	/**
+	 * 获取特惠活动信息
+	 *
+	 * @Title: addActivity
+	 * @version:
+	 * @author: LY
+	 * 
+	 * @param regionId地区关键字
+	 *            keyBuildingName 楼盘名称关键字 pageMaxNum 分页最大书目 pageNo 分页当前页数
+	 * @return
+	 */
+	@RequestMapping("/getAllPerferentialActivity")
+	@ResponseBody
+	public Map<String, Object> getAllPerferentialActivity(@RequestParam Integer regionId,
+			@RequestParam String keyBuildingName, @RequestParam int pageMaxNum, @RequestParam int pageNo)
+	{
+		List<PerferentialActivityBean> perferentialActivityList = activityService.getAllPerferentialActivity(regionId,
+				keyBuildingName, pageMaxNum, pageNo);
+		return ResponseMapUtil.responseSuccess(perferentialActivityList);
+	}
+
+	/**
+	 * 获取单个捡漏活动信息
+	 * 
+	 * @param activityId
+	 * @return PerferentialActivityBean
+	 */
+	@RequestMapping("/getSinglePerferentialActivity")
+	@ResponseBody
+	public Map<String, Object> getSinglePerferentialActivity(@RequestParam int activityId)
+	{
+		PerferentialActivityBean res = activityService.getSinglePerferentialActivity(activityId);
+
+		return ResponseMapUtil.responseSuccess(res);
+
+	}
+
+	/**
+	 * 活动申请上架
+	 *
+	 * @Title: applicateActivityOnSale
+	 * @version:
+	 * @author: LY
+	 * 
+	 * @param activityId
+	 * @return 1 申请成功 0 申请失败
+	 */
+	@RequestMapping("/applicateActivityOnSale")
+	@ResponseBody
+	public Map<String, Object> applicateActivityOnSale(@RequestParam int activityId)
+	{
+		int resultCode = 0;
+		resultCode = activityService.applicateActivityOnSaleByActivityId(activityId);
+		if (resultCode == 1)
+		{
+			return ResponseMapUtil.responseSuccess(resultCode);
+		} else
+		{
+			return ResponseMapUtil.responseError("活动申请上架失败");
+		}
+	}
+
+	/**
+	 * 活动申请下架
+	 *
+	 * @Title: applicateActivityOffSale
+	 * @version:
+	 * @author: LY
+	 * 
+	 * @param activityId
+	 * @return 1 申请成功 0 申请失败
+	 */
+
+	@RequestMapping("/applicateActivityOffSale")
+	@ResponseBody
+	public Map<String, Object> applicateActivityOffSale(@RequestParam int activityId)
+	{
+		int resultCode = 0;
+		resultCode = activityService.applicateActivityOffSaleByActivityId(activityId);
+		if (resultCode == 1)
+		{
+			return ResponseMapUtil.responseSuccess(resultCode);
+		} else
+		{
+			return ResponseMapUtil.responseError("活动申请下架异常");
+		}
+	}
+
+	/**
+	 * 活动审核
+	 *
+	 * @Title: auditActivityApplication
+	 * @version:
+	 * @author: LY
+	 * 
+	 * @param activityId
+	 *            auditType(1上架通过 2 上架不通过 3下架通过 4
+	 *            下家不通过)notPassReason（审核不通过原因，通过传null）
+	 * @return true成功 false失败
+	 */
+
+	@RequestMapping("/auditActivityApplication")
+	@ResponseBody
+	public Map<String, Object> auditActivityApplication(@RequestParam int activityId, @RequestParam int auditType,
+			@RequestParam String notPassReason)
+	{
+		String res = activityService.auditActivityApplicationByActivityId(activityId, auditType, notPassReason);
+		if (res.equals("success"))
+		{
+			return ResponseMapUtil.responseSuccess(null);
+		} else
+		{
+			return ResponseMapUtil.responseError(res);
+		}
+	}
+
+	@RequestMapping("/giveAuditNotPassReason")
+	@ResponseBody
+	public Map<String, Object> giveAuditNotPassReason(@RequestParam int activityId,
+			@RequestParam String auditNotPassReason)
+	{
+		int resultCode = 0;
+		if (activityId != 0)
+		{
+			resultCode = activityService.giveAuditNotPassReason(activityId, auditNotPassReason);
+		}
+		return ResponseMapUtil.responseSuccess(resultCode);
+
+	}
+
+	// zy
+
+	/**
+	 * 获取团购活动信息
+	 *
+	 * @Title: getGroupPurchaseActivity
+	 * @version:
+	 * @author: ZY
+	 * 
+	 * @param cityId城市id
+	 * @param regionId区域id
+	 * @param keyBuildingName搜索关键字（楼盘名）
+	 * @param pageMaxNum每页最大数量
+	 * @param pageNo页号
+	 * @return
+	 */
+	@RequestMapping("/getGroupPurchaseActivity")
+	@ResponseBody
+	public Map<String, Object> getGroupPurchaseActivity(@RequestParam Integer cityId, @RequestParam Integer regionId,
+			@RequestParam String keyBuildingName, @RequestParam int pageMaxNum, @RequestParam int pageNo)
+	{
+		List<GroupPurchaseActivityBean> list = activityService.getGroupPurchaseActivityByCityId(cityId, regionId,
+				keyBuildingName, pageMaxNum, pageNo);
+
+		return ResponseMapUtil.responseSuccess(list);
+
+	}
+
+	/**
+	 * 获取团购活动页数
+	 *
+	 * @Title: getGroupPurchaseActivityPageNum
+	 * @version:
+	 * @author: ZY
+	 * 
+	 * @param pageMaxNum单页最大数量
+	 * @return
+	 */
+	@RequestMapping("/getGroupPurchaseActivityPageNum")
+	@ResponseBody
+	public Map<String, Object> getGroupPurchaseActivityPageNum(@RequestParam Integer cityId,
+			@RequestParam Integer regionId, @RequestParam String keyBuildingName, @RequestParam int pageMaxNum)
+	{
+		int res = activityService.getPerferentialActivityPageNum(cityId, regionId, keyBuildingName, pageMaxNum);
+
+		return ResponseMapUtil.responseSuccess(res);
+
+	}
+
+	/**
+	 * 获取单个团购活动信息
+	 *
+	 * @Title: getSingleGroupPurchaseActivity
+	 * @version:
+	 * @author: ZY
+	 * 
+	 * @param activityId活动id
+	 * @return
+	 */
+	@RequestMapping("/getSingleGroupPurchaseActivity")
+	@ResponseBody
+	public Map<String, Object> getSingleGroupPurchaseActivity(@RequestParam int activityId)
+	{
+		GroupPurchaseActivityBean res = activityService.getSingleGroupPurchaseActivity(activityId);
+
+		return ResponseMapUtil.responseSuccess(res);
+
+	}
+
+	/**
+	 * 添加新团购
+	 *
+	 * @Title: addGroupPurchaseActivity
+	 * @version:
+	 * @author: ZY
+	 * 
+	 * @param groupPurchaseActivityBean
+	 * @return
+	 */
+	@RequestMapping("/addGroupPurchaseActivity")
+	@ResponseBody
+	public Map<String, Object> addGroupPurchaseActivity(
+			@RequestBody GroupPurchaseActivityBean groupPurchaseActivityBean)
+	{
+		String res = activityService.addGroupPurchaseActivity(groupPurchaseActivityBean);
+		if (res.equals("success"))
+		{
+			return ResponseMapUtil.responseSuccess(null);
+		} else
+		{
+			return ResponseMapUtil.responseError(res);
+		}
+	}
+
+	/**
+	 * 更改团购活动信息
+	 *
+	 * @Title: updateGroupPurchaseActivity
+	 * @version:
+	 * @author: ZY
+	 * 
+	 * @param groupPurchaseActivityBean
+	 * @return
+	 */
+	@RequestMapping("/updateGroupPurchaseActivity")
+	@ResponseBody
+	public Map<String, Object> updateGroupPurchaseActivity(
+			@RequestBody GroupPurchaseActivityBean groupPurchaseActivityBean)
+	{
+		String res = activityService.updateGroupPurchaseActivity(groupPurchaseActivityBean);
+		if (res.equals("success"))
+		{
+			return ResponseMapUtil.responseSuccess(null);
+		} else
+		{
+			return ResponseMapUtil.responseError(res);
+		}
+	}
+
+	/**
+	 * 获取未参加活动房源
+	 *
+	 * @Title: getNoActivityHouse
+	 * @version:
+	 * @author: ZY
+	 * 
+	 * @param buildingId
+	 * @param pageMaxNum
+	 * @param pageNo
+	 * @return
+	 */
+	@RequestMapping("/getNoActivityHouse")
+	@ResponseBody
+	public Map<String, Object> getNoActivityHouse(@RequestParam int buildingId, @RequestParam int pageMaxNum,
+			@RequestParam int pageNo)
+	{
+		List<HouseBean> res = activityService.getNoActivityHouseByBuildingId(buildingId, pageMaxNum, pageNo);
+		return ResponseMapUtil.responseSuccess(res);
+	}
+
+	/**
+	 * 获取未参加活动房源页数
+	 *
+	 * @Title: getNoActivityHousePageNum
+	 * @version:
+	 * @author: ZY
+	 * 
+	 * @param buildingId
+	 * @param pageMaxNum
+	 * @return
+	 */
+	@RequestMapping("/getNoActivityHousePageNum")
+	@ResponseBody
+	public Map<String, Object> getNoActivityHousePageNum(@RequestParam int buildingId, @RequestParam int pageMaxNum)
+	{
+		int res = activityService.getNoActivityHousePageNumByBuildingId(buildingId, pageMaxNum);
+		return ResponseMapUtil.responseSuccess(res);
+	}
+}

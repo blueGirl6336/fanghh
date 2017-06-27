@@ -1,0 +1,150 @@
+<div class="content_area" ng-controller="typeEnter">
+	<div class="content_area_fullpage">
+		<div class="content_area_title">
+			<h2>发布新楼盘</h2>
+		</div>
+		<div class="content_main">
+			<div class="hint" ng-show="ifFail">
+				<p class="hint_text">审核不通过原因：{{auditNotPassReason}}</p>
+			</div>
+			<div class="inputArea">
+				<h3>户型录入</h3>
+				<form>
+					<div class="row">
+						<div class="form-item form-item-large">
+							<label><span class="requireMark">*</span>创建户型：<span class="justify"></span></label>
+							<div class="form-field">
+								<select  class="form-text shortSelect" ng-model="room">
+									<option value ="0">零</option>
+  									<option value ="1">一</option>
+  									<option value="2">两</option>
+  									<option value="3">三</option>
+  									<option value="4">四</option>
+								</select>
+								<span>室</span>
+								<select  class="form-text shortSelect" ng-model="hall">
+									<option value ="0">零</option>
+  									<option value ="1">一</option>
+  									<option value="2">两</option>
+  									<option value="3">三</option>
+  									<option value="4">四</option>
+								</select>
+								<span>厅</span>
+								<select  class="form-text shortSelect" ng-model="restroom">
+									<option value ="0">零</option>
+  									<option value ="1">一</option>
+  									<option value="2">两</option>
+  									<option value="3">三</option>
+  									<option value="4">四</option>
+								</select>
+								<span>卫</span>
+								<input  class="form-text shortSelect" ng-model="houseStyleCode"/>
+								<span>户型</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label><span class="requireMark">*</span> 参考售价：<span class="justify"></span></label>
+							<div class="form-field">
+								<input type="text" class="form-text hasBigUnitInput" ng-model="referencePrice"><span class="hasUnitInput_unit">元起</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label><span class="requireMark">*</span> 参考月供：<span class="justify"></span></label>
+							<div class="form-field">
+								<input type="text" class="form-text hasBigUnitInput" ng-model="referenceMonthlyPayments"><span class="hasUnitInput_unit">元</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label><span class="requireMark">*</span> 首付：<span class="justify"></span></label>
+							<div class="form-field">
+								<input type="text" class="form-text hasBigUnitInput" ng-model="downPayment"><span class="hasUnitInput_unit">元起</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label><span class="requireMark">*</span> 面积：<span class="justify"></span></label>
+							<div class="form-field">
+								<input type="text" class="form-text hasBigUnitInput" ng-model="styleArea"><span class="hasUnitInput_unit">平米</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-large">
+							<label><span class="requireMark">*</span>标签：<span class="justify"></span></label>
+							<div class="form-field">
+								<label>
+									<input type="checkbox" class="form-checkbox"  ng-model="styleDescription1" ng-true-value="true">
+									<span class="choiceLabel">方正户型</span>
+								</label>
+								<label>
+									<input type="checkbox" class="form-checkbox" ng-model="styleDescription2" ng-true-value="true">	
+									<span class="choiceLabel">南北通透</span>
+								</label>
+								<label>
+									<input type="checkbox" class="form-checkbox"  ng-model="styleDescription3" ng-true-value="true">
+									<span class="choiceLabel">超大客厅</span>
+								</label>
+								<label>
+									<input type="checkbox" class="form-checkbox"  ng-model="styleDescription4" ng-true-value="true">
+									<span class="choiceLabel">方正布局</span>
+								</label>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-large">
+							<label class="label-long"><span class="requireMark">*</span>户型图上传：</label>
+							<div class="form-field">
+								<button type="button" class="choose-file">选择文件</button>
+								<button type="button" class="submit-file"><div><img src="./image/pic_upload.png"></div>批量上传</button>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-large">
+							<label>户型特色：</label>
+							<div class="form-field">
+								<button type="button" class="choose-file">选择文件</button>
+								<button type="button" class="submit-file"><div><img src="./image/pic_upload.png"></div>批量上传</button>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-broad">
+							<label><span class="requireMark">*</span>推荐理由：<span class="justify"></span></label>
+							<div class="form-field">
+								<textarea class="form-text"  ng-model="recommendReason"></textarea>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-large">
+							<label>是否合作：<span class="justify"></span></label>
+							<div class="form-field">
+								<label>
+									<input type="radio" ng-value="true" class="form-radio" name="bdType" ng-model="isCooperated"><span class="choiceLabel">合作户型</span>
+								</label>
+								<label>
+									<input type="radio" ng-value="false" class="form-radio" name="bdType" ng-model="isCooperated"><span class="choiceLabel">非合作户型</span>
+								</label>
+							</div>
+						</div>
+					</div>
+				</form>
+				<div class="button-area">
+					<button type="button" class="btn goback">继续添加户型</button>
+					<button type="button" class="btn save-continue" ng-click="saveType()">保存并下一步</button>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</div>
+	

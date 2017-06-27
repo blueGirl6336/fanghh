@@ -1,0 +1,18 @@
+
+package hitwh.fanghh.dao;
+
+import hitwh.fanghh.pojo.Grouppurchasehouselist;
+
+public interface GrouppurchasehouselistDao {
+    int deleteByPrimaryKey(Integer gphId);
+
+    int insert(Grouppurchasehouselist record);
+
+    int insertSelective(Grouppurchasehouselist record);
+
+    Grouppurchasehouselist selectByPrimaryKey(Integer gphId);
+
+    int updateByPrimaryKeySelective(Grouppurchasehouselist record);
+
+    int updateByPrimaryKey(Grouppurchasehouselist record);
+}

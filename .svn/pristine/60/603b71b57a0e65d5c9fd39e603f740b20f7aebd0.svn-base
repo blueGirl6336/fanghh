@@ -1,0 +1,181 @@
+angular
+	.module('manageBuildingCtrl', ['ngCookies'])
+	.controller('listHouseManagement', ['$scope', '$http', '$location', '$rootScope', '$cookieStore', function($scope, $http, $location, $rootScope, $cookieStore) {
+		/*
+			翻页部分 
+		*/
+		$scope.page = {//页码状态
+	        pageMax: 1,
+	        pageNumber: 1,
+	        changePage: function () {
+	        }
+	    }
+	    //首先获得最大页面数量
+	    $http({
+	        url: "houseStyle/ getHouseStylePageNum",
+	        method: "post",
+	        headers: {
+	            'Content-Type': 'multipart/form-data'
+	        },
+	        params: {
+	            pageMaxNum: 6,
+	            buildingId:4
+	        }
+	    }).success(function (response) {
+	        if (response.success == true) {
+	            $scope.page.pageMax = response.data;
+	            console.log("error!");
+	        } else {
+	            console.log(response.data);
+	        }
+	    });
+	    //翻页函数
+	    $scope.changePage = function (aimPage) {
+	        console.log("i am changePage");
+	        $scope.page.changePage(aimPage);
+	    }
+	    $scope.changePageFilter = function (aimPage) {
+	        console.log("i am loadpage");
+	        loadPage(aimPage);
+	    }
+	    //加载页面
+	    function loadPage(page_id) {
+	        $scope.page.pageNumber = page_id;
+	        $scope.page.changePage = $scope.changePageFilter;
+	        $http({
+	            url: 'houseStyle/getAllHouseStyle',
+	            method: "post",
+	            headers: {
+	                'Content-Type': 'multipart/form-data'
+	            },
+	            params: {
+	                pageMaxNum: 6,
+	                pageNo: page_id,
+	                buildingId:4,
+	            }
+	        }).success(function (response) {
+	            if (response.success == true) {
+
+
+	            	var table = response.data;
+
+					for(var i = 0; i < table.length; i++)
+					{
+						table[i].style = table[i].style.split(",");
+						table[i].referencePrice = ((table[i].referencePrice)/10000).toFixed(1);
+						table[i].downPayment = ((table[i].downPayment)/10000).toFixed(1);
+
+						table[i]["stateShow"] = false;
+						table[i]["lookShow"] = false;
+						table[i]["look"] = "";
+						table[i]["state"] = "";
+
+						if(table[i].isCooperated == true)
+						{
+							table[i].isCooperated = "合作";
+						}
+						else 
+						{
+							table[i].isCooperated = "非合作";
+						}
+						//待上架
+						if(table[i].applicationStatus == "01200100")
+						{
+							table[i].stateShow = true;
+							table[i].state="申请上架";
+						}
+						//已经上架
+						else  if(table[i].applicationStatus == "01200300")
+						{
+							table[i].stateShow = true;
+							table[i].state="申请下架";
+						}
+						if(table[i].applicationStatus == "01200500" || table[i].applicationStatus == "01200300")
+						{
+							table[i].look="审核";
+						}
+
+
+					}
+					//填充数据
+					$scope.houseStyle = table;
+
+					//翻页
+	                $scope.refreshPageButton(page_id);
+
+	                
+	            }
+	        });
+	    }
+
+	    //先加载第一页
+	    loadPage(1);
+
+	    //更新翻页按钮
+	    $scope.refreshPageButton = function (aimPage) {
+	        $scope.page.pageNumber = aimPage;
+	        $scope.pageButton = [];
+
+	        if (aimPage >= 1 && aimPage <= 3) {
+	            for (var i = 1; i <= aimPage; i++) {
+	                $scope.pageButton[i] = i;
+	            }
+
+	            for (i; i <= 5; i++) { //将剩余位置置为null
+	                if (i <= $scope.page.pageMax) { //aimPage+1
+	                    $scope.pageButton[i] = i;
+	                } else {
+	                    $scope.pageButton[i] = null;
+	                }
+	            }
+	        }
+	        else if (aimPage > 3) {
+	            if (aimPage + 2 <= $scope.page.pageMax) {
+	                for (var i = 1; i <= 5; i++) {
+	                    $scope.pageButton[i] = aimPage - 3 + i;
+	                }
+	            } else { //后面不足两页
+	                var j = 0;
+	                for (var i = 5; i >= 0; i--) {
+	                    if (($scope.page.pageMax - i) < 0) {
+	                        $scope.pageButton[i] = null;
+	                    }
+	                    else {
+	                        $scope.pageButton[i] = $scope.page.pageMax - j;
+	                        j++;
+	                    }
+	                }
+	            }
+	        }
+	    }
+
+	    //修改按钮
+	    $scope.modify = function(styleId) {
+	    	alert("111");
+			$location.path('index/typeEnter/' + styleId);
+		}
+
+		// $scope.upDownBoard = function(applicationStatus){
+		// 	var status;
+		// 	if(applicationStatus == "01200100")
+		// 	{
+
+		// 	}
+
+		// }
+
+
+}]);
+
+//全选
+function allSelect(obj)
+{
+	if(obj.checked == false)
+	{
+		$("input[name='houseStyle']").prop("checked",false);
+	}
+	else
+	{
+		$("input[name='houseStyle']").prop("checked",true);
+	}
+}

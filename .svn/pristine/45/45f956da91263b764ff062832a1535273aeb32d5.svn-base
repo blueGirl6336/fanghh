@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.BuildingcommentDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Buildingcomment">
+    <id column="comment_id" jdbcType="INTEGER" property="commentId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="building_id" jdbcType="INTEGER" property="buildingId" />
+    <result column="consultant_id" jdbcType="INTEGER" property="consultantId" />
+    <result column="comment_time" jdbcType="TIMESTAMP" property="commentTime" />
+    <result column="entire_comment" jdbcType="DECIMAL" property="entireComment" />
+    <result column="price_comment" jdbcType="DECIMAL" property="priceComment" />
+    <result column="location_comment" jdbcType="DECIMAL" property="locationComment" />
+    <result column="facilities_comment" jdbcType="DECIMAL" property="facilitiesComment" />
+    <result column="traffic_comment" jdbcType="DECIMAL" property="trafficComment" />
+    <result column="environment_comment" jdbcType="DECIMAL" property="environmentComment" />
+    <result column="comment_writing" jdbcType="VARCHAR" property="commentWriting" />
+    <result column="comment_catg" jdbcType="VARCHAR" property="commentCatg" />
+    <result column="catg_setting_time" jdbcType="TIMESTAMP" property="catgSettingTime" />
+    <result column="comment_check_status" jdbcType="VARCHAR" property="commentCheckStatus" />
+    <result column="reply_time" jdbcType="TIMESTAMP" property="replyTime" />
+    <result column="reply_content" jdbcType="VARCHAR" property="replyContent" />
+    <result column="reply_check_status" jdbcType="VARCHAR" property="replyCheckStatus" />
+    <result column="is_essence" jdbcType="BIT" property="isEssence" />
+    <result column="comment_pic" jdbcType="VARCHAR" property="commentPic" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    comment_id, user_id, building_id, consultant_id, comment_time, entire_comment, price_comment, 
+    location_comment, facilities_comment, traffic_comment, environment_comment, comment_writing, 
+    comment_catg, catg_setting_time, comment_check_status, reply_time, reply_content, 
+    reply_check_status, is_essence, comment_pic
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.BuildingComment
+    where comment_id = #{commentId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.BuildingComment
+    where comment_id = #{commentId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Buildingcomment">
+    insert into dbo.BuildingComment (comment_id, user_id, building_id, 
+      consultant_id, comment_time, entire_comment, 
+      price_comment, location_comment, facilities_comment, 
+      traffic_comment, environment_comment, comment_writing, 
+      comment_catg, catg_setting_time, comment_check_status, 
+      reply_time, reply_content, reply_check_status, 
+      is_essence, comment_pic)
+    values (#{commentId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{buildingId,jdbcType=INTEGER}, 
+      #{consultantId,jdbcType=INTEGER}, #{commentTime,jdbcType=TIMESTAMP}, #{entireComment,jdbcType=DECIMAL}, 
+      #{priceComment,jdbcType=DECIMAL}, #{locationComment,jdbcType=DECIMAL}, #{facilitiesComment,jdbcType=DECIMAL}, 
+      #{trafficComment,jdbcType=DECIMAL}, #{environmentComment,jdbcType=DECIMAL}, #{commentWriting,jdbcType=VARCHAR}, 
+      #{commentCatg,jdbcType=VARCHAR}, #{catgSettingTime,jdbcType=TIMESTAMP}, #{commentCheckStatus,jdbcType=VARCHAR}, 
+      #{replyTime,jdbcType=TIMESTAMP}, #{replyContent,jdbcType=VARCHAR}, #{replyCheckStatus,jdbcType=VARCHAR}, 
+      #{isEssence,jdbcType=BIT}, #{commentPic,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Buildingcomment">
+    insert into dbo.BuildingComment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="commentId != null">
+        comment_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="buildingId != null">
+        building_id,
+      </if>
+      <if test="consultantId != null">
+        consultant_id,
+      </if>
+      <if test="commentTime != null">
+        comment_time,
+      </if>
+      <if test="entireComment != null">
+        entire_comment,
+      </if>
+      <if test="priceComment != null">
+        price_comment,
+      </if>
+      <if test="locationComment != null">
+        location_comment,
+      </if>
+      <if test="facilitiesComment != null">
+        facilities_comment,
+      </if>
+      <if test="trafficComment != null">
+        traffic_comment,
+      </if>
+      <if test="environmentComment != null">
+        environment_comment,
+      </if>
+      <if test="commentWriting != null">
+        comment_writing,
+      </if>
+      <if test="commentCatg != null">
+        comment_catg,
+      </if>
+      <if test="catgSettingTime != null">
+        catg_setting_time,
+      </if>
+      <if test="commentCheckStatus != null">
+        comment_check_status,
+      </if>
+      <if test="replyTime != null">
+        reply_time,
+      </if>
+      <if test="replyContent != null">
+        reply_content,
+      </if>
+      <if test="replyCheckStatus != null">
+        reply_check_status,
+      </if>
+      <if test="isEssence != null">
+        is_essence,
+      </if>
+      <if test="commentPic != null">
+        comment_pic,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="commentId != null">
+        #{commentId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="buildingId != null">
+        #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="consultantId != null">
+        #{consultantId,jdbcType=INTEGER},
+      </if>
+      <if test="commentTime != null">
+        #{commentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="entireComment != null">
+        #{entireComment,jdbcType=DECIMAL},
+      </if>
+      <if test="priceComment != null">
+        #{priceComment,jdbcType=DECIMAL},
+      </if>
+      <if test="locationComment != null">
+        #{locationComment,jdbcType=DECIMAL},
+      </if>
+      <if test="facilitiesComment != null">
+        #{facilitiesComment,jdbcType=DECIMAL},
+      </if>
+      <if test="trafficComment != null">
+        #{trafficComment,jdbcType=DECIMAL},
+      </if>
+      <if test="environmentComment != null">
+        #{environmentComment,jdbcType=DECIMAL},
+      </if>
+      <if test="commentWriting != null">
+        #{commentWriting,jdbcType=VARCHAR},
+      </if>
+      <if test="commentCatg != null">
+        #{commentCatg,jdbcType=VARCHAR},
+      </if>
+      <if test="catgSettingTime != null">
+        #{catgSettingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="commentCheckStatus != null">
+        #{commentCheckStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="replyTime != null">
+        #{replyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="replyContent != null">
+        #{replyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="replyCheckStatus != null">
+        #{replyCheckStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="isEssence != null">
+        #{isEssence,jdbcType=BIT},
+      </if>
+      <if test="commentPic != null">
+        #{commentPic,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Buildingcomment">
+    update dbo.BuildingComment
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="buildingId != null">
+        building_id = #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="consultantId != null">
+        consultant_id = #{consultantId,jdbcType=INTEGER},
+      </if>
+      <if test="commentTime != null">
+        comment_time = #{commentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="entireComment != null">
+        entire_comment = #{entireComment,jdbcType=DECIMAL},
+      </if>
+      <if test="priceComment != null">
+        price_comment = #{priceComment,jdbcType=DECIMAL},
+      </if>
+      <if test="locationComment != null">
+        location_comment = #{locationComment,jdbcType=DECIMAL},
+      </if>
+      <if test="facilitiesComment != null">
+        facilities_comment = #{facilitiesComment,jdbcType=DECIMAL},
+      </if>
+      <if test="trafficComment != null">
+        traffic_comment = #{trafficComment,jdbcType=DECIMAL},
+      </if>
+      <if test="environmentComment != null">
+        environment_comment = #{environmentComment,jdbcType=DECIMAL},
+      </if>
+      <if test="commentWriting != null">
+        comment_writing = #{commentWriting,jdbcType=VARCHAR},
+      </if>
+      <if test="commentCatg != null">
+        comment_catg = #{commentCatg,jdbcType=VARCHAR},
+      </if>
+      <if test="catgSettingTime != null">
+        catg_setting_time = #{catgSettingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="commentCheckStatus != null">
+        comment_check_status = #{commentCheckStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="replyTime != null">
+        reply_time = #{replyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="replyContent != null">
+        reply_content = #{replyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="replyCheckStatus != null">
+        reply_check_status = #{replyCheckStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="isEssence != null">
+        is_essence = #{isEssence,jdbcType=BIT},
+      </if>
+      <if test="commentPic != null">
+        comment_pic = #{commentPic,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where comment_id = #{commentId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Buildingcomment">
+    update dbo.BuildingComment
+    set user_id = #{userId,jdbcType=INTEGER},
+      building_id = #{buildingId,jdbcType=INTEGER},
+      consultant_id = #{consultantId,jdbcType=INTEGER},
+      comment_time = #{commentTime,jdbcType=TIMESTAMP},
+      entire_comment = #{entireComment,jdbcType=DECIMAL},
+      price_comment = #{priceComment,jdbcType=DECIMAL},
+      location_comment = #{locationComment,jdbcType=DECIMAL},
+      facilities_comment = #{facilitiesComment,jdbcType=DECIMAL},
+      traffic_comment = #{trafficComment,jdbcType=DECIMAL},
+      environment_comment = #{environmentComment,jdbcType=DECIMAL},
+      comment_writing = #{commentWriting,jdbcType=VARCHAR},
+      comment_catg = #{commentCatg,jdbcType=VARCHAR},
+      catg_setting_time = #{catgSettingTime,jdbcType=TIMESTAMP},
+      comment_check_status = #{commentCheckStatus,jdbcType=VARCHAR},
+      reply_time = #{replyTime,jdbcType=TIMESTAMP},
+      reply_content = #{replyContent,jdbcType=VARCHAR},
+      reply_check_status = #{replyCheckStatus,jdbcType=VARCHAR},
+      is_essence = #{isEssence,jdbcType=BIT},
+      comment_pic = #{commentPic,jdbcType=VARCHAR}
+    where comment_id = #{commentId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,40 @@
+
+@import "list_dynamicManagement.scss";
+@import "list_houseManagement.scss";
+
+.building_table
+{
+	tr 
+	{
+		.checkbox
+		{
+			width:6%;
+		}
+		.checkbox-input
+		{
+			position: relative;
+			left:20%;
+		}
+		.title 
+		{
+			display: -webkit-flex; //Safari
+  			display: flex;
+			justify-content: flex-start;
+			color:rgb(102,102,102);
+			width:50%;
+		}
+		.time
+		{
+			width:26%;
+		}
+		.operation
+		{
+			width:18%;
+		}
+		.operation1,.operation2
+		{
+			width:9%;
+			color:rgb(102,102,102);
+		}
+	}
+}

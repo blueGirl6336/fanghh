@@ -1,0 +1,43 @@
+package hitwh.fanghh.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import hitwh.fanghh.pojo.Buildingcomment;
+import hitwh.fanghh.pojo.Dynamiccontent;
+import hitwh.fanghh.pojo.Housepricetrend;
+
+public interface BuildingComment 
+{
+	public List<Buildingcomment> getAllBuildingComment(int buildingId,int pageMaxNum,int pageNo);
+	
+	public int getBuildingCommentPageNum(int buildingId,int pageMaxNum);
+	
+	/**
+	 * @discription {获取楼圈点评信息}
+	 * @author xingfeng
+	 * @created 2016年12月14日 下午10:30:05
+	 * @param commnetId
+	 * @return
+	 */
+	public Buildingcomment selectBuildingComment(Integer commentId);
+	
+	/**
+	 * @discription {根据楼盘号获取楼圈点评信息}
+	 * @author xingfeng
+	 * @created 2016年12月14日 下午10:30:05
+	 * @param commnetId
+	 * @return
+	 */
+	public List<Buildingcomment> selectBuildingCommentByBuildingId(Integer buildingId);
+	
+	/**
+	 * @discription {删除楼圈点评信息}
+	 * @author xingfeng
+	 * @created 2016年12月14日 下午10:30:05
+	 * @param commnetId
+	 * @return
+	 */
+	public boolean deleteBuildingComment(Integer commentId);
+}

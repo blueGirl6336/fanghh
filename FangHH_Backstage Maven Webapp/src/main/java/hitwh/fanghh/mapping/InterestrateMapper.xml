@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.InterestrateDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Interestrate">
+    <id column="interest_id" jdbcType="INTEGER" property="interestId" />
+    <result column="loan_type" jdbcType="VARCHAR" property="loanType" />
+    <result column="year_min" jdbcType="INTEGER" property="yearMin" />
+    <result column="put_year" jdbcType="INTEGER" property="putYear" />
+    <result column="rate" jdbcType="DECIMAL" property="rate" />
+    <result column="year_max" jdbcType="INTEGER" property="yearMax" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    interest_id, loan_type, year_min, put_year, rate, year_max
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.InterestRate
+    where interest_id = #{interestId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.InterestRate
+    where interest_id = #{interestId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Interestrate">
+    insert into dbo.InterestRate (interest_id, loan_type, year_min, 
+      put_year, rate, year_max
+      )
+    values (#{interestId,jdbcType=INTEGER}, #{loanType,jdbcType=VARCHAR}, #{yearMin,jdbcType=INTEGER}, 
+      #{putYear,jdbcType=INTEGER}, #{rate,jdbcType=DECIMAL}, #{yearMax,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Interestrate">
+    insert into dbo.InterestRate
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="interestId != null">
+        interest_id,
+      </if>
+      <if test="loanType != null">
+        loan_type,
+      </if>
+      <if test="yearMin != null">
+        year_min,
+      </if>
+      <if test="putYear != null">
+        put_year,
+      </if>
+      <if test="rate != null">
+        rate,
+      </if>
+      <if test="yearMax != null">
+        year_max,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="interestId != null">
+        #{interestId,jdbcType=INTEGER},
+      </if>
+      <if test="loanType != null">
+        #{loanType,jdbcType=VARCHAR},
+      </if>
+      <if test="yearMin != null">
+        #{yearMin,jdbcType=INTEGER},
+      </if>
+      <if test="putYear != null">
+        #{putYear,jdbcType=INTEGER},
+      </if>
+      <if test="rate != null">
+        #{rate,jdbcType=DECIMAL},
+      </if>
+      <if test="yearMax != null">
+        #{yearMax,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Interestrate">
+    update dbo.InterestRate
+    <set>
+      <if test="loanType != null">
+        loan_type = #{loanType,jdbcType=VARCHAR},
+      </if>
+      <if test="yearMin != null">
+        year_min = #{yearMin,jdbcType=INTEGER},
+      </if>
+      <if test="putYear != null">
+        put_year = #{putYear,jdbcType=INTEGER},
+      </if>
+      <if test="rate != null">
+        rate = #{rate,jdbcType=DECIMAL},
+      </if>
+      <if test="yearMax != null">
+        year_max = #{yearMax,jdbcType=INTEGER},
+      </if>
+    </set>
+    where interest_id = #{interestId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Interestrate">
+    update dbo.InterestRate
+    set loan_type = #{loanType,jdbcType=VARCHAR},
+      year_min = #{yearMin,jdbcType=INTEGER},
+      put_year = #{putYear,jdbcType=INTEGER},
+      rate = #{rate,jdbcType=DECIMAL},
+      year_max = #{yearMax,jdbcType=INTEGER}
+    where interest_id = #{interestId,jdbcType=INTEGER}
+  </update>
+</mapper>

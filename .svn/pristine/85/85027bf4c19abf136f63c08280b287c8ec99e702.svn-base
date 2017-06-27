@@ -1,0 +1,280 @@
+	<div class="content_area" ng-controller="buildingEnter">
+		<div class="content_area_fullpage">
+			<div class="content_area_title">
+				<h2>发布新楼盘</h2>
+			</div>
+			<div class="content_main">
+			<div class="hint" ng-show="ifFail">
+				<p class="hint_text">审核不通过原因：{{auditNotPassReason}}</p>
+			</div>
+			<div class="inputArea">
+				<h3>楼盘信息</h3>
+				<form>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label>
+								<span class="requireMark">*</span>
+								楼盘名称：
+								<span class="justify"></span>
+							</label>
+							<div class="form-field">
+								<input type="text" class="form-text" ng-model="buildingName"></div>
+						</div>
+						<div class="form-item form-item-middle">
+							<label>
+								<span class="requireMark">*</span>
+								所在区域：
+								<span class="justify"></span>
+							</label>
+							<div class="form-field">
+								<select class="form-text hasUnitInput" ng-model="x" value="x.regionId" ng-options="x.regionName for x in regionList">
+								</select>
+								<span>区</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label>
+								<span class="requireMark">*</span>
+								开发商：
+								<span class="justify"></span>
+							</label>
+							<div class="form-field">
+								<select class="form-text" ng-model="y" value="y.developerId" ng-options="y.developName for y in developerList">
+								</select>
+							</div>
+						</div>
+						<div class="form-item form-item-middle">
+							<label>
+								<span class="requireMark">*</span>
+								详细地址：
+								<span class="justify"></span>
+							</label>
+							<div class="form-field">
+								<input type="text" class="form-text" ng-model="buildingLocation"></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label>
+								<span class="requireMark">*</span>
+								均价：
+								<span class="justify"></span>
+							</label>
+							<div class="form-field">
+								<input type="text" class="form-text hasUnitInput" ng-model="averagePrice">	
+								<span class="hasUnitInput_unit">元</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label>
+								<span class="requireMark">*</span>
+								开盘时间：
+								<span class="justify"></span>
+							</label>
+							<div class="form-field">
+								<input type="text" class="form-text laydate-icon" id="openingTime" ng-model="openingTime" def-laydate></div>
+						</div>
+						<div class="form-item form-item-middle">
+							<label>
+								<span class="requireMark">*</span>
+								入住时间：
+								<span class="justify"></span>
+							</label>
+							<div class="form-field">
+								<input type="text" class="form-text laydate-icon" id="launchTime" ng-model="launchTime" def-laydate></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label>
+								建筑面积：
+								<span class="justify"></span>
+							</label>
+							<div class="form-field">
+								<input type="text" class="form-text" ng-model="constructionArea"></div>
+						</div>
+						<div class="form-item form-item-middle">
+							<label>
+								<span class="requireMark">*</span>
+								总户数：
+								<span class="justify"></span>
+							</label>
+							<div class="form-field">
+								<input type="text" class="form-text" ng-model="householdNum"></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label>
+								绿化率：
+								<span class="justify"></span>
+							</label>
+							<div class="form-field">
+								<input type="text" class="form-text" ng-model="greeningRate"></div>
+						</div>
+						<div class="form-item form-item-middle">
+							<label>
+								容积率：
+								<span class="justify"></span>
+							</label>
+							<div class="form-field">
+								<input type="text" class="form-text" ng-model="plotRate"></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label>
+								物业公司：
+								<span class="justify"></span>
+							</label>
+							<div class="form-field">
+								<input type="text" class="form-text"></div>
+						</div>
+						<div class="form-item form-item-middle">
+							<label>
+								<span class="requireMark">*</span>
+								产权年限：
+								<span class="justify"></span>
+							</label>
+							<div class="form-field">
+								<input type="text" class="form-text" ng-model="duration"></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label>
+								<span class="requireMark">*</span>
+								售楼地址：
+								<span class="justify"></span>
+							</label>
+							<div class="form-field">
+								<input type="text" class="form-text" ng-model="saleSiteLocation"></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-broad">
+							<label>
+								楼盘简介：
+								<span class="justify"></span>
+							</label>
+							<div class="form-field">
+								<textarea class="form-text" ng-model="developmentprofile"></textarea>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-broad">
+							<label>
+								<span class="requireMark">*</span>
+								推荐理由：
+								<span class="justify"></span>
+							</label>
+							<div class="form-field">
+								<textarea class="form-text" ng-model="recommendReason"></textarea>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-large">
+							<label>
+								<span class="requireMark">*</span>
+								特色标签：
+							</label>
+							<div class="form-field">
+								<label>
+									<input type="checkbox" class="form-checkbox" ng-model="buildingLabel1" ng-true-value="1" >	
+									<span class="choiceLabel">水景地产</span>
+								</label>
+								<label>
+									<input type="checkbox" class="form-checkbox" ng-model="buildingLabel2" ng-true-value="1" >	
+									<span class="choiceLabel">海景地产</span>
+								</label>
+								<label>
+									<input type="checkbox" class="form-checkbox" ng-model="buildingLabel3" ng-true-value="1" >	
+									<span class="choiceLabel">公园地产</span>
+								</label>
+								<label>
+									<input type="checkbox" class="form-checkbox" ng-model="buildingLabel4" ng-true-value="1" >	
+									<span class="choiceLabel">旅游地产</span>
+								</label>
+								<label>
+									<input type="checkbox" class="form-checkbox" ng-model="buildingLabel5" ng-true-value="1" >	
+									<span class="choiceLabel">景观居所</span>
+								</label>
+								<label>
+									<input type="checkbox"  class="form-checkbox" ng-model="buildingLabel6" ng-true-value="1" >	
+									<span class="choiceLabel">宜居生态</span>
+								</label>
+								<label>
+									<input type="checkbox"  class="form-checkbox" ng-model="buildingLabel7" ng-true-value="1" ng-false-value="0">	
+									<span class="choiceLabel">其他</span>
+								</label>
+								<label>
+									<input type="checkbox"  class="form-checkbox" ng-model="buildingLabel8" ng-true-value="1" ng-false-value="0">	
+									<span class="choiceLabel">休闲度假</span>
+								</label>
+								<label>
+									<input type="checkbox" class="form-checkbox" ng-model="buildingLabel9" ng-true-value="1" ng-false-value="0">	
+									<span class="choiceLabel">养老房</span>
+								</label>
+								<label>
+									<input type="checkbox"  class="form-checkbox" ng-model="buildingLabel10" ng-true-value="1" ng-false-value="0">	
+									<span class="choiceLabel">婚房</span>
+								</label>
+								<label>
+									<input type="checkbox" class="form-checkbox" ng-model="buildingLabel11" ng-true-value="1" ng-false-value="0">	
+									<span class="choiceLabel">投资旅游</span>
+								</label>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-large">
+							<label>
+								<span class="requireMark">*</span>
+								400电话：
+								<span class="justify"></span>
+							</label>
+							<div class="form-field">
+								400-800-8600
+								<label>
+									-
+									<span class="justify"></span>
+								</label>
+								<input type="text" class="form-text phone-text" ng-model="phoneFdz1">	
+								<label>
+									-
+									<span class="justify"></span>
+								</label>
+								<input type="text" class="form-text phone-text" ng-model="phoneFdz2"></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-large">
+							<label>楼盘类型：<span class="justify"></span></label>
+							<div class="form-field">
+								<label>
+									<input type="radio" value="1" class="form-radio"  ng-model="buildingType" name="bdType"><span class="choiceLabel">在售</span>
+								</label>
+								<label>
+									<input type="radio" value="2" class="form-radio" name="bdType"  ng-model="buildingType"><span class="choiceLabel" >待售</span>
+								</label>
+								<label>
+									<input type="radio" value="3" class="form-radio" name="bdType"  ng-model="buildingType"><span class="choiceLabel" >售罄</span>
+								</label>
+							</div>
+						</div>
+					</div>
+				</form>
+				<div class="button-area">
+					<button type="button" class="btn save-continue" ng-click="saveType()">保存并下一步</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	</div>

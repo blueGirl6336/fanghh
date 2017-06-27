@@ -1,0 +1,284 @@
+/**     
+ * @discription {楼盘管理Service接口}
+ * @author wangxinjie       
+ * @created 2016年11月6日 下午9:26:34    
+ */
+
+package hitwh.fanghh.service;
+
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
+import hitwh.fanghh.bean.PicTalkBean;
+import hitwh.fanghh.bean.BuildingSurroundBean;
+import hitwh.fanghh.pojo.Building;
+import hitwh.fanghh.pojo.Buildingpic;
+import hitwh.fanghh.pojo.Developer;
+import hitwh.fanghh.pojo.Housepricetrend;
+import hitwh.fanghh.pojo.Region;
+import hitwh.fanghh.pojo.Surroundfacility;
+
+/**
+ * Title: BuildingService.java Description: 描述
+ * 
+ * @author wangxinjie
+ * @created 2016年11月6日 下午9:26:34
+ */
+
+public interface BuildingService {
+
+	/**
+	 * @discription {获取楼盘列表}
+	 * @author wangxinjie
+	 * @param pageNo
+	 * @param pageMaxNum
+	 * @created 2016年11月6日 下午9:55:330
+	 * @param buildingId
+	 * @return
+	 */
+	public List<Building> getAllBuilding(int pageMaxNum, int pageNo);
+
+	/**
+	 * @discription {新增楼盘}
+	 * @author wangxinjie
+	 * @created 2016年11月30日 下午2:02:04
+	 * @param building
+	 * @return
+	 */
+	public int addBuilding(Building building);
+
+	/**
+	 * @discription {更新楼盘信息}
+	 * @author wangxinjie
+	 * @created 2016年11月30日 下午2:08:43
+	 * @param building
+	 * @return
+	 */
+	public boolean updateBuilding(Building building);
+
+	/**
+	 * @discription {楼盘申请上下架}
+	 * @author wangxinjie
+	 * @created 2016年11月30日 下午2:26:44
+	 * @param buildingId
+	 * @param buildingApplicationStatus
+	 * @return
+	 */
+	public int applicateBuildingOffSaleByHouseId(int buildingId,
+			String buildingApplicationStatus);
+
+	/**
+	 * @discription {楼盘审核通过}
+	 * @author wangxinjie
+	 * @created 2016年11月30日 下午2:42:51
+	 * @param buildingId
+	 * @param auditCode
+	 * @return
+	 */
+	public int auditBuildingApplicationPass(int buildingId, String auditCode);
+
+	/**
+	 * @discription {楼盘审核不通过}
+	 * @author wangxinjie
+	 * @created 2016年11月30日 下午3:04:13
+	 * @param buildingId
+	 * @param auditCode
+	 * @param auditNotPassReason
+	 */
+	public int auditBuildingApplicationNotPass(int buildingId,
+			String auditCode, String auditNotPassReason);
+
+	/**
+	 * @discription {获取楼盘具体信息}
+	 * @author wangxinjie
+	 * @created 2016年11月30日 下午3:13:08
+	 * @param buildingId
+	 * @return
+	 */
+	public Building getBuildingInfo(int buildingId);
+
+	/**
+	 * @discription {根据楼盘号获取房价信息}
+	 * @author xingfeng
+	 * @created 2016年12月12日 上午8:05:08
+	 * @param buildingId
+	 * @return
+	 */
+	public List<Housepricetrend> selectHouseTrendByBuildingId(int buildingId);
+
+	/**
+	 * @discription {添加房价走势信息}
+	 * @author xingfeng
+	 * @created 2016年11月30日 下午2:08:43
+	 * @param building
+	 * @return
+	 */
+	public boolean addHousePriceTrend(Housepricetrend housepricetrend);
+
+	/**
+	 * @discription {根据trend_id删除房价走势信息}
+	 * @author xingfeng
+	 * @created 2016年12月12日 上午8:05:08
+	 * @param building
+	 * @return
+	 */
+	public boolean deleteHousePriceTrend(int trendId);
+
+	/**
+	 * @discription {更新房价走势信息}
+	 * @author xingfeng
+	 * @created 2016年12月12日 上午8:05:08
+	 * @param building
+	 * @return
+	 */
+	public boolean updateHousePriceTrend(Housepricetrend housepricetrend);
+
+	/**
+	 * @discription {楼盘图片上传}
+	 * @author wangxinjie
+	 * @created 2016年12月12日 下午3:28:03
+	 * @param file
+	 * @return
+	 */
+	public String uploadStylePic(MultipartFile file);
+
+	/**
+	 * @discription {添加位置与周边}
+	 * @author wangxinjie
+	 * @created 2016年12月14日 下午2:31:32
+	 * @param surroundfacility
+	 * @return
+	 */
+	public boolean addSurround(BuildingSurroundBean buildingSurroundBean);
+
+	/**
+	 * @discription {在此输入一句话描述作用}
+	 * @author wangxinjie
+	 * @created 2016年12月22日 下午1:36:32
+	 * @return
+	 */
+	public List<Region> getAllRegion();
+
+	/**
+	 * @discription {在此输入一句话描述作用}
+	 * @author wangxinjie
+	 * @created 2016年12月22日 下午1:37:51
+	 * @return
+	 */
+	public List<Developer> getAllDeveloper();
+
+	/**
+	 * @discription {在此输入一句话描述作用}
+	 * @author wangxinjie
+	 * @created 2016年12月27日 下午1:35:36
+	 * @param pageMaxNum
+	 * @return
+	 */
+	public int getBuildingPageNum(int pageMaxNum);
+
+	/**
+	 * @discription
+	 * @author fengben
+	 * @created 2016年12月26日下午8:28:15
+	 * @param
+	 * @return
+	 */
+	public String uploadPicTalkPic(MultipartFile file);
+
+	/**
+	 * @discription
+	 * @author fengben
+	 * @created 2016年12月26日下午8:43:20
+	 * @param
+	 * @return
+	 */
+	public boolean addPicTalk(PicTalkBean picTalkBean);
+
+	/**
+	 * @discription
+	 * @author fengben
+	 * @created 2016年12月26日下午8:59:42
+	 * @param
+	 * @return
+	 */
+	public boolean deletePicTalk(int ptID);
+
+	/**
+	 * @discription
+	 * @author fengben
+	 * @created 2016年12月26日下午9:23:27
+	 * @param
+	 * @return
+	 */
+	public boolean updatePicTalk(PicTalkBean picTalkBean);
+
+	/**
+	 * @discription 根据楼盘id获取看图说房信息
+	 * @author fengben
+	 * @created 2016年12月27日下午3:50:37
+	 * @param
+	 * @return
+	 */
+	public PicTalkBean getPicTalk(int buildingId);
+
+	/**
+	 * @discription {在此输入一句话描述作用}
+	 * @author wangxinjie
+	 * @created 2016年12月28日 下午8:09:50
+	 * @param buildingId
+	 * @return
+	 */
+	public BuildingSurroundBean getSurround(int buildingId);
+
+	  
+	    /**     
+	     * @discription {在此输入一句话描述作用}
+	     * @author wangxinjie       
+	     * @created 2016年12月28日 下午8:35:09 
+	     * @param buildingSurroundBean
+	     * @return     
+	     */
+	public boolean updateSurround(BuildingSurroundBean buildingSurroundBean);
+
+		  
+		    /**     
+		     * @discription {在此输入一句话描述作用}
+		     * @author wangxinjie       
+		     * @created 2016年12月28日 下午8:43:07 
+		     * @param buildingId
+		     * @return     
+		     */
+	public boolean deleteSurround(int buildingId);
+
+			  
+			    /**     
+			     * @discription {在此输入一句话描述作用}
+			     * @author wangxinjie       
+			     * @created 2016年12月29日 下午1:29:23 
+			     * @param list
+			     * @return     
+			     */
+	public boolean addBuildingPic(Buildingpic buildingpic);
+
+				  
+				    /**     
+				     * @discription {在此输入一句话描述作用}
+				     * @author wangxinjie       
+				     * @created 2016年12月29日 下午1:35:48 
+				     * @param bpId
+				     * @return     
+				     */
+	public boolean deleteBuildingPic(int bpId);
+
+					  
+					    /**     
+					     * @discription {在此输入一句话描述作用}
+					     * @author wangxinjie       
+					     * @created 2016年12月29日 下午2:46:45 
+					     * @param regionId
+					     * @return     
+					     */
+	public List<Building> getBuildingByRegionId(int regionId);
+
+}

@@ -1,0 +1,167 @@
+package hitwh.fanghh.controller;
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import hitwh.fanghh.bean.PerferentialActivityBean;
+import hitwh.fanghh.service.ActivityService;
+import hitwh.fanghh.util.DictionaryString;
+import hitwh.fanghh.util.ResponseMapUtil;
+
+@RequestMapping("/activity")
+@Controller
+public class ActivityController
+{
+
+	@Autowired
+	private ActivityService activityService;
+
+	
+	
+	/**
+	 * 发布新活动
+	 *
+	 * @Title: addActivity
+	 * @version:
+	 * @author: LY
+	 * 
+	 * @param PerferentialActivityBean
+	 * @return true 成功 false 失败
+	 */
+	
+	@RequestMapping("/addActivity")
+	@ResponseBody
+	public Map<String, Object> addActivity(@RequestBody PerferentialActivityBean perferentialActivityBean)
+	{
+		String res = activityService.addPerferentialActivity(perferentialActivityBean);
+		if (res.equals("success"))
+		{
+			return ResponseMapUtil.responseSuccess(null);
+		} else
+		{
+			return ResponseMapUtil.responseError(res);
+		}
+	}
+
+	
+	
+	/**
+	 * 获取活动信息
+	 *
+	 * @Title: addActivity
+	 * @version:
+	 * @author: LY
+	 * 
+	 * @param  regionId地区关键字  keyBuildingName  楼盘名称关键字 pageMaxNum 分页最大书目 pageNo 分页当前页数
+	 * @return 
+	 */
+	@RequestMapping("/getAllPerferentialActivity")
+	@ResponseBody
+	public Map<String, Object> getAllPerferentialActivity(@RequestParam Integer regionId,
+			@RequestParam String keyBuildingName, @RequestParam int pageMaxNum, @RequestParam int pageNo)
+	{
+		List<PerferentialActivityBean> perferentialActivityList = activityService.getAllPerferentialActivity(regionId,
+				keyBuildingName, pageMaxNum, pageNo);
+		return ResponseMapUtil.responseSuccess(perferentialActivityList);
+	}
+	
+	/**
+	 * 活动申请上架
+	 *
+	 * @Title: applicateActivityOnSale
+	 * @version:
+	 * @author: LY
+	 * 
+	 * @param activityId 
+	 * @return 1 申请成功 0 申请失败
+	 */
+	@RequestMapping("/applicateActivityOnSale")
+	@ResponseBody
+	public Map<String, Object> applicateActivityOnSale(@RequestParam int activityId)
+	{
+		int resultCode = 0;
+		resultCode = activityService.applicateActivityOnSaleByActivityId(activityId);	
+		if(resultCode==1)
+		{
+			return ResponseMapUtil.responseSuccess(resultCode);
+		}else
+		{
+			return ResponseMapUtil.responseError("房源申请上下架失败");
+		}
+	}
+	
+	/**
+	 * 活动申请下架
+	 *
+	 * @Title: applicateActivityOffSale
+	 * @version:
+	 * @author: LY
+	 * 
+	 * @param activityId 
+	 * @return 1 申请成功 0 申请失败
+	 */
+	
+	@RequestMapping("/applicateActivityOffSale")
+	@ResponseBody
+	public Map<String, Object> applicateActivityOffSale(@RequestParam int activityId)
+	{
+		int resultCode = 0;
+		resultCode = activityService.applicateActivityOffSaleByActivityId(activityId);
+		if(resultCode==1)
+		{
+			return ResponseMapUtil.responseSuccess(resultCode);
+		}else
+		{
+			return ResponseMapUtil.responseError("房源申请上架异常");
+		}
+	}
+
+	/**
+	 * 活动审核
+	*
+	* @Title: auditActivityApplication
+	* @version:
+	* @author: LY
+	* 
+	* @param activityId auditType(1上架通过 2 上架不通过 3下架通过 4 下家不通过)notPassReason（审核不通过原因，通过传null）
+	* @return true成功 false失败
+	*/
+
+
+	
+
+	@RequestMapping("/auditActivityApplication")
+	@ResponseBody
+	public Map<String, Object> auditActivityApplication(@RequestParam int activityId, @RequestParam int auditType ,@RequestParam String notPassReason)
+	{
+		String res= activityService.auditActivityApplicationByActivityId(activityId, auditType, notPassReason);
+		if (res.equals("success"))
+		{
+			return ResponseMapUtil.responseSuccess(null);
+		} else
+		{
+			return ResponseMapUtil.responseError(res);
+		}
+	}
+	
+	@RequestMapping("/giveAuditNotPassReason")
+	@ResponseBody
+	public Map<String, Object> giveAuditNotPassReason(@RequestParam int activityId , @RequestParam String auditNotPassReason)
+	{
+		int resultCode=0;
+		if(activityId != 0)
+		{
+			resultCode = activityService.giveAuditNotPassReason(activityId, auditNotPassReason);
+		}
+		return ResponseMapUtil.responseSuccess(resultCode);
+		
+	}
+
+}

@@ -1,0 +1,102 @@
+angular
+    .module('pictureSubmit', ['angularFileUpload'])
+    .controller('pictureSubmit', ['$scope', '$http', '$cookieStore', '$location', '$stateParams', 'FileUploader', function($scope, $http, $cookieStore, $location, $stateParams, FileUploader){
+    	//公共方法
+    	$scope.deletePic = function(list, i) {
+    		list.splice(i, 1);
+    	}
+    	function onAfterAddingFile(item) {
+			item.upload();
+		}
+		$scope.submitPicAndMapInfo = function () {
+			var buildingPicList = $scope.effectPicList;
+			buildingPicList = buildingPicList.concat($scope.realPicList);
+			buildingPicList = buildingPicList.concat($scope.planPicList);
+			buildingPicList = buildingPicList.concat($scope.supportingPicList);
+			buildingPicList = buildingPicList.concat($scope.modelRoomPicList);
+
+			$http.post('building/addSurround', {
+				buildingId: $stateParams.buildingId,
+				busstation: 'ttextbusstation',
+				school: 'ttextschool',
+				hospital: 'ttexthospital',
+				bank: 'ttextbank',
+				entertainment: 'ttextentertainment',
+				shopping: 'ttextshopping',
+				repast: 'ttextrepast',
+				exercise: 'ttextexercise',
+				list: buildingPicList
+			})
+			.success(function(response) {
+				alert(response.message);
+				$location.path('index/typeEnter/' + $stateParams.buildingId + '&0');
+			})
+			.error(function(data, status) {
+				alert('发生错误');
+			});
+		}
+
+
+		//效果图
+		$scope.effectPicList = [];
+		$scope.effectpicuploader = new FileUploader({
+			url: 'houseStyle/uploadStylePic'
+		});
+		$scope.effectpicuploader.onAfterAddingFile = onAfterAddingFile;
+		$scope.effectpicuploader.onSuccessItem = function(item, response, status, headers) {
+			$scope.effectPicList.push({
+				buildingId: 1073,
+				picType: '01030600',
+				picLocation: response.message,
+				picDescription: ''
+			});
+		}
+
+		//实景图
+		$scope.realPicList = [];
+		$scope.realPicuploader = new FileUploader({
+			url: 'houseStyle/uploadStylePic'
+		});
+		$scope.realPicuploader.onAfterAddingFile = onAfterAddingFile;
+		$scope.realPicuploader.onSuccessItem = function(item, response, status, headers) {
+			$scope.realPicList.push({
+				picLocation: response.message
+			});
+		}
+
+		//规划图
+		$scope.planPicList = [];
+		$scope.planPicUploader = new FileUploader({
+			url: 'houseStyle/uploadStylePic'
+		});
+		$scope.planPicUploader.onAfterAddingFile = onAfterAddingFile;
+		$scope.planPicUploader.onSuccessItem = function(item, response, status, headers) {
+			$scope.planPicList.push({
+				picLocation: response.message
+			});
+		}
+
+		//配套图
+		$scope.supportingPicList = [];
+		$scope.supportingPicUploader = new FileUploader({
+			url: 'houseStyle/uploadStylePic'
+		});
+		$scope.supportingPicUploader.onAfterAddingFile = onAfterAddingFile;
+		$scope.supportingPicUploader.onSuccessItem = function(item, response, status, headers) {
+			$scope.supportingPicList.push({
+				picLocation: response.message
+			});
+		}
+
+		//样板间
+		$scope.modelRoomPicList = [];
+		$scope.modelRoomPicUploader = new FileUploader({
+			url: 'houseStyle/uploadStylePic'
+		});
+		$scope.modelRoomPicUploader.onAfterAddingFile = onAfterAddingFile;
+		$scope.modelRoomPicUploader.onSuccessItem = function(item, response, status, headers) {
+			$scope.modelRoomPicList.push({
+				picLocation: response.message
+			});
+		}
+    }]);

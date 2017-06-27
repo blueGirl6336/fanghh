@@ -1,0 +1,159 @@
+package hitwh.fanghh.service;
+
+import java.math.BigDecimal;
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
+import hitwh.fanghh.bean.HouseBean;
+
+/**
+ * 房源管理相关类
+ *
+ * @ClassName: HouseService
+ * @Description: TODO
+ * @author: LY
+ * @date: 2016年11月16日 下午4:08:51
+ *
+ */
+public interface HouseService
+{
+	/**
+	 * 获取楼盘所有房源
+	 *
+	 * @Title: getHouseByBuildingId
+	 * @version:
+	 * @author: LY
+	 * 
+	 * @param buildingId楼盘id
+	 * @param pageMaxNum每页最大数量
+	 * @param pageNo页号
+	 * @return 房屋列表
+	 */
+	public List<HouseBean> getHouseByBuildingId(int buildingId, int pageMaxNum, int pageNo);
+
+	/**
+	 * 获取单个房源信息
+	 *
+	 * @Title: getHouseById
+	 * @version:
+	 * @author: LY
+	 * 
+	 * @param houseId
+	 * @return 房屋信息
+	 */
+	public HouseBean getHouseById(int houseId);
+
+	/**
+	 * 获取房屋列表页数
+	 *
+	 * @Title: getHousePageNumByBuildingId
+	 * @version:
+	 * @author: LY
+	 * 
+	 * @param buildingId楼盘id
+	 * @param pageMaxNum每页最大数量
+	 * @return
+	 */
+	public int getHousePageNumByBuildingId(int buildingId, int pageMaxNum);
+
+	/**
+	 * 房源申请上架
+	 *
+	 * @Title: applicateHouseOnSaleByHouseId
+	 * @version:
+	 * @author: LY
+	 * 
+	 * @param houseId房源id
+	 * @return 1 成功 0 失败
+	 */
+	public String applicateHouseOnSaleByHouseId(int houseId);
+
+	/**
+	 * 房源申请下架
+	 *
+	 * @Title: applicateHouseOffSaleByHouseId
+	 * @version:
+	 * @author: LY
+	 * 
+	 * @param houseId房源id
+	 * @return 1成功 0失败
+	 */
+	public String applicateHouseOffSaleByHouseId(int houseId);
+
+	/**
+	 * 房源审核上下架申请
+	 *
+	 * @Title: applicateHouseOffSaleByHouseId
+	 * @version:
+	 * @author: LY
+	 * 
+	 * @param houseId房源id
+	 * @return 1 审核上架通过 2 审核下架通过 0失败
+	 */
+	public String auditHouseApplicationByHouseId(int houseId, boolean auditStatus, String auditNotPassReason);
+
+	/**
+	 * 提交房源审核不通过原因
+	 *
+	 * @Title: giveAuditNotPassReason
+	 * @version:
+	 * @author: LY
+	 * 
+	 * @param houseId房源id
+	 * @param 审核不通过原因
+	 * @return
+	 */
+
+	public int giveAuditNotPassReason(int houseId, String auditNotPassReason);
+
+	/**
+	 * 获取房源审核不通过原因
+	 *
+	 * @Title: getAuditNotPassReason
+	 * @version:
+	 * @author: LY
+	 * 
+	 * @param houseId房源id
+	 * @return 1 成功
+	 */
+	public String getAuditNotPassReason(int houseId);
+
+	/**
+	 * 添加新户型
+	 *
+	 * @Title: addHouse
+	 * @version:
+	 * @author: LY
+	 * 
+	 * @param houseBean
+	 * @return "success",成功
+	 */
+	public String addHouse(HouseBean houseBean);
+
+	/**
+	 * 更新户型信息
+	 *
+	 * @Title: updateHouse
+	 * @version:
+	 * @author: LY
+	 * 
+	 * @param houseBean
+	 * @return "success",成功
+	 */
+	public String updateHouse(HouseBean houseBean);
+
+	/**
+	 * 户型图上传
+	 *
+	 * @Title: uploadStylePic
+	 * @version:
+	 * @author:LY
+	 * 
+	 * @param file
+	 * @return true 成功 false 失败
+	 */
+	public String uploadHousePic(MultipartFile file);
+
+	public String addPerferentialPrice(int houseId, BigDecimal perferentialPrice);
+}

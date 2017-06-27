@@ -1,0 +1,56 @@
+
+@import "list_dynamicManagement.scss";
+@import "list_houseManagement.scss";
+
+.building_table
+{
+	tr 
+	{
+		.checkbox
+		{
+			width:6%;
+		}
+		.checkbox-input
+		{
+			position: relative;
+			left:20%;
+		}
+		.title 
+		{
+			display: -webkit-flex; //Safari
+  			display: flex;
+			justify-content: flex-start;
+			color:rgb(102,102,102);
+			width:50%;
+		}
+		.time
+		{
+			width:26%;
+		}
+		.operation
+		{
+			width:18%;
+		}
+		.operation1,.operation2
+		{
+			width:9%;
+			color:rgb(102,102,102);
+		}
+	}
+}
+
+.onePass:hover, .oneNoPass:hover
+{
+	cursor:pointer;
+}
+#commentCircle
+{
+	height:45px;
+	border-right:1px solid rgb(229,229,229);
+	border-left:0px;
+	border-bottom:0px;
+	border-top:7px solid rgb(253,103,32);
+	z-index:2;
+	background-color:#fff;
+	font-weight:bold;
+}

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.BrokercommentfromconsultantDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Brokercommentfromconsultant">
+    <id column="bcfc_id" jdbcType="INTEGER" property="bcfcId" />
+    <result column="consultant_id" jdbcType="INTEGER" property="consultantId" />
+    <result column="broker_id" jdbcType="INTEGER" property="brokerId" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="entire_comment" jdbcType="VARCHAR" property="entireComment" />
+    <result column="customer_quality_comment" jdbcType="DECIMAL" property="customerQualityComment" />
+    <result column="expertise_level_comment" jdbcType="DECIMAL" property="expertiseLevelComment" />
+    <result column="comment_writing" jdbcType="VARCHAR" property="commentWriting" />
+    <result column="comment_time" jdbcType="TIMESTAMP" property="commentTime" />
+    <result column="comment_check_status" jdbcType="VARCHAR" property="commentCheckStatus" />
+    <result column="reply_time" jdbcType="TIMESTAMP" property="replyTime" />
+    <result column="reply_content" jdbcType="VARCHAR" property="replyContent" />
+    <result column="reply_check_status" jdbcType="VARCHAR" property="replyCheckStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    bcfc_id, consultant_id, broker_id, order_id, entire_comment, customer_quality_comment, 
+    expertise_level_comment, comment_writing, comment_time, comment_check_status, reply_time, 
+    reply_content, reply_check_status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.BrokerCommentFromConsultant
+    where bcfc_id = #{bcfcId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.BrokerCommentFromConsultant
+    where bcfc_id = #{bcfcId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Brokercommentfromconsultant">
+    insert into dbo.BrokerCommentFromConsultant (bcfc_id, consultant_id, broker_id, 
+      order_id, entire_comment, customer_quality_comment, 
+      expertise_level_comment, comment_writing, 
+      comment_time, comment_check_status, reply_time, 
+      reply_content, reply_check_status)
+    values (#{bcfcId,jdbcType=INTEGER}, #{consultantId,jdbcType=INTEGER}, #{brokerId,jdbcType=INTEGER}, 
+      #{orderId,jdbcType=VARCHAR}, #{entireComment,jdbcType=VARCHAR}, #{customerQualityComment,jdbcType=DECIMAL}, 
+      #{expertiseLevelComment,jdbcType=DECIMAL}, #{commentWriting,jdbcType=VARCHAR}, 
+      #{commentTime,jdbcType=TIMESTAMP}, #{commentCheckStatus,jdbcType=VARCHAR}, #{replyTime,jdbcType=TIMESTAMP}, 
+      #{replyContent,jdbcType=VARCHAR}, #{replyCheckStatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Brokercommentfromconsultant">
+    insert into dbo.BrokerCommentFromConsultant
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bcfcId != null">
+        bcfc_id,
+      </if>
+      <if test="consultantId != null">
+        consultant_id,
+      </if>
+      <if test="brokerId != null">
+        broker_id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="entireComment != null">
+        entire_comment,
+      </if>
+      <if test="customerQualityComment != null">
+        customer_quality_comment,
+      </if>
+      <if test="expertiseLevelComment != null">
+        expertise_level_comment,
+      </if>
+      <if test="commentWriting != null">
+        comment_writing,
+      </if>
+      <if test="commentTime != null">
+        comment_time,
+      </if>
+      <if test="commentCheckStatus != null">
+        comment_check_status,
+      </if>
+      <if test="replyTime != null">
+        reply_time,
+      </if>
+      <if test="replyContent != null">
+        reply_content,
+      </if>
+      <if test="replyCheckStatus != null">
+        reply_check_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bcfcId != null">
+        #{bcfcId,jdbcType=INTEGER},
+      </if>
+      <if test="consultantId != null">
+        #{consultantId,jdbcType=INTEGER},
+      </if>
+      <if test="brokerId != null">
+        #{brokerId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="entireComment != null">
+        #{entireComment,jdbcType=VARCHAR},
+      </if>
+      <if test="customerQualityComment != null">
+        #{customerQualityComment,jdbcType=DECIMAL},
+      </if>
+      <if test="expertiseLevelComment != null">
+        #{expertiseLevelComment,jdbcType=DECIMAL},
+      </if>
+      <if test="commentWriting != null">
+        #{commentWriting,jdbcType=VARCHAR},
+      </if>
+      <if test="commentTime != null">
+        #{commentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="commentCheckStatus != null">
+        #{commentCheckStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="replyTime != null">
+        #{replyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="replyContent != null">
+        #{replyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="replyCheckStatus != null">
+        #{replyCheckStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Brokercommentfromconsultant">
+    update dbo.BrokerCommentFromConsultant
+    <set>
+      <if test="consultantId != null">
+        consultant_id = #{consultantId,jdbcType=INTEGER},
+      </if>
+      <if test="brokerId != null">
+        broker_id = #{brokerId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="entireComment != null">
+        entire_comment = #{entireComment,jdbcType=VARCHAR},
+      </if>
+      <if test="customerQualityComment != null">
+        customer_quality_comment = #{customerQualityComment,jdbcType=DECIMAL},
+      </if>
+      <if test="expertiseLevelComment != null">
+        expertise_level_comment = #{expertiseLevelComment,jdbcType=DECIMAL},
+      </if>
+      <if test="commentWriting != null">
+        comment_writing = #{commentWriting,jdbcType=VARCHAR},
+      </if>
+      <if test="commentTime != null">
+        comment_time = #{commentTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="commentCheckStatus != null">
+        comment_check_status = #{commentCheckStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="replyTime != null">
+        reply_time = #{replyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="replyContent != null">
+        reply_content = #{replyContent,jdbcType=VARCHAR},
+      </if>
+      <if test="replyCheckStatus != null">
+        reply_check_status = #{replyCheckStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where bcfc_id = #{bcfcId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Brokercommentfromconsultant">
+    update dbo.BrokerCommentFromConsultant
+    set consultant_id = #{consultantId,jdbcType=INTEGER},
+      broker_id = #{brokerId,jdbcType=INTEGER},
+      order_id = #{orderId,jdbcType=VARCHAR},
+      entire_comment = #{entireComment,jdbcType=VARCHAR},
+      customer_quality_comment = #{customerQualityComment,jdbcType=DECIMAL},
+      expertise_level_comment = #{expertiseLevelComment,jdbcType=DECIMAL},
+      comment_writing = #{commentWriting,jdbcType=VARCHAR},
+      comment_time = #{commentTime,jdbcType=TIMESTAMP},
+      comment_check_status = #{commentCheckStatus,jdbcType=VARCHAR},
+      reply_time = #{replyTime,jdbcType=TIMESTAMP},
+      reply_content = #{replyContent,jdbcType=VARCHAR},
+      reply_check_status = #{replyCheckStatus,jdbcType=VARCHAR}
+    where bcfc_id = #{bcfcId,jdbcType=INTEGER}
+  </update>
+</mapper>

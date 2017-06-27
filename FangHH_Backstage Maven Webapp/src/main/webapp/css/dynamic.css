@@ -1,0 +1,21 @@
+.add-dynamic-box .content_area {
+  margin: 0;
+}
+
+.add-dynamic-box .row {
+  margin-left: 100px;
+}
+
+.add-dynamic-box .table_area .inputArea {
+  margin-top: 30px;
+}
+
+.add-dynamic-box .inputArea .form-item .form-field .dynamic-title {
+  margin-left: 14px;
+  width: 800px;
+}
+
+.add-dynamic-box-content {
+	width: 800px;
+	margin: 0 0 0 100px;
+}

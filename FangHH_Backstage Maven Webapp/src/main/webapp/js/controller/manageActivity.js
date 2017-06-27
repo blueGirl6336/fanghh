@@ -1,0 +1,420 @@
+var module = angular.module('ActivitiesLaunch', []);
+
+module.controller('ActivitiesLaunchController', ['$http', '$filter', '$location', '$stateParams', '$state', function($http, $filter, $location, $stateParams, $state) {
+  // 活动类型
+  this.activityTypes = ['02020500', '02020200', '02020600'];
+  this.addActivityUrls = [
+    'activity/addClearanceActivity',      // 捡漏
+    'activity/addGroupPurchaseActivity',  // 团购
+    'activity/addPerferentialActivity'    // 特惠
+  ];
+  this.selectedType = $filter('exchangeNum')(this.activityTypes[0]);
+
+  this.activityName = '';
+
+  var that = this;
+
+  // 获取城市和区域
+  $http({
+    url: 'dictionary/getAllCityAndRegion',
+    method: 'post',
+  }).success(function (response) {
+    if (response.success === true) {
+      that.allCities = response.data;
+    } else {
+      console.error('error when access all region', response);
+    }
+  });
+
+  // 选择城市后更新
+  this.chooseCity = function (city) {
+    that.allRegions = city.regionList;
+  };
+
+  // 选择区域后拉取楼盘列表
+  this.fetchBuildings = function (region) {
+    if (region === undefined) {
+      return;
+    }
+
+    $http({
+      url: 'building/getBuildingByRegionId',
+      method: 'post',
+      params: {
+        regionId: region.regionId
+      }
+    }).success(function (response) {
+      if (response.success === true) {
+        that.allBuildings = response.data;
+      } else {
+        console.error('error when fetch buildlings for region ' + region.regionName);
+      }
+    });
+  };
+
+  // 选中的楼盘
+  this.selectedBuilding = undefined;
+
+  // 获取房源
+  this.fetchHouses = function () {
+    // ??? 抓多少？
+
+    if (!that.selectedBuilding) {
+      return;
+    }
+
+    $http({
+      url: 'activity/getNoActivityHouse',
+      method: 'post',
+      params: {
+        buildingId: that.selectedBuilding.buildingId,
+        pageNo: 0,
+        pageMaxNum: 10
+      }
+    }).success(function (response) {
+      if (response.success === true) {
+        that.allHouses = response.data.map(function (houseData) {
+          houseData.houseName = houseData.buildingId + '号楼' + houseData.unit + '单元' + houseData.houseNum + '室';
+          return houseData;
+        });
+      } else {
+        console.error('error when fetch houses for building ' + that.selectedBuilding.buildingName);
+      }
+    });
+  };
+
+  // 已选中的房源
+  this.selectedHouses = [];
+  // 添加已有房源中选中的房源
+  this.selectedHouse = null;
+
+  // 添加已有房源
+  this.showAddExistedHouse = function () {
+    if (!that.selectedBuilding) {
+      alert('请先选择楼盘');
+      return;
+    }
+
+    $('.pop-up-cover').fadeIn(200);
+    $('.pop-up').fadeIn(200);
+  };
+
+  // 关闭添加房源的弹出框
+  this.closePopup = function () {
+    $('.pop-up-cover').fadeOut(200);
+    $('.pop-up').fadeOut(200);
+
+    $('#act-add-house-sp-price').val('');
+    $('#act-add-house-org-price').val('');
+    $('#act-add-house-selected-house').val('');
+
+    that.selectedHouse = null;
+  };
+
+  // 显示选中的房源的房价
+  this.showHousePrice = function () {
+    $('#act-add-house-org-price').val(that.selectedHouse.orginalPrice);
+  };
+
+  // 检查用户输入并添加该房源
+  this.checkAndAddHouse = function () {
+    if (!that.selectedHouse) {
+      alert('请选择要添加的房源')
+      return;
+    }
+
+    var specialPrice = $('#act-add-house-sp-price').val();
+    if (!specialPrice) {
+      alert('请输入优惠金额');
+      return
+    }
+
+    that.selectedHouse.currentPrice = specialPrice;
+
+    // 在已经选中的房源集合中保存起来
+    that.selectedHouses.push(that.selectedHouse);
+
+    // 删除界面上的那个房源
+    for (var i = 0; i < that.allHouses.length; i++) {
+      if (that.allHouses[i].houseId === that.selectedHouse.houseId) {
+        that.allHouses.splice(i, 1);
+        break;
+      }
+    }
+
+    that.closePopup();
+  };
+
+  // 移除添加的房源
+  this.deleteAddedHouse = function (house) {
+    for (var i = 0; i < that.selectedHouses.length; i++) {
+      if (that.selectedHouses[i].houseId === house.houseId) {
+        that.selectedHouses.splice(i, 1);
+        break;
+      }
+    }
+
+    that.allHouses.splice(0, 0, house);
+  };
+
+  // 当前选中的板块
+  this.activeRulePanel = 1;
+
+  this.changeActiveRulePanel = function (index) {
+    this.activeRulePanel = index;
+  };
+
+  // 计算时间
+
+  var date = new Date();
+  this.beginYear = this.endYear = date.getFullYear();
+  this.beginMonth = this.endMonth = date.getMonth() + 1;
+  this.beginDay = this.endDay = date.getDate();
+  this.beginHour = this.endHour = date.getHours();
+
+  this.getSequence = function (start, num, stride) {
+    if (stride === null || stride === undefined) {
+      // 默认连续的数
+      stride = 1;
+    }
+
+    var array = [];
+    for (var i = start; i < start + num; i += stride) {
+      array.push(i);
+    }
+
+    return array;
+  };
+
+  function isLeapYear(year) {
+    return (year % 400 == 0) || ((year % 100 != 0) && (year % 4 == 0));
+  }
+
+  this.yearArray = this.getSequence(this.beginYear - 1, 10);
+
+  this.calculateDays = function (month, year) {
+    var monthAndDay = [31, isLeapYear(year) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+    return that.getSequence(1, monthAndDay[month]);
+  };
+
+  // 检查并提交
+  this.submitActivity = function () {
+
+    // 如果是编辑活动，先填充表单
+    var activityId = $stateParams.activityId;
+    var activityType = $stateParams.activityType;
+    // 判断是编辑还是添加
+    if (!activityId || !activityType) {
+      // 添加
+      that.addActivity();
+    } else {
+      that.editActivity();
+    }
+
+  };
+
+  this.addActivity = function() {
+
+    // 1. 活动名称
+    if (!that.activityName) {
+      alert('请输入活动名称');
+      return;
+    }
+
+    // 2. 楼盘
+    if (!that.selectedBuilding) {
+      alert('请选择活动楼盘');
+      return;
+    }
+
+    // 3. 活动类型
+    var url = '';
+    var activityType = null;
+    for (var i = 0; i < that.activityTypes.length; i++) {
+      if ($filter('exchangeNum')(that.activityTypes[i]) === that.selectedType) {
+        url = that.addActivityUrls[i];
+        activityType = that.activityTypes[i];
+        break;
+      }
+    }
+
+    // 4. 时间
+    var startTime = [that.beginYear, that.beginMonth, that.beginDay].join('-') + ' ' + that.beginHour + ':00:00';
+    var endTime = [that.endYear, that.endMonth, that.endDay].join('-') + ' ' + that.endHour + ':00:00';
+
+    // 5. 活动规则
+    var rules = ['减', '满', '顶'].map(function (value, index) {
+      return {
+        'perferentialRuleType': value,
+        'perferentialRuleTitle': $('#rule-title-' + index).val(),
+        'perferentialDescription': $('#rule-content-' + index).val()
+      };
+    });
+
+    // json
+    $http.post(url, {
+      activityType: activityType,
+      buildingId: that.selectedBuilding.buildingId,
+      activityName: that.activityName,
+      houseBeanList: that.selectedHouses,
+      startTime: startTime,
+      endTime: endTime,
+      perferentialRuleBeanList: rules
+    }).success(function (response) {
+      if (response.success === true) {
+        alert('添加活动成功');
+        $state.go('index.avtivitiemManagement');
+      } else {
+        console.error('error when add activity ' + activityName);
+      }
+    });
+
+  }
+
+  this.editActivity = function () {
+    // 1. 更新 url
+    var index = that.activityTypes.indexOf($stateParams.activityType);
+    var urls = [
+     'activity/updateClearanceActivity',
+     'activity/updateGroupPurchaseActivity',
+     'activity/updatePerferentialActivity'
+    ];
+    var url = urls[index];
+
+    // 2. 类型
+    var activityType = $stateParams.activityType;
+
+    // 3. id
+    var activityId = $stateParams.activityId;
+
+    // 4. 时间
+    var startTime = [that.beginYear, that.beginMonth, that.beginDay].join('-') + ' ' + that.beginHour + ':00:00';
+    var endTime = [that.endYear, that.endMonth, that.endDay].join('-') + ' ' + that.endHour + ':00:00';
+
+    // 5. 活动规则
+    var rules = ['减', '满', '顶'].map(function (value, index) {
+      return {
+        'perferentialRuleType': value,
+        'perferentialRuleTitle': $('#rule-title-' + index).val(),
+        'perferentialDescription': $('#rule-content-' + index).val()
+      };
+    });
+
+    // json
+    $http.post(url, {
+      activityId: activityId,
+      activityType: activityType,
+      buildingId: that.selectedBuilding.buildingId,
+      activityName: that.activityName,
+      houseBeanList: that.selectedHouses,
+      startTime: startTime,
+      endTime: endTime,
+      perferentialRuleBeanList: rules
+    }).success(function (response) {
+      if (response.success === true) {
+        alert('更新活动成功');
+        $state.go('index.avtivitiemManagement');
+      } else {
+        console.error('error when add activity ' + activityName);
+      }
+    });
+  };
+
+  // 如果是编辑活动，先填充表单
+  var activityId = $stateParams.activityId;
+  var activityType = $stateParams.activityType;
+  if (!activityId || !activityType) {
+    return;
+  }
+
+  // 查询活动信息
+  var index = this.activityTypes.indexOf(activityType);
+  var fetchActivityUrls = [
+    'activity/getSingleClearanceActivity',
+    'activity/getSingleGroupPurchaseActivity',
+    'activity/getSinglePerferentialActivity'
+  ];
+  
+  var url = fetchActivityUrls[index];
+  $http({
+    url: url,
+    method: 'post',
+    params: {
+      activityId: activityId
+    }
+  }).success(function (response) {
+    if (response.success === true) {
+      var activity = response.data;
+
+      // 活动名称
+      that.activityName = activity.activityName;
+
+      // 添加的房源
+      that.selectedHouses = activity.houseBeanList.map(function (houseData) {
+        houseData.houseName = houseData.buildingId + '号楼' + houseData.unit + '单元' + houseData.houseNum + '室';
+        return houseData;
+      });
+
+      // 活动规则
+      for (var i = 0; i < activity.perferentialRuleBeanList; i++) {
+        $('#rule-title-' + i).val(activity.perferentialRuleBeanList[i].perferentialRuleTitle);
+        $('#rule-content-' + i).val(activity.perferentialRuleBeanList[i].perferentialDescription);
+      }
+
+      // 时间
+      var startTime = new Date(activity.startTime);
+      var endTime = new Date(activity.endTime);
+
+      that.beginYear = startTime.getFullYear();
+      that.beginMonth = startTime.getMonth() + 1;
+      that.beginDay = startTime.getDate();
+      that.beginHour = startTime.getHours();
+
+      that.endYear = endTime.getFullYear();
+      that.endMonth = endTime.getMonth() + 1;
+      that.endDay = endTime.getDate();
+      that.endHour = endTime.getHours();
+
+      // 楼盘
+      that.fetchBuildingById(activity.buildingId);
+
+      // 页面上做些更改
+      // 1. 删除选择区域的部分
+      $('#act-region-select-box').remove();
+      // 2. 按钮文字改变
+      $('#act-commit-btn').text('保存');
+      // 3. 活动定死
+      that.selectedType = $filter('exchangeNum')(that.activityTypes[index]);
+      $("#act-select-type").prop('disabled', true);
+    } else {
+      console.log('error when get activity ' + activityId);
+    }
+  });
+
+  // 根据楼盘 id 获取楼盘信息
+  this.fetchBuildingById = function (buildingId) {
+    $http({
+      url: 'building/getBuildingInfo',
+      method: 'post',
+      params: {
+        buildingId: buildingId
+      }
+    }).success(function (response) {
+      if (response.success === true) {
+        that.selectedBuilding = response.data;
+        that.fetchHouses();
+
+        // 选择楼盘文字定死
+        var $input = $('<input type="text" class="form-text hasUnitInput ng-pristine ng-valid ng-not-empty ng-touched">');
+        $('#act-select-building').replaceWith($input);
+        $input.val(response.data.buildingName).prop('disabled', true);
+      } else {
+        console.log('error when fetch building by id ' + buildingId + ' when editing activity ' + activityId);
+      }
+    });
+  };
+
+}]);
+
+

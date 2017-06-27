@@ -1,0 +1,35 @@
+angular
+    .module('pictureSubmit', ['angularFileUpload'])
+    .controller('pictureSubmit', ['$scope', '$http', '$cookieStore', 'FileUploader', function($scope, $http, $cookieStore, FileUploader){
+    	//删除图片
+    	$scope.deletePic = function(list, i) {
+    		list.splice(i, 1);
+    	}
+    	function onAfterAddingFile(item) {
+			item.upload();
+		}
+
+		//效果图
+		$scope.effectPicList = [];
+		$scope.effectpicuploader = new FileUploader({
+			url: 'houseStyle/uploadStylePic'
+		});
+		$scope.effectpicuploader.onAfterAddingFile = onAfterAddingFile;
+		$scope.effectpicuploader.onSuccessItem = function(item, response, status, headers) {
+			$scope.effectPicList.push({
+				url: '.' + response.message
+			});
+		}
+
+		//实景图
+		$scope.realPicList = [];
+		$scope.realPicuploader = new FileUploader({
+			url: 'houseStyle/uploadStylePic'
+		});
+		$scope.realPicuploader.onAfterAddingFile = onAfterAddingFile;
+		$scope.realPicuploader.onSuccessItem = function(item, response, status, headers) {
+			$scope.realPicList.push({
+				url: '.' + response.message
+			});
+		}
+    }]);

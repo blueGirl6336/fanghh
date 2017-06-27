@@ -1,0 +1,67 @@
+<link type="text/css" rel="stylesheet" href="./css/list_sourceManagement.css"/>
+
+<div class="content_area" ng-app="manageBuildingCtrl" ng-controller="listSourceManagement">
+	<p class="content_title">威海华润湾九里</p>
+
+	<div class="table_area">
+		<div><buildingmanagenavigator nowpageid="2" /></div>
+
+		<div class="table_content">
+			<div id="table_before">
+				<button class="before-input" ng-click="newHouseSource()">添加新房源</button>
+			</div>
+			<table class="building_table">
+				<tr class="line0">
+					<td class="checkbox"></td>
+					<td class="number">代号</td>
+					<td class="type">户型</td>
+					<td class="source">房源楼号</td>
+					<td class="price">参考售价</td>
+					<td class="month-pay">参考月供</td>
+					<td class="first-pay">首付</td>
+					<td class="floor">楼层</td>
+					<td class="area">面积(平米)</td>
+					<td class="operation" colspan="2">操作</td>
+					<td class="admin">管理员</td>
+				</tr>
+				<tr ng-class="{'line2': $odd, 'line1': $even}" ng-repeat="record in houseSource">
+					<td class="checkbox">
+						<input type="checkbox" name="house">
+					</td>
+					<td class="number">{{record.styleCode}}户型</td>
+					<td class="type">{{record.room | exchangeNum}}室{{ record.hall | exchangeNum}}厅{{ record.toilet | exchangeNum}}卫</td>
+					<td class="source">{{record.buildingId}}号楼{{record.unitId}}单元{{record.houseNum}}</td>
+					<td class="price">{{record.orginalPrice}}万起</td>
+					<td class="month-pay">{{record.monthlyPayment}}元</td>
+					<td class="first-pay">{{record.firstPayment}}万起</td>
+					<td class="floor">{{record.floor}}/{{record.maxFloor}}</td>
+					<td class="area">{{record.area}}</td>
+					<td class="operation1"><span class="modify" ng-click="modify(record.houseId)">修改</span></td>
+					<td class="operation2"><span ng-click="upDownBoard(record.houseId,record.houseApplicationStatus)">{{record.state}}</span></td>
+					<td class="admin" ng-show="lookShow"><span class="look" ng-click="lookOrExamine(record.houseId,record.houseApplicationStatus)">{{record.look}}</span></td>
+				</tr>
+
+				<tr class="table-bottom">
+					<td class="checkbox-bottom">
+						<input type="checkbox" name="house" onclick="houseSourceAllSelect(this)">全选
+					</td>
+					<td class="up-select">上架所选</td>
+					<td class="down-select">下架所选</td>
+				</tr>
+
+			</table>
+
+			<div class="page-num">
+				<!-- <p class="before" ng-click="changePage(page.pageNumber - 1)" ng-show="page.pageNumber - 1 > 0">上一页</p> -->
+				<p class="page-1" ng-click="changePage(pageButton[1])" ng-show="pageButton[1] != null" ng-class="{nowpage: pageButton[1] == page.pageNumber}">{{ pageButton[1] }}</p>
+				<p class="page-2" ng-click="changePage(pageButton[2])" ng-show="pageButton[2] != null" ng-class="{nowpage: pageButton[2] == page.pageNumber}">{{ pageButton[2] }}</p>
+				<p class="page-3" ng-click="changePage(pageButton[3])" ng-show="pageButton[3] != null" ng-class="{nowpage: pageButton[3] == page.pageNumber}">{{ pageButton[3] }}</p>
+				<p class="page-4" ng-click="changePage(pageButton[4])" ng-show="pageButton[4] != null" ng-class="{nowpage: pageButton[4] == page.pageNumber}">{{ pageButton[4] }}</p>
+				<p class="page-5" ng-click="changePage(pageButton[5])" ng-show="pageButton[5] != null" ng-class="{nowpage: pageButton[5] == page.pageNumber}">{{ pageButton[5] }}</p>
+				<p class="next" ng-click="changePage(page.pageNumber + 1)" ng-show="page.pageNumber + 1 <= page.pageMax">下一页</p>
+				<p class="first" ng-click="changePage(1)" ng-show="page.pageNumber != 1">首页</p>
+				<p class="last" ng-click="changePage(page.pageMax)" ng-show="page.pageNumber != page.pageMax">末页</p>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.TalksplacardDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Talksplacard">
+    <id column="tp_id" jdbcType="INTEGER" property="tpId" />
+    <result column="pt_id" jdbcType="INTEGER" property="ptId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="placard_time" jdbcType="TIMESTAMP" property="placardTime" />
+    <result column="placard_content" jdbcType="VARCHAR" property="placardContent" />
+    <result column="check_status" jdbcType="BIT" property="checkStatus" />
+    <result column="check_opinion" jdbcType="VARCHAR" property="checkOpinion" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    tp_id, pt_id, user_id, placard_time, placard_content, check_status, check_opinion
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.TalksPlacard
+    where tp_id = #{tpId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.TalksPlacard
+    where tp_id = #{tpId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Talksplacard">
+    insert into dbo.TalksPlacard (tp_id, pt_id, user_id, 
+      placard_time, placard_content, check_status, 
+      check_opinion)
+    values (#{tpId,jdbcType=INTEGER}, #{ptId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{placardTime,jdbcType=TIMESTAMP}, #{placardContent,jdbcType=VARCHAR}, #{checkStatus,jdbcType=BIT}, 
+      #{checkOpinion,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Talksplacard">
+    insert into dbo.TalksPlacard
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tpId != null">
+        tp_id,
+      </if>
+      <if test="ptId != null">
+        pt_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="placardTime != null">
+        placard_time,
+      </if>
+      <if test="placardContent != null">
+        placard_content,
+      </if>
+      <if test="checkStatus != null">
+        check_status,
+      </if>
+      <if test="checkOpinion != null">
+        check_opinion,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tpId != null">
+        #{tpId,jdbcType=INTEGER},
+      </if>
+      <if test="ptId != null">
+        #{ptId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="placardTime != null">
+        #{placardTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="placardContent != null">
+        #{placardContent,jdbcType=VARCHAR},
+      </if>
+      <if test="checkStatus != null">
+        #{checkStatus,jdbcType=BIT},
+      </if>
+      <if test="checkOpinion != null">
+        #{checkOpinion,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Talksplacard">
+    update dbo.TalksPlacard
+    <set>
+      <if test="ptId != null">
+        pt_id = #{ptId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="placardTime != null">
+        placard_time = #{placardTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="placardContent != null">
+        placard_content = #{placardContent,jdbcType=VARCHAR},
+      </if>
+      <if test="checkStatus != null">
+        check_status = #{checkStatus,jdbcType=BIT},
+      </if>
+      <if test="checkOpinion != null">
+        check_opinion = #{checkOpinion,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where tp_id = #{tpId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Talksplacard">
+    update dbo.TalksPlacard
+    set pt_id = #{ptId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      placard_time = #{placardTime,jdbcType=TIMESTAMP},
+      placard_content = #{placardContent,jdbcType=VARCHAR},
+      check_status = #{checkStatus,jdbcType=BIT},
+      check_opinion = #{checkOpinion,jdbcType=VARCHAR}
+    where tp_id = #{tpId,jdbcType=INTEGER}
+  </update>
+</mapper>

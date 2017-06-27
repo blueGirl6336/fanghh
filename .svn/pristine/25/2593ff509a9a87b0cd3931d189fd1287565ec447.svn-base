@@ -1,0 +1,62 @@
+angular.module("fhhUser", ["ngCookies"])
+.controller("userAuthCtl", function($scope, $http) {
+    var current_page = 1;
+    var page_num = 1;
+
+    $http({
+        url:"/authentication/getUserAuthenticationPageNum",
+        method: "post",
+        headers: {
+			'Content-Type': 'multipart/form-data'
+		},
+        params: {
+            pageMaxNum: 8,
+        }
+    }).success(function(response) {
+        if (response.success == true) {
+            page_num = response.data;
+        }
+    });
+
+    var get_page_foot = function() {
+        var pages = [];
+            pages.push('<p class="first" ng-click="getPage(1)">首页</p>');
+            pages.push('<p class="before">上一页</p>');
+            for (var i = 0; i < page_num; i ++) {
+                pages.push('<p class="page-' + i + '" ng-click="getPage('+ i + ')>' + i + '</p>');
+            }
+            pages.push('<p class="next">下一页</p>');
+            pages.push('<p class="last" ng-click="getPage(2)>末页</p>');
+
+            $scope.pagesNum = pages.join(" ");
+    }
+    
+    //获取第几页的内容
+    $scope.getPage = function(page_id) {
+        $http({
+            url:"/authentication/getAllUser",
+            method: "post",
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            params: {
+                pageMaxNum: 8,
+                pageNo: page_id
+            }
+        }).success(function(response) {
+            if (response.success == true) {
+                var pages = [];
+                pages.push('<p class="first" ng-click="getPage(1)">首页</p>');
+                pages.push('<p class="before">上一页</p>');
+                for (var i = 0; i < response.data; i ++) {
+                    pages.push('<p class="page-' + i + '" ng-click="getPage('+ i + ')>' + i + '</p>');
+                }
+                pages.push('<p class="next">下一页</p>');
+                pages.push('<p class="last" ng-click="getPage(2)>末页</p>');
+
+                $scope.pagesNum = pages.join(" ");
+
+            }
+        });
+    }
+})

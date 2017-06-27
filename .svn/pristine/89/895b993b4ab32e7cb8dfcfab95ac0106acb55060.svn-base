@@ -1,0 +1,47 @@
+package hitwh.fanghh.controller;
+
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import hitwh.fanghh.service.UserService;
+import hitwh.fanghh.util.ResponseMapUtil;
+
+@Controller
+@RequestMapping("/user")
+public class UserController
+{
+	@Autowired
+	private UserService userService;
+
+	@RequestMapping("/loginWithUserName")
+	@ResponseBody
+	public Map<String, Object> loginWithUserName(@RequestParam String userName, @RequestParam String password)
+	{
+		int res = userService.loginWithUserName(userName, password);
+		switch (res)
+		{
+		case 0:
+			return ResponseMapUtil.responseError("用户名/密码错误！");
+		case 1:
+			return ResponseMapUtil.responseSuccess(res);
+		default:
+			return ResponseMapUtil.responseError("未知登录错误！");
+		}
+	}
+
+	@RequestMapping("/logout")
+	@ResponseBody
+	public Map<String, Object> logout()
+	{
+		boolean res = userService.logout();
+		if (!res)
+			return ResponseMapUtil.responseError("登出失败");
+		else
+			return ResponseMapUtil.responseSuccess(res);
+	}
+}

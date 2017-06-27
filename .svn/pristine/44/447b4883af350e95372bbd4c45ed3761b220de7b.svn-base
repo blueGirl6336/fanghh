@@ -1,0 +1,98 @@
+<div class="content_area" ng-controller="wActivity">
+	<div class="content_area_fullpage">
+		<div class="content_area_title">
+			<h2>发布活动</h2>
+		</div>
+		<div class="content_main">
+			<div class="hint" ng-show="ifFail">
+				<p class="hint_text">审核不通过原因：</p>
+			</div>
+			<div class="inputArea">
+				<h3>查看活动</h3>
+				<form>
+					<div class="row">
+						<div class="form-item form-item-large">
+							<label for="username">活动类型：<span class="justify"></span></label>
+							<div class="form-field">
+								{{aTypeName}}
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label for="username">活动地区：<span class="justify"></span></label>
+							<div class="form-field">
+								{{ item.city }}
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label for="username"> 活动楼盘：<span class="justify"></span></label>
+							<div class="form-field">
+								{{item.buildingName}}
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label for="username"> 活动名称：<span class="justify"></span></label>
+							<div class="form-field">
+								{{item.activityName}}
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label for="username">活动房源：<span class="justify"></span></label>
+						</div>
+						<div class="form-field" style="margin: 0 0 0 0;padding:0 0; position:relative; left:95px; top:-50px; font-size: 12px;">
+							<p ng-repeat="i in item.houseBeanList" style="font-weight:fold"> <span>{{i.buildingNo}}</span>号楼<span>{{i.unitId}}</span>单元<span>{{i.houseNum}}</span>室 原价：<span>{{ i.orginalPrice }}</span>元 / 捡漏价：<span>i.jianloujia</span>元</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-large">
+							<label>购房特惠：<span class="justify"></span></label>
+						</div>
+						<div class="form-field" style="margin: 0 0 0 0;padding:0 0; position:relative; left:95px; top:-50px; font-size: 12px;">
+							<div class="gouFangItem" ng-repeat="i in item.perferentialRuleBeanList">
+								<p class="title" style="font-weight:bold"><span style="color:#fd6720;">{{ item.perferentialRuleType }} </span>/{{ i.perferentialRuleTitle }}</p>
+								<p class="des" style="color:#666;">{{ i.perferentialDescription }} </p>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-large">
+							<label class="label-long">开始时间：<span class="justify"></span></label>
+							<div class="form-field">
+								{{item.startTime}}
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-large">
+							<label>结束时间：</label>
+							<div class="form-field">
+								{{item.endTime}}
+							</div>
+						</div>
+					</div>
+				</form>
+				<div class="button-area" ng-show="ifShow1" >
+					<button type="button" class="btn goback" ng-click="ifNotPass = true">审核不通过123</button>
+					<button type="button" class="btn save-continue" ng-click="pass(item.activityId)">审核通过</button>
+				</div>
+			</div>
+			<div class="refuse-box" ng-show="ifNotPass">
+				<img src="./image/close_1.png" ng-click="ifNotPass = false">
+				<div class="refuse-body">
+					<div>审核不通过原因：</div>
+					<textarea rows="10" cols="50" ng-model="backMessage"></textarea>
+				</div>
+				<div class="button-area">
+					<button type="button" class="btn save-continue" ng-click="notPass(item.activityId, backMessage)">提交</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

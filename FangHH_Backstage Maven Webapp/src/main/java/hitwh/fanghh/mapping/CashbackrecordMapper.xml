@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.CashbackrecordDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Cashbackrecord">
+    <id column="record_id" jdbcType="INTEGER" property="recordId" />
+    <result column="sharerecord_id" jdbcType="INTEGER" property="sharerecordId" />
+    <result column="cash_amount" jdbcType="DECIMAL" property="cashAmount" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    record_id, sharerecord_id, cash_amount, state
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.CashbackRecord
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.CashbackRecord
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Cashbackrecord">
+    insert into dbo.CashbackRecord (record_id, sharerecord_id, cash_amount, 
+      state)
+    values (#{recordId,jdbcType=INTEGER}, #{sharerecordId,jdbcType=INTEGER}, #{cashAmount,jdbcType=DECIMAL}, 
+      #{state,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Cashbackrecord">
+    insert into dbo.CashbackRecord
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="recordId != null">
+        record_id,
+      </if>
+      <if test="sharerecordId != null">
+        sharerecord_id,
+      </if>
+      <if test="cashAmount != null">
+        cash_amount,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="recordId != null">
+        #{recordId,jdbcType=INTEGER},
+      </if>
+      <if test="sharerecordId != null">
+        #{sharerecordId,jdbcType=INTEGER},
+      </if>
+      <if test="cashAmount != null">
+        #{cashAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Cashbackrecord">
+    update dbo.CashbackRecord
+    <set>
+      <if test="sharerecordId != null">
+        sharerecord_id = #{sharerecordId,jdbcType=INTEGER},
+      </if>
+      <if test="cashAmount != null">
+        cash_amount = #{cashAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Cashbackrecord">
+    update dbo.CashbackRecord
+    set sharerecord_id = #{sharerecordId,jdbcType=INTEGER},
+      cash_amount = #{cashAmount,jdbcType=DECIMAL},
+      state = #{state,jdbcType=VARCHAR}
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </update>
+</mapper>

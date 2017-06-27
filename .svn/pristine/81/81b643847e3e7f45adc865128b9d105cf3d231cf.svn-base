@@ -1,0 +1,82 @@
+package hitwh.fanghh.service;
+
+import java.util.List;
+
+import hitwh.fanghh.bean.StoreAuthenticationBean;
+
+/**
+ * 认证管理
+ *
+ * @ClassName: AuthenticationService
+ * @Description: TODO
+ * @author: ZY
+ * @date: 2016年11月29日 下午3:42:51
+ *
+ */
+public interface AuthenticationService
+{
+	/**
+	 * 获取所有门店信息
+	 *
+	 * @Title: getAllStore
+	 * @version:
+	 * @author: ZY
+	 * 
+	 * @param pageMaxNum每页最大数量
+	 * @param pageNo页号
+	 * @return
+	 */
+	public List<StoreAuthenticationBean> getAllStore(int pageMaxNum, int pageNo);
+
+	/**
+	 * 按关键字（门店名称）搜索获取门店信息
+	 *
+	 * @Title: getStoreBySearchStoreName
+	 * @version:
+	 * @author: ZY
+	 * 
+	 * @param keyStoreName关键字（门店名称）
+	 * @param pageMaxNum每页最大数量
+	 * @param pageNo页号
+	 * @return
+	 */
+	public List<StoreAuthenticationBean> getStoreBySearchStoreName(String keyStoreName, int pageMaxNum, int pageNo);
+
+	/**
+	 * 获取单个门店信息
+	 *
+	 * @Title: getSingleStore
+	 * @version:
+	 * @author: ZY
+	 * 
+	 * @param storeId
+	 * @return
+	 */
+	public StoreAuthenticationBean getSingleStore(int storeId);
+
+	/**
+	 * 门店认证
+	 *
+	 * @Title: authenticateStore
+	 * @version:
+	 * @author: ZY
+	 * 
+	 * @param storeId
+	 * @param status是否通过
+	 * @param failedReason未通过原因
+	 * @return
+	 */
+	public String authenticateStore(int storeId, boolean status, String failedReason);
+
+	/**
+	 * 获取页数
+	 *
+	 * @Title: getStoreAuthenticationPageNum
+	 * @version:
+	 * @author: ZY
+	 * 
+	 * @param pageMaxNum
+	 * @return
+	 */
+	public int getStoreAuthenticationPageNum(int pageMaxNum);
+}

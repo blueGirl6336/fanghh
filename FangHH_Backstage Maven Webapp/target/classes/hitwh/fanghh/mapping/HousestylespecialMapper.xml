@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.HousestylespecialDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Housestylespecial">
+    <id column="special_id" jdbcType="INTEGER" property="specialId" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="style_id" jdbcType="INTEGER" property="styleId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    special_id, url, style_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.HouseStyleSpecial
+    where special_id = #{specialId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.HouseStyleSpecial
+    where special_id = #{specialId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Housestylespecial">
+    insert into dbo.HouseStyleSpecial (special_id, url, style_id
+      )
+    values (#{specialId,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, #{styleId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Housestylespecial">
+    insert into dbo.HouseStyleSpecial
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="specialId != null">
+        special_id,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="styleId != null">
+        style_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="specialId != null">
+        #{specialId,jdbcType=INTEGER},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="styleId != null">
+        #{styleId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Housestylespecial">
+    update dbo.HouseStyleSpecial
+    <set>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="styleId != null">
+        style_id = #{styleId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where special_id = #{specialId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Housestylespecial">
+    update dbo.HouseStyleSpecial
+    set url = #{url,jdbcType=VARCHAR},
+      style_id = #{styleId,jdbcType=INTEGER}
+    where special_id = #{specialId,jdbcType=INTEGER}
+  </update>
+</mapper>

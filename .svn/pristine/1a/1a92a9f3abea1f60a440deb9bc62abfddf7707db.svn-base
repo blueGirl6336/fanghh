@@ -1,0 +1,128 @@
+package hitwh.fanghh.service.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import hitwh.fanghh.bean.StoreAuthenticationBean;
+import hitwh.fanghh.dao.StoreDao;
+import hitwh.fanghh.pojo.Store;
+import hitwh.fanghh.service.AuthenticationService;
+import hitwh.fanghh.util.DictionaryString;
+import hitwh.fanghh.util.PageCalculate;
+
+@Service
+public class AuthenticationServiceImpl implements AuthenticationService
+{
+	@Autowired
+	private StoreDao storeDao;
+
+	@Override
+	public List<StoreAuthenticationBean> getAllStore(int pageMaxNum, int pageNo)
+	{
+		int pageNum = getStoreAuthenticationPageNum(pageMaxNum);
+		PageCalculate pageCalculate = new PageCalculate(pageNum, pageMaxNum, pageNo);
+		List<Store> storeList = storeDao.selectAll(pageCalculate);
+		List<StoreAuthenticationBean> storeAuthenticationBeanlList = new ArrayList<StoreAuthenticationBean>();
+
+		for (Store store : storeList)
+		{
+			StoreAuthenticationBean storeAuthenticationBean = new StoreAuthenticationBean();
+			storeAuthenticationBean.setBusinessLicensePhoto(store.getStorePortrait());
+			storeAuthenticationBean.setFailedReason(store.getFailedReason());
+			storeAuthenticationBean.setStatus(store.getStatus());
+			storeAuthenticationBean.setStoreId(store.getStoreId());
+			storeAuthenticationBean.setStoreName(store.getStoreName());
+
+			storeAuthenticationBeanlList.add(storeAuthenticationBean);
+		}
+
+		return storeAuthenticationBeanlList;
+	}
+
+	@Override
+	public List<StoreAuthenticationBean> getStoreBySearchStoreName(String keyStoreName, int pageMaxNum, int pageNo)
+	{
+		int pageNum = getStoreAuthenticationPageNum(pageMaxNum);
+		PageCalculate pageCalculate = new PageCalculate(pageNum, pageMaxNum, pageNo);
+		List<Store> storeList = storeDao.selectByKeyStoreName(keyStoreName, pageCalculate);
+		List<StoreAuthenticationBean> storeAuthenticationBeanlList = new ArrayList<StoreAuthenticationBean>();
+
+		for (Store store : storeList)
+		{
+			StoreAuthenticationBean storeAuthenticationBean = new StoreAuthenticationBean();
+			storeAuthenticationBean.setBusinessLicensePhoto(store.getStorePortrait());
+			storeAuthenticationBean.setFailedReason(store.getFailedReason());
+			storeAuthenticationBean.setStatus(store.getStatus());
+			storeAuthenticationBean.setStoreId(store.getStoreId());
+			storeAuthenticationBean.setStoreName(store.getStoreName());
+
+			storeAuthenticationBeanlList.add(storeAuthenticationBean);
+		}
+
+		return storeAuthenticationBeanlList;
+	}
+
+	@Override
+	public StoreAuthenticationBean getSingleStore(int storeId)
+	{
+		StoreAuthenticationBean storeAuthenticationBean = null;
+		Store store = storeDao.selectByPrimaryKey(storeId);
+
+		if (store != null)
+		{
+			storeAuthenticationBean = new StoreAuthenticationBean();
+			storeAuthenticationBean.setBusinessLicensePhoto(store.getStorePortrait());
+			storeAuthenticationBean.setFailedReason(store.getFailedReason());
+			storeAuthenticationBean.setStatus(store.getStatus());
+			storeAuthenticationBean.setStoreId(store.getStoreId());
+			storeAuthenticationBean.setStoreName(store.getStoreName());
+		}
+
+		return storeAuthenticationBean;
+	}
+
+	@Override
+	public String authenticateStore(int storeId, boolean status, String failedReason)
+	{
+		Store store = storeDao.selectByPrimaryKey(storeId);
+		if (store == null)
+		{
+			return "未找到门店信息，错误的storeId：" + storeId;
+		}
+
+		String authenticationStatus = null;
+		if (status)
+		{
+			authenticationStatus = DictionaryString.STORE_AUTHENTICATE_PASS;
+			failedReason = null;
+		} else
+		{
+			authenticationStatus = DictionaryString.STORE_AUTHENTICATE_NOT_PASS;
+		}
+
+		int res = storeDao.updateAuthenticationStatus(storeId, authenticationStatus, failedReason);
+
+		if (res == 1)
+		{
+			return "success";
+		} else
+		{
+			return "数据库错误：updateAuthenticationStatus=" + res;
+		}
+	}
+
+	@Override
+	public int getStoreAuthenticationPageNum(int pageMaxNum)
+	{
+		if (pageMaxNum < 1)
+		{
+			pageMaxNum = 1;
+		}
+		int num = storeDao.countStore();
+		return num % pageMaxNum == 0 ? num / pageMaxNum : num / pageMaxNum + 1;
+	}
+
+}

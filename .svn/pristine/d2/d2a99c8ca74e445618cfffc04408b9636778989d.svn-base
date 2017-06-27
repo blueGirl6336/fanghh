@@ -1,0 +1,91 @@
+package hitwh.fanghh.controller;
+
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
+import hitwh.fanghh.pojo.Dynamiccontent;
+import hitwh.fanghh.service.DynamiccontentService;
+import hitwh.fanghh.util.ResponseMapUtil;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+@RequestMapping("/dynamiccontent")
+@Controller
+public class DynamiccontentController
+{
+	@Autowired
+	private DynamiccontentService dynamiccontentService;
+	
+	@RequestMapping("/addDynamiccontent")
+	@ResponseBody
+	public Map<String, Object> addDynamiccontent(@RequestBody Dynamiccontent dynamiccontent){
+		if(dynamiccontent == null){
+			return ResponseMapUtil.responseError("数据异常,添加失败");
+		}
+		if (dynamiccontentService.addDynamiccontent(dynamiccontent)){
+			return ResponseMapUtil.responseSuccess("添加成功");
+		} else{
+			return ResponseMapUtil.responseError("数据异常,添加失败");
+		}
+	}
+	
+	
+	@RequestMapping("/updateDynamiccontent")
+	@ResponseBody
+	public Map<String, Object> updateDynamiccontent(@RequestBody Dynamiccontent dynamiccontent){
+		if(dynamiccontent == null){
+			return ResponseMapUtil.responseError("数据异常,更新失败");
+		}
+		if (dynamiccontentService.updateDynamiccontent(dynamiccontent)){
+			return ResponseMapUtil.responseSuccess("更新成功");
+		} else{
+			return ResponseMapUtil.responseError("数据异常,更新失败");
+		}
+	}
+	
+	@RequestMapping("/getAllDynamicContent")
+	@ResponseBody
+	public Map<String, Object> getAllDynamicContent(HttpSession session)
+	{
+		return ResponseMapUtil.responseSuccess(dynamiccontentService.getAllDynamicContent());
+	}
+	
+	
+	@RequestMapping("/getDynamicContentPageNum")
+	@ResponseBody
+	public Map<String, Object> getDynamicContentPageNum(@RequestParam int pageMaxNum,HttpSession session)
+	{
+		int num = dynamiccontentService.getDynamiccontentPageNum(pageMaxNum);
+		return ResponseMapUtil.responseSuccess(num);
+	}
+	
+	@RequestMapping("/getDynamiccontentByBdId")
+	@ResponseBody
+	public Map<String, Object> getDynamiccontentByBdId(@RequestParam int dcId){
+		return ResponseMapUtil.responseSuccess(dynamiccontentService.getDynamiccontentByBdId(dcId));
+	}
+	
+	@RequestMapping("/deleteDynamiccontent")
+	@ResponseBody
+	public Map<String, Object> deleteDynamiccontent(@RequestParam int dcId){
+		
+		Dynamiccontent dynamiccontentLocal = dynamiccontentService.getDynamiccontentByBdId(dcId);
+		
+		if(dynamiccontentLocal == null){
+			return ResponseMapUtil.responseError("数据异常,删除失败");
+		}
+		if (dynamiccontentService.deleteDynamiccontent(dcId)){
+			return ResponseMapUtil.responseSuccess("删除成功");
+		} else{
+			return ResponseMapUtil.responseError("数据异常,删除失败");
+		}
+	}
+	
+	
+}

@@ -1,0 +1,343 @@
+button{
+	cursor:pointer;
+}
+
+.row {
+	position: relative;
+	margin: 0 0 0 145px;
+}
+
+.inputArea {
+	$formItemHeight: 35px;
+
+	h3 {
+		margin: 30px 0 30px 160px;
+		font-size: 14px;
+		font-weight: bold;
+		color: #fd6720;
+	}
+
+	.picList{
+		margin: 8px 0px 8px 85px;
+
+		.picItem {
+			position: relative;
+			display: inline-block;
+			width: 83px;
+			height: 83px;
+			line-height: 83px;
+			text-align: center;
+			margin: 8px 16px 18px 0;
+
+			.pic {
+				max-width: 83px;
+				max-height: 83px;
+				vertical-align: middle;
+			}
+
+			.close-pic{
+				position: absolute;
+				top: -8px;
+				right: -7px;
+				width: auto;
+				height: auto;
+			}
+		}
+	}
+
+	.map-pic{
+		margin: 8px 30px 8px 85px;
+		img {
+			width: 400px;
+			height: 300px;
+		}
+	}
+
+	.form-item {
+		position: relative;
+		display: inline-block;
+		margin: 8px 30px 8px 0;
+		
+		font-size: 12px;
+		color: #666;
+
+		.requireMark {
+			position: absolute;
+			left: -20px;
+			height: $formItemHeight;
+			line-height: $formItemHeight;
+			color: #ff0000;
+		}
+
+		& > label {
+			position: absolute;
+			left: 20px;
+			width: 60px;
+			height: $formItemHeight;
+			line-height: $formItemHeight;
+			text-align: justify;
+
+			.justify {
+				display: inline-block;
+				padding-left: 100%;
+			}
+		}
+
+		.label-long {
+			left: 5px;
+			width: 75px;
+		}
+		.label-super{
+			left: -5px;
+			width: 100px;
+		}
+
+		.form-field {
+			position: absolute;
+			left: 86px;
+
+			.form-text {
+				box-sizing: border-box;
+				width: 100%;
+				height: 100%;
+				padding: 6px 12px;
+			}
+
+			.hasUnitInput {
+				width: 320px;
+			}
+
+			.hasUnitInput_unit {
+				margin: 0 5px 0 7px;
+			}
+
+			.hasBigUnitInput{
+				width: 290px;
+			}
+			.shortSelect {
+				width: 93px;
+				padding-bottom:7px;
+			}
+			.shortText {
+				width: 93px;
+			}
+
+			.middleLength{
+				width: 150px;
+			}
+
+			label {
+				vertical-align: top;
+				input[type=checkbox] {
+					vertical-align: middle;
+				}
+
+				.choiceLabel {
+					margin-right: 1px;
+				}
+			}
+		}
+	}
+
+	.form-item-middle {
+		width: 436px;
+		height: $formItemHeight + 2px;
+
+		.form-field {
+			width: 350px;
+			height: $formItemHeight + 2px;
+			line-height: $formItemHeight + 2px;
+		}
+	}
+	.form-item-explain{
+		width: 100%;
+		height: 100px;
+		.form-field{
+			width: 600px;
+			height: 100px;
+		}
+	}
+
+	.form-item-broad {
+		width: 100%;
+		height: 70px;
+
+		.form-field {
+			width: 825px;
+			height: 70px;
+		}
+	}
+
+	.form-item-large {
+		width: 100%;
+		height: $formItemHeight + 2px;
+
+		.form-field {
+			width: 825px;
+			height: $formItemHeight + 2px;
+			line-height: $formItemHeight + 2px;
+			.phone-text{
+				width: 120px;
+			}
+			.choose-file{
+				display: inline-block;
+				width: 290px;
+				height: 37px;
+				text-align: center;
+				overflow: hidden;
+				color: #666;
+				border:1px solid #ccc;
+				cursor: pointer;
+				FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=white,endColorStr=#ccc); /*IE 6 7 8*/ 
+				background: -ms-linear-gradient(top, white,  #ccc);/* IE 10 */
+				background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(white), to(#ccc));/*谷歌*/ 
+				background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(white), to(#ccc));/* Safari 4-5, Chrome 1-9*/
+				background: -webkit-linear-gradient(top, white, #ccc);/*Safari5.1 Chrome 10+*/
+				background: -o-linear-gradient(top, white, #ccc);/*Opera 11.10+*/
+			}
+
+			input[type=file] {
+			    position: absolute;
+			    font-size: 100px;
+			    right: 0;
+			    top: 0;
+			    opacity: 0;
+			    cursor: pointer;
+			    clip: rect(0 0 0 0);
+			}
+
+			.submit-file{
+				width: 93px;
+				height: 37px;
+				color: #666;
+				border:1px solid #ccc;
+				FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=white,endColorStr=#ccc); /*IE 6 7 8*/ 
+				background: -ms-linear-gradient(top, white,  #ccc);        /* IE 10 */
+				background:-webkit-gradient(linear, 0% 0%, 0% 100%,from(white), to(#ccc));/*谷歌*/ 
+				background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(white), to(#ccc));      /* Safari 4-5, Chrome 1-9*/
+				background: -webkit-linear-gradient(top, white, #ccc);   /*Safari5.1 Chrome 10+*/
+				background: -o-linear-gradient(top, white, #ccc);  /*Opera 11.10+*/
+				div{
+					float: left;
+					margin-right: 5px;
+				}
+			}
+			.red-submit{
+				width: 93px;
+				height: 37px;
+				color: white;
+				background-color:rgb(254,162,119);
+				border:1px solid rgb(254,162,119);
+			}
+		}
+	}
+}
+
+.form-text {
+	border: 1px solid #ccc;
+}
+.form-field{
+	line-height:1.6;
+}
+.refuse-box{
+	border: 1px solid #cccccc;
+    width: 600px;
+    height: 370px;
+    position: fixed;
+    z-index: 3;
+    top: 33%;
+    margin-top: -170px;
+    left: 50%;
+    margin-left: -240px;
+	margin:30px 0 20px 0;
+	background-color:rgb(249,249,249);
+	img{
+		float: right;
+		margin: 10px 10px 0 0;
+	}
+	.refuse-body{
+		margin: 80px 0 0 50px;
+		div{
+			float: left;
+			font-size: 12px;
+		}
+	}
+	button{
+		margin-left: -220px;
+		width: 150px !important;
+	}
+}
+.button-area{
+	height:100px;
+	margin:20px 0 0 450px;
+  	width:430px;
+	.goback{
+		width:150px;
+		margin:0 20px 0 -150px;
+		background-color:rgb(153,153,153);
+		border:1px solid rgb(153,153,153);
+	}
+}
+
+.save-continue{
+	width:260px;
+  	background-color:rgb(253,103,32);
+  	border:1px solid rgb(253,103,32);
+}
+
+.btn{ 			
+  	height:45px;
+  	color:#FFF;
+  	border-radius:8px;
+  	font-size:14px;
+  	font-weight:bold;
+}
+
+.add-field{
+	margin-top:50px;
+}
+
+.label-bold{
+	font-weight:bold;
+}
+
+.continue-upload{
+	width:120px !important;
+}
+
+.header-nav{
+	margin-top:10px;
+	height: 45px;
+	div{
+		float: left;
+		a{
+			text-decoration: none;
+			padding: 10px 20px;
+			color:rgb(102,102,102);
+			border:1px solid rgb(229,229,229);
+		}
+	}
+	.nav-active a{
+		padding:6px 20px 10px 20px;
+		border-top: 5px solid rgb(253,103,32);
+		border-bottom:none !important;
+		font-weight: bold;
+	}
+} 
+
+.assign-account{
+	margin-left:800px;
+}
+.content_title{
+	font-size:22px;
+	font-weight:bold;
+	margin-left:20px;
+}
+
+
+.pic {
+	max-width: 83px;
+	max-height: 83px;
+	padding: 8px 16px 18px 0;
+	vertical-align: middle;
+}

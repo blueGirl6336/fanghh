@@ -1,0 +1,33 @@
+angular
+	.module('fanghhmsCtrl',['ngCookies'])
+	.controller('releaseNewBuilding', ['$scope', '$stateParams', '$http', '$location', '$cookieStore', function($scope, $stateParams, $http, $location, $cookieStore) {
+		//户型录入——保存并下一步
+		$scope.saveType = function() {
+			$http
+				.post('houseStyle/addStyle',{
+					params: {
+						houseStyleBean:{
+							styleId:null,
+							houseStyleCode:"1111",
+							style:"1,1,1",
+							referencePrice:11,
+							referenceMonthlyPayments:11,
+							downPayment:11,
+							styleArea:11,
+							auditStatus:null,
+							styleDescription:"1,1,1,1",
+							stylePic:null,
+							specialitiesPic:null,
+							recommendReason:"1111",
+							isCooperated:true,
+							buildingId:11,
+							applicationStatus:null,
+							auditNotPassReason:null
+						}					
+					}
+				})
+				.success(function(response){
+					alert("aaa");
+				});
+		}
+	}]);

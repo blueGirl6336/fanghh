@@ -1,0 +1,18 @@
+
+package hitwh.fanghh.dao;
+
+import hitwh.fanghh.pojo.Broker;
+
+public interface BrokerDao {
+    int deleteByPrimaryKey(Integer brokerId);
+
+    int insert(Broker record);
+
+    int insertSelective(Broker record);
+
+    Broker selectByPrimaryKey(Integer brokerId);
+
+    int updateByPrimaryKeySelective(Broker record);
+
+    int updateByPrimaryKey(Broker record);
+}

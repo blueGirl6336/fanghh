@@ -1,0 +1,86 @@
+angular
+	.module('fanghhms', ['ui.router', 'fanghhmsCtrl', 'releaseNewBuildingCtrl', 'manageBuildingCtrl', 'manageBuildingFilter', 'fhhStore', "fhhUser"])
+	.config(function($stateProvider, $urlRouterProvider) {
+		$urlRouterProvider.otherwise('login');
+		$stateProvider
+			.state('index', {
+				url : '/index',
+				views : {
+					'' : {
+						templateUrl : './template/index.html'
+					}
+				}
+			})
+			.state('login', {
+				url : '/login',
+				views : {
+					'' : {
+						templateUrl : './template/login.html'
+					}
+				}
+			})
+			.state('index.typeEnter',{
+				url:'/typeEnter',
+				views:{
+					'':{
+						templateUrl:'./template/building/releaseNewBuilding/typeEnter.html'
+					}
+				}
+			})
+			.state('index.typeAudit',{
+				url:'/typeAudit',
+				views:{
+					'':{
+						templateUrl:'./template/building/releaseNewBuilding/typeAudit.html'
+					}
+				}
+			})
+			.state('index.houseEnter',{
+				url:'/houseEnter',
+				views:{
+					'':{
+						templateUrl:'./template/building/releaseNewBuilding/houseEnter.html'
+					}
+				}
+			})
+			.state('index.houseAudit',{
+				url:'/houseAudit',
+				views:{
+					'':{
+						templateUrl:'./template/building/releaseNewBuilding/houseAudit.html'
+					}
+				}
+			})
+			.state('index.listBuildingManagement',{
+				url:'/listBuildingManagement',
+				views:{
+					'':{
+						templateUrl:'./template/building/manageBuilding/list_buildingManagement.html'
+					}
+				}
+			})
+			.state('index.listHouseManagement',{
+				url:'/listHouseManagement',
+				views:{
+					'':{
+						templateUrl:'./template/building/manageBuilding/list_houseManagement.html'
+					}
+				}
+			})
+			.state('index.userAuthentication',{
+				url:'/userAuthentication',
+				views:{
+					'':{
+						templateUrl:'./template/userAuthentication/userAuthentication.html'
+					}
+				}
+			})
+			.state('index.storeCertification',{
+				url:'/storeCertification',
+				views:{
+					'':{
+						templateUrl:'./template/userAuthentication/storeCertification.html'
+					}
+				}
+			})
+	});

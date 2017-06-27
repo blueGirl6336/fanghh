@@ -1,0 +1,10 @@
+<div class="table_head">
+	<div ng-class="{'pageNow': nowpageid == 1, 'pageItem': nowpageid != 1}">户型管理</div>
+	<div ng-class="{'pageNow': nowpageid == 2, 'pageItem': nowpageid != 2}">房源管理</div>
+	<div ng-class="{'pageNow': nowpageid == 3, 'pageItem': nowpageid != 3}">图片管理</div>
+	<div ng-class="{'pageNow': nowpageid == 4, 'pageItem': nowpageid != 4}">动态管理</div>
+	<div ng-class="{'pageNow': nowpageid == 5, 'pageItem': nowpageid != 5}">房价走势</div>
+	<div ng-class="{'pageNow': nowpageid == 6, 'pageItem': nowpageid != 6}">看图说房</div>
+	<div ng-class="{'pageNow': nowpageid == 7, 'pageItem': nowpageid != 7}">佣金规则</div>
+	<div ng-class="{'pageNow': nowpageid == 8, 'pageItem': nowpageid != 8}">看房攻略</div>
+</div>

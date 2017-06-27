@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.BuildingsearchrecordDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Buildingsearchrecord">
+    <id column="bsr_id" jdbcType="INTEGER" property="bsrId" />
+    <result column="building_name" jdbcType="VARCHAR" property="buildingName" />
+    <result column="search_time" jdbcType="TIMESTAMP" property="searchTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    bsr_id, building_name, search_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.BuildingSearchRecord
+    where bsr_id = #{bsrId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.BuildingSearchRecord
+    where bsr_id = #{bsrId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Buildingsearchrecord">
+    insert into dbo.BuildingSearchRecord (bsr_id, building_name, search_time
+      )
+    values (#{bsrId,jdbcType=INTEGER}, #{buildingName,jdbcType=VARCHAR}, #{searchTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Buildingsearchrecord">
+    insert into dbo.BuildingSearchRecord
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bsrId != null">
+        bsr_id,
+      </if>
+      <if test="buildingName != null">
+        building_name,
+      </if>
+      <if test="searchTime != null">
+        search_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bsrId != null">
+        #{bsrId,jdbcType=INTEGER},
+      </if>
+      <if test="buildingName != null">
+        #{buildingName,jdbcType=VARCHAR},
+      </if>
+      <if test="searchTime != null">
+        #{searchTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Buildingsearchrecord">
+    update dbo.BuildingSearchRecord
+    <set>
+      <if test="buildingName != null">
+        building_name = #{buildingName,jdbcType=VARCHAR},
+      </if>
+      <if test="searchTime != null">
+        search_time = #{searchTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where bsr_id = #{bsrId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Buildingsearchrecord">
+    update dbo.BuildingSearchRecord
+    set building_name = #{buildingName,jdbcType=VARCHAR},
+      search_time = #{searchTime,jdbcType=TIMESTAMP}
+    where bsr_id = #{bsrId,jdbcType=INTEGER}
+  </update>
+</mapper>

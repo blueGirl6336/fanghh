@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.BuildingwalletrecordDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Buildingwalletrecord">
+    <result column="bwr_id" jdbcType="INTEGER" property="bwrId" />
+    <result column="serial_number" jdbcType="VARCHAR" property="serialNumber" />
+    <result column="trade_time" jdbcType="TIMESTAMP" property="tradeTime" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="trade_name" jdbcType="VARCHAR" property="tradeName" />
+    <result column="person_name" jdbcType="VARCHAR" property="personName" />
+    <result column="income" jdbcType="DECIMAL" property="income" />
+    <result column="pay" jdbcType="DECIMAL" property="pay" />
+    <result column="balance" jdbcType="DECIMAL" property="balance" />
+  </resultMap>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Buildingwalletrecord">
+    insert into dbo.BuildingWalletRecord (bwr_id, serial_number, trade_time, 
+      operator, trade_name, person_name, 
+      income, pay, balance
+      )
+    values (#{bwrId,jdbcType=INTEGER}, #{serialNumber,jdbcType=VARCHAR}, #{tradeTime,jdbcType=TIMESTAMP}, 
+      #{operator,jdbcType=VARCHAR}, #{tradeName,jdbcType=VARCHAR}, #{personName,jdbcType=VARCHAR}, 
+      #{income,jdbcType=DECIMAL}, #{pay,jdbcType=DECIMAL}, #{balance,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Buildingwalletrecord">
+    insert into dbo.BuildingWalletRecord
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bwrId != null">
+        bwr_id,
+      </if>
+      <if test="serialNumber != null">
+        serial_number,
+      </if>
+      <if test="tradeTime != null">
+        trade_time,
+      </if>
+      <if test="operator != null">
+        operator,
+      </if>
+      <if test="tradeName != null">
+        trade_name,
+      </if>
+      <if test="personName != null">
+        person_name,
+      </if>
+      <if test="income != null">
+        income,
+      </if>
+      <if test="pay != null">
+        pay,
+      </if>
+      <if test="balance != null">
+        balance,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bwrId != null">
+        #{bwrId,jdbcType=INTEGER},
+      </if>
+      <if test="serialNumber != null">
+        #{serialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeTime != null">
+        #{tradeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeName != null">
+        #{tradeName,jdbcType=VARCHAR},
+      </if>
+      <if test="personName != null">
+        #{personName,jdbcType=VARCHAR},
+      </if>
+      <if test="income != null">
+        #{income,jdbcType=DECIMAL},
+      </if>
+      <if test="pay != null">
+        #{pay,jdbcType=DECIMAL},
+      </if>
+      <if test="balance != null">
+        #{balance,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+</mapper>

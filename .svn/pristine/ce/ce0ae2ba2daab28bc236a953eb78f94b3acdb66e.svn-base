@@ -1,0 +1,102 @@
+@mixin use-flex {
+	display: flex;
+	display: -webkit-flex;
+}
+
+#picHouse
+{
+	border-right:1px solid rgb(229,229,229);
+}
+#moneyPrincple
+{
+	border-top:7px solid;
+	border-bottom:0px;
+	border-left:0px;
+	border-color:rgb(253,103,32);
+}
+.content_title
+{
+	display: flex;
+	display: -webkit-flex;
+	// justify-content: center;
+	align-items:center;
+	margin-top:20px;
+	height:60px;
+	padding-left:30px;
+	font-size:18px;
+	font-weight:bold;
+	margin:0px;
+}
+.princple-table
+{
+	margin-top:150px;
+	margin-bottom: 100px;
+	width:100%;
+	border:0px;
+	border-collapse:collapse;
+	tr 
+	{
+		display: -webkit-flex; //Safari
+  		display: flex;
+		flex-direction:row;
+		height:45px;
+		width:100%;
+		margin:0px;
+		border:1px solid;
+		border-color:#ebebeb;
+		td
+		{
+			display: -webkit-flex; //Safari
+  			display: flex;
+			height:45px;
+			justify-content: center;
+			align-items:center;
+			font-size: 12px;
+			color:#666;
+		}
+	}
+	.line0
+		{
+			background-color:rgb(244,244,244);
+		}
+		.line1
+		{
+			background-color:#fff;
+			.operation1,.operation2
+			{
+				color:rgb(0,102,204);
+			}
+		}
+		.line2
+		{
+			background-color:rgb(239,243,251);
+			.operation1,.operation2
+			{
+				color:rgb(0,102,204);
+			}
+		}
+		.title 
+		{
+			width:185px;
+		}
+		.type
+		{
+			width:255px
+		}
+		.detail
+		{
+			width:310px
+		}
+		.explain
+		{
+			width:350px;
+		}
+		.operation
+		{
+			width:160px;
+		}
+		.operation1,.operation2
+		{
+			width:80px;
+		}
+}

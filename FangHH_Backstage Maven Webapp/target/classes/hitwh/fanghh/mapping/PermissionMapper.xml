@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.PermissionDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Permission">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="moduleCode" jdbcType="VARCHAR" property="modulecode" />
+    <result column="moduleName" jdbcType="VARCHAR" property="modulename" />
+    <result column="roleCode" jdbcType="VARCHAR" property="rolecode" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, moduleCode, moduleName, roleCode, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.Permission
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.Permission
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Permission">
+    insert into dbo.Permission (id, moduleCode, moduleName, 
+      roleCode, remark)
+    values (#{id,jdbcType=INTEGER}, #{modulecode,jdbcType=VARCHAR}, #{modulename,jdbcType=VARCHAR}, 
+      #{rolecode,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Permission">
+    insert into dbo.Permission
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="modulecode != null">
+        moduleCode,
+      </if>
+      <if test="modulename != null">
+        moduleName,
+      </if>
+      <if test="rolecode != null">
+        roleCode,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="modulecode != null">
+        #{modulecode,jdbcType=VARCHAR},
+      </if>
+      <if test="modulename != null">
+        #{modulename,jdbcType=VARCHAR},
+      </if>
+      <if test="rolecode != null">
+        #{rolecode,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Permission">
+    update dbo.Permission
+    <set>
+      <if test="modulecode != null">
+        moduleCode = #{modulecode,jdbcType=VARCHAR},
+      </if>
+      <if test="modulename != null">
+        moduleName = #{modulename,jdbcType=VARCHAR},
+      </if>
+      <if test="rolecode != null">
+        roleCode = #{rolecode,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Permission">
+    update dbo.Permission
+    set moduleCode = #{modulecode,jdbcType=VARCHAR},
+      moduleName = #{modulename,jdbcType=VARCHAR},
+      roleCode = #{rolecode,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

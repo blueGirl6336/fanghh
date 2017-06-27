@@ -1,0 +1,28 @@
+package hitwh.fanghh.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import hitwh.fanghh.pojo.Buildingcomment;
+
+public interface BuildingComment 
+{
+	/**
+	 * @discription {获取楼圈点评信息}
+	 * @author xingfeng
+	 * @created 2016年12月14日 下午10:30:05
+	 * @param commnetId
+	 * @return
+	 */
+	public Buildingcomment selectBuildingComment(Integer commentId);
+	
+	/**
+	 * @discription {删除楼圈点评信息}
+	 * @author xingfeng
+	 * @created 2016年12月14日 下午10:30:05
+	 * @param commnetId
+	 * @return
+	 */
+	public boolean deleteBuildingComment(Integer commentId);
+}

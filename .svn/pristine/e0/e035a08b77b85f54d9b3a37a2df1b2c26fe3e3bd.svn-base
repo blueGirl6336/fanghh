@@ -1,0 +1,180 @@
+/**     
+ * @discription {在此输入一句话描述此文件的作用}
+ * @author wangxinjie       
+ * @created 2016年12月6日 下午9:26:54    
+ */
+
+package hitwh.fanghh.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import hitwh.fanghh.pojo.Building;
+import hitwh.fanghh.pojo.Housepricetrend;
+import hitwh.fanghh.service.BuildingService;
+import hitwh.fanghh.util.DictionaryString;
+import hitwh.fanghh.dao.BuildingDao;
+import hitwh.fanghh.dao.HousepricetrendDao;
+
+/**
+ * Title: BuildingServiceImpl.java Description: 描述
+ * 
+ * @author wangxinjie
+ * @created 2016年12月6日 下午9:26:54
+ */
+@Service
+public class BuildingServiceImpl implements BuildingService {
+	@Autowired
+	private BuildingDao buildingDao;
+	@Autowired
+	private HousepricetrendDao housepricetrendDao;
+	/**
+	 * @discription {在此输入一句话描述作用}
+	 * @author wangxinjie
+	 * @created 2016年12月6日 下午9:35:31
+	 * @return
+	 * @see hitwh.fanghh.service.BuildingService#getAllBuilding()
+	 */
+
+	@Override
+	public List<Building> getAllBuilding() {
+		return buildingDao.selectAll();
+	}
+
+	/**
+	 * @discription {在此输入一句话描述作用}
+	 * @author wangxinjie
+	 * @created 2016年12月6日 下午9:55:58
+	 * @param buildingId
+	 * @return
+	 * @see hitwh.fanghh.service.BuildingService#getAllBuilding(int)
+	 */
+
+	@Override
+	public Building getBuildingInfo(int buildingId) {
+		return buildingDao.selectByPrimaryKey(buildingId);
+	}
+
+	/**
+	 * @discription {在此输入一句话描述作用}
+	 * @author wangxinjie
+	 * @created 2016年12月7日 下午2:02:21
+	 * @param building
+	 * @return
+	 * @see hitwh.fanghh.service.BuildingService#addBuilding(hitwh.fanghh.pojo.Building)
+	 */
+
+	@Override
+	public boolean addBuilding(Building building) {
+		building.setAuditNotPassReason(null);// 审核不通过原因无
+		building.setBuildingApplicationStatus(DictionaryString.APPLICATION_WAIT);// 设置状态为待审核
+		int result = buildingDao.insertSelective(building);
+		if (result == 1) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * @discription {在此输入一句话描述作用}
+	 * @author wangxinjie
+	 * @created 2016年12月7日 下午2:08:56
+	 * @param building
+	 * @return
+	 * @see hitwh.fanghh.service.BuildingService#updateBuilding(hitwh.fanghh.pojo.Building)
+	 */
+
+	@Override
+	public boolean updateBuilding(Building building) {
+		building.setBuildingApplicationStatus(DictionaryString.APPLICATION_WAIT);// 设置状态为待审核
+		buildingDao.updateByPrimaryKeySelective(building);
+		return true;
+	}
+
+	/**
+	 * @discription {在此输入一句话描述作用}
+	 * @author wangxinjie
+	 * @created 2016年12月7日 下午2:26:55
+	 * @param buildingId
+	 * @param buildingApplicationStatus
+	 * @return
+	 * @see hitwh.fanghh.service.BuildingService#applicateBuildingOffSaleByHouseId(int,
+	 *      java.lang.String)
+	 */
+
+	@Override
+	public int applicateBuildingOffSaleByHouseId(int buildingId,
+			String buildingApplicationStatus) {
+		Building building = buildingDao.selectByPrimaryKey(buildingId);
+		String applicationDicCode = building.getBuildingApplicationStatus();
+		if (applicationDicCode.equals(DictionaryString.ON_SALE_ALREADY)) {
+			building.setBuildingApplicationStatus(buildingApplicationStatus);
+			buildingDao.updateByPrimaryKeySelective(building);
+			return 1;
+		} else
+			return 0;
+	}
+
+	/**
+	 * @discription {在此输入一句话描述作用}
+	 * @author wangxinjie
+	 * @created 2016年12月7日 下午3:02:09
+	 * @param buildingId
+	 * @param auditCode
+	 * @return
+	 * @see hitwh.fanghh.service.BuildingService#auditBuildingApplicationPass(int,
+	 *      java.lang.String)
+	 */
+
+	@Override
+	public int auditBuildingApplicationPass(int buildingId, String auditCode) {
+		Building building = buildingDao.selectByPrimaryKey(buildingId);
+		building.setBuildingApplicationStatus(auditCode);
+		if (buildingDao.updateByPrimaryKeySelective(building) == 1) {
+			return 1;
+		}
+		return 0;
+	}
+
+	/**
+	 * @discription {在此输入一句话描述作用}
+	 * @author wangxinjie
+	 * @created 2016年12月7日 下午3:02:09
+	 * @param buildingId
+	 * @param auditCode
+	 * @param auditNotPassReason
+	 * @return
+	 * @see hitwh.fanghh.service.BuildingService#auditBuildingApplicationNotPass(int,
+	 *      java.lang.String, java.lang.String)
+	 */
+
+	@Override
+	public int auditBuildingApplicationNotPass(int buildingId,
+			String auditCode, String auditNotPassReason) {
+		Building building = buildingDao.selectByPrimaryKey(buildingId);
+		building.setBuildingApplicationStatus(auditCode);
+		building.setAuditNotPassReason(auditNotPassReason);
+		if (buildingDao.updateByPrimaryKeySelective(building) == 1) {
+			return 1;
+		}
+		return 0;
+	}
+
+	/**
+	 * @discription {获取所有房价走势}
+	 * @author xingfeng
+	 * @created 2016年12月11日 上午11:38:30
+	 * @param buildingId
+	 * @return
+	 * @see hitwh.fanghh.service.BuildingService#selectByBuildingId(java.lang.Integer)
+	 */
+
+	@Override
+	public List<Housepricetrend> selectHouseTrendByBuildingId(Integer buildingId) {
+		
+		return housepricetrendDao.selectByBuildingId(buildingId);
+	}
+
+}

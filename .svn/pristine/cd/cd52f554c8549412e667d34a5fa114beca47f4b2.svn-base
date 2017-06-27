@@ -1,0 +1,43 @@
+<div class="content"  ng-controller="storeCertCtl">
+    <div class="search">
+        <img src="./image/search.png" alt="搜索"> <p class="inline-left">搜索:</p>
+        <p class="inline-left">门店名称/门店码:</p> <input class="inline-left" type="text" name="" value="输入门店名称或门店码">
+          <button type="submit" ng-click="sub()">查询</button>
+    </div>
+<div class="content_area">
+        <div class="header-nav-little">
+			<div class="nav-active"><a href="#">门店认证</a></div>	
+	    </div>
+        
+		<div class="table_content">
+
+			<table class="building_table">
+            <tr class="line0">
+                <td class="checkbox"><input class="checkbox-input" type="checkbox" style="display:none"></td>
+                <td class="name">门店名称/门店码</td>
+				<td class="time">营业执照照片</td>
+				<td class="operation" colspan="2">操作</td>
+			</tr>
+            <tr class="line1" ng-repeat="i in items">
+                <td class="checkbox">
+					<input class="checkbox-input" type="checkbox">
+				</td>
+				<td class="name">{{ i.storeName }}</td>
+                <td class="time"><img src="{{ i.businessLicensePhoto }}"></td>
+				<td class="operation1" ng-click="pass(i.storeId)">审核通过</td>
+				<td class="operation2" ng-click="notpass(i.storeId)">审核不通过</td>
+			</tr>
+            <tr class="table-bottom">
+					<td class="checkbox-bottom">
+						<input type="checkbox" name="tr-select">全选
+					</td>
+					<td class="up-select" ng-click="passSelect()">审核通过</td>
+					<td class="down-select" ng-class="notPassSelect()">审核不通过</td>
+				</tr>
+			</table>
+            	<div class="page-num">
+					{{ pagesNum }}
+			    </div>
+		</div>
+	</div>
+</div>

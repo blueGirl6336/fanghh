@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.DynamiccontentDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Dynamiccontent">
+    <id column="dc_id" jdbcType="INTEGER" property="dcId" />
+    <result column="bdi_id" jdbcType="INTEGER" property="bdiId" />
+    <result column="dc_writing" jdbcType="VARCHAR" property="dcWriting" />
+    <result column="dc_pic" jdbcType="VARCHAR" property="dcPic" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    dc_id, bdi_id, dc_writing, dc_pic,create_time
+  </sql>
+  <select id="getAllDynamicContent"  resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.DynamicContent
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.DynamicContent
+    where dc_id = #{dcId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.DynamicContent
+    where dc_id = #{dcId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Dynamiccontent">
+    insert into dbo.DynamicContent (dc_id, bdi_id, dc_writing, 
+      dc_pic,create_time)
+    values (#{dcId,jdbcType=INTEGER}, #{bdiId,jdbcType=INTEGER}, #{dcWriting,jdbcType=VARCHAR}, 
+      #{dcPic,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Dynamiccontent">
+    insert into dbo.DynamicContent
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="dcId != null">
+        dc_id,
+      </if>
+      <if test="bdiId != null">
+        bdi_id,
+      </if>
+      <if test="dcWriting != null">
+        dc_writing,
+      </if>
+      <if test="dcPic != null">
+        dc_pic,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="dcId != null">
+        #{dcId,jdbcType=INTEGER},
+      </if>
+      <if test="bdiId != null">
+        #{bdiId,jdbcType=INTEGER},
+      </if>
+      <if test="dcWriting != null">
+        #{dcWriting,jdbcType=VARCHAR},
+      </if>
+      <if test="dcPic != null">
+        #{dcPic,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Dynamiccontent">
+    update dbo.DynamicContent
+    <set>
+      <if test="bdiId != null">
+        bdi_id = #{bdiId,jdbcType=INTEGER},
+      </if>
+      <if test="dcWriting != null">
+        dc_writing = #{dcWriting,jdbcType=VARCHAR},
+      </if>
+      <if test="dcPic != null">
+        dc_pic = #{dcPic,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+    </set>
+    where dc_id = #{dcId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Dynamiccontent">
+    update dbo.DynamicContent
+    set bdi_id = #{bdiId,jdbcType=INTEGER},
+      dc_writing = #{dcWriting,jdbcType=VARCHAR},
+      dc_pic = #{dcPic,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where dc_id = #{dcId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="getDynamicContentByBdiId" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from (select *,tid=row_number()over(order by dc_id ASC) from
+    dbo.DynamicContent where bdi_id = #{bdiId,jdbcType=INTEGER}
+    )tmp where tid between #{page.min,jdbcType=INTEGER} and #{page.max,jdbcType=INTEGER}
+  </select>
+  
+</mapper>

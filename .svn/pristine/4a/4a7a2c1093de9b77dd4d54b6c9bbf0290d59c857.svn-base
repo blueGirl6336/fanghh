@@ -1,0 +1,97 @@
+<link type="text/css" rel="stylesheet" href="./css/frame.css" />
+<link type="text/css" rel="stylesheet" href="./css/list.css" />
+<link type="text/css" rel="stylesheet" href="./css/inputStyle.css" />
+<link type="text/css" rel="stylesheet" href="./css/comment.css" />
+<div class="content-div" ng-controller="tehui">
+	<div class="inputArea form-item form-item-large content_area_head">
+		<img src="./image/search.png" class="img-search">
+		<span class="selectDistrict">选择地区</span>
+		<select name="" id="shortSelect-province" class="form-text shortSelect">
+		<option>山东</option>
+		</select>
+		<span class="province">省</span>
+		<select name="" id="shortSelect-city" class="form-text shortSelect" ng-model="selectedCity" ng-options="city.cityName for city in allCities track by city.cityId"
+			ng-change="chooseCity(selectedCity)"></select>
+		<span class="city">市</span>
+		<select name="" id="shortSelect-zone" class="form-text shortSelect" ng-model="selectedRegion" ng-options="region.regionName for region in allRegions track by region.regionId"
+			ng-change="fetchInfo(selectedRegion)"></select>
+		<span class="zone">区</span>
+		<span class="buildingName">楼盘名称：</span>
+		<input type="text" class="form-text shortText" ng-model="keyname" name="">
+		<button type="button" class="submit-file" ng-click="search(keyname)">查询</button>
+	</div>
+
+	<div class="table_area">
+		<div class="table_head">
+			<div id="tuangou" class="pageItem"><a ui-sref="index.avtivitiemManagement" class="pageLink">捡漏</a></div>
+			<div id="tuangou" class="pageItem"><a ui-sref="index.groupBuying" class="pageLink">团购</a></div>
+			<div id="buildingManagement"><a ui-sref="index.tehui" class="pageLink">特惠</a></div>
+		</div>
+
+		<div class="table_content">
+			<table class="building_table">
+				<tbody>
+					<tr class="line0">
+						<td class="checkbox"></td>
+						<td class="active-name" style="width: 280px">活动名称</td>
+						<td class="building-name">楼盘名称</td>
+						<td class="state">
+							状态
+						</td>
+						<td class="tele">联系电话</td>
+						<td class="modify-date">修改日期
+						</td>
+						<td class="operation" colspan="2">操作</td>
+						<td class="manage-operation">管理员操作</td>
+					</tr>
+					<tr ng-class="{'line2': $odd, 'line1': $even}" ng-repeat="i in items">
+						<td class="checkbox">
+							<input id="{{ i.activityId }}" type="checkbox" name="tr-select" ng-model="x" ng-checked="master" ng-click="chk(i.activityId, x)">
+						</td>
+						<td style="width: 280px">{{ i.activityName }}</td>
+						<td class="building-name">{{ i.buildingName }}</td>
+						<td class="state">
+							<!--activityApplicationStatus 活动申请状态-->
+							<span class="hand" ng-if="i.activityApplicationStatus == '01200500'" style="color:red">已下架</span>
+							<span ng-if="i.activityApplicationStatus == '01200400'" style="color:green">已申请下架</span>
+							<span ng-if="i.activityApplicationStatus == '01200300'" style="color:blue">已上架</span>
+							<span ng-if="i.activityApplicationStatus == '01200200'" style="color:green">已申请上架</span>
+							<span ng-if="i.activityApplicationStatus == '01200100'" style="color:yellow">待上架</span>
+						</td>
+						<td class="tele">400-8779-883 转2666</td>
+						<td class="modify-date">{{ i.modifiedTime }}</td>
+						<td class="operation1"> <span style="color:#ccc" ng-if="i.state == '13020200'">修改</span><span ng-if="i.state != '13020200'"><a ui-sref="index.editActivity({activityId: i.activityId, activityType: i.activityType})">修改</a></span></td>
+						<td class="operation2">
+							<span ng-if="i.activityApplicationStatus == '01200100'" ng-click="upOne(i.activityId)" class="canOperate">申请上架</span>
+							<span ng-if="i.activityApplicationStatus == '01200300'" ng-click="upDown(i.activityId)" class="canOperate">申请下架</span>
+							<span ng-if="i.activityApplicationStatus == '01200200' || i.activityApplicationStatus == '01200400'">待审核</span>
+							<!--<span ng-if="i.activityApplicationStatus == '01200300'" >已上架</span>-->
+							<span ng-if="i.activityApplicationStatus == '01200500'" >已下架</span>
+							<!--<a ui-sref="index.watchActivity({activityType: i.activityType, activityId: i.activityId})">-->
+						<td class="manage-operation" ng-click="goto(i.activityType, i.activityId, i.activityApplicationStatus)">查看</td>
+					</tr>
+
+					<tr class="table-bottom">
+						<td class="checkbox-bottom">
+							<input type="checkbox" name="tr-select" ng-model="master" ng-click="all(master,tesarry)">全选
+						</td>
+						<td class="up-select" ng-click="grounding()">上架所选</td>
+						<td class="down-select" ng-click="undercarriage()">下架所选</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<div class="page-num">
+				<p class="first" ng-click="changePage(1)" ng-show="page.pageNumber != 1">首页</p>
+				<p class="before" ng-click="changePage(page.pageNumber - 1)" ng-show="page.pageNumber - 1 > 0">上一页</p>
+				<p class="page-1" ng-click="changePage(pageButton[1])" ng-show="pageButton[1] != null" ng-class="{nowpage: pageButton[1] == page.pageNumber}">{{ pageButton[1] }}</p>
+				<p class="page-2" ng-click="changePage(pageButton[2])" ng-show="pageButton[2] != null" ng-class="{nowpage: pageButton[2] == page.pageNumber}">{{ pageButton[2] }}</p>
+				<p class="page-3" ng-click="changePage(pageButton[3])" ng-show="pageButton[3] != null" ng-class="{nowpage: pageButton[3] == page.pageNumber}">{{ pageButton[3] }}</p>
+				<p class="page-4" ng-click="changePage(pageButton[4])" ng-show="pageButton[4] != null" ng-class="{nowpage: pageButton[4] == page.pageNumber}">{{ pageButton[4] }}</p>
+				<p class="page-5" ng-click="changePage(pageButton[5])" ng-show="pageButton[5] != null" ng-class="{nowpage: pageButton[5] == page.pageNumber}">{{ pageButton[5] }}</p>
+				<p class="next" ng-click="changePage(page.pageNumber + 1)" ng-show="page.pageNumber + 1 <= page.pageMax">下一页</p>
+				<p class="last" ng-click="changePage(page.pageMax)" ng-show="page.pageNumber != page.pageMax">末页</p>
+			</div>
+		</div>
+	</div>
+</div>

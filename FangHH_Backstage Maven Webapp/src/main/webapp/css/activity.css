@@ -1,0 +1,117 @@
+/* 添加房源 */
+.house-box-container {
+  width: 100%;
+  overflow: hidden;   /* 解决 div 高度为 0 的问题 */
+}
+
+.house-box {
+  height: 75px;
+  width: 230px;
+  background-color: #e5e5e5;
+  border: 1px solid #e5e5e5;
+  margin: 0 20px 20px 0;
+  position: relative;
+  float: left;
+  z-index: 99
+}
+
+.house-box .house-name {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 0 0 15px;
+}
+
+.house-box .price-box {
+  font-size: 14px;
+  color: gray;
+  margin-top: 12px;
+}
+
+.house-box .price-box span {
+  margin: 0 4px 0 10px; 
+}
+
+.house-box .close-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: none;
+  cursor: pointer;
+}
+
+.house-box:hover .close-btn {
+  display: block;
+}
+
+/* 弹出框 begin */
+.add-house-pop-up .pop-up-form .add-house-section {
+  margin-top: 20px;
+  height: 60px;
+}
+
+.add-house-pop-up .pop-up-form .add-house-section .form-disabled-field {
+  background-color: #e5e5e5;
+}
+
+/* 弹出框 end */
+
+.activity-launch .button-area button {
+  margin-top: 35px;
+  padding: 0 100px;
+  text-align: justify;
+  text-align-last: justify;
+  cursor: pointer;
+}
+
+.activity-launch select {
+  background-color: white;
+}
+
+.activity-launch .form-item .form-field {
+  position: static;
+  margin-left: 86px;
+}
+
+.activity-launch .rule-list {
+  margin-left: 84px;
+  margin-top: -10px;
+}
+
+.activity-launch .rule-list li {
+  float: left;
+  width: 84px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background-color: #eee;
+  border: 1px solid #e5e5e5;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.activity-launch .rule-list li.select {
+  background-color: white;
+}
+
+.activity-launch .rule-title-box {
+  margin-left: 86px;
+}
+
+.activity-launch .rule-title-box textarea {
+  width: 350px;
+}
+
+.activity-launch .rule-box {
+  display: none;
+}
+
+.activity-launch .rule-box.active {
+  display: block;
+}
+
+.activity-launch .rule-box .rule-title {
+  width: 296px;
+  height: 27px;
+  padding: 6px 12px;
+  margin-top: -7px;
+}

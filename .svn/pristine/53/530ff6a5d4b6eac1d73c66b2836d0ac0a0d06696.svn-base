@@ -1,0 +1,217 @@
+package hitwh.fanghh.controller;
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import hitwh.fanghh.annotation.RequiredPermission;
+import hitwh.fanghh.annotation.RequiredPermission.Roles;
+import hitwh.fanghh.bean.StoreAuthenticationBean;
+import hitwh.fanghh.bean.UserAuthenticationBean;
+import hitwh.fanghh.service.AuthenticationService;
+import hitwh.fanghh.util.ResponseMapUtil;
+
+@RequestMapping("/authentication")
+@Controller
+public class AuthenticationController
+{
+	@Autowired
+	private AuthenticationService authenticationService;
+
+	/**
+	 * 获取所有门店信息
+	 *
+	 * @Title: getAllStore
+	 * @version:
+	 * @author: ZY
+	 * 
+	 * @param pageMaxNum每页数量
+	 * @param pageNo页码
+	 * @return
+	 */
+	@RequiredPermission(role = Roles.SYS_ADMIN)
+	@RequestMapping("/getAllStore")
+	@ResponseBody
+	public Map<String, Object> getAllStore(@RequestParam int pageMaxNum, @RequestParam int pageNo)
+	{
+		List<StoreAuthenticationBean> storeAuthenticationBeanList = authenticationService.getAllStore(pageMaxNum,
+				pageNo);
+		return ResponseMapUtil.responseSuccess(storeAuthenticationBeanList);
+	}
+
+	/**
+	 * 关键字搜索获取门店信息
+	 *
+	 * @Title: getStoreBySearchStoreName
+	 * @version:
+	 * @author: ZY
+	 * 
+	 * @param keyStoreName关键字（门店名字）
+	 * @param pageMaxNum每页数量
+	 * @param pageNo页码
+	 * @return
+	 */
+	@RequiredPermission(role = Roles.SYS_ADMIN)
+	@RequestMapping("/getStoreBySearchStoreName")
+	@ResponseBody
+	public Map<String, Object> getStoreBySearchStoreName(@RequestParam String keyStoreName,
+			@RequestParam int pageMaxNum, @RequestParam int pageNo)
+	{
+		List<StoreAuthenticationBean> storeAuthenticationBeanList = authenticationService
+				.getStoreBySearchStoreName(keyStoreName, pageMaxNum, pageNo);
+		return ResponseMapUtil.responseSuccess(storeAuthenticationBeanList);
+	}
+
+	/**
+	 * 获取单个门店信息
+	 *
+	 * @Title: getSingleStore
+	 * @version:
+	 * @author: ZY
+	 * 
+	 * @param storeId门店id
+	 * @return
+	 */
+	@RequiredPermission(role = Roles.SYS_ADMIN)
+	@RequestMapping("/getSingleStore")
+	@ResponseBody
+	public Map<String, Object> getSingleStore(@RequestParam int storeId)
+	{
+		StoreAuthenticationBean storeAuthenticationBean = authenticationService.getSingleStore(storeId);
+		return ResponseMapUtil.responseSuccess(storeAuthenticationBean);
+	}
+
+	/**
+	 * 获取门店认证界面页数
+	 *
+	 * @Title: getStoreAuthenticationPageNum
+	 * @version:
+	 * @author: ZY
+	 * 
+	 * @param pageMaxNum每页数量
+	 * @return
+	 */
+	@RequiredPermission(role = Roles.SYS_ADMIN)
+	@RequestMapping("/getStoreAuthenticationPageNum")
+	@ResponseBody
+	public Map<String, Object> getStoreAuthenticationPageNum(@RequestParam int pageMaxNum)
+	{
+		int num = authenticationService.getStoreAuthenticationPageNum(pageMaxNum);
+		return ResponseMapUtil.responseSuccess(num);
+	}
+
+	/**
+	 * 门店认证
+	 *
+	 * @Title: authenticateStore
+	 * @version:
+	 * @author: ZY
+	 * 
+	 * @param storeId门店id
+	 * @param status是否通过
+	 * @param failedReason未通过原因
+	 * @return
+	 */
+	@RequiredPermission(role = Roles.SYS_ADMIN)
+	@RequestMapping("/authenticateStore")
+	@ResponseBody
+	public Map<String, Object> authenticateStore(@RequestParam int storeId, @RequestParam boolean status,
+			@RequestParam String failedReason)
+	{
+		String res = authenticationService.authenticateStore(storeId, status, failedReason);
+		if (res.equals("success"))
+		{
+			return ResponseMapUtil.responseSuccess(null);
+		} else
+		{
+			return ResponseMapUtil.responseError(res);
+		}
+	}
+
+	@RequiredPermission(role = Roles.SYS_ADMIN)
+	@RequestMapping("/authenticateUser")
+	@ResponseBody
+
+	public Map<String, Object> authenticateUser(@RequestParam int userId , @RequestParam boolean status , @RequestParam String failedReason)
+
+	{
+		String res = authenticationService.authenticateUser(userId, status , failedReason);
+		if (res.equals("success"))
+		{
+			return ResponseMapUtil.responseSuccess(null);
+		} else
+		{
+			return ResponseMapUtil.responseError(res);
+		}
+	}
+
+	@RequiredPermission(role = Roles.SYS_ADMIN)
+	@RequestMapping("/getAllUser")
+	@ResponseBody
+	public Map<String, Object> getAllUser(@RequestParam int pageMaxNum, @RequestParam int pageNo)
+	{
+		List<UserAuthenticationBean> userAuthenticationBeanList = authenticationService.getAllUser(pageMaxNum, pageNo);
+		return ResponseMapUtil.responseSuccess(userAuthenticationBeanList);
+	}
+
+	@RequiredPermission(role = Roles.SYS_ADMIN)
+	@RequestMapping("/getUserBySearchRealName")
+	@ResponseBody
+	public Map<String, Object> getUserBySearchRealName(@RequestParam String keyBrokerName, @RequestParam int pageMaxNum,
+			@RequestParam int pageNo)
+	{
+		List<UserAuthenticationBean> userAuthenticationBeanList = authenticationService.getUserBySearchUserName(keyBrokerName, pageMaxNum, pageNo);
+		return ResponseMapUtil.responseSuccess(userAuthenticationBeanList);
+	}
+
+	@RequiredPermission(role = Roles.SYS_ADMIN)
+	@RequestMapping("/getSingleUser")
+	@ResponseBody
+	public Map<String, Object> getSingleUser(@RequestParam int userId)
+	{
+		UserAuthenticationBean userAuthenticationBean = authenticationService.getSingleUser(userId);
+		return ResponseMapUtil.responseSuccess(userAuthenticationBean);
+	}
+
+	@RequiredPermission(role = Roles.SYS_ADMIN)
+	@RequestMapping("/getUserAuthenticationPageNum")
+	@ResponseBody
+	public Map<String, Object> getUserAuthenticationPageNum(@RequestParam int pageMaxNum)
+	{
+		int num = authenticationService.getUserAuthenticationPageNum(pageMaxNum);
+		return ResponseMapUtil.responseSuccess(num);
+	}
+	
+	
+	@RequiredPermission(role = Roles.SYS_ADMIN)
+	@RequestMapping("/getUserByIdNum")
+	@ResponseBody
+	public Map<String, Object> getUserByIdNum(@RequestParam String userIdNum)
+	{
+		UserAuthenticationBean userAuthenticationBean = authenticationService.getUserByIdNum(userIdNum);
+		return ResponseMapUtil.responseSuccess(userAuthenticationBean);
+	}
+	
+	@RequiredPermission(role = Roles.SYS_ADMIN)
+	@RequestMapping("/getUserByUserName")
+	@ResponseBody
+	public Map<String, Object> getUserByUserNam(@RequestParam String userName)
+	{
+		UserAuthenticationBean userAuthenticationBean = authenticationService.getUserByUserName(userName);
+		return ResponseMapUtil.responseSuccess(userAuthenticationBean);
+	}
+	@RequiredPermission(role = Roles.SYS_ADMIN)
+	@RequestMapping("/getUserBySearchKeyUserNameAndKeyRealNameAndIdNum")
+	@ResponseBody
+	public Map<String, Object> getUserBySearchKeyUserNameAndKeyRealNameAndIdNum(@RequestParam String keyRealName,@RequestParam String keyUserName ,@RequestParam String IdNum ,@RequestParam int pageMaxNum,@RequestParam int pageNo)
+	{
+		List<UserAuthenticationBean> userAuthenticationBeanList = authenticationService.getUserBySearchKeyUserNameAndKeyRealNameAndIdNum(keyRealName,keyUserName , IdNum ,pageMaxNum, pageNo);
+		return ResponseMapUtil.responseSuccess(userAuthenticationBeanList);
+	}
+	
+}

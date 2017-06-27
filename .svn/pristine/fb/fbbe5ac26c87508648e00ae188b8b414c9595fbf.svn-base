@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.ReservationorderDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Reservationorder">
+    <id column="ro_id" jdbcType="INTEGER" property="roId" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="customer_id" jdbcType="INTEGER" property="customerId" />
+    <result column="house_id" jdbcType="INTEGER" property="houseId" />
+    <result column="reservation_time" jdbcType="TIMESTAMP" property="reservationTime" />
+    <result column="reservation_num" jdbcType="INTEGER" property="reservationNum" />
+    <result column="type_time" jdbcType="TIMESTAMP" property="typeTime" />
+    <result column="reservation_status" jdbcType="VARCHAR" property="reservationStatus" />
+    <result column="is_matched" jdbcType="BIT" property="isMatched" />
+    <result column="is_checked" jdbcType="BIT" property="isChecked" />
+    <result column="is_distributed" jdbcType="BIT" property="isDistributed" />
+    <result column="reservation_source" jdbcType="VARCHAR" property="reservationSource" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="building_id" jdbcType="INTEGER" property="buildingId" />
+    <result column="need_pick_up" jdbcType="BIT" property="needPickUp" />
+    <result column="pick_up_addr" jdbcType="VARCHAR" property="pickUpAddr" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ro_id, order_id, customer_id, house_id, reservation_time, reservation_num, type_time, 
+    reservation_status, is_matched, is_checked, is_distributed, reservation_source, remark, 
+    building_id, need_pick_up, pick_up_addr
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.ReservationOrder
+    where ro_id = #{roId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.ReservationOrder
+    where ro_id = #{roId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Reservationorder">
+    insert into dbo.ReservationOrder (ro_id, order_id, customer_id, 
+      house_id, reservation_time, reservation_num, 
+      type_time, reservation_status, is_matched, 
+      is_checked, is_distributed, reservation_source, 
+      remark, building_id, need_pick_up, 
+      pick_up_addr)
+    values (#{roId,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}, #{customerId,jdbcType=INTEGER}, 
+      #{houseId,jdbcType=INTEGER}, #{reservationTime,jdbcType=TIMESTAMP}, #{reservationNum,jdbcType=INTEGER}, 
+      #{typeTime,jdbcType=TIMESTAMP}, #{reservationStatus,jdbcType=VARCHAR}, #{isMatched,jdbcType=BIT}, 
+      #{isChecked,jdbcType=BIT}, #{isDistributed,jdbcType=BIT}, #{reservationSource,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{buildingId,jdbcType=INTEGER}, #{needPickUp,jdbcType=BIT}, 
+      #{pickUpAddr,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Reservationorder">
+    insert into dbo.ReservationOrder
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roId != null">
+        ro_id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="houseId != null">
+        house_id,
+      </if>
+      <if test="reservationTime != null">
+        reservation_time,
+      </if>
+      <if test="reservationNum != null">
+        reservation_num,
+      </if>
+      <if test="typeTime != null">
+        type_time,
+      </if>
+      <if test="reservationStatus != null">
+        reservation_status,
+      </if>
+      <if test="isMatched != null">
+        is_matched,
+      </if>
+      <if test="isChecked != null">
+        is_checked,
+      </if>
+      <if test="isDistributed != null">
+        is_distributed,
+      </if>
+      <if test="reservationSource != null">
+        reservation_source,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="buildingId != null">
+        building_id,
+      </if>
+      <if test="needPickUp != null">
+        need_pick_up,
+      </if>
+      <if test="pickUpAddr != null">
+        pick_up_addr,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roId != null">
+        #{roId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="houseId != null">
+        #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="reservationTime != null">
+        #{reservationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reservationNum != null">
+        #{reservationNum,jdbcType=INTEGER},
+      </if>
+      <if test="typeTime != null">
+        #{typeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reservationStatus != null">
+        #{reservationStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="isMatched != null">
+        #{isMatched,jdbcType=BIT},
+      </if>
+      <if test="isChecked != null">
+        #{isChecked,jdbcType=BIT},
+      </if>
+      <if test="isDistributed != null">
+        #{isDistributed,jdbcType=BIT},
+      </if>
+      <if test="reservationSource != null">
+        #{reservationSource,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingId != null">
+        #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="needPickUp != null">
+        #{needPickUp,jdbcType=BIT},
+      </if>
+      <if test="pickUpAddr != null">
+        #{pickUpAddr,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Reservationorder">
+    update dbo.ReservationOrder
+    <set>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="houseId != null">
+        house_id = #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="reservationTime != null">
+        reservation_time = #{reservationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reservationNum != null">
+        reservation_num = #{reservationNum,jdbcType=INTEGER},
+      </if>
+      <if test="typeTime != null">
+        type_time = #{typeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reservationStatus != null">
+        reservation_status = #{reservationStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="isMatched != null">
+        is_matched = #{isMatched,jdbcType=BIT},
+      </if>
+      <if test="isChecked != null">
+        is_checked = #{isChecked,jdbcType=BIT},
+      </if>
+      <if test="isDistributed != null">
+        is_distributed = #{isDistributed,jdbcType=BIT},
+      </if>
+      <if test="reservationSource != null">
+        reservation_source = #{reservationSource,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingId != null">
+        building_id = #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="needPickUp != null">
+        need_pick_up = #{needPickUp,jdbcType=BIT},
+      </if>
+      <if test="pickUpAddr != null">
+        pick_up_addr = #{pickUpAddr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ro_id = #{roId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Reservationorder">
+    update dbo.ReservationOrder
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=INTEGER},
+      house_id = #{houseId,jdbcType=INTEGER},
+      reservation_time = #{reservationTime,jdbcType=TIMESTAMP},
+      reservation_num = #{reservationNum,jdbcType=INTEGER},
+      type_time = #{typeTime,jdbcType=TIMESTAMP},
+      reservation_status = #{reservationStatus,jdbcType=VARCHAR},
+      is_matched = #{isMatched,jdbcType=BIT},
+      is_checked = #{isChecked,jdbcType=BIT},
+      is_distributed = #{isDistributed,jdbcType=BIT},
+      reservation_source = #{reservationSource,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      building_id = #{buildingId,jdbcType=INTEGER},
+      need_pick_up = #{needPickUp,jdbcType=BIT},
+      pick_up_addr = #{pickUpAddr,jdbcType=VARCHAR}
+    where ro_id = #{roId,jdbcType=INTEGER}
+  </update>
+</mapper>

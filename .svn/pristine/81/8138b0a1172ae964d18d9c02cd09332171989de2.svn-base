@@ -1,0 +1,4 @@
+angular.module("manageBuilding", ["ngCookies"])
+    .controller("watchMethod", function ($scope, $http) {
+
+    })

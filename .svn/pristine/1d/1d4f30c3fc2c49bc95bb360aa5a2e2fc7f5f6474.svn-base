@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.GrouppurchasehouselistDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Grouppurchasehouselist">
+    <id column="gph_id" jdbcType="INTEGER" property="gphId" />
+    <result column="house_id" jdbcType="INTEGER" property="houseId" />
+    <result column="child_order_id" jdbcType="VARCHAR" property="childOrderId" />
+    <result column="is_purchased" jdbcType="BIT" property="isPurchased" />
+    <result column="child_order_status" jdbcType="VARCHAR" property="childOrderStatus" />
+    <result column="activity_id" jdbcType="VARCHAR" property="activityId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    gph_id, house_id, child_order_id, is_purchased, child_order_status, activity_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.GroupPurchaseHouseList
+    where gph_id = #{gphId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.GroupPurchaseHouseList
+    where gph_id = #{gphId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Grouppurchasehouselist">
+    insert into dbo.GroupPurchaseHouseList (gph_id, house_id, child_order_id, 
+      is_purchased, child_order_status, activity_id
+      )
+    values (#{gphId,jdbcType=INTEGER}, #{houseId,jdbcType=INTEGER}, #{childOrderId,jdbcType=VARCHAR}, 
+      #{isPurchased,jdbcType=BIT}, #{childOrderStatus,jdbcType=VARCHAR}, #{activityId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Grouppurchasehouselist">
+    insert into dbo.GroupPurchaseHouseList
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="gphId != null">
+        gph_id,
+      </if>
+      <if test="houseId != null">
+        house_id,
+      </if>
+      <if test="childOrderId != null">
+        child_order_id,
+      </if>
+      <if test="isPurchased != null">
+        is_purchased,
+      </if>
+      <if test="childOrderStatus != null">
+        child_order_status,
+      </if>
+      <if test="activityId != null">
+        activity_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="gphId != null">
+        #{gphId,jdbcType=INTEGER},
+      </if>
+      <if test="houseId != null">
+        #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="childOrderId != null">
+        #{childOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="isPurchased != null">
+        #{isPurchased,jdbcType=BIT},
+      </if>
+      <if test="childOrderStatus != null">
+        #{childOrderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="activityId != null">
+        #{activityId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Grouppurchasehouselist">
+    update dbo.GroupPurchaseHouseList
+    <set>
+      <if test="houseId != null">
+        house_id = #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="childOrderId != null">
+        child_order_id = #{childOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="isPurchased != null">
+        is_purchased = #{isPurchased,jdbcType=BIT},
+      </if>
+      <if test="childOrderStatus != null">
+        child_order_status = #{childOrderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="activityId != null">
+        activity_id = #{activityId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where gph_id = #{gphId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Grouppurchasehouselist">
+    update dbo.GroupPurchaseHouseList
+    set house_id = #{houseId,jdbcType=INTEGER},
+      child_order_id = #{childOrderId,jdbcType=VARCHAR},
+      is_purchased = #{isPurchased,jdbcType=BIT},
+      child_order_status = #{childOrderStatus,jdbcType=VARCHAR},
+      activity_id = #{activityId,jdbcType=VARCHAR}
+    where gph_id = #{gphId,jdbcType=INTEGER}
+  </update>
+</mapper>

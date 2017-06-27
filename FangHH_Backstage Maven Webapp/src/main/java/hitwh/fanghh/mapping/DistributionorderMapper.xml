@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.DistributionorderDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Distributionorder">
+    <id column="do_id" jdbcType="INTEGER" property="doId" />
+    <result column="director_id" jdbcType="INTEGER" property="directorId" />
+    <result column="consultant_id" jdbcType="INTEGER" property="consultantId" />
+    <result column="customer_id" jdbcType="INTEGER" property="customerId" />
+    <result column="distribution_time" jdbcType="TIMESTAMP" property="distributionTime" />
+    <result column="remove_distribution_date" jdbcType="TIMESTAMP" property="removeDistributionDate" />
+    <result column="is_removed" jdbcType="BIT" property="isRemoved" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    do_id, director_id, consultant_id, customer_id, distribution_time, remove_distribution_date, 
+    is_removed, remark, order_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.DistributionOrder
+    where do_id = #{doId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.DistributionOrder
+    where do_id = #{doId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Distributionorder">
+    insert into dbo.DistributionOrder (do_id, director_id, consultant_id, 
+      customer_id, distribution_time, remove_distribution_date, 
+      is_removed, remark, order_id
+      )
+    values (#{doId,jdbcType=INTEGER}, #{directorId,jdbcType=INTEGER}, #{consultantId,jdbcType=INTEGER}, 
+      #{customerId,jdbcType=INTEGER}, #{distributionTime,jdbcType=TIMESTAMP}, #{removeDistributionDate,jdbcType=TIMESTAMP}, 
+      #{isRemoved,jdbcType=BIT}, #{remark,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Distributionorder">
+    insert into dbo.DistributionOrder
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="doId != null">
+        do_id,
+      </if>
+      <if test="directorId != null">
+        director_id,
+      </if>
+      <if test="consultantId != null">
+        consultant_id,
+      </if>
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="distributionTime != null">
+        distribution_time,
+      </if>
+      <if test="removeDistributionDate != null">
+        remove_distribution_date,
+      </if>
+      <if test="isRemoved != null">
+        is_removed,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="doId != null">
+        #{doId,jdbcType=INTEGER},
+      </if>
+      <if test="directorId != null">
+        #{directorId,jdbcType=INTEGER},
+      </if>
+      <if test="consultantId != null">
+        #{consultantId,jdbcType=INTEGER},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="distributionTime != null">
+        #{distributionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="removeDistributionDate != null">
+        #{removeDistributionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isRemoved != null">
+        #{isRemoved,jdbcType=BIT},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Distributionorder">
+    update dbo.DistributionOrder
+    <set>
+      <if test="directorId != null">
+        director_id = #{directorId,jdbcType=INTEGER},
+      </if>
+      <if test="consultantId != null">
+        consultant_id = #{consultantId,jdbcType=INTEGER},
+      </if>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="distributionTime != null">
+        distribution_time = #{distributionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="removeDistributionDate != null">
+        remove_distribution_date = #{removeDistributionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isRemoved != null">
+        is_removed = #{isRemoved,jdbcType=BIT},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where do_id = #{doId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Distributionorder">
+    update dbo.DistributionOrder
+    set director_id = #{directorId,jdbcType=INTEGER},
+      consultant_id = #{consultantId,jdbcType=INTEGER},
+      customer_id = #{customerId,jdbcType=INTEGER},
+      distribution_time = #{distributionTime,jdbcType=TIMESTAMP},
+      remove_distribution_date = #{removeDistributionDate,jdbcType=TIMESTAMP},
+      is_removed = #{isRemoved,jdbcType=BIT},
+      remark = #{remark,jdbcType=VARCHAR},
+      order_id = #{orderId,jdbcType=VARCHAR}
+    where do_id = #{doId,jdbcType=INTEGER}
+  </update>
+</mapper>

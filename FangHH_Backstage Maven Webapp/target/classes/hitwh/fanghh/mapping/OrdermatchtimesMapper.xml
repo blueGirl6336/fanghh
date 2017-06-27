@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.OrdermatchtimesDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Ordermatchtimes">
+    <id column="omt_id" jdbcType="INTEGER" property="omtId" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="match_times" jdbcType="INTEGER" property="matchTimes" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    omt_id, order_id, match_times
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.OrderMatchTimes
+    where omt_id = #{omtId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.OrderMatchTimes
+    where omt_id = #{omtId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Ordermatchtimes">
+    insert into dbo.OrderMatchTimes (omt_id, order_id, match_times
+      )
+    values (#{omtId,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}, #{matchTimes,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Ordermatchtimes">
+    insert into dbo.OrderMatchTimes
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="omtId != null">
+        omt_id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="matchTimes != null">
+        match_times,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="omtId != null">
+        #{omtId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="matchTimes != null">
+        #{matchTimes,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Ordermatchtimes">
+    update dbo.OrderMatchTimes
+    <set>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="matchTimes != null">
+        match_times = #{matchTimes,jdbcType=INTEGER},
+      </if>
+    </set>
+    where omt_id = #{omtId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Ordermatchtimes">
+    update dbo.OrderMatchTimes
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      match_times = #{matchTimes,jdbcType=INTEGER}
+    where omt_id = #{omtId,jdbcType=INTEGER}
+  </update>
+</mapper>

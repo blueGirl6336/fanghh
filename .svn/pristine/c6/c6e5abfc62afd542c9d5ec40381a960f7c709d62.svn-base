@@ -1,0 +1,687 @@
+/**     
+ * @discription {在此输入一句话描述此文件的作用}
+ * @author wangxinjie       
+ * @created 2016年12月6日 下午9:26:54    
+ */
+
+package hitwh.fanghh.service.impl;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import hitwh.fanghh.bean.HouseStyleBean;
+import hitwh.fanghh.bean.PicTalkBean;
+import hitwh.fanghh.bean.BuildingSurroundBean;
+import hitwh.fanghh.dao.BuildingDao;
+import hitwh.fanghh.dao.BuildingpicDao;
+import hitwh.fanghh.dao.HousepricetrendDao;
+import hitwh.fanghh.dao.PictalkDao;
+import hitwh.fanghh.dao.PictalkcontentDao;
+import hitwh.fanghh.dao.RegionDao;
+import hitwh.fanghh.dao.SurroundfacilityDao;
+import hitwh.fanghh.pojo.Building;
+import hitwh.fanghh.pojo.Buildingpic;
+import hitwh.fanghh.pojo.Developer;
+import hitwh.fanghh.pojo.Housepricetrend;
+import hitwh.fanghh.pojo.Housestyle;
+import hitwh.fanghh.pojo.Pictalk;
+import hitwh.fanghh.pojo.Pictalkcontent;
+import hitwh.fanghh.pojo.Region;
+import hitwh.fanghh.pojo.Surroundfacility;
+import hitwh.fanghh.service.BuildingService;
+import hitwh.fanghh.util.DictionaryString;
+import hitwh.fanghh.util.PageCalculate;
+import hitwh.fanghh.util.RandomUtil;
+import hitwh.fanghh.dao.DeveloperDao;
+
+/**
+ * Title: BuildingServiceImpl.java Description: 描述
+ * 
+ * @author wangxinjie
+ * @created 2016年12月6日 下午9:26:54
+ */
+@Service
+public class BuildingServiceImpl implements BuildingService {
+	@Autowired
+	private HttpSession session;
+	@Autowired
+	private BuildingDao buildingDao;
+	@Autowired
+	private HousepricetrendDao housepricetrendDao;
+	@Autowired
+	private SurroundfacilityDao SurroundfacilityDao;
+	@Autowired
+	private BuildingpicDao buildingpicDao;
+	@Autowired
+	private RegionDao regionDao;
+	@Autowired
+	private DeveloperDao developerDao;
+	@Autowired
+	private PictalkDao pictalkDao;
+	@Autowired
+	private PictalkcontentDao pictalkcontentDao;
+
+	/**
+	 * @discription {在此输入一句话描述作用}
+	 * @author wangxinjie
+	 * @created 2016年12月6日 下午9:35:31
+	 * @return
+	 * @see hitwh.fanghh.service.BuildingService#getAllBuilding()
+	 */
+
+	@Override
+	public List<Building> getAllBuilding(int pageMaxNum, int pageNo) {
+		if (pageMaxNum < 1) {
+			pageMaxNum = 1;
+		}
+
+		Object cityId = session.getAttribute("cityId");
+		List<Region> list = regionDao.selectByCityId((Integer) cityId);
+		List<Building> ids = new ArrayList<Building>();
+		for (Region r : list) {
+			List<Building> building = buildingDao.selectAll(r.getRegionId());
+			ids.addAll(building);
+		}
+		int pageNum = getBuildingPageNum(pageMaxNum);
+		// 若想查看页数大于总页数则返回null
+		if (pageNum < pageNo) {
+			return null;
+		} else {
+			List<Building> resultList = new ArrayList<Building>();
+			// 设置起始
+			int start = pageMaxNum * (pageNo - 1);
+			int end = pageMaxNum * pageNo - 1;
+			if (end > ids.size() - 1) {
+				end = ids.size() - 1;
+			}
+			for (int i = start; i <= end; i++) {
+				resultList.add(ids.get(i));
+			}
+			return resultList;
+		}
+
+	}
+
+	@Override
+	public int getBuildingPageNum(int pageMaxNum) {
+		if (pageMaxNum < 1) {
+			pageMaxNum = 1;
+		}
+		Object cityId = session.getAttribute("cityId");
+		List<Region> list = regionDao.selectByCityId((Integer) cityId);
+		List<Building> ids = new ArrayList<Building>();
+		for (Region r : list) {
+			List<Building> building = buildingDao.selectAll(r.getRegionId());
+			ids.addAll(building);
+		}
+		int buildingNum = ids.size();
+		return buildingNum % pageMaxNum == 0 ? buildingNum / pageMaxNum
+				: buildingNum / pageMaxNum + 1;
+	}
+
+	/**
+	 * @discription {在此输入一句话描述作用}
+	 * @author wangxinjie
+	 * @created 2016年12月6日 下午9:55:58
+	 * @param buildingId
+	 * @return
+	 * @see hitwh.fanghh.service.BuildingService#getAllBuilding(int)
+	 */
+
+	@Override
+	public Building getBuildingInfo(int buildingId) {
+		return buildingDao.selectByPrimaryKey(buildingId);
+	}
+
+	/**
+	 * @discription {在此输入一句话描述作用}
+	 * @author wangxinjie
+	 * @created 2016年12月7日 下午2:02:21
+	 * @param building
+	 * @return
+	 * @see hitwh.fanghh.service.BuildingService#addBuilding(hitwh.fanghh.pojo.Building)
+	 */
+
+	@Override
+	public int addBuilding(Building building) {
+		building.setAuditNotPassReason(null);// 审核不通过原因无
+		building.setBuildingAuditStatus(DictionaryString.APPLICATION_WAIT);// 设置审核状态为待审核
+		building.setBuildingApplicationStatus(DictionaryString.APPLICATION_TOBEPERFERT);// 设置楼盘状态为待完善
+		int result = 0;
+		buildingDao.insertSelective(building);
+		result = building.getBuildingId();
+		if (result != 0) {
+			return result;
+		}
+		return result;
+	}
+
+	/**
+	 * @discription {在此输入一句话描述作用}
+	 * @author wangxinjie
+	 * @created 2016年12月7日 下午2:08:56
+	 * @param building
+	 * @return
+	 * @see hitwh.fanghh.service.BuildingService#updateBuilding(hitwh.fanghh.pojo.Building)
+	 */
+
+	@Override
+	public boolean updateBuilding(Building building) {
+		building.setBuildingAuditStatus(DictionaryString.AUDIT_WAIT);// 设置状态为待审核
+		int result = buildingDao.updateByPrimaryKeySelective(building);
+		if (result == 1)
+			return true;
+		return false;
+	}
+
+	/**
+	 * @discription {在此输入一句话描述作用}
+	 * @author wangxinjie
+	 * @created 2016年12月7日 下午2:26:55
+	 * @param buildingId
+	 * @param buildingApplicationStatus
+	 * @return
+	 * @see hitwh.fanghh.service.BuildingService#applicateBuildingOffSaleByHouseId(int,
+	 *      java.lang.String)
+	 */
+
+	@Override
+	public int applicateBuildingOffSaleByHouseId(int buildingId,
+			String buildingApplicationStatus) {
+		Building building = buildingDao.selectByPrimaryKey(buildingId);
+		if (building == null)
+			return 0;
+		String applicationDicCode = building.getBuildingApplicationStatus();
+		building.setBuildingApplicationStatus(buildingApplicationStatus);
+		buildingDao.updateByPrimaryKeySelective(building);
+		return 1;
+	}
+
+	/**
+	 * @discription {在此输入一句话描述作用}
+	 * @author wangxinjie
+	 * @created 2016年12月7日 下午3:02:09
+	 * @param buildingId
+	 * @param auditCode
+	 * @return
+	 * @see hitwh.fanghh.service.BuildingService#auditBuildingApplicationPass(int,
+	 *      java.lang.String)
+	 */
+
+	@Override
+	public int auditBuildingApplicationPass(int buildingId, String auditCode) {
+		Building building = buildingDao.selectByPrimaryKey(buildingId);
+		building.setBuildingAuditStatus(auditCode);
+		if (buildingDao.updateByPrimaryKeySelective(building) == 1) {
+			return 1;
+		}
+		return 0;
+	}
+
+	/**
+	 * @discription {在此输入一句话描述作用}
+	 * @author wangxinjie
+	 * @created 2016年12月7日 下午3:02:09
+	 * @param buildingId
+	 * @param auditCode
+	 * @param auditNotPassReason
+	 * @return
+	 * @see hitwh.fanghh.service.BuildingService#auditBuildingApplicationNotPass(int,
+	 *      java.lang.String, java.lang.String)
+	 */
+
+	@Override
+	public int auditBuildingApplicationNotPass(int buildingId,
+			String auditCode, String auditNotPassReason) {
+		Building building = buildingDao.selectByPrimaryKey(buildingId);
+		building.setBuildingAuditStatus(auditCode);
+		building.setAuditNotPassReason(auditNotPassReason);
+		if (buildingDao.updateByPrimaryKeySelective(building) == 1) {
+			return 1;
+		}
+		return 0;
+	}
+
+	/**
+	 * @discription {获取所有房价走势}
+	 * @author xingfeng
+	 * @created 2016年12月11日 上午11:38:30
+	 * @param buildingId
+	 * @return
+	 * @see hitwh.fanghh.service.BuildingService#selectByBuildingId(java.lang.Integer)
+	 */
+
+	@Override
+	public List<Housepricetrend> selectHouseTrendByBuildingId(int buildingId) {
+		return housepricetrendDao.selectByBuildingId(buildingId);
+	}
+
+	/**
+	 * @discription {添加房价走势}
+	 * @author xingfeng
+	 * @created 2016年12月11日 上午11:38:30
+	 * @param buildingId
+	 * @return
+	 * @see hitwh.fanghh.service.BuildingService#selectByBuildingId(java.lang.Integer)
+	 */
+	@Override
+	public boolean addHousePriceTrend(Housepricetrend housepricetrend) {
+		int result = housepricetrendDao.insertSelective(housepricetrend);
+		if (result == 1)
+			return true;
+		return false;
+	}
+
+	/**
+	 * @discription {删除房价走势}
+	 * @author xingfeng
+	 * @created 2016年12月11日 上午11:38:30
+	 * @param buildingId
+	 * @return
+	 * @see hitwh.fanghh.service.BuildingService#selectByBuildingId(java.lang.Integer)
+	 */
+	@Override
+	public boolean deleteHousePriceTrend(int trendId) {
+		int result = housepricetrendDao.deleteByPrimaryKey(trendId);
+		if (result == 1) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * @discription {更新房价走势}
+	 * @author xingfeng
+	 * @created 2016年12月11日 上午11:38:30
+	 * @param buildingId
+	 * @return
+	 * @see hitwh.fanghh.service.BuildingService#selectByBuildingId(java.lang.Integer)
+	 */
+	@Override
+	public boolean updateHousePriceTrend(Housepricetrend housepricetrend) {
+		int result = housepricetrendDao.updateByPrimaryKey(housepricetrend);
+		if (result == 1)
+			return true;
+		return false;
+	}
+
+	/**
+	 * @discription {楼盘图片上传}
+	 * @author wangxinjie
+	 * @created 2016年12月12日 下午3:28:27
+	 * @param file
+	 * @return
+	 * @see hitwh.fanghh.service.BuildingService#uploadStylePic(org.springframework.web.multipart.MultipartFile)
+	 */
+
+	@Override
+	public String uploadStylePic(MultipartFile file) {
+		final String[] acceptType = { "image/jpeg", "image/bmp", "image/png",
+				"image/gif" };
+		String basePath = session.getServletContext().getRealPath("/");// 工程路径
+		String dirPath = "/pic/";// 图片文件夹路径
+		String path = basePath + dirPath;
+		String res = null;
+		if (file.isEmpty()) {
+			return null;
+		}
+
+		if (!Arrays.asList(acceptType).contains(file.getContentType())) {
+			return null;
+		}
+
+		try {
+			File writeFile = null;
+			String fileName = file.getOriginalFilename();
+			while (writeFile == null) {
+				// 获取文件扩展名，文件将取32位随机文件名，随机范围[0-9]&&[a-z]&&[A-Z]
+				String[] fileNames = fileName.split("\\.");
+				fileName = RandomUtil.getRandomEnAndNumString(32) + "."
+						+ fileNames[fileNames.length - 1];
+				writeFile = new File(path + fileName);
+			}
+			file.transferTo(writeFile);
+			res = dirPath + fileName;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		return res;
+	}
+
+	/**
+	 * @discription {添加位置与周边及图片}
+	 * @author wangxinjie
+	 * @created 2016年12月14日 下午2:32:45
+	 * @param surroundfacility
+	 * @return
+	 * @see hitwh.fanghh.service.BuildingService#addSurround(hitwh.fanghh.pojo.Surroundfacility)
+	 */
+
+	@Override
+	public boolean addSurround(BuildingSurroundBean buildingSurroundBean) {
+		Surroundfacility surroundfacility = new Surroundfacility(
+				buildingSurroundBean);
+		Surroundfacility s = SurroundfacilityDao
+				.selectByBuildingId(buildingSurroundBean.getBuildingId());
+		if (s != null) {
+			return false;
+		}
+		Integer result = SurroundfacilityDao.insertSelective(surroundfacility);
+		if (result == 1) {
+			for (Buildingpic pic : buildingSurroundBean.getList()) {
+				buildingpicDao.insertSelective(pic);
+			}
+			Building building = buildingDao
+					.selectByPrimaryKey(buildingSurroundBean.getBuildingId());
+			if (DictionaryString.APPLICATION_TOBEPERFERT.equals(building
+					.getBuildingApplicationStatus()))
+				building.setBuildingApplicationStatus(DictionaryString.APPLICATION_WAIT);// 设置楼盘状态为待上架
+			buildingDao.updateByPrimaryKeySelective(building);
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * @discription {在此输入一句话描述作用}
+	 * @author wangxinjie
+	 * @created 2016年12月22日 下午1:36:55
+	 * @return
+	 * @see hitwh.fanghh.service.BuildingService#getAllRegion()
+	 */
+
+	@Override
+	public List<Region> getAllRegion() {
+		Object cityId = session.getAttribute("cityId");
+		List<Region> list = regionDao.selectByCityId((Integer) cityId);
+		return list;
+	}
+
+	/**
+	 * @discription {在此输入一句话描述作用}
+	 * @author wangxinjie
+	 * @created 2016年12月22日 下午1:39:26
+	 * @return
+	 * @see hitwh.fanghh.service.BuildingService#getAllDeveloper()
+	 */
+
+	@Override
+	public List<Developer> getAllDeveloper() {
+		return developerDao.selectAll();
+	}
+
+	/**
+	 * @discription {看图说房图片上传}
+	 * @author fengben
+	 * @created 2016年12月26日下午8:28:15
+	 * @param file
+	 * @return
+	 * @see hitwh.fanghh.service.BuildingService#uploadPicTalkPic(org.springframework.web.multipart.MultipartFile)
+	 */
+
+	@Override
+	public String uploadPicTalkPic(MultipartFile file) {
+		// TODO Auto-generated method stub
+		String basePath = session.getServletContext().getRealPath("/");
+		String dirPath = "/pic/";
+		String path = basePath + dirPath;
+		String res = null;
+		if (file.isEmpty()) {
+			return null;
+		}
+		try {
+			File writeFile = null;
+			String fileName = file.getOriginalFilename();// 得到上传之前的文件名
+			while (writeFile == null) {
+				String[] fileNames = fileName.split("//.");
+				fileName = RandomUtil.getRandomEnAndNumString(32) + "."
+						+ fileNames[fileNames.length - 1];
+				writeFile = new File(path + fileName);
+			}
+			file.transferTo(writeFile);// 上传文件
+			res = dirPath + fileName;
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return null;
+		}
+
+		return res;
+	}
+
+	@Override
+	public boolean addPicTalk(PicTalkBean picTalkBean) {
+		Pictalk pictalk = new Pictalk();
+		pictalk.setBuildingId(picTalkBean.getBuildingId());
+		pictalk.setTitle(picTalkBean.getTitle());
+		pictalk.setIssueTime(picTalkBean.getIssueTime());
+		int result = pictalkDao.insertSelective(pictalk);// 将信息插入到Pictalk表中
+		if (result != 1)
+			return false;
+
+		int ptID = pictalkDao.getPictalkId();
+
+		Pictalkcontent pictalkcontent;
+		List<Pictalkcontent> pictalkcontentList = picTalkBean
+				.getPictalkcontentList();
+		for (int i = 0; i < pictalkcontentList.size(); i++) {
+			pictalkcontent = pictalkcontentList.get(i);
+			pictalkcontent.setPtId(ptID);
+			pictalkcontentDao.insertSelective(pictalkcontent);// 将每张图片及信息插入到Pictalkcontent表中
+		}
+		return true;
+
+	}
+
+	/**
+	 * 
+	 * @discription 更新看图说房
+	 * @author fengben
+	 * @created 2016年12月27日下午6:24:42
+	 * @param
+	 * @return
+	 */
+	@Override
+	public boolean updatePicTalk(PicTalkBean picTalkBean) {
+		Pictalk pictalk = new Pictalk();
+		pictalk.setBuildingId(picTalkBean.getBuildingId());
+		pictalk.setTitle(picTalkBean.getTitle());
+		pictalk.setIssueTime(picTalkBean.getIssueTime());
+		pictalk.setPtId(picTalkBean.getPtId());
+		int result = pictalkDao.updateByPrimaryKey(pictalk);// 更新PicTalk表中的内容
+		if (result != 1)
+			return false;
+		pictalkcontentDao.deleteByPtId(picTalkBean.getPtId());
+		Pictalkcontent pictalkcontent;
+		List<Pictalkcontent> pictalkcontentList = picTalkBean
+				.getPictalkcontentList();
+		for (int i = 0; i < pictalkcontentList.size(); i++) {
+			pictalkcontent = pictalkcontentList.get(i);
+			pictalkcontent.setPtId(picTalkBean.getPtId());
+			pictalkcontentDao.insertSelective(pictalkcontent);// 将每张图片及信息插入到Pictalkcontent表中
+		}
+		return true;
+	}
+
+	/**
+	 * @discription {删除看图说房}
+	 * @author fengben
+	 * @created 2016年12月26日下午8:59:42
+	 * @param buildingId
+	 * @return
+	 * @see hitwh.fanghh.service.BuildingService#deletePicTalk(java.lang.Integer)
+	 */
+	@Override
+	public boolean deletePicTalk(int ptID) {
+		pictalkcontentDao.deleteByPtId(ptID);
+		int result = pictalkDao.deleteByPrimaryKey(ptID);
+		if (result == 1) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * 
+	 * @discription 根据buildingId获取看图说房信息
+	 * @author fengben
+	 * @created 2016年12月27日下午3:06:47
+	 * @param
+	 * @return
+	 */
+	@Override
+	public PicTalkBean getPicTalk(int buildingId) {
+		Pictalk pictalk = pictalkDao.getPictalkByBuildingId(buildingId);
+		PicTalkBean picTalkBean = null;
+		if (pictalk != null) {
+			picTalkBean = new PicTalkBean();
+			picTalkBean.setBuildingId(pictalk.getBuildingId());
+			picTalkBean.setIssueTime(pictalk.getIssueTime());
+			picTalkBean.setTitle(pictalk.getTitle());
+			picTalkBean.setPtId(pictalk.getPtId());
+			picTalkBean.setPictalkcontentList(pictalkcontentDao
+					.getPicTalkContentByPtId(pictalk.getPtId()));
+		}
+		return picTalkBean;
+	}
+
+	/**
+	 * @discription {在此输入一句话描述作用}
+	 * @author wangxinjie
+	 * @created 2016年12月28日 下午8:10:25
+	 * @param buildingId
+	 * @return
+	 * @see hitwh.fanghh.service.BuildingService#getSurround(int)
+	 */
+
+	@Override
+	public BuildingSurroundBean getSurround(int buildingId) {
+		Surroundfacility s = SurroundfacilityDao.selectByBuildingId(buildingId);
+		BuildingSurroundBean buildingSurroundBean = new BuildingSurroundBean();
+		if (s != null) {
+			buildingSurroundBean.setSfId(s.getSfId());
+			buildingSurroundBean.setBank(s.getBank());
+			buildingSurroundBean.setBuildingId(s.getBuildingId());
+			buildingSurroundBean.setBusstation(s.getBusstation());
+			buildingSurroundBean.setEntertainment(s.getEntertainment());
+			buildingSurroundBean.setExercise(s.getExercise());
+			buildingSurroundBean.setHospital(s.getHospital());
+			buildingSurroundBean.setRepast(s.getRepast());
+			buildingSurroundBean.setSchool(s.getSchool());
+			buildingSurroundBean.setShopping(s.getShopping());
+		}
+		List<Buildingpic> list = buildingpicDao.selectByBuildingId(buildingId);
+		if (list != null) {
+			buildingSurroundBean.setList(list);
+		}
+		return buildingSurroundBean;
+	}
+
+	/**
+	 * @discription {在此输入一句话描述作用}
+	 * @author wangxinjie
+	 * @created 2016年12月28日 下午8:35:33
+	 * @param buildingSurroundBean
+	 * @return
+	 * @see hitwh.fanghh.service.BuildingService#updateSurround(hitwh.fanghh.bean.BuildingSurroundBean)
+	 */
+
+	@Override
+	public boolean updateSurround(BuildingSurroundBean buildingSurroundBean) {
+		Surroundfacility surroundfacility = new Surroundfacility(
+				buildingSurroundBean);
+		Integer result = SurroundfacilityDao
+				.updateByPrimaryKeySelective(surroundfacility);
+		if (result == 1) {
+			Building building = buildingDao
+					.selectByPrimaryKey(buildingSurroundBean.getBuildingId());
+			if (DictionaryString.APPLICATION_TOBEPERFERT.equals(building
+					.getBuildingApplicationStatus()))
+				building.setBuildingApplicationStatus(DictionaryString.APPLICATION_WAIT);// 设置楼盘状态为待上架
+			buildingDao.updateByPrimaryKeySelective(building);
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * @discription {在此输入一句话描述作用}
+	 * @author wangxinjie
+	 * @created 2016年12月28日 下午8:43:20
+	 * @param buildingId
+	 * @return
+	 * @see hitwh.fanghh.service.BuildingService#deleteSurround(int)
+	 */
+
+	@Override
+	public boolean deleteSurround(int buildingId) {
+		Surroundfacility surroundfacility = SurroundfacilityDao
+				.selectByBuildingId(buildingId);
+		if (surroundfacility == null)
+			return false;
+		Integer result = SurroundfacilityDao
+				.deleteByPrimaryKey(surroundfacility.getSfId());
+		if (result == 1)
+			return true;
+		return false;
+	}
+
+	/**
+	 * @discription {在此输入一句话描述作用}
+	 * @author wangxinjie
+	 * @created 2016年12月29日 下午1:31:13
+	 * @param list
+	 * @return
+	 * @see hitwh.fanghh.service.BuildingService#addBuildingPic(java.util.List)
+	 */
+
+	@Override
+	public boolean addBuildingPic(Buildingpic buildingpic) {
+		if (buildingpic == null)
+			return false;
+		buildingpicDao.insertSelective(buildingpic);
+		return true;
+	}
+
+	/**
+	 * @discription {在此输入一句话描述作用}
+	 * @author wangxinjie
+	 * @created 2016年12月29日 下午1:35:57
+	 * @param bpId
+	 * @return
+	 * @see hitwh.fanghh.service.BuildingService#deleteBuildingPic(int)
+	 */
+
+	@Override
+	public boolean deleteBuildingPic(int bpId) {
+		int result = buildingpicDao.deleteByPrimaryKey(bpId);
+		if (result == 1)
+			return true;
+		return false;
+	}
+
+	/**
+	 * @discription {在此输入一句话描述作用}
+	 * @author wangxinjie
+	 * @created 2016年12月29日 下午2:47:00
+	 * @param regionId
+	 * @return
+	 * @see hitwh.fanghh.service.BuildingService#getBuildingByRegionId(int)
+	 */
+
+	@Override
+	public List<Building> getBuildingByRegionId(int regionId) {
+		List<Building> building = buildingDao.selectAll(regionId);
+		return building;
+	}
+}

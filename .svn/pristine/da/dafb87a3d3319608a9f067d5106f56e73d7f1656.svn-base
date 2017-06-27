@@ -1,0 +1,237 @@
+<div class="content" ng-app="manageBuildingCtrl" ng-controller="listHouseManagement">
+	<p class="content_title">威海华润湾九里</p>
+
+	<div class="table_area">
+		<div class="table_head">
+			<div id="houseManagement"><span class="nowPage">户型管理</span></div>
+			<div id="sourceManagement">房源管理</div>
+			<div id="picManagement">图片管理</div>
+			<div id="dynamicManagement">动态管理</div>
+			<div id="priceTrend">房价走势</div>
+			<div id="picHouse">看图说房</div>
+			<div id="moneyPrincple">佣金规则</div>
+			<div id="buildingComment">楼圈点评</div>
+		</div>
+
+		<div class="table_content">
+			<div id="table_before">
+				<div>
+					<input class="all-select" type="checkbox"><span class="all-select-span">全选</span>
+					<span class="before-up-select">上架所选</span>
+					<span class="before-down-select">下架所选</span>
+					</div>
+				<div>
+					<button class="before-input">添加新户型</button>
+				</div>
+			</div>
+			<table class="building_table">
+				<tr class="line0">
+					<td class="checkbox"></td>
+					<td class="number">代号</td>
+					<td class="type">户型</td>
+					<td class="price">参考售价</td>
+					<td class="month-pay">参考月供</td>
+					<td class="first-pay">首付</td>
+					<td class="cooperation">是否合作</td>
+					<td class="operation" colspan="2">操作</td>
+					<td class="admin">管理员</td>
+				</tr>
+				<tr class="line1" ng-repeat="record in houseStyle">
+					<td class="checkbox">
+						<input type="checkbox">
+					</td>
+					<td class="number">{{record.houseStyleCode}}户型</td>
+					<td class="type">{{ record.style[0] | exchangeNum}}室{{record.style[1] | exchangeNum}}厅{{record.style[2] | exchangeNum}}卫</td>
+					<td class="price">{{record.referencePrice}}</td>
+					<td class="month-pay">{{record.referenceMonthlyPayments}}元</td>
+					<td class="first-pay">{{record.downPayment}}</td>
+					<td class="cooperation">{{record.isCooperated}}</td>
+					<td class="operation1">修改</td>
+					<td class="operation2">申请上架</td>
+					<td class="admin">查看</td>
+				</tr>
+				<!-- <tr class="line2">
+					<td class="checkbox">
+						<input type="checkbox">
+					</td>
+					<td class="number">A户型</td>
+					<td class="type">两室两厅一卫</td>
+					<td class="price">42.6万起</td>
+					<td class="month-pay">2700元</td>
+					<td class="first-pay">12.3万起</td>
+					<td class="cooperation">合作</td>
+					<td class="operation1">修改</td>
+					<td class="operation2">申请上架</td>
+					<td class="admin">查看</td>
+				</tr>
+				<tr class="line1">
+					<td class="checkbox">
+						<input type="checkbox">
+					</td>
+					<td class="number">A户型</td>
+					<td class="type">两室两厅一卫</td>
+					<td class="price">42.6万起</td>
+					<td class="month-pay">2700元</td>
+					<td class="first-pay">12.3万起</td>
+					<td class="cooperation">合作</td>
+					<td class="operation1">修改</td>
+					<td class="operation2">申请上架</td>
+					<td class="admin">查看</td>
+				</tr>
+				<tr class="line2">
+					<td class="checkbox">
+						<input type="checkbox">
+					</td>
+					<td class="number">A户型</td>
+					<td class="type">两室两厅一卫</td>
+					<td class="price">42.6万起</td>
+					<td class="month-pay">2700元</td>
+					<td class="first-pay">12.3万起</td>
+					<td class="cooperation">合作</td>
+					<td class="operation1">修改</td>
+					<td class="operation2">申请上架</td>
+					<td class="admin">查看</td>
+				</tr>
+				<tr class="line1">
+					<td class="checkbox">
+						<input type="checkbox">
+					</td>
+					<td class="number">A户型</td>
+					<td class="type">两室两厅一卫</td>
+					<td class="price">42.6万起</td>
+					<td class="month-pay">2700元</td>
+					<td class="first-pay">12.3万起</td>
+					<td class="cooperation">合作</td>
+					<td class="operation1">修改</td>
+					<td class="operation2">申请上架</td>
+					<td class="admin">查看</td>
+				</tr>
+				<tr class="line2">
+					<td class="checkbox">
+						<input type="checkbox">
+					</td>
+					<td class="number">A户型</td>
+					<td class="type">两室两厅一卫</td>
+					<td class="price">42.6万起</td>
+					<td class="month-pay">2700元</td>
+					<td class="first-pay">12.3万起</td>
+					<td class="cooperation">合作</td>
+					<td class="operation1">修改</td>
+					<td class="operation2">申请上架</td>
+					<td class="admin">查看</td>
+				</tr>
+				<tr class="line1">
+					<td class="checkbox">
+						<input type="checkbox">
+					</td>
+					<td class="number">A户型</td>
+					<td class="type">两室两厅一卫</td>
+					<td class="price">42.6万起</td>
+					<td class="month-pay">2700元</td>
+					<td class="first-pay">12.3万起</td>
+					<td class="cooperation">合作</td>
+					<td class="operation1">修改</td>
+					<td class="operation2">申请上架</td>
+					<td class="admin">查看</td>
+				</tr>
+				<tr class="line2">
+					<td class="checkbox">
+						<input type="checkbox">
+					</td>
+					<td class="number">A户型</td>
+					<td class="type">两室两厅一卫</td>
+					<td class="price">42.6万起</td>
+					<td class="month-pay">2700元</td>
+					<td class="first-pay">12.3万起</td>
+					<td class="cooperation">合作</td>
+					<td class="operation1">修改</td>
+					<td class="operation2">申请上架</td>
+					<td class="admin">查看</td>
+				</tr>
+				<tr class="line1">
+					<td class="checkbox">
+						<input type="checkbox">
+					</td>
+					<td class="number">A户型</td>
+					<td class="type">两室两厅一卫</td>
+					<td class="price">42.6万起</td>
+					<td class="month-pay">2700元</td>
+					<td class="first-pay">12.3万起</td>
+					<td class="cooperation">合作</td>
+					<td class="operation1">修改</td>
+					<td class="operation2">申请上架</td>
+					<td class="admin">查看</td>
+				</tr>
+				<tr class="line2">
+					<td class="checkbox">
+						<input type="checkbox">
+					</td>
+					<td class="number">A户型</td>
+					<td class="type">两室两厅一卫</td>
+					<td class="price">42.6万起</td>
+					<td class="month-pay">2700元</td>
+					<td class="first-pay">12.3万起</td>
+					<td class="cooperation">合作</td>
+					<td class="operation1">修改</td>
+					<td class="operation2">申请上架</td>
+					<td class="admin">查看</td>
+				</tr>
+				<tr class="line1">
+					<td class="checkbox">
+						<input type="checkbox">
+					</td>
+					<td class="number">A户型</td>
+					<td class="type">两室两厅一卫</td>
+					<td class="price">42.6万起</td>
+					<td class="month-pay">2700元</td>
+					<td class="first-pay">12.3万起</td>
+					<td class="cooperation">合作</td>
+					<td class="operation1">修改</td>
+					<td class="operation2">申请上架</td>
+					<td class="admin">查看</td>
+				</tr>
+				<tr class="line2">
+					<td class="checkbox">
+						<input type="checkbox">
+					</td>
+					<td class="number">A户型</td>
+					<td class="type">两室两厅一卫</td>
+					<td class="price">42.6万起</td>
+					<td class="month-pay">2700元</td>
+					<td class="first-pay">12.3万起</td>
+					<td class="cooperation">合作</td>
+					<td class="operation1">修改</td>
+					<td class="operation2">申请上架</td>
+					<td class="admin">查看</td>
+				</tr>
+ -->
+				<tr class="table-bottom">
+					<td class="checkbox-bottom">
+						<input type="checkbox" name="tr-select">全选
+					</td>
+					<td class="up-select">上架所选</td>
+					<td class="down-select">下架所选</td>
+				</tr>
+
+			</table>
+
+			<div class="page-num">
+					<p class="first">首页</p>
+					<p class="before">上一页</p>
+					<p class="page-1">1</p>
+					<p class="page-2">2</p>
+					<p class="page-3">3</p>
+					<p class="page-4">4</p>
+					<p class="page-5">5</p>
+					<p class="next">下一页</p>
+					<p class="last">末页</p>
+			</div>
+		</div>
+	</div>
+	
+	<div class="footer">
+		<div class="footer_content">Copyright(c) 2005-2014 威海翰宝科技 All Rights Reserved</div>
+		<div class="footer_content">联系电话: 0631-52123456</div>
+		<div class="footer_content">鲁ICP备05003732号</div>
+	</div>
+</div>

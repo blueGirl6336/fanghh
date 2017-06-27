@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.RegionproxyDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Regionproxy">
+    <id column="rp_id" jdbcType="INTEGER" property="rpId" />
+    <result column="region_id" jdbcType="INTEGER" property="regionId" />
+    <result column="proxy_name" jdbcType="VARCHAR" property="proxyName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    rp_id, region_id, proxy_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.RegionProxy
+    where rp_id = #{rpId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.RegionProxy
+    where rp_id = #{rpId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Regionproxy">
+    insert into dbo.RegionProxy (rp_id, region_id, proxy_name
+      )
+    values (#{rpId,jdbcType=INTEGER}, #{regionId,jdbcType=INTEGER}, #{proxyName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Regionproxy">
+    insert into dbo.RegionProxy
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rpId != null">
+        rp_id,
+      </if>
+      <if test="regionId != null">
+        region_id,
+      </if>
+      <if test="proxyName != null">
+        proxy_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rpId != null">
+        #{rpId,jdbcType=INTEGER},
+      </if>
+      <if test="regionId != null">
+        #{regionId,jdbcType=INTEGER},
+      </if>
+      <if test="proxyName != null">
+        #{proxyName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Regionproxy">
+    update dbo.RegionProxy
+    <set>
+      <if test="regionId != null">
+        region_id = #{regionId,jdbcType=INTEGER},
+      </if>
+      <if test="proxyName != null">
+        proxy_name = #{proxyName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where rp_id = #{rpId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Regionproxy">
+    update dbo.RegionProxy
+    set region_id = #{regionId,jdbcType=INTEGER},
+      proxy_name = #{proxyName,jdbcType=VARCHAR}
+    where rp_id = #{rpId,jdbcType=INTEGER}
+  </update>
+</mapper>

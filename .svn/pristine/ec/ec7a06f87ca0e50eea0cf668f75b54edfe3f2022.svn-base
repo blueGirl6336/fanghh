@@ -1,0 +1,332 @@
+@charset "UTF-8";
+button {
+  cursor: pointer;
+}
+
+.row {
+  position: relative;
+  margin: 0 0 0 145px;
+}
+
+.inputArea h3 {
+  margin: 30px 0 30px 160px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fd6720;
+}
+.inputArea .picList {
+  margin: 8px 0px 8px 85px;
+}
+.inputArea .picList .picItem {
+  position: relative;
+  display: inline-block;
+  width: 83px;
+  height: 83px;
+  line-height: 83px;
+  text-align: center;
+  margin: 8px 16px 18px 0;
+}
+.inputArea .picList .picItem .pic {
+  max-width: 83px;
+  max-height: 83px;
+  vertical-align: middle;
+}
+.inputArea .picList .picItem .close-pic {
+  position: absolute;
+  top: -8px;
+  right: -7px;
+  width: auto;
+  height: auto;
+}
+.inputArea .map-pic {
+  margin: 8px 30px 8px 85px;
+}
+.inputArea .map-pic img {
+  width: 400px;
+  height: 300px;
+}
+.inputArea .mapArea {
+  width: 800px;
+  height: 600px;
+}
+.inputArea .form-item {
+  position: relative;
+  display: inline-block;
+  margin: 8px 30px 8px 0;
+  font-size: 12px;
+  color: #666;
+}
+.inputArea .form-item .requireMark {
+  position: absolute;
+  left: -20px;
+  height: 35px;
+  line-height: 35px;
+  color: #ff0000;
+}
+.inputArea .form-item > label {
+  position: absolute;
+  left: 20px;
+  width: 60px;
+  height: 35px;
+  line-height: 35px;
+  text-align: justify;
+}
+.inputArea .form-item > label .justify {
+  display: inline-block;
+  padding-left: 100%;
+}
+.inputArea .form-item .label-long {
+  left: 5px;
+  width: 75px;
+}
+.inputArea .form-item .label-super {
+  left: -5px;
+  width: 100px;
+}
+.inputArea .form-item .form-field {
+  position: absolute;
+  left: 86px;
+}
+.inputArea .form-item .form-field .form-text {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 6px 12px;
+}
+.inputArea .form-item .form-field .hasUnitInput {
+  width: 320px;
+}
+.inputArea .form-item .form-field .hasUnitInput_unit {
+  margin: 0 5px 0 7px;
+}
+.inputArea .form-item .form-field .hasBigUnitInput {
+  width: 290px;
+}
+.inputArea .form-item .form-field .shortSelect {
+  width: 93px;
+  padding-bottom: 7px;
+}
+.inputArea .form-item .form-field .shortText {
+  width: 93px;
+}
+.inputArea .form-item .form-field .middleLength {
+  width: 150px;
+}
+.inputArea .form-item .form-field label {
+  vertical-align: top;
+}
+.inputArea .form-item .form-field label input[type=checkbox] {
+  vertical-align: middle;
+}
+.inputArea .form-item .form-field label .choiceLabel {
+  margin-right: 1px;
+}
+.inputArea .form-item-middle {
+  width: 436px;
+  height: 37px;
+}
+.inputArea .form-item-middle .form-field {
+  width: 350px;
+  height: 37px;
+  line-height: 37px;
+}
+.inputArea .form-item-explain {
+  width: 100%;
+  height: 100px;
+}
+.inputArea .form-item-explain .form-field {
+  width: 600px;
+  height: 100px;
+}
+.inputArea .form-item-broad {
+  width: 100%;
+  height: 70px;
+}
+.inputArea .form-item-broad .form-field {
+  width: 825px;
+  height: 70px;
+}
+.inputArea .form-item-large {
+  width: 100%;
+  height: 37px;
+}
+.inputArea .form-item-large .form-field {
+  width: 825px;
+  height: 37px;
+  line-height: 37px;
+}
+.inputArea .form-item-large .form-field .phone-text {
+  width: 120px;
+}
+.inputArea .form-item-large .form-field .choose-file {
+  display: inline-block;
+  width: 290px;
+  height: 37px;
+  text-align: center;
+  overflow: hidden;
+  color: #666;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=white,endColorStr=#ccc);
+  /*IE 6 7 8*/
+  background: -ms-linear-gradient(top, white, #ccc);
+  /* IE 10 */
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(white), to(#ccc));
+  /*璋锋瓕*/
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(white), to(#ccc));
+  /* Safari 4-5, Chrome 1-9*/
+  background: -webkit-linear-gradient(top, white, #ccc);
+  /*Safari5.1 Chrome 10+*/
+  background: -o-linear-gradient(top, white, #ccc);
+  /*Opera 11.10+*/
+}
+.inputArea .form-item-large .form-field input[type=file] {
+  position: absolute;
+  font-size: 100px;
+  right: 0;
+  top: 0;
+  opacity: 0;
+  cursor: pointer;
+  clip: rect(0 0 0 0);
+}
+.inputArea .form-item-large .form-field .submit-file {
+  width: 93px;
+  height: 37px;
+  color: #666;
+  border: 1px solid #ccc;
+  FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=white,endColorStr=#ccc);
+  /*IE 6 7 8*/
+  background: -ms-linear-gradient(top, white, #ccc);
+  /* IE 10 */
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(white), to(#ccc));
+  /*璋锋瓕*/
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(white), to(#ccc));
+  /* Safari 4-5, Chrome 1-9*/
+  background: -webkit-linear-gradient(top, white, #ccc);
+  /*Safari5.1 Chrome 10+*/
+  background: -o-linear-gradient(top, white, #ccc);
+  /*Opera 11.10+*/
+}
+.inputArea .form-item-large .form-field .submit-file div {
+  float: left;
+  margin-right: 5px;
+}
+.inputArea .form-item-large .form-field .red-submit {
+  width: 93px;
+  height: 37px;
+  color: white;
+  background-color: #fea277;
+  border: 1px solid #fea277;
+}
+
+.form-text {
+  border: 1px solid #ccc;
+}
+
+.form-field {
+  line-height: 1.6;
+}
+
+.refuse-box {
+  border: 1px solid #cccccc;
+  width: 600px;
+  height: 370px;
+  position: fixed;
+  z-index: 3;
+  top: 33%;
+  margin-top: -170px;
+  left: 50%;
+  margin-left: -240px;
+  margin: 30px 0 20px 0;
+  background-color: #f9f9f9;
+}
+.refuse-box img {
+  float: right;
+  margin: 10px 10px 0 0;
+}
+.refuse-box .refuse-body {
+  margin: 80px 0 0 50px;
+}
+.refuse-box .refuse-body div {
+  float: left;
+  font-size: 12px;
+}
+.refuse-box button {
+  margin-left: -220px;
+  width: 150px !important;
+}
+
+.button-area {
+  height: 100px;
+  margin: 20px 0 0 450px;
+  width: 430px;
+}
+.button-area .goback {
+  width: 150px;
+  margin: 0 20px 0 -150px;
+  background-color: #999999;
+  border: 1px solid #999999;
+}
+
+.save-continue {
+  width: 260px;
+  background-color: #fd6720;
+  border: 1px solid #fd6720;
+}
+
+.btn {
+  height: 45px;
+  color: #FFF;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.add-field {
+  margin-top: 50px;
+}
+
+.label-bold {
+  font-weight: bold;
+}
+
+.continue-upload {
+  width: 120px !important;
+}
+
+.header-nav {
+  margin-top: 10px;
+  height: 45px;
+}
+.header-nav div {
+  float: left;
+}
+.header-nav div a {
+  text-decoration: none;
+  padding: 10px 20px;
+  color: #666666;
+  border: 1px solid #e5e5e5;
+}
+.header-nav .nav-active a {
+  padding: 6px 20px 10px 20px;
+  border-top: 5px solid #fd6720;
+  border-bottom: none !important;
+  font-weight: bold;
+}
+
+.assign-account {
+  margin-left: 800px;
+}
+
+.content_title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+.pic {
+  max-width: 83px;
+  max-height: 83px;
+  padding: 8px 16px 18px 0;
+  vertical-align: middle;
+}

@@ -1,0 +1,93 @@
+/**     
+ * @discription {楼盘管理Service接口}
+ * @author wangxinjie       
+ * @created 2016年11月6日 下午9:26:34    
+ */
+
+package hitwh.fanghh.service;
+
+import hitwh.fanghh.pojo.Building;
+import hitwh.fanghh.pojo.Housepricetrend;
+
+import java.util.List;
+
+/**
+ * Title: BuildingService.java Description: 描述
+ * 
+ * @author wangxinjie
+ * @created 2016年11月6日 下午9:26:34
+ */
+
+public interface BuildingService {
+
+	/**
+	 * @discription {获取楼盘列表}
+	 * @author wangxinjie
+	 * @created 2016年11月6日 下午9:55:330
+	 * @param buildingId
+	 * @return
+	 */
+	public List<Building> getAllBuilding();
+
+	/**
+	 * @discription {新增楼盘}
+	 * @author wangxinjie
+	 * @created 2016年11月30日 下午2:02:04
+	 * @param building
+	 * @return
+	 */
+	public boolean addBuilding(Building building);
+
+	/**
+	 * @discription {更新楼盘信息}
+	 * @author wangxinjie
+	 * @created 2016年11月30日 下午2:08:43
+	 * @param building
+	 * @return
+	 */
+	public boolean updateBuilding(Building building);
+
+	/**
+	 * @discription {楼盘申请上下架}
+	 * @author wangxinjie
+	 * @created 2016年11月30日 下午2:26:44
+	 * @param buildingId
+	 * @param buildingApplicationStatus
+	 * @return
+	 */
+	public int applicateBuildingOffSaleByHouseId(int buildingId,
+			String buildingApplicationStatus);
+
+	/**
+	 * @discription {楼盘审核通过}
+	 * @author wangxinjie
+	 * @created 2016年11月30日 下午2:42:51
+	 * @param buildingId
+	 * @param auditCode
+	 * @return
+	 */
+	public int auditBuildingApplicationPass(int buildingId, String auditCode);
+
+	/**
+	 * @discription {楼盘审核不通过}
+	 * @author wangxinjie
+	 * @created 2016年11月30日 下午3:04:13
+	 * @param buildingId
+	 * @param auditCode
+	 * @param auditNotPassReason
+	 */
+	public int auditBuildingApplicationNotPass(int buildingId,
+			String auditCode, String auditNotPassReason);
+
+	/**
+	 * @discription {获取楼盘具体信息}
+	 * @author wangxinjie
+	 * @created 2016年11月30日 下午3:13:08
+	 * @param buildingId
+	 * @return
+	 */
+	public Building getBuildingInfo(int buildingId);
+	
+	public List<Housepricetrend> selectHouseTrendByBuildingId(Integer buildingId);
+
+}

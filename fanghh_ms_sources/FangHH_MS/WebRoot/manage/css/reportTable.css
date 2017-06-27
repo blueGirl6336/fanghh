@@ -1,0 +1,89 @@
+.reportTable table {
+	width: 100%;
+	border-top: 2px solid #4f6b72;
+	border-right: 2px solid #4f6b72;
+	border-left: 2px solid #4f6b72;
+	border-bottom: 2px solid #4f6b72;
+	border-collapse: collapse;
+}
+
+.reportTable td,th {
+	border-left: 1px solid #4f6b72;
+	border-bottom: 1px solid #4f6b72;
+	text-align: center;
+	padding: 5px 10px;
+}
+
+.reportTable table thead th,.reportTable .sideTitle {
+	color: #4f6b72;
+	letter-spacing: 2px;
+	background: #CAE8EA;
+}
+
+.reportTable .sideTitle {
+	font-weight: bold;
+}
+
+.reportTable .stressCell {
+	font-weight: bold;
+}
+
+.reportTable .tableTitleLine {
+	font-size: 17px;
+	float: left;
+}
+
+.reportTable .updateTime {
+	float: right;
+}
+
+.reportTable .doubleLeftBorder{
+	border-left-width: 2px;
+}
+
+.reportTable .doubleRightBorder{
+	border-right-width: 2px;
+}
+
+.reportTable .doubleBottomBorder{
+	border-bottom-width: 2px;
+}
+
+.reportTable .doubleTopBorder{
+	border-top-width: 2px;
+}
+
+.reportTable .test{
+	text-align: center;
+	border-left-width: 2px;
+	width:60px;
+}
+
+
+.commonTable a {
+	font-size: 13px;
+	text-decoration: none;
+	color: #04408C;
+}
+
+.commonTable a:hover {
+	text-decoration: underline;
+	color: #551A8B;
+}
+
+.commonUse{
+	
+	
+}
+
+.reportTable a {
+	text-decoration: none!important;
+	color: #4f6b72;
+}
+
+.reportTable a:hover {
+	text-decoration: underline!important;
+	color: #551A8B;
+}
+
+

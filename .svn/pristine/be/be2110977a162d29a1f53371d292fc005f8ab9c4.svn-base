@@ -1,0 +1,18 @@
+
+package hitwh.fanghh.dao;
+
+import hitwh.fanghh.pojo.Clearancehouselist;
+
+public interface ClearancehouselistDao {
+    int deleteByPrimaryKey(Integer chlId);
+
+    int insert(Clearancehouselist record);
+
+    int insertSelective(Clearancehouselist record);
+
+    Clearancehouselist selectByPrimaryKey(Integer chlId);
+
+    int updateByPrimaryKeySelective(Clearancehouselist record);
+
+    int updateByPrimaryKey(Clearancehouselist record);
+}

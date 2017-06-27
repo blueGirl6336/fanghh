@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.LogmessageDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Logmessage">
+    <id column="log_id" jdbcType="INTEGER" property="logId" />
+    <result column="action" jdbcType="VARCHAR" property="action" />
+    <result column="method" jdbcType="VARCHAR" property="method" />
+    <result column="param" jdbcType="VARCHAR" property="param" />
+    <result column="result" jdbcType="VARCHAR" property="result" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    log_id, action, method, param, result, time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.LogMessage
+    where log_id = #{logId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.LogMessage
+    where log_id = #{logId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Logmessage">
+    insert into dbo.LogMessage (log_id, action, method, 
+      param, result, time
+      )
+    values (#{logId,jdbcType=INTEGER}, #{action,jdbcType=VARCHAR}, #{method,jdbcType=VARCHAR}, 
+      #{param,jdbcType=VARCHAR}, #{result,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Logmessage">
+    insert into dbo.LogMessage
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="logId != null">
+        log_id,
+      </if>
+      <if test="action != null">
+        action,
+      </if>
+      <if test="method != null">
+        method,
+      </if>
+      <if test="param != null">
+        param,
+      </if>
+      <if test="result != null">
+        result,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="logId != null">
+        #{logId,jdbcType=INTEGER},
+      </if>
+      <if test="action != null">
+        #{action,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null">
+        #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="param != null">
+        #{param,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null">
+        #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Logmessage">
+    update dbo.LogMessage
+    <set>
+      <if test="action != null">
+        action = #{action,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null">
+        method = #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="param != null">
+        param = #{param,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null">
+        result = #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where log_id = #{logId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Logmessage">
+    update dbo.LogMessage
+    set action = #{action,jdbcType=VARCHAR},
+      method = #{method,jdbcType=VARCHAR},
+      param = #{param,jdbcType=VARCHAR},
+      result = #{result,jdbcType=VARCHAR},
+      time = #{time,jdbcType=TIMESTAMP}
+    where log_id = #{logId,jdbcType=INTEGER}
+  </update>
+</mapper>

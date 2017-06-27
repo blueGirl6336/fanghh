@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.ConsultantmessageDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Consultantmessage">
+    <id column="message_id" jdbcType="INTEGER" property="messageId" />
+    <result column="director_id" jdbcType="INTEGER" property="directorId" />
+    <result column="consultant_id" jdbcType="INTEGER" property="consultantId" />
+    <result column="message_title" jdbcType="VARCHAR" property="messageTitle" />
+    <result column="message_content" jdbcType="VARCHAR" property="messageContent" />
+    <result column="message_status" jdbcType="VARCHAR" property="messageStatus" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="is_read" jdbcType="BIT" property="isRead" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    message_id, director_id, consultant_id, message_title, message_content, message_status, 
+    modify_time, is_read, order_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.ConsultantMessage
+    where message_id = #{messageId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.ConsultantMessage
+    where message_id = #{messageId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Consultantmessage">
+    insert into dbo.ConsultantMessage (message_id, director_id, consultant_id, 
+      message_title, message_content, message_status, 
+      modify_time, is_read, order_id
+      )
+    values (#{messageId,jdbcType=INTEGER}, #{directorId,jdbcType=INTEGER}, #{consultantId,jdbcType=INTEGER}, 
+      #{messageTitle,jdbcType=VARCHAR}, #{messageContent,jdbcType=VARCHAR}, #{messageStatus,jdbcType=VARCHAR}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{isRead,jdbcType=BIT}, #{orderId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Consultantmessage">
+    insert into dbo.ConsultantMessage
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="messageId != null">
+        message_id,
+      </if>
+      <if test="directorId != null">
+        director_id,
+      </if>
+      <if test="consultantId != null">
+        consultant_id,
+      </if>
+      <if test="messageTitle != null">
+        message_title,
+      </if>
+      <if test="messageContent != null">
+        message_content,
+      </if>
+      <if test="messageStatus != null">
+        message_status,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+      <if test="isRead != null">
+        is_read,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="messageId != null">
+        #{messageId,jdbcType=INTEGER},
+      </if>
+      <if test="directorId != null">
+        #{directorId,jdbcType=INTEGER},
+      </if>
+      <if test="consultantId != null">
+        #{consultantId,jdbcType=INTEGER},
+      </if>
+      <if test="messageTitle != null">
+        #{messageTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="messageContent != null">
+        #{messageContent,jdbcType=VARCHAR},
+      </if>
+      <if test="messageStatus != null">
+        #{messageStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isRead != null">
+        #{isRead,jdbcType=BIT},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Consultantmessage">
+    update dbo.ConsultantMessage
+    <set>
+      <if test="directorId != null">
+        director_id = #{directorId,jdbcType=INTEGER},
+      </if>
+      <if test="consultantId != null">
+        consultant_id = #{consultantId,jdbcType=INTEGER},
+      </if>
+      <if test="messageTitle != null">
+        message_title = #{messageTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="messageContent != null">
+        message_content = #{messageContent,jdbcType=VARCHAR},
+      </if>
+      <if test="messageStatus != null">
+        message_status = #{messageStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isRead != null">
+        is_read = #{isRead,jdbcType=BIT},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where message_id = #{messageId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Consultantmessage">
+    update dbo.ConsultantMessage
+    set director_id = #{directorId,jdbcType=INTEGER},
+      consultant_id = #{consultantId,jdbcType=INTEGER},
+      message_title = #{messageTitle,jdbcType=VARCHAR},
+      message_content = #{messageContent,jdbcType=VARCHAR},
+      message_status = #{messageStatus,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      is_read = #{isRead,jdbcType=BIT},
+      order_id = #{orderId,jdbcType=VARCHAR}
+    where message_id = #{messageId,jdbcType=INTEGER}
+  </update>
+</mapper>

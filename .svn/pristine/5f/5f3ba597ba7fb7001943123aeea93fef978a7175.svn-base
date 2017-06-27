@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.OrderstatusrecordDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Orderstatusrecord">
+    <id column="osr_id" jdbcType="INTEGER" property="osrId" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="customer_id" jdbcType="INTEGER" property="customerId" />
+    <result column="building_id" jdbcType="INTEGER" property="buildingId" />
+    <result column="order_status" jdbcType="VARCHAR" property="orderStatus" />
+    <result column="type_time" jdbcType="TIMESTAMP" property="typeTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    osr_id, order_id, customer_id, building_id, order_status, type_time, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.OrderStatusRecord
+    where osr_id = #{osrId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.OrderStatusRecord
+    where osr_id = #{osrId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Orderstatusrecord">
+    insert into dbo.OrderStatusRecord (osr_id, order_id, customer_id, 
+      building_id, order_status, type_time, 
+      remark)
+    values (#{osrId,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}, #{customerId,jdbcType=INTEGER}, 
+      #{buildingId,jdbcType=INTEGER}, #{orderStatus,jdbcType=VARCHAR}, #{typeTime,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Orderstatusrecord">
+    insert into dbo.OrderStatusRecord
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="osrId != null">
+        osr_id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="buildingId != null">
+        building_id,
+      </if>
+      <if test="orderStatus != null">
+        order_status,
+      </if>
+      <if test="typeTime != null">
+        type_time,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="osrId != null">
+        #{osrId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="buildingId != null">
+        #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="orderStatus != null">
+        #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="typeTime != null">
+        #{typeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Orderstatusrecord">
+    update dbo.OrderStatusRecord
+    <set>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="buildingId != null">
+        building_id = #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="orderStatus != null">
+        order_status = #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="typeTime != null">
+        type_time = #{typeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where osr_id = #{osrId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Orderstatusrecord">
+    update dbo.OrderStatusRecord
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=INTEGER},
+      building_id = #{buildingId,jdbcType=INTEGER},
+      order_status = #{orderStatus,jdbcType=VARCHAR},
+      type_time = #{typeTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where osr_id = #{osrId,jdbcType=INTEGER}
+  </update>
+</mapper>

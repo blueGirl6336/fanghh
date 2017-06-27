@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.BrokerteamDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Brokerteam">
+    <id column="team_id" jdbcType="INTEGER" property="teamId" />
+    <result column="team_leader" jdbcType="INTEGER" property="teamLeader" />
+    <result column="customer_num" jdbcType="INTEGER" property="customerNum" />
+    <result column="deal_num" jdbcType="INTEGER" property="dealNum" />
+    <result column="sale_profit" jdbcType="DECIMAL" property="saleProfit" />
+    <result column="total_commission" jdbcType="DECIMAL" property="totalCommission" />
+    <result column="building_num" jdbcType="INTEGER" property="buildingNum" />
+    <result column="invitation_code" jdbcType="VARCHAR" property="invitationCode" />
+    <result column="team_num" jdbcType="INTEGER" property="teamNum" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    team_id, team_leader, customer_num, deal_num, sale_profit, total_commission, building_num, 
+    invitation_code, team_num
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.BrokerTeam
+    where team_id = #{teamId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.BrokerTeam
+    where team_id = #{teamId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Brokerteam">
+    insert into dbo.BrokerTeam (team_id, team_leader, customer_num, 
+      deal_num, sale_profit, total_commission, 
+      building_num, invitation_code, team_num
+      )
+    values (#{teamId,jdbcType=INTEGER}, #{teamLeader,jdbcType=INTEGER}, #{customerNum,jdbcType=INTEGER}, 
+      #{dealNum,jdbcType=INTEGER}, #{saleProfit,jdbcType=DECIMAL}, #{totalCommission,jdbcType=DECIMAL}, 
+      #{buildingNum,jdbcType=INTEGER}, #{invitationCode,jdbcType=VARCHAR}, #{teamNum,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Brokerteam">
+    insert into dbo.BrokerTeam
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="teamId != null">
+        team_id,
+      </if>
+      <if test="teamLeader != null">
+        team_leader,
+      </if>
+      <if test="customerNum != null">
+        customer_num,
+      </if>
+      <if test="dealNum != null">
+        deal_num,
+      </if>
+      <if test="saleProfit != null">
+        sale_profit,
+      </if>
+      <if test="totalCommission != null">
+        total_commission,
+      </if>
+      <if test="buildingNum != null">
+        building_num,
+      </if>
+      <if test="invitationCode != null">
+        invitation_code,
+      </if>
+      <if test="teamNum != null">
+        team_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="teamId != null">
+        #{teamId,jdbcType=INTEGER},
+      </if>
+      <if test="teamLeader != null">
+        #{teamLeader,jdbcType=INTEGER},
+      </if>
+      <if test="customerNum != null">
+        #{customerNum,jdbcType=INTEGER},
+      </if>
+      <if test="dealNum != null">
+        #{dealNum,jdbcType=INTEGER},
+      </if>
+      <if test="saleProfit != null">
+        #{saleProfit,jdbcType=DECIMAL},
+      </if>
+      <if test="totalCommission != null">
+        #{totalCommission,jdbcType=DECIMAL},
+      </if>
+      <if test="buildingNum != null">
+        #{buildingNum,jdbcType=INTEGER},
+      </if>
+      <if test="invitationCode != null">
+        #{invitationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="teamNum != null">
+        #{teamNum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Brokerteam">
+    update dbo.BrokerTeam
+    <set>
+      <if test="teamLeader != null">
+        team_leader = #{teamLeader,jdbcType=INTEGER},
+      </if>
+      <if test="customerNum != null">
+        customer_num = #{customerNum,jdbcType=INTEGER},
+      </if>
+      <if test="dealNum != null">
+        deal_num = #{dealNum,jdbcType=INTEGER},
+      </if>
+      <if test="saleProfit != null">
+        sale_profit = #{saleProfit,jdbcType=DECIMAL},
+      </if>
+      <if test="totalCommission != null">
+        total_commission = #{totalCommission,jdbcType=DECIMAL},
+      </if>
+      <if test="buildingNum != null">
+        building_num = #{buildingNum,jdbcType=INTEGER},
+      </if>
+      <if test="invitationCode != null">
+        invitation_code = #{invitationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="teamNum != null">
+        team_num = #{teamNum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where team_id = #{teamId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Brokerteam">
+    update dbo.BrokerTeam
+    set team_leader = #{teamLeader,jdbcType=INTEGER},
+      customer_num = #{customerNum,jdbcType=INTEGER},
+      deal_num = #{dealNum,jdbcType=INTEGER},
+      sale_profit = #{saleProfit,jdbcType=DECIMAL},
+      total_commission = #{totalCommission,jdbcType=DECIMAL},
+      building_num = #{buildingNum,jdbcType=INTEGER},
+      invitation_code = #{invitationCode,jdbcType=VARCHAR},
+      team_num = #{teamNum,jdbcType=INTEGER}
+    where team_id = #{teamId,jdbcType=INTEGER}
+  </update>
+</mapper>

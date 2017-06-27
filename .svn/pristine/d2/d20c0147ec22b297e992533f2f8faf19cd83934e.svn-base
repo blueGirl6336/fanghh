@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.LettersDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Letters">
+    <id column="letters_id" jdbcType="INTEGER" property="lettersId" />
+    <result column="building_id" jdbcType="INTEGER" property="buildingId" />
+    <result column="building_letters" jdbcType="VARCHAR" property="buildingLetters" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    letters_id, building_id, building_letters
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.Letters
+    where letters_id = #{lettersId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.Letters
+    where letters_id = #{lettersId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Letters">
+    insert into dbo.Letters (letters_id, building_id, building_letters
+      )
+    values (#{lettersId,jdbcType=INTEGER}, #{buildingId,jdbcType=INTEGER}, #{buildingLetters,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Letters">
+    insert into dbo.Letters
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="lettersId != null">
+        letters_id,
+      </if>
+      <if test="buildingId != null">
+        building_id,
+      </if>
+      <if test="buildingLetters != null">
+        building_letters,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="lettersId != null">
+        #{lettersId,jdbcType=INTEGER},
+      </if>
+      <if test="buildingId != null">
+        #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="buildingLetters != null">
+        #{buildingLetters,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Letters">
+    update dbo.Letters
+    <set>
+      <if test="buildingId != null">
+        building_id = #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="buildingLetters != null">
+        building_letters = #{buildingLetters,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where letters_id = #{lettersId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Letters">
+    update dbo.Letters
+    set building_id = #{buildingId,jdbcType=INTEGER},
+      building_letters = #{buildingLetters,jdbcType=VARCHAR}
+    where letters_id = #{lettersId,jdbcType=INTEGER}
+  </update>
+</mapper>

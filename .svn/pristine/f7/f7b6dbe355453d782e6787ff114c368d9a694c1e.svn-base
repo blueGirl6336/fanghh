@@ -1,0 +1,143 @@
+angular.module("fhhUser", ["ngCookies"])
+    .controller("userAuthCtl", function ($scope, $http) {
+
+        $scope.page = {//页码状态
+            pageMax: 1,
+            pageNumber: 1,
+            changePage: function () {
+            }
+        }
+
+        //首先获得最大页面数量
+        $http({
+            url: "authentication/getUserAuthenticationPageNum",
+            method: "post",
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            params: {
+                pageMaxNum: 2,
+            }
+        }).success(function (response) {
+            if (response.success == true) {
+                $scope.page.pageMax = response.data;
+            } else {
+                console.log("error!");
+            }
+        });
+
+        //翻页函数
+        $scope.changePage = function (aimPage) {
+            console.log("i am changePage");
+            $scope.page.changePage(aimPage);
+            // loadPage(aimPage);
+        }
+        $scope.changePageFilter = function (aimPage) {
+            console.log("i am loadpage");
+            // $scope.page.changePage(aimPage);
+            loadPage(aimPage);
+        }
+        // $scope.changePageSearch = function (aimPage) {
+        //     $scope.search(aimPage);
+        // }
+
+        //加载页面
+        function loadPage(page_id) {
+            $scope.page.pageNumber = page_id;
+            console.log("load page aaaaaa");
+            $scope.page.changePage = $scope.changePageFilter;
+            $http({
+                url: "authentication/getAllUser",
+                method: "post",
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                },
+                params: {
+                    pageMaxNum: 2,
+                    pageNo: page_id
+                }
+            }).success(function (response) {
+                if (response.success == true) {
+                    console.log(response.data[0].status);
+                    $scope.items = response.data;
+                    $scope.refreshPageButton(page_id);
+                }
+            });
+        }
+
+        //先加载第一页
+        loadPage(1);
+
+        //更新翻页按钮
+        $scope.refreshPageButton = function (aimPage) {
+            $scope.page.pageNumber = aimPage;
+            $scope.pageButton = [];
+
+            if (aimPage >= 1 && aimPage <= 3) {
+                for (var i = 1; i <= aimPage; i++) {
+                    $scope.pageButton[i] = i;
+                }
+
+                for (i; i <= 5; i++) { //将剩余位置置为null
+                    if (i <= $scope.page.pageMax) { //aimPage+1
+                        $scope.pageButton[i] = i;
+                    } else {
+                        $scope.pageButton[i] = null;
+                    }
+                }
+            }
+            else if (aimPage > 3) {
+                if (aimPage + 2 <= $scope.page.pageMax) {
+                    for (var i = 1; i <= 5; i++) {
+                        $scope.pageButton[i] = aimPage - 3 + i;
+                    }
+                } else { //后面不足两页
+                    var j = 0;
+                    for (var i = 5; i >= 0; i--) {
+                        if (($scope.page.pageMax - i) < 0) {
+                            $scope.pageButton[i] = null;
+                        }
+                        else {
+                            $scope.pageButton[i] = $scope.page.pageMax - j;
+                            j++;
+                        }
+                    }
+                }
+            }
+        }
+
+        
+
+        // $scope.setFilter = function (key, value) {//设置筛选条件
+        //     $scope.filter[key] = value;
+        //     loadPage(1);
+        // }
+        // $scope.setSortMark = function (value) {//设置排序方式
+        //     $scope.sortMark = value;
+        //     loadPage(1);
+        // }
+
+        // $scope.search = function (aimPage) {
+        //     $scope.search.ifSearch = true;
+        //     $scope.page.changePage = $scope.changePageSearch;
+        //     $scope.waitStatus = true;
+
+        //     $http({
+        //         url: 'loanOrder/getLoanBySearch',
+        //         method: 'post',
+        //         headers: {
+        //             'Content-Type': 'application/x-www-form-urlencoded'
+        //         },
+        //         params: {
+        //             searchInfo: $scope.search.searchStatement || "",
+        //             pageNumber: aimPage
+        //         }
+        //     })
+        //         .success(function (response) {
+        //             $scope.listData = response.data.listValue;
+        //             $scope.page.pageMax = response.data.pageCount;
+        //             $scope.refreshPageButton(aimPage);
+        //             $scope.waitStatus = false;
+        //         });
+        // }
+    })

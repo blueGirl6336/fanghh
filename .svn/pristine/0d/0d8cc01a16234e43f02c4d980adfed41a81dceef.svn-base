@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<project name="hrms" default="deployWebApplication">
+
+	<!-- 需要首先配置这几个环境变量  NGINX 和 CATALINA_HOME -->
+	<property environment="env" />
+	<property name="nginx.deploy" value="${env.NGINX}/html/hrms" />
+	<property name="webserver.deploy" value="${env.CATALINA_HOME}/webapps" />
+
+	<!-- properies -->
+	<property name="src.dir" value="src" />
+	<property name="webroot" value="WebRoot" />
+	<property name="dist.dir" value="dist" />
+	<property name="build.dar" value="build" />
+	<property name="doc.dir" value="doc" />
+	<property name="classes.dir" value="${webroot}/WEB-INF/classes" />
+	<property name="lib.dir" value="${webroot}/WEB-INF/lib" />
+
+	<!-- 定义classpath -->
+	<path id="master-classpath">
+		<fileset file="${lib.dir}/*.jar" />
+		<pathelement path="${classes.dir}" />
+	</path>
+	
+	<!-- 生成doc文档 (不依赖于编译) -->  
+    <target name="build-doc">  
+        <javadoc sourcepath="${src.dir}" package="hitwh.fanghh.manage.*" destdir="${doc.dir}"  
+            private="true"   
+            charset="GB2312" docencoding="GB2312" encoding="GB2312">  
+            <classpath path="${build.classes.dir}"></classpath>  
+        </javadoc>  
+    </target>  
+
+	<!-- 部署静态文件    需要静态文件和动态文件分开部署 -->
+	<target name="deployStaticFile">
+		<!-- 删除原文件 -->
+		<delete dir="${nginx.deploy}" />
+		<mkdir dir="${nginx.deploy}" />
+		<mkdir dir="${nginx.deploy}/admin" />
+		<copy todir="${nginx.deploy}/admin/css">
+			<fileset dir="admin/css" />
+		</copy>
+		<copy todir="${nginx.deploy}/admin/js">
+			<fileset dir="admin/js" />
+		</copy>
+		<copy todir="${nginx.deploy}/admin/images">
+			<fileset dir="admin/images" />
+		</copy>
+		<copy todir="${nginx.deploy}/css">
+			<fileset dir="css" />
+		</copy>
+		<copy todir="${nginx.deploy}/js">
+			<fileset dir="js" />
+		</copy>
+		<copy todir="${nginx.deploy}/ext-4.2">
+			<fileset dir="ext-4.2" />
+		</copy>
+		<copy todir="${nginx.deploy}/plugin">
+			<fileset dir="plugin" />
+		</copy>
+		<echo message="Copy file to NginX completed." />
+	</target>
+
+	<!-- 清除服务器部署文件 -->
+	<target name="cleanBeforeDeploy">
+		<delete dir="${dist.dir}" />
+		<delete dir="${build.dar}" />
+		<delete dir="${webserver.deploy}/fanghh_ms" />
+		<delete dir="${webserver.deploy}/fanghh_ms.war" />
+	</target>
+
+	<!-- 建立相关文件夹 -->
+	<target name="prepare" depends="cleanBeforeDeploy">
+		<mkdir dir="${dist.dir}" />
+		<mkdir dir="${build.dar}/classes" />
+	</target>
+
+	<!-- 编译 -->
+	<target name="compile" depends="prepare">
+		<javac deprecation="on" destdir="${build.dar}/classes">
+			<classpath refid="master-classpath" />
+			<src path="${src.dir}" />
+		</javac>
+	</target>
+
+	<!-- 打成war包-->
+	<target name="war" depends="compile">
+		<war destfile="${dist.dir}/fanghh_ms.war" basedir="${webroot}" webxml="${webroot}/WEB-INF/web.xml">
+			<classes dir="${build.dar}/classes">
+			</classes>
+			<lib dir="${lib.dir}">
+			</lib>
+			<fileset dir="${webroot}" />
+		</war>
+	</target>
+
+	<!-- 部署到服务器 -->
+	<target name="deployWebApplication" depends="war">
+		<copy file="${dist.dir}/fanghh_ms.war" todir="${webserver.deploy}">
+		</copy>
+	</target>
+
+	<!-- 清除服务器部署文件 -->
+	<target name="cleanAfterDeploy">
+		<delete dir="${build.dar}" />
+	</target>
+
+</project>

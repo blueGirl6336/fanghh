@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.AdvertisementpicDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Advertisementpic">
+    <id column="ap_id" jdbcType="INTEGER" property="apId" />
+    <result column="advert_id" jdbcType="INTEGER" property="advertId" />
+    <result column="advertisment_pic" jdbcType="VARCHAR" property="advertismentPic" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ap_id, advert_id, advertisment_pic
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.AdvertisementPic
+    where ap_id = #{apId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.AdvertisementPic
+    where ap_id = #{apId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Advertisementpic">
+    insert into dbo.AdvertisementPic (ap_id, advert_id, advertisment_pic
+      )
+    values (#{apId,jdbcType=INTEGER}, #{advertId,jdbcType=INTEGER}, #{advertismentPic,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Advertisementpic">
+    insert into dbo.AdvertisementPic
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="apId != null">
+        ap_id,
+      </if>
+      <if test="advertId != null">
+        advert_id,
+      </if>
+      <if test="advertismentPic != null">
+        advertisment_pic,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="apId != null">
+        #{apId,jdbcType=INTEGER},
+      </if>
+      <if test="advertId != null">
+        #{advertId,jdbcType=INTEGER},
+      </if>
+      <if test="advertismentPic != null">
+        #{advertismentPic,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Advertisementpic">
+    update dbo.AdvertisementPic
+    <set>
+      <if test="advertId != null">
+        advert_id = #{advertId,jdbcType=INTEGER},
+      </if>
+      <if test="advertismentPic != null">
+        advertisment_pic = #{advertismentPic,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ap_id = #{apId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Advertisementpic">
+    update dbo.AdvertisementPic
+    set advert_id = #{advertId,jdbcType=INTEGER},
+      advertisment_pic = #{advertismentPic,jdbcType=VARCHAR}
+    where ap_id = #{apId,jdbcType=INTEGER}
+  </update>
+</mapper>

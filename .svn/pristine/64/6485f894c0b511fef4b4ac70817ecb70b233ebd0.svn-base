@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<!-- 数据库驱动 -->
+	<classPathEntry location="sqljdbc4.jar"/>
+	
+    <context id="SpringTestSqlServerContext" targetRuntime="MyBatis3">
+        
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!-- 数据库连接 -->
+        <jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+                        connectionURL="jdbc:sqlserver://222.194.15.118:1433;databaseName=fanghh_business1119"
+                        userId="fanghh_admin"
+                        password="224610">
+        </jdbcConnection>
+        
+        <javaTypeResolver>
+        	<property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+		<!-- model名字和位置 ../src/main/java-->
+        <javaModelGenerator targetPackage="hitwh.fanghh.pojo" targetProject="../src/main/java">
+        	<property name="enableSubPackages" value="false"/>
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+		<!-- mapping名字和位置 -->
+        <sqlMapGenerator targetPackage="hitwh.fanghh.mapping"  targetProject="../src/main/java">
+        	<property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+		<!-- dao名字和位置 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="hitwh.fanghh.dao"  targetProject="../src/main/java">
+        	<property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+        <!-- tableName：表/视图名，domainObjectName：实体类名 -->
+        <table schema="dbo" tableName="Building" enableCountByExample="false" enableUpdateByExample="false"	enableDeleteByExample="false" enableSelectByExample="false"	selectByExampleQueryId="false" />
+   
+    </context>
+</generatorConfiguration>
+<!-- java -jar mybatis-generator-core-1.3.5.jar -configfile generatorConfig.xml -overwrite -->

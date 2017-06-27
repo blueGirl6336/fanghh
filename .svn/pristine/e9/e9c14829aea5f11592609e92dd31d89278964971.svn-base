@@ -1,0 +1,258 @@
+package hitwh.fanghh.controller;
+
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import hitwh.fanghh.bean.HouseBean;
+import hitwh.fanghh.bean.HouseStyleBean;
+import hitwh.fanghh.service.HouseService;
+import hitwh.fanghh.util.DictionaryString;
+import hitwh.fanghh.util.ResponseMapUtil;
+
+@Controller
+@RequestMapping("/house")
+public class HouseController
+{
+	@Autowired
+	private HouseService houseService;
+
+	/**
+	 * 获取楼盘所有房源信息
+	 *
+	 * @Title: getAllHouse
+	 * @version:
+	 * @author: LY
+	 * 
+	 * @param buildingId楼盘号
+	 * @param pageNo页号
+	 * @param pageMaxNum每页最大数量
+	 * @return 当前页的所有房源信息
+	 */
+	@RequestMapping("/getAllHouse")
+	@ResponseBody
+	public Map<String, Object> getAllHouse(@RequestParam int buildingId, @RequestParam int pageMaxNum,
+			@RequestParam int pageNo)
+	{
+		List<HouseBean> houseBeanList = houseService.getHouseByBuildingId(buildingId, pageMaxNum, pageNo);
+		return ResponseMapUtil.responseSuccess(houseBeanList);
+	}
+
+	/**
+	 * 获取单独房屋信息
+	 *
+	 * @Title: getSingleHouse
+	 * @version:
+	 * @author: LY
+	 * 
+	 * @param houseId
+	 * @return 获取单个房源
+	 */
+	@RequestMapping("/getSingleHouse")
+	@ResponseBody
+	public Map<String, Object> getSingleHouse(@RequestParam int houseId)
+	{
+		HouseBean houseBean = houseService.getHouseById(houseId);
+		return ResponseMapUtil.responseSuccess(houseBean);
+	}
+
+	@RequestMapping("/getHousePageNum")
+	@ResponseBody
+	public Map<String, Object> getHousePageNum(@RequestParam int buildingId, @RequestParam int pageMaxNum)
+	{
+		int num = houseService.getHousePageNumByBuildingId(buildingId, pageMaxNum);
+		return ResponseMapUtil.responseSuccess(num);
+	}
+
+	/**
+	 * 房源申请上下架
+	 *
+	 * @Title: houseApplicateOnSale
+	 * @version:
+	 * @author: LY
+	 * 
+	 * @param houseId applicationType  (true 上架申请 false  下架申请)
+	 * @return 
+	 */
+	@RequestMapping("/applicateHouseOnSaleAndOffSale")
+	@ResponseBody
+	public Map<String, Object> applicateHouseOnSale(@RequestParam int houseId, @RequestParam boolean applicationType)
+	{
+		String res;
+		if (applicationType)
+		{	
+			res = houseService.applicateHouseOnSaleByHouseId(houseId);
+		}else
+		{
+			res = houseService.applicateHouseOffSaleByHouseId(houseId);
+		}
+		if(res.equals("success"))
+		{
+			return ResponseMapUtil.responseSuccess(res);
+		}else
+		{
+			return ResponseMapUtil.responseError("房源申请上下架失败");
+		}
+	}
+
+	/**
+	 * 房源审核
+	*
+	* @Title: auditHouseApplication
+	* @version:
+	* @author: LY
+	* 
+	* @param houseId auditResult(false 不通过 true 通过) notPassReason（不通过原因， 通过填null）
+	* @return 
+	*/
+
+
+
+	@RequestMapping("/auditHouseApplication")
+	@ResponseBody
+	public Map<String, Object> auditHouseApplication(@RequestParam int houseId, @RequestParam boolean auditResult ,@RequestParam String notPassReason)
+	{
+		String resultCode;
+		resultCode = houseService.auditHouseApplicationByHouseId(houseId, auditResult , notPassReason);
+		if(resultCode.equals("success"))
+		{
+			return ResponseMapUtil.responseSuccess("房源审核成功");
+		}
+		else
+		{
+			return ResponseMapUtil.responseSuccess(resultCode);
+		}
+		
+	}
+
+	
+	/**
+	 * 提交房源审核不通过原因
+	*
+	* @Title: auditHouseApplication
+	* @version:
+	* @author: LY
+	* 
+	* @param houseId
+	*  @param auditNotPassReason 
+	* @return 0 失败 1 成功
+	*/
+	@RequestMapping("/giveAuditNotPassReason")
+	@ResponseBody
+	public Map<String, Object> giveAuditNotPassReason(@RequestParam int houseId , @RequestParam String auditNotPassReason)
+	{
+		int resultCode=0;
+		if(houseId != 0)
+		{
+			resultCode = houseService.giveAuditNotPassReason(houseId, auditNotPassReason);
+		}
+		return ResponseMapUtil.responseSuccess(resultCode);
+		
+	}
+	/**
+	 * 获取房源审核不通过原因
+	*
+	* @Title: getAuditNotPassReason
+	* @version:
+	* @author: LY
+	* 
+	* @param houseId
+	* @return String 未通过原因
+	*/
+	@RequestMapping("/getAuditNotPassReason")
+	@ResponseBody
+	public Map<String, Object> getAuditNotPassReason(@RequestParam int houseId )
+	{
+		String notPassReason=null;
+		if(houseId != 0)
+		{
+			notPassReason = houseService.getAuditNotPassReason(houseId);
+		}
+		return ResponseMapUtil.responseSuccess(notPassReason);
+		
+	}
+	/**
+	 * 修改房源信息
+	 *
+	 * @Title: updateHouse
+	 * @version:
+	 * @author: LY
+	 * 
+	 * @param houseBean/json
+	 * @return seccess 成功 false+ 失败原因
+	 */
+	@RequestMapping("/updateHouse")
+	@ResponseBody
+	public Map<String, Object> updateHouse(@RequestBody HouseBean houseBean)
+	{
+		String res = houseService.updateHouse(houseBean);
+		if (res.equals("success"))
+		{
+			return ResponseMapUtil.responseSuccess(null);
+		} else
+		{
+			return ResponseMapUtil.responseError(res);
+		}
+	}
+	
+	
+	/**
+	 * 添加新房源
+	 *
+	 * @Title: addHouse
+	 * @version:
+	 * @author: LY
+	 * 
+	 * @param houseBean/json
+	 * @return seccess 成功 false+ 失败原因
+	 */
+	@RequestMapping("/addHouse")
+	@ResponseBody
+	public Map<String, Object> addHouse(@RequestBody HouseBean houseBean)
+	{
+		String res = houseService.addHouse(houseBean);
+		if (res.equals("success"))
+		{
+			return ResponseMapUtil.responseSuccess(null);
+		} else
+		{
+			return ResponseMapUtil.responseError(res);
+		}
+	}
+	
+	
+	/**
+	 * 
+	 *添加捡漏价格
+	 * @Title: addPerferentialPrice
+	 * @version:
+	 * @author: LY
+	 * 
+	 * @param houseBean/json
+	 * @return seccess 成功 false+ 失败原因
+	 */
+	@RequestMapping("/addPerferentialPrice")
+	@ResponseBody
+	public Map<String, Object> addPerferentialPrice(@RequestParam int houseId , @RequestParam BigDecimal perferentialPrice)
+	{
+		String res = houseService.addPerferentialPrice(houseId , perferentialPrice);
+		if (res.equals("success"))
+		{
+			return ResponseMapUtil.responseSuccess(null);
+		} else
+		{
+			return ResponseMapUtil.responseError(res);
+		}
+	}
+	
+	
+		
+		
+}

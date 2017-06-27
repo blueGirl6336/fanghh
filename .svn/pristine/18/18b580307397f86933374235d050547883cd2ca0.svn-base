@@ -1,0 +1,6 @@
+/**
+* controller Module
+*
+* Description
+*/
+angular.module('fanghhmsCtrl', []).

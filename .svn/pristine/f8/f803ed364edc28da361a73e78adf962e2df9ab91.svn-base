@@ -1,0 +1,26 @@
+<div class="header-nav">
+  <div ng-class="{'nav-active': activePage == 1}">
+    <a ui-sref="index.listSourceManagement" href="#">户型管理</a>
+  </div>
+  <div ng-class="{'nav-active': activePage == 2}">
+    <a ui-sref="index.listHouseManagement" href="#">房源管理</a>
+  </div>
+  <div ng-class="{'nav-active': activePage == 3}">
+    <a href="#">图片管理</a>
+  </div>
+  <div ng-class="{'nav-active': activePage == 4}">
+    <a ui-sref="index.addDynamic({buildingId: 4})">动态管理</a>
+  </div>
+  <div ng-class="{'nav-active': activePage == 5}">
+    <a ui-sref="index.priceTrend({buildingId: 4})">房价走势</a>
+  </div>
+  <div ng-class="{'nav-active': activePage == 6}">
+    <a href="#">看图说房</a>
+  </div>
+  <div ng-class="{'nav-active': activePage == 7}">
+    <a href="#">佣金规则</a>
+  </div>
+  <div ng-class="{'nav-active': activePage == 8}">
+    <a href="#">楼圈点评</a>
+  </div>
+</div>

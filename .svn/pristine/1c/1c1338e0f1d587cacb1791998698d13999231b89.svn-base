@@ -1,0 +1,96 @@
+<!-- <link type="text/css" rel="stylesheet" href="./css/list.css"/> -->
+<link type="text/css" rel="stylesheet" href="./css/list_buildingManagement.css"/>
+
+<div class="content-div" ng-controller="BuildingListController as building">
+	<!-- <div class="inputArea form-item form-item-large content_area_head">
+		<img src="././image/search.png" class="img-search"/>
+		<span class="selectDistrict">选择地区</span>
+		<select name="" id="shortSelect-province" class="form-text shortSelect">
+			<option>山东</option>
+		</select>
+		<span class="province">省</span>
+		<select name="" id="shortSelect-city" class="form-text shortSelect" ng-model="selectedCity" ng-options="city.cityName for city in building.allCities track by city.cityId" ng-change="building.chooseCity(selectedCity)"></select>
+		<span class="city">市</span>
+		<select name="" id="shortSelect-zone" class="form-text shortSelect" ng-model="selectedRegion" ng-options="region.regionName for region in building.allRegions track by region.regionId" ng-change="building.chooseCity(selectedRegion)"></select>
+		<span class="zone">区</span>
+		<span class="buildingName">楼盘名称：</span>
+		<input type="text" class="form-text shortText" name="">
+		<button type="button" class="submit-file">查询</button>
+	</div> -->
+		
+	<div class="table_area">
+		<div class="table_head">
+			<div id="buildingManagement">楼盘管理</div>
+		</div>
+
+		<div class="table_content">
+			<table class="building_table">
+				<tr class="line0">
+					<td class="checkbox"></td>
+					<td class="building-name"><span>楼盘名称</span></td>
+					<td class="state">
+						<span>状态</span>
+						<!-- <img src="././image/point_1.png" class="sort-up"/>
+						<img src="././image/point_2.png" class="sort-down"/> -->
+					</td>
+					<td class="tele">联系电话</td>
+					<td class="modify-date">
+						<span>修改日期</span>
+						<!-- <img src="././image/point_1.png" class="sort-up"/>
+						<img src="././image/point_2.png" class="sort-down"/> -->
+					</td>
+					<td class="operation" colspan="2">操作</td>
+					<td class="manage-operation">管理员操作</td>
+					<td class="recommend">首页推荐</td>
+					<td class="manage">权限管理</td>
+					<!-- <td class="online"></td>
+					<td class="recommend-or-not"></td>
+					<td class="team-buy"></td> -->
+				</tr>
+				<tr ng-class="{'line2': $odd, 'line1': $even}" ng-repeat="record in buildingList">
+					<td class="checkbox">
+						<input type="checkbox" name="building">
+					</td>
+					<td class="building-name" ng-click="watchBuilding(record.buildingId)"><span class="buildingName">{{record.buildingName}}</span></td>
+					<td class="state">{{record.buildingApplicationStatus | exchangeNum}}</td>
+					<td class="tele">{{record.phoneFdz}}</td>
+					<td class="modify-date">{{record.createTime}}</td>
+					<td class="operation1"><span class="modify" ng-click="modifyButton(record.buildingId)">{{record.modify}}</span></td>
+					<td class="operation2"><span class="stateOperation" ng-click="upDownBoard(record.buildingId, record.buildingApplicationStatus)">{{record.state}}</span></td>
+					<td class="manage-operation"><span class="look" ng-click="lookOrExamine(record.buildingId, record.buildingApplicationStatus)">{{record.look}}</span></td>
+					<td class="recommend">是</td>
+					<td class="manage">设置</td>
+					<!-- <td class="online">
+						<input type="checkbox" name="select">在线报名
+					</td>
+					<td class="recommend-or-not">
+						<input type="checkbox" name="select">是否开放推荐
+					</td>
+					<td class="team-buy">
+						<input type="checkbox" name="select">团购
+					</td> -->
+				</tr>
+				<tr class="table-bottom">
+					<td class="checkbox-bottom">
+						<input type="checkbox" name="building" onclick="buildingAllSelect(this)">全选
+					</td>
+					<td class="up-select" ng-click="manyUpBoard()">上架所选</td>
+					<td class="down-select" ng-click="manyDownBoard()">下架所选</td>
+				</tr>
+			</table>
+
+			<div class="page-num">
+				<!-- <p class="before" ng-click="changePage(page.pageNumber - 1)" ng-show="page.pageNumber - 1 > 0">上一页</p> -->
+				<p class="page-1" ng-click="changePage(pageButton[1])" ng-show="pageButton[1] != null" ng-class="{nowpage: pageButton[1] == page.pageNumber}">{{ pageButton[1] }}</p>
+				<p class="page-2" ng-click="changePage(pageButton[2])" ng-show="pageButton[2] != null" ng-class="{nowpage: pageButton[2] == page.pageNumber}">{{ pageButton[2] }}</p>
+				<p class="page-3" ng-click="changePage(pageButton[3])" ng-show="pageButton[3] != null" ng-class="{nowpage: pageButton[3] == page.pageNumber}">{{ pageButton[3] }}</p>
+				<p class="page-4" ng-click="changePage(pageButton[4])" ng-show="pageButton[4] != null" ng-class="{nowpage: pageButton[4] == page.pageNumber}">{{ pageButton[4] }}</p>
+				<p class="page-5" ng-click="changePage(pageButton[5])" ng-show="pageButton[5] != null" ng-class="{nowpage: pageButton[5] == page.pageNumber}">{{ pageButton[5] }}</p>
+				<p class="next" ng-click="changePage(page.pageNumber + 1)" ng-show="page.pageNumber + 1 <= page.pageMax">下一页</p>
+				<p class="first" ng-click="changePage(1)" ng-show="page.pageNumber != 1">首页</p>
+				<p class="last" ng-click="changePage(page.pageMax)" ng-show="page.pageNumber != page.pageMax">末页</p>
+			</div>
+		</div>
+	</div>
+</div>
+				

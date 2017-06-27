@@ -1,0 +1,23 @@
+window.UMEDITOR_HOME_URL = '/';
+
+var module = angular.module('DynamicManagement', ['meta.umeditor']);
+
+module.controller('AddDynamicController', ['$http', '$scope', function($http, $scope){
+
+  var that = this;
+
+  $scope.activePage = 4;
+
+  this.content = '';
+
+  this.umconfig = {
+    imageUrl: 'houseStyle/uploadStylePic'
+  };
+
+  this.commit = function () {
+    var title = $('#dynamic-title').val();
+
+    // $http.post('dynamiccontent/addDynamiccontent', );
+  };
+
+}]);

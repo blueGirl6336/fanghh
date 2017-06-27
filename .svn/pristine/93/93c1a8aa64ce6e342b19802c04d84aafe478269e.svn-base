@@ -1,0 +1,26 @@
+<div class="table_head">
+	<div id="houseManagement">
+		<span ng-class="{'nowPage': nowpageid == 1}">户型管理</span>
+	</div>
+	<div id="sourceManagement">
+		<span ng-class="{'nowPage': nowpageid == 2}">房源管理</span>
+	</div>
+	<div id="picManagement">
+		<span ng-class="{'nowPage': nowpageid == 3}">图片管理</span>
+	</div>
+	<div id="dynamicManagement">
+		<span ng-class="{'nowPage': nowpageid == 4}">动态管理</span>
+	</div>
+	<div id="priceTrend">
+		<span ng-class="{'nowPage': nowpageid == 5}">房价走势</span>
+	</div>
+	<div id="picHouse">
+		<span ng-class="{'nowPage': nowpageid == 6}">看图说房</span>
+	</div>
+	<div id="moneyPrincple">
+		<span ng-class="{'nowPage': nowpageid == 7}">佣金规则</span>
+	</div>
+	<div id="buildingComment">
+		<span ng-class="{'nowPage': nowpageid == 8}">楼圈点评</span>
+	</div>
+</div>

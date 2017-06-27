@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.CommentpicDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Commentpic">
+    <id column="cp_id" jdbcType="INTEGER" property="cpId" />
+    <result column="comment_id" jdbcType="INTEGER" property="commentId" />
+    <result column="pic_location" jdbcType="VARCHAR" property="picLocation" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    cp_id, comment_id, pic_location
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.CommentPic
+    where cp_id = #{cpId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.CommentPic
+    where cp_id = #{cpId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Commentpic">
+    insert into dbo.CommentPic (cp_id, comment_id, pic_location
+      )
+    values (#{cpId,jdbcType=INTEGER}, #{commentId,jdbcType=INTEGER}, #{picLocation,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Commentpic">
+    insert into dbo.CommentPic
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cpId != null">
+        cp_id,
+      </if>
+      <if test="commentId != null">
+        comment_id,
+      </if>
+      <if test="picLocation != null">
+        pic_location,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cpId != null">
+        #{cpId,jdbcType=INTEGER},
+      </if>
+      <if test="commentId != null">
+        #{commentId,jdbcType=INTEGER},
+      </if>
+      <if test="picLocation != null">
+        #{picLocation,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Commentpic">
+    update dbo.CommentPic
+    <set>
+      <if test="commentId != null">
+        comment_id = #{commentId,jdbcType=INTEGER},
+      </if>
+      <if test="picLocation != null">
+        pic_location = #{picLocation,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cp_id = #{cpId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Commentpic">
+    update dbo.CommentPic
+    set comment_id = #{commentId,jdbcType=INTEGER},
+      pic_location = #{picLocation,jdbcType=VARCHAR}
+    where cp_id = #{cpId,jdbcType=INTEGER}
+  </update>
+</mapper>

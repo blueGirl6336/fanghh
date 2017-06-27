@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.StoreDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Store">
+    <id column="store_id" jdbcType="INTEGER" property="storeId" />
+    <result column="store_name" jdbcType="VARCHAR" property="storeName" />
+    <result column="store_leader" jdbcType="INTEGER" property="storeLeader" />
+    <result column="customer_num" jdbcType="INTEGER" property="customerNum" />
+    <result column="deal_num" jdbcType="INTEGER" property="dealNum" />
+    <result column="sale_profit" jdbcType="DECIMAL" property="saleProfit" />
+    <result column="total_commission" jdbcType="DECIMAL" property="totalCommission" />
+    <result column="building_num" jdbcType="INTEGER" property="buildingNum" />
+    <result column="invitation_code" jdbcType="VARCHAR" property="invitationCode" />
+    <result column="store_num" jdbcType="BIGINT" property="storeNum" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="failed_reason" jdbcType="VARCHAR" property="failedReason" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="hitwh.fanghh.pojo.Store">
+    <result column="store_portrait" jdbcType="LONGVARCHAR" property="storePortrait" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    store_id, store_name, store_leader, customer_num, deal_num, sale_profit, total_commission, 
+    building_num, invitation_code, store_num, status, failed_reason
+  </sql>
+  <sql id="Blob_Column_List">
+    store_portrait
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from dbo.Store
+    where store_id = #{storeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.Store
+    where store_id = #{storeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Store">
+    insert into dbo.Store (store_id, store_name, store_leader, 
+      customer_num, deal_num, sale_profit, 
+      total_commission, building_num, invitation_code, 
+      store_num, status, failed_reason, 
+      store_portrait)
+    values (#{storeId,jdbcType=INTEGER}, #{storeName,jdbcType=VARCHAR}, #{storeLeader,jdbcType=INTEGER}, 
+      #{customerNum,jdbcType=INTEGER}, #{dealNum,jdbcType=INTEGER}, #{saleProfit,jdbcType=DECIMAL}, 
+      #{totalCommission,jdbcType=DECIMAL}, #{buildingNum,jdbcType=INTEGER}, #{invitationCode,jdbcType=VARCHAR}, 
+      #{storeNum,jdbcType=BIGINT}, #{status,jdbcType=VARCHAR}, #{failedReason,jdbcType=VARCHAR}, 
+      #{storePortrait,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Store">
+    insert into dbo.Store
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="storeId != null">
+        store_id,
+      </if>
+      <if test="storeName != null">
+        store_name,
+      </if>
+      <if test="storeLeader != null">
+        store_leader,
+      </if>
+      <if test="customerNum != null">
+        customer_num,
+      </if>
+      <if test="dealNum != null">
+        deal_num,
+      </if>
+      <if test="saleProfit != null">
+        sale_profit,
+      </if>
+      <if test="totalCommission != null">
+        total_commission,
+      </if>
+      <if test="buildingNum != null">
+        building_num,
+      </if>
+      <if test="invitationCode != null">
+        invitation_code,
+      </if>
+      <if test="storeNum != null">
+        store_num,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="failedReason != null">
+        failed_reason,
+      </if>
+      <if test="storePortrait != null">
+        store_portrait,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="storeId != null">
+        #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="storeName != null">
+        #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeLeader != null">
+        #{storeLeader,jdbcType=INTEGER},
+      </if>
+      <if test="customerNum != null">
+        #{customerNum,jdbcType=INTEGER},
+      </if>
+      <if test="dealNum != null">
+        #{dealNum,jdbcType=INTEGER},
+      </if>
+      <if test="saleProfit != null">
+        #{saleProfit,jdbcType=DECIMAL},
+      </if>
+      <if test="totalCommission != null">
+        #{totalCommission,jdbcType=DECIMAL},
+      </if>
+      <if test="buildingNum != null">
+        #{buildingNum,jdbcType=INTEGER},
+      </if>
+      <if test="invitationCode != null">
+        #{invitationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="storeNum != null">
+        #{storeNum,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="failedReason != null">
+        #{failedReason,jdbcType=VARCHAR},
+      </if>
+      <if test="storePortrait != null">
+        #{storePortrait,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Store">
+    update dbo.Store
+    <set>
+      <if test="storeName != null">
+        store_name = #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeLeader != null">
+        store_leader = #{storeLeader,jdbcType=INTEGER},
+      </if>
+      <if test="customerNum != null">
+        customer_num = #{customerNum,jdbcType=INTEGER},
+      </if>
+      <if test="dealNum != null">
+        deal_num = #{dealNum,jdbcType=INTEGER},
+      </if>
+      <if test="saleProfit != null">
+        sale_profit = #{saleProfit,jdbcType=DECIMAL},
+      </if>
+      <if test="totalCommission != null">
+        total_commission = #{totalCommission,jdbcType=DECIMAL},
+      </if>
+      <if test="buildingNum != null">
+        building_num = #{buildingNum,jdbcType=INTEGER},
+      </if>
+      <if test="invitationCode != null">
+        invitation_code = #{invitationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="storeNum != null">
+        store_num = #{storeNum,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="failedReason != null">
+        failed_reason = #{failedReason,jdbcType=VARCHAR},
+      </if>
+      <if test="storePortrait != null">
+        store_portrait = #{storePortrait,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where store_id = #{storeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="hitwh.fanghh.pojo.Store">
+    update dbo.Store
+    set store_name = #{storeName,jdbcType=VARCHAR},
+      store_leader = #{storeLeader,jdbcType=INTEGER},
+      customer_num = #{customerNum,jdbcType=INTEGER},
+      deal_num = #{dealNum,jdbcType=INTEGER},
+      sale_profit = #{saleProfit,jdbcType=DECIMAL},
+      total_commission = #{totalCommission,jdbcType=DECIMAL},
+      building_num = #{buildingNum,jdbcType=INTEGER},
+      invitation_code = #{invitationCode,jdbcType=VARCHAR},
+      store_num = #{storeNum,jdbcType=BIGINT},
+      status = #{status,jdbcType=VARCHAR},
+      failed_reason = #{failedReason,jdbcType=VARCHAR},
+      store_portrait = #{storePortrait,jdbcType=LONGVARCHAR}
+    where store_id = #{storeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Store">
+    update dbo.Store
+    set store_name = #{storeName,jdbcType=VARCHAR},
+      store_leader = #{storeLeader,jdbcType=INTEGER},
+      customer_num = #{customerNum,jdbcType=INTEGER},
+      deal_num = #{dealNum,jdbcType=INTEGER},
+      sale_profit = #{saleProfit,jdbcType=DECIMAL},
+      total_commission = #{totalCommission,jdbcType=DECIMAL},
+      building_num = #{buildingNum,jdbcType=INTEGER},
+      invitation_code = #{invitationCode,jdbcType=VARCHAR},
+      store_num = #{storeNum,jdbcType=BIGINT},
+      status = #{status,jdbcType=VARCHAR},
+      failed_reason = #{failedReason,jdbcType=VARCHAR}
+    where store_id = #{storeId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="countStore" resultType="java.lang.Integer">
+	    select 
+	    count(*)
+	    from dbo.Store
+  </select>
+  
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from
+    (select *,tid=row_number()over(order by store_id ASC) from dbo.Store)tmp 
+    where tid between #{page.min,jdbcType=INTEGER} and #{page.max,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectByKeyStoreName" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from
+    (select *,tid=row_number()over(order by store_id ASC) from dbo.Store
+    where store_name like '%'+#{keyStoreName,jdbcType=VARCHAR}+'%')tmp 
+    where tid between #{page.min,jdbcType=INTEGER} and #{page.max,jdbcType=INTEGER}
+  </select>
+  
+  <update id="updateAuthenticationStatus">
+  	update dbo.Store
+  	set
+  	status = #{status,jdbcType=VARCHAR}
+  	<if test="failedReason != null">
+        , failed_reason = #{failedReason,jdbcType=VARCHAR}
+      </if>
+  	where
+  	store_id = #{storeId,jdbcType=INTEGER}
+  </update>
+  
+</mapper>

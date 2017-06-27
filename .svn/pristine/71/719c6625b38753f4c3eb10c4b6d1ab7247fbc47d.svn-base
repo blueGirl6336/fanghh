@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.PictalkcontentDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Pictalkcontent">
+    <id column="ptc_id" jdbcType="INTEGER" property="ptcId" />
+    <result column="pt_id" jdbcType="INTEGER" property="ptId" />
+    <result column="ptc_pic" jdbcType="VARCHAR" property="ptcPic" />
+    <result column="order" jdbcType="INTEGER" property="order" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ptc_id, pt_id, ptc_pic, order
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.PicTalkContent
+    where ptc_id = #{ptcId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.PicTalkContent
+    where ptc_id = #{ptcId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Pictalkcontent">
+    insert into dbo.PicTalkContent (ptc_id, pt_id, ptc_pic, 
+      order)
+    values (#{ptcId,jdbcType=INTEGER}, #{ptId,jdbcType=INTEGER}, #{ptcPic,jdbcType=VARCHAR}, 
+      #{order,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Pictalkcontent">
+    insert into dbo.PicTalkContent
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ptcId != null">
+        ptc_id,
+      </if>
+      <if test="ptId != null">
+        pt_id,
+      </if>
+      <if test="ptcPic != null">
+        ptc_pic,
+      </if>
+      <if test="order != null">
+        order,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ptcId != null">
+        #{ptcId,jdbcType=INTEGER},
+      </if>
+      <if test="ptId != null">
+        #{ptId,jdbcType=INTEGER},
+      </if>
+      <if test="ptcPic != null">
+        #{ptcPic,jdbcType=VARCHAR},
+      </if>
+      <if test="order != null">
+        #{order,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Pictalkcontent">
+    update dbo.PicTalkContent
+    <set>
+      <if test="ptId != null">
+        pt_id = #{ptId,jdbcType=INTEGER},
+      </if>
+      <if test="ptcPic != null">
+        ptc_pic = #{ptcPic,jdbcType=VARCHAR},
+      </if>
+      <if test="order != null">
+        order = #{order,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ptc_id = #{ptcId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Pictalkcontent">
+    update dbo.PicTalkContent
+    set pt_id = #{ptId,jdbcType=INTEGER},
+      ptc_pic = #{ptcPic,jdbcType=VARCHAR},
+      order = #{order,jdbcType=INTEGER}
+    where ptc_id = #{ptcId,jdbcType=INTEGER}
+  </update>
+</mapper>

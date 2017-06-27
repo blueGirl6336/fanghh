@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.SellingpointcontentDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Sellingpointcontent">
+    <id column="spc_id" jdbcType="INTEGER" property="spcId" />
+    <result column="bsp_id" jdbcType="INTEGER" property="bspId" />
+    <result column="spc_pic" jdbcType="VARCHAR" property="spcPic" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="hitwh.fanghh.pojo.Sellingpointcontent">
+    <result column="spc_writing" jdbcType="LONGVARCHAR" property="spcWriting" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    spc_id, bsp_id, spc_pic
+  </sql>
+  <sql id="Blob_Column_List">
+    spc_writing
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from dbo.SellingPointContent
+    where spc_id = #{spcId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.SellingPointContent
+    where spc_id = #{spcId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Sellingpointcontent">
+    insert into dbo.SellingPointContent (spc_id, bsp_id, spc_pic, 
+      spc_writing)
+    values (#{spcId,jdbcType=INTEGER}, #{bspId,jdbcType=INTEGER}, #{spcPic,jdbcType=VARCHAR}, 
+      #{spcWriting,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Sellingpointcontent">
+    insert into dbo.SellingPointContent
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="spcId != null">
+        spc_id,
+      </if>
+      <if test="bspId != null">
+        bsp_id,
+      </if>
+      <if test="spcPic != null">
+        spc_pic,
+      </if>
+      <if test="spcWriting != null">
+        spc_writing,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="spcId != null">
+        #{spcId,jdbcType=INTEGER},
+      </if>
+      <if test="bspId != null">
+        #{bspId,jdbcType=INTEGER},
+      </if>
+      <if test="spcPic != null">
+        #{spcPic,jdbcType=VARCHAR},
+      </if>
+      <if test="spcWriting != null">
+        #{spcWriting,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Sellingpointcontent">
+    update dbo.SellingPointContent
+    <set>
+      <if test="bspId != null">
+        bsp_id = #{bspId,jdbcType=INTEGER},
+      </if>
+      <if test="spcPic != null">
+        spc_pic = #{spcPic,jdbcType=VARCHAR},
+      </if>
+      <if test="spcWriting != null">
+        spc_writing = #{spcWriting,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where spc_id = #{spcId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="hitwh.fanghh.pojo.Sellingpointcontent">
+    update dbo.SellingPointContent
+    set bsp_id = #{bspId,jdbcType=INTEGER},
+      spc_pic = #{spcPic,jdbcType=VARCHAR},
+      spc_writing = #{spcWriting,jdbcType=LONGVARCHAR}
+    where spc_id = #{spcId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Sellingpointcontent">
+    update dbo.SellingPointContent
+    set bsp_id = #{bspId,jdbcType=INTEGER},
+      spc_pic = #{spcPic,jdbcType=VARCHAR}
+    where spc_id = #{spcId,jdbcType=INTEGER}
+  </update>
+</mapper>

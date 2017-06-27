@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.OrdersignDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Ordersign">
+    <id column="os_id" jdbcType="INTEGER" property="osId" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="commission_sum" jdbcType="DECIMAL" property="commissionSum" />
+    <result column="commission_table" jdbcType="DECIMAL" property="commissionTable" />
+    <result column="team_leader_id" jdbcType="INTEGER" property="teamLeaderId" />
+    <result column="commission_team_leader" jdbcType="DECIMAL" property="commissionTeamLeader" />
+    <result column="broker_id" jdbcType="INTEGER" property="brokerId" />
+    <result column="commisstion_broker" jdbcType="DECIMAL" property="commisstionBroker" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="sign_time" jdbcType="TIMESTAMP" property="signTime" />
+    <result column="regional_agency_id" jdbcType="INTEGER" property="regionalAgencyId" />
+    <result column="commisstion_regional_agency" jdbcType="DECIMAL" property="commisstionRegionalAgency" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    os_id, order_id, commission_sum, commission_table, team_leader_id, commission_team_leader, 
+    broker_id, commisstion_broker, status, remark, sign_time, regional_agency_id, commisstion_regional_agency, 
+    end_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.OrderSign
+    where os_id = #{osId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.OrderSign
+    where os_id = #{osId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Ordersign">
+    insert into dbo.OrderSign (os_id, order_id, commission_sum, 
+      commission_table, team_leader_id, commission_team_leader, 
+      broker_id, commisstion_broker, status, 
+      remark, sign_time, regional_agency_id, 
+      commisstion_regional_agency, end_time)
+    values (#{osId,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}, #{commissionSum,jdbcType=DECIMAL}, 
+      #{commissionTable,jdbcType=DECIMAL}, #{teamLeaderId,jdbcType=INTEGER}, #{commissionTeamLeader,jdbcType=DECIMAL}, 
+      #{brokerId,jdbcType=INTEGER}, #{commisstionBroker,jdbcType=DECIMAL}, #{status,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{signTime,jdbcType=TIMESTAMP}, #{regionalAgencyId,jdbcType=INTEGER}, 
+      #{commisstionRegionalAgency,jdbcType=DECIMAL}, #{endTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Ordersign">
+    insert into dbo.OrderSign
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="osId != null">
+        os_id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="commissionSum != null">
+        commission_sum,
+      </if>
+      <if test="commissionTable != null">
+        commission_table,
+      </if>
+      <if test="teamLeaderId != null">
+        team_leader_id,
+      </if>
+      <if test="commissionTeamLeader != null">
+        commission_team_leader,
+      </if>
+      <if test="brokerId != null">
+        broker_id,
+      </if>
+      <if test="commisstionBroker != null">
+        commisstion_broker,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="signTime != null">
+        sign_time,
+      </if>
+      <if test="regionalAgencyId != null">
+        regional_agency_id,
+      </if>
+      <if test="commisstionRegionalAgency != null">
+        commisstion_regional_agency,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="osId != null">
+        #{osId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="commissionSum != null">
+        #{commissionSum,jdbcType=DECIMAL},
+      </if>
+      <if test="commissionTable != null">
+        #{commissionTable,jdbcType=DECIMAL},
+      </if>
+      <if test="teamLeaderId != null">
+        #{teamLeaderId,jdbcType=INTEGER},
+      </if>
+      <if test="commissionTeamLeader != null">
+        #{commissionTeamLeader,jdbcType=DECIMAL},
+      </if>
+      <if test="brokerId != null">
+        #{brokerId,jdbcType=INTEGER},
+      </if>
+      <if test="commisstionBroker != null">
+        #{commisstionBroker,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="signTime != null">
+        #{signTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regionalAgencyId != null">
+        #{regionalAgencyId,jdbcType=INTEGER},
+      </if>
+      <if test="commisstionRegionalAgency != null">
+        #{commisstionRegionalAgency,jdbcType=DECIMAL},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Ordersign">
+    update dbo.OrderSign
+    <set>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="commissionSum != null">
+        commission_sum = #{commissionSum,jdbcType=DECIMAL},
+      </if>
+      <if test="commissionTable != null">
+        commission_table = #{commissionTable,jdbcType=DECIMAL},
+      </if>
+      <if test="teamLeaderId != null">
+        team_leader_id = #{teamLeaderId,jdbcType=INTEGER},
+      </if>
+      <if test="commissionTeamLeader != null">
+        commission_team_leader = #{commissionTeamLeader,jdbcType=DECIMAL},
+      </if>
+      <if test="brokerId != null">
+        broker_id = #{brokerId,jdbcType=INTEGER},
+      </if>
+      <if test="commisstionBroker != null">
+        commisstion_broker = #{commisstionBroker,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="signTime != null">
+        sign_time = #{signTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="regionalAgencyId != null">
+        regional_agency_id = #{regionalAgencyId,jdbcType=INTEGER},
+      </if>
+      <if test="commisstionRegionalAgency != null">
+        commisstion_regional_agency = #{commisstionRegionalAgency,jdbcType=DECIMAL},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where os_id = #{osId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Ordersign">
+    update dbo.OrderSign
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      commission_sum = #{commissionSum,jdbcType=DECIMAL},
+      commission_table = #{commissionTable,jdbcType=DECIMAL},
+      team_leader_id = #{teamLeaderId,jdbcType=INTEGER},
+      commission_team_leader = #{commissionTeamLeader,jdbcType=DECIMAL},
+      broker_id = #{brokerId,jdbcType=INTEGER},
+      commisstion_broker = #{commisstionBroker,jdbcType=DECIMAL},
+      status = #{status,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      sign_time = #{signTime,jdbcType=TIMESTAMP},
+      regional_agency_id = #{regionalAgencyId,jdbcType=INTEGER},
+      commisstion_regional_agency = #{commisstionRegionalAgency,jdbcType=DECIMAL},
+      end_time = #{endTime,jdbcType=TIMESTAMP}
+    where os_id = #{osId,jdbcType=INTEGER}
+  </update>
+</mapper>

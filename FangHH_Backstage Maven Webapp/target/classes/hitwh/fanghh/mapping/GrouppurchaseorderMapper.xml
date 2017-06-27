@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.GrouppurchaseorderDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Grouppurchaseorder">
+    <id column="go_id" jdbcType="VARCHAR" property="goId" />
+    <result column="customer_id" jdbcType="INTEGER" property="customerId" />
+    <result column="activity_id" jdbcType="VARCHAR" property="activityId" />
+    <result column="order_status" jdbcType="VARCHAR" property="orderStatus" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="order_time" jdbcType="TIMESTAMP" property="orderTime" />
+    <result column="is_matched" jdbcType="BIT" property="isMatched" />
+    <result column="is_distributed" jdbcType="BIT" property="isDistributed" />
+    <result column="is_checked" jdbcType="BIT" property="isChecked" />
+    <result column="house_id" jdbcType="INTEGER" property="houseId" />
+    <result column="validate_code" jdbcType="VARCHAR" property="validateCode" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    go_id, customer_id, activity_id, order_status, status, order_time, is_matched, is_distributed, 
+    is_checked, house_id, validate_code
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.GroupPurchaseOrder
+    where go_id = #{goId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from dbo.GroupPurchaseOrder
+    where go_id = #{goId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Grouppurchaseorder">
+    insert into dbo.GroupPurchaseOrder (go_id, customer_id, activity_id, 
+      order_status, status, order_time, 
+      is_matched, is_distributed, is_checked, 
+      house_id, validate_code)
+    values (#{goId,jdbcType=VARCHAR}, #{customerId,jdbcType=INTEGER}, #{activityId,jdbcType=VARCHAR}, 
+      #{orderStatus,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{orderTime,jdbcType=TIMESTAMP}, 
+      #{isMatched,jdbcType=BIT}, #{isDistributed,jdbcType=BIT}, #{isChecked,jdbcType=BIT}, 
+      #{houseId,jdbcType=INTEGER}, #{validateCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Grouppurchaseorder">
+    insert into dbo.GroupPurchaseOrder
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="goId != null">
+        go_id,
+      </if>
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="activityId != null">
+        activity_id,
+      </if>
+      <if test="orderStatus != null">
+        order_status,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="orderTime != null">
+        order_time,
+      </if>
+      <if test="isMatched != null">
+        is_matched,
+      </if>
+      <if test="isDistributed != null">
+        is_distributed,
+      </if>
+      <if test="isChecked != null">
+        is_checked,
+      </if>
+      <if test="houseId != null">
+        house_id,
+      </if>
+      <if test="validateCode != null">
+        validate_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="goId != null">
+        #{goId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="activityId != null">
+        #{activityId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null">
+        #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTime != null">
+        #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isMatched != null">
+        #{isMatched,jdbcType=BIT},
+      </if>
+      <if test="isDistributed != null">
+        #{isDistributed,jdbcType=BIT},
+      </if>
+      <if test="isChecked != null">
+        #{isChecked,jdbcType=BIT},
+      </if>
+      <if test="houseId != null">
+        #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="validateCode != null">
+        #{validateCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Grouppurchaseorder">
+    update dbo.GroupPurchaseOrder
+    <set>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="activityId != null">
+        activity_id = #{activityId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null">
+        order_status = #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTime != null">
+        order_time = #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isMatched != null">
+        is_matched = #{isMatched,jdbcType=BIT},
+      </if>
+      <if test="isDistributed != null">
+        is_distributed = #{isDistributed,jdbcType=BIT},
+      </if>
+      <if test="isChecked != null">
+        is_checked = #{isChecked,jdbcType=BIT},
+      </if>
+      <if test="houseId != null">
+        house_id = #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="validateCode != null">
+        validate_code = #{validateCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where go_id = #{goId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Grouppurchaseorder">
+    update dbo.GroupPurchaseOrder
+    set customer_id = #{customerId,jdbcType=INTEGER},
+      activity_id = #{activityId,jdbcType=VARCHAR},
+      order_status = #{orderStatus,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      order_time = #{orderTime,jdbcType=TIMESTAMP},
+      is_matched = #{isMatched,jdbcType=BIT},
+      is_distributed = #{isDistributed,jdbcType=BIT},
+      is_checked = #{isChecked,jdbcType=BIT},
+      house_id = #{houseId,jdbcType=INTEGER},
+      validate_code = #{validateCode,jdbcType=VARCHAR}
+    where go_id = #{goId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,43 @@
+var module = angular.module('BuildingList', []);
+
+module.controller('BuildingListController', ['$http', function($http){
+  
+  var that = this;
+
+  // 获取城市和区域
+  $http({
+    url: 'dictionary/getAllCityAndRegion',
+    method: 'post',
+  }).success(function (response) {
+    if (response.success === true) {
+      that.allCities = response.data;
+    } else {
+      console.error('error when access all region', response);
+    }
+  });
+
+  // 选择城市后更新
+  this.chooseCity = function (city) {
+    that.allRegions = city.regionList;
+  };
+
+  // 选择区域后拉取楼盘列表
+  this.fetchBuildings = function (region) {
+    if (region === undefined) {
+      return;
+    }
+
+    // ??? 根据区域获取楼盘？
+    $http({
+      url: 'building/getAllBuilding',
+      method: 'post'
+    }).success(function (response) {
+      if (response.success === true) {
+        that.allBuildings = response.data;
+      } else {
+        console.error('error when fetch buildlings for region ' + region.regionName);
+      }
+    });
+  };
+
+}]);

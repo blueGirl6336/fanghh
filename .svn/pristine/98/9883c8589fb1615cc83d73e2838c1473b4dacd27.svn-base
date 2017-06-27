@@ -1,0 +1,143 @@
+<div class="content_area" ng-controller="houseAudit">
+	<div class="content_area_fullpage">
+		<div class="content_area_title">
+			<h2>发布新楼盘</h2>
+		</div>
+		<div class="content_main">
+			<div class="hint" ng-show="ifFail">
+				<p class="hint_text">审核不通过原因：{{houseInfo.auditNotPassReason}}</p>
+			</div>
+			<div class="inputArea">
+				<h3>房源信息</h3>
+				<form>
+					<div class="row">
+						<div class="form-item form-item-large">
+							<label>户型：<span class="justify"></span></label>
+							<div class="form-field">
+								{{houseInfo.houseStyleCode}}
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-large">
+							<label>房源楼号：<span class="justify"></span></label>
+							<div class="form-field">
+								{{houseInfo.buildingNo}}
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label> 参考售价：<span class="justify"></span></label>
+							<div class="form-field">
+								{{houseInfo.orginalPrice}}<span class="hasUnitInput_unit">元</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label> 参考月供：<span class="justify"></span></label>
+							<div class="form-field">
+								{{houseInfo.monthlyPayment}}<span class="hasUnitInput_unit">元</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label>首付：<span class="justify"></span></label>
+							<div class="form-field">
+								{{houseInfo.downPayment}}<span class="hasUnitInput_unit">元起</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-large">
+							<label>户型朝向：<span class="justify"></span></label>
+							<div class="form-field">
+								{{houseInfo.face}}
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-large">
+							<label>楼层：<span class="justify"></span></label>
+							<div class="form-field">
+								{{houseInfo.maxFloor}}<span>层/共</span>{{houseInfo.floor}}<span>层</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label> 住房面积：<span class="justify"></span></label>
+							<div class="form-field">
+								{{houseInfo.area}}<span class="hasUnitInput_unit">平米</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-large">
+							<label>装修：<span class="justify"></span></label>
+							<div class="form-field">
+								{{houseInfo.decoration}}
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label class="label-long">储藏室面积：<span class="justify"></span></label>
+							<div class="form-field">
+								{{houseInfo.basementSquare}}<span class="hasUnitInput_unit">平米</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label>车位：<span class="justify"></span></label>
+							<div class="form-field">
+								{{houseInfo.parkingLotPrice}}<span class="hasUnitInput_unit">万元</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label>车库面积：<span class="justify"></span></label>
+							<div class="form-field">
+								{{houseInfo.parkingPlaceArea}}<span class="hasUnitInput_unit">平米</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-broad">
+							<label class="label-super">房源图片上传：</label>
+							<div class="form-field">
+								<img ng-src="./{{p}}" ng-repeat="p in houseInfo.housePic" class="pic">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-broad">
+							<label>推荐理由：<span class="justify"></span></label>
+							<div class="form-field">
+								{{houseInfo.recommendReason}}
+							</div>
+						</div>
+					</div>
+				</form>
+				<div class="button-area">
+					<button type="button" class="btn goback" ng-click="ifNotPass = true">审核不通过</button>
+					<button type="button" class="btn save-continue" ng-click="pass()">审核通过</button>
+				</div>
+			</div>
+			<div class="refuse-box" ng-show="ifNotPass">
+				<img src="./image/close_1.png" ng-click="ifNotPass = false">
+				<div class="refuse-body">
+					<div>审核不通过原因：</div>
+					<textarea rows="10" cols="50" ng-model="backMessage"></textarea>
+				</div>
+				<div class="button-area">
+					<button type="button" class="btn save-continue" ng-click="submitReason()">提交</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

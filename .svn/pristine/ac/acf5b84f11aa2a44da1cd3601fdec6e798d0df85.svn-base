@@ -1,0 +1,462 @@
+package hitwh.fanghh.service.impl;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import hitwh.fanghh.bean.HouseStyleBean;
+import hitwh.fanghh.dao.HousestyleDao;
+import hitwh.fanghh.pojo.Housestyle;
+import hitwh.fanghh.service.HouseStyleService;
+import hitwh.fanghh.util.DictionaryString;
+import hitwh.fanghh.util.PageCalculate;
+import hitwh.fanghh.util.RandomUtil;
+
+@Service
+public class HouseStyleServiceImpl implements HouseStyleService
+{
+	@Autowired
+	private HttpSession session;
+
+	@Autowired
+	private HousestyleDao houseStyleDao;
+
+	@Override
+	public String addStyle(HouseStyleBean houseStyleBean)
+	{
+		Housestyle houseStyle = new Housestyle();
+
+		if (houseStyleBean == null)
+		{
+			return "服务器未收到数据";
+		}
+
+		houseStyle.setApplicationStatus(DictionaryString.APPLICATION_WAIT);// 房屋状态：待上架
+		houseStyle.setAuditNotPassReason(null);
+		houseStyle.setAuditStatus(null);// 审核状态无
+		houseStyle.setBuildingId(houseStyleBean.getBuildingId());// 不得更改所属楼盘状态
+		houseStyle.setDownPayment(houseStyleBean.getDownPayment());
+		houseStyle.setHouseStyle(houseStyleBean.getHouseStyleCode());
+		houseStyle.setIsCooperated(houseStyleBean.getIsCooperated());
+		houseStyle.setRecommendReason(houseStyleBean.getRecommendReason());
+		houseStyle.setReferenceMonthlyPayments(houseStyleBean.getReferenceMonthlyPayments());
+		houseStyle.setReferencePrice(houseStyleBean.getReferencePrice());
+
+		String style = houseStyleBean.getStyle();
+		if (style != null)
+		{
+			try
+			{
+				String styles[] = style.split(",");
+				houseStyle.setRoom(Integer.parseInt(styles[0]));
+				houseStyle.setHall(Integer.parseInt(styles[1]));
+				houseStyle.setRestroom(Integer.parseInt(styles[2]));
+			} catch (Exception e)
+			{
+				return "室厅位参数错误";
+			}
+
+		} else
+		{
+			return "室厅位参数缺失";
+		}
+
+		// 图片URL保存在session中
+		Object specialitiesPic = session.getAttribute("specialitiesPic");
+		if (specialitiesPic != null)
+		{
+			houseStyle.setSpecialitiesPic(specialitiesPic.toString());
+		}
+
+		houseStyle.setStyleArea(houseStyleBean.getStyleArea());
+		houseStyle.setStyleDescription(houseStyleBean.getStyleDescription());
+		houseStyle.setStyleId(houseStyleBean.getStyleId());
+
+		// 图片URL保存在session中
+		Object stylePic = session.getAttribute("stylePic");
+		if (stylePic != null)
+		{
+			houseStyle.setStylePic(stylePic.toString());
+		}
+
+		int res = houseStyleDao.insertSelective(houseStyle);
+
+		// 清除session中的信息
+		session.removeAttribute("specialitiesPic");
+		session.removeAttribute("stylePic");
+
+		if (res == 1)
+		{
+			return "success";
+		} else
+		{
+			return "数据库更新失败，res：" + res;
+		}
+	}
+
+	@Override
+	public String updateStyle(HouseStyleBean houseStyleBean)
+	{
+		Housestyle houseStyle = new Housestyle();
+
+		if (houseStyleBean == null)
+		{
+			return "服务器未收到数据";
+		}
+
+		if(houseStyle.getApplicationStatus().equals(DictionaryString.APPLICATION_ON_SALE))
+		{
+			houseStyle.setApplicationStatus(DictionaryString.APPLICATION_WAIT);//修改房源信息后变为待上架状态
+		}
+		if(houseStyle.getApplicationStatus().equals(DictionaryString.APPLICATION_OFF_SALE))
+		{
+			houseStyle.setApplicationStatus(DictionaryString.ON_SALE_ALREADY);
+		}
+		houseStyle.setAuditNotPassReason(null);
+		houseStyle.setAuditStatus(null);// 不在此接口更新审核状态
+		houseStyle.setBuildingId(null);// 不得更改所属楼盘状态
+		houseStyle.setDownPayment(houseStyleBean.getDownPayment());
+		houseStyle.setHouseStyle(houseStyleBean.getHouseStyleCode());
+		houseStyle.setIsCooperated(houseStyleBean.getIsCooperated());
+		houseStyle.setRecommendReason(houseStyleBean.getRecommendReason());
+		houseStyle.setReferenceMonthlyPayments(houseStyleBean.getReferenceMonthlyPayments());
+		houseStyle.setReferencePrice(houseStyleBean.getReferencePrice());
+
+		String style = houseStyleBean.getStyle();
+		if (style != null)
+		{
+			try
+			{
+				String styles[] = style.split(",");
+				houseStyle.setRoom(Integer.parseInt(styles[0]));
+				houseStyle.setHall(Integer.parseInt(styles[1]));
+				houseStyle.setRestroom(Integer.parseInt(styles[2]));
+			} catch (Exception e)
+			{
+				return "室厅位参数错误";
+			}
+
+		} else
+		{
+			houseStyle.setRoom(null);
+			houseStyle.setHall(null);
+			houseStyle.setRestroom(null);
+		}
+
+		// 若上传新图片必须回传要保留的图片URL，否则视为删除
+		Object specialitiesPic = session.getAttribute("specialitiesPic");
+		if (specialitiesPic != null)
+		{
+			if (houseStyleBean.getSpecialitiesPic() != null)
+			{
+				houseStyleBean.setSpecialitiesPic(houseStyleBean.getSpecialitiesPic() + "," + specialitiesPic);
+			} else
+			{
+				houseStyleBean.setSpecialitiesPic(specialitiesPic.toString());
+			}
+		}
+		houseStyle.setSpecialitiesPic(houseStyleBean.getSpecialitiesPic());// 图片使用覆盖的方式，不是追加
+		houseStyle.setStyleArea(houseStyleBean.getStyleArea());
+		houseStyle.setStyleDescription(houseStyleBean.getStyleDescription());
+		houseStyle.setStyleId(houseStyleBean.getStyleId());
+
+		// 若上传新图片必须回传要保留的图片URL，否则视为删除
+		Object stylePic = session.getAttribute("stylePic");
+		if (stylePic != null)
+		{
+			if (houseStyleBean.getStylePic() != null)
+			{
+				houseStyleBean.setStylePic(houseStyleBean.getStylePic() + "," + stylePic);
+			} else
+			{
+				houseStyleBean.setStylePic(stylePic.toString());
+			}
+		}
+		houseStyle.setStylePic(houseStyleBean.getStylePic());// 图片使用覆盖的方式，不是追加
+
+		int res = houseStyleDao.updateByPrimaryKeySelective(houseStyle);
+
+		// 清除session中的信息
+		session.removeAttribute("specialitiesPic");
+		session.removeAttribute("stylePic");
+
+		if (res == 1)
+		{
+			return "success";
+		} else
+		{
+			return "数据库更新失败，res：" + res;
+		}
+	}
+
+	@Override
+	public HouseStyleBean getStyleByStyleId(int styleId)
+	{
+		Housestyle housestyle = houseStyleDao.selectByPrimaryKey(styleId);
+		HouseStyleBean houseStyleBean = null;
+		if (housestyle != null)
+		{
+			houseStyleBean = new HouseStyleBean();
+
+			houseStyleBean.setApplicationStatus(housestyle.getApplicationStatus());
+			houseStyleBean.setAuditNotPassReason(housestyle.getAuditNotPassReason());
+			houseStyleBean.setAuditStatus(housestyle.getAuditStatus());
+			houseStyleBean.setBuildingId(housestyle.getBuildingId());
+			houseStyleBean.setIsCooperated(housestyle.getIsCooperated());
+			houseStyleBean.setDownPayment(housestyle.getDownPayment());
+			houseStyleBean.setHouseStyleCode(housestyle.getHouseStyle());
+			houseStyleBean.setRecommendReason(housestyle.getRecommendReason());
+			houseStyleBean.setReferenceMonthlyPayments(housestyle.getReferenceMonthlyPayments());
+			houseStyleBean.setReferencePrice(housestyle.getReferencePrice());
+			houseStyleBean.setSpecialitiesPic(housestyle.getSpecialitiesPic());
+
+			houseStyleBean.setStyle(housestyle.getRoom() + "," + housestyle.getHall() + "," + housestyle.getRestroom());
+
+			houseStyleBean.setStyleArea(housestyle.getStyleArea());
+			houseStyleBean.setStyleDescription(housestyle.getStyleDescription());
+			houseStyleBean.setStyleId(housestyle.getStyleId());
+			houseStyleBean.setStylePic(housestyle.getStylePic());
+		}
+
+		return houseStyleBean;
+	}
+
+	@Override
+	public List<HouseStyleBean> getStyleByBuildingId(int buildingId, int pageMaxNum, int pageNo)
+	{
+		if (pageMaxNum < 1)
+		{
+			pageMaxNum = 1;
+		}
+		int pageNum = getHouseStylePageNumByBuildingId(buildingId, pageMaxNum);
+		PageCalculate pageCalculate = new PageCalculate(pageNum, pageMaxNum, pageNo);
+		String applicationStatus = null;
+
+		// 管理员看不见待上架的户型
+		Object userRoleCode = session.getAttribute("role");
+		if (DictionaryString.USER_ADMIN.equals(userRoleCode))
+		{
+			applicationStatus = DictionaryString.APPLICATION_WAIT;
+		}
+
+		List<Housestyle> houseStyleList = houseStyleDao.selectByBuildingId(buildingId, pageCalculate,
+				applicationStatus);
+
+		List<HouseStyleBean> houseStyleBeanList = new ArrayList<HouseStyleBean>();
+		for (Housestyle housestyle : houseStyleList)
+		{
+			HouseStyleBean houseStyleBean = new HouseStyleBean();
+
+			houseStyleBean.setApplicationStatus(housestyle.getApplicationStatus());
+			houseStyleBean.setAuditNotPassReason(housestyle.getAuditNotPassReason());
+			houseStyleBean.setAuditStatus(housestyle.getAuditStatus());
+			houseStyleBean.setBuildingId(housestyle.getBuildingId());
+			houseStyleBean.setIsCooperated(housestyle.getIsCooperated());
+			houseStyleBean.setDownPayment(housestyle.getDownPayment());
+			houseStyleBean.setHouseStyleCode(housestyle.getHouseStyle());
+			houseStyleBean.setRecommendReason(housestyle.getRecommendReason());
+			houseStyleBean.setReferenceMonthlyPayments(housestyle.getReferenceMonthlyPayments());
+			houseStyleBean.setReferencePrice(housestyle.getReferencePrice());
+			houseStyleBean.setSpecialitiesPic(housestyle.getSpecialitiesPic());
+
+			houseStyleBean.setStyle(housestyle.getRoom() + "," + housestyle.getHall() + "," + housestyle.getRestroom());
+
+			houseStyleBean.setStyleArea(housestyle.getStyleArea());
+			houseStyleBean.setStyleDescription(housestyle.getStyleDescription());
+			houseStyleBean.setStyleId(housestyle.getStyleId());
+			houseStyleBean.setStylePic(housestyle.getStylePic());
+
+			houseStyleBeanList.add(houseStyleBean);
+		}
+
+		return houseStyleBeanList;
+	}
+
+	@Override
+	public int getHouseStylePageNumByBuildingId(int buildingId, int pageMaxNum)
+	{
+		if (pageMaxNum < 1)
+		{
+			pageMaxNum = 1;
+		}
+		int houseStyleNum = houseStyleDao.countHouseStyleByBuildingId(buildingId);
+		return houseStyleNum % pageMaxNum == 0 ? houseStyleNum / pageMaxNum : houseStyleNum / pageMaxNum + 1;
+	}
+
+	@Override
+	public boolean uploadSpecialitiesPic(MultipartFile file)
+	{
+		final String[] acceptType =
+		{ "image/jpeg", "image/bmp", "image/png", "image/gif" };
+		String basePath = session.getServletContext().getRealPath("/");// 工程路径
+		String dirPath = "/pic/";// 图片文件夹路径
+		String path = basePath + dirPath;
+		if (file.isEmpty())
+		{
+			return false;
+		}
+
+		if (!Arrays.asList(acceptType).contains(file.getContentType()))
+		{
+			return false;
+		}
+
+		try
+		{
+			File writeFile = null;
+			String fileName = file.getOriginalFilename();
+			while (writeFile == null)
+			{
+				// 获取文件扩展名，文件将取32位随机文件名，随机范围[0-9]&&[a-z]&&[A-Z]
+				String[] fileNames = fileName.split("\\.");
+				fileName = RandomUtil.getRandomEnAndNumString(32) + "." + fileNames[fileNames.length - 1];
+				writeFile = new File(path + fileName);
+			}
+			file.transferTo(writeFile);
+			// 将文件名路径放在session中，准备插入数据库
+			Object specialitiesPic = session.getAttribute("specialitiesPic");
+			if (specialitiesPic == null)
+			{
+				session.setAttribute("specialitiesPic", dirPath + fileName);
+			} else
+			{
+				session.setAttribute("specialitiesPic", specialitiesPic + "," + dirPath + fileName);
+			}
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public boolean uploadStylePic(MultipartFile file)
+	{
+		final String[] acceptType =
+		{ "image/jpeg", "image/bmp", "image/png", "image/gif" };
+		String basePath = session.getServletContext().getRealPath("/");
+		String dirPath = "/pic/";
+		String path = basePath + dirPath;
+		if (file.isEmpty())
+		{
+			return false;
+		}
+
+		if (!Arrays.asList(acceptType).contains(file.getContentType()))
+		{
+			return false;
+		}
+
+		try
+		{
+			File writeFile = null;
+			String fileName = file.getOriginalFilename();
+			do
+			{
+				String[] fileNames = fileName.split("\\.");
+				fileName = RandomUtil.getRandomEnAndNumString(32) + "." + fileNames[fileNames.length - 1];
+				writeFile = new File(path + fileName);
+			} while (writeFile.exists());
+			file.transferTo(writeFile);
+			Object stylePic = session.getAttribute("stylePic");
+			if (stylePic == null)
+			{
+				session.setAttribute("stylePic", dirPath + fileName);
+			} else
+			{
+				session.setAttribute("stylePic", stylePic + "," + dirPath + fileName);
+			}
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public String updateHouseStyleApplicationStatus(int styleId, boolean status)
+	{
+		Housestyle houseStyle = houseStyleDao.selectByPrimaryKey(styleId);
+
+		if (houseStyle == null)
+		{
+			return "未找到户型信息，错误的styleId：" + styleId;
+		}
+
+		String applicationStatus = null;
+		if (status)
+		{
+			applicationStatus = DictionaryString.APPLICATION_ON_SALE;// 申请上架
+		} else
+		{
+			applicationStatus = DictionaryString.APPLICATION_OFF_SALE;// 申请下架
+		}
+
+		int res1 = houseStyleDao.updateApplicationStatus(styleId, applicationStatus);
+		int res2 = houseStyleDao.updateAuditStatus(styleId, DictionaryString.AUDIT_WAIT, null);// 等待审核
+
+		if (res1 == 1 && res2 == 1)
+		{
+			return "success";
+		} else
+		{
+			return "数据库错误：updateApplicationStatus=" + res1 + "，updateAuditStatus=" + res2;
+		}
+	}
+
+	@Override
+	public String updateHouseStyleAuditStatus(int styleId, boolean status, String auditNotPassReason)
+	{
+		Housestyle houseStyle = houseStyleDao.selectByPrimaryKey(styleId);
+
+		if (houseStyle == null)
+		{
+			return "未找到户型信息，错误的styleId：" + styleId;
+		}
+
+		String auditStatus = null, applicationStatus = null;
+		applicationStatus = houseStyle.getApplicationStatus();
+
+		if (status)
+		{
+			auditStatus = DictionaryString.AUDIT_PASS;// 审核通过
+			auditNotPassReason = null;
+			if (DictionaryString.APPLICATION_ON_SALE.equals(applicationStatus))
+			{
+				// 上架
+				applicationStatus = DictionaryString.ON_SALE_ALREADY;
+			} else if (DictionaryString.APPLICATION_OFF_SALE.equals(applicationStatus))
+			{
+				// 下架
+				applicationStatus = DictionaryString.OFF_SALE_ALREADY;
+			} else
+			{
+				return "数据库错误，未知的字典码：" + applicationStatus;
+			}
+		} else
+		{
+			auditStatus = DictionaryString.AUDIT_NOT_PASS;
+		}
+
+		int res1 = houseStyleDao.updateAuditStatus(styleId, auditStatus, auditNotPassReason);
+		int res2 = houseStyleDao.updateApplicationStatus(styleId, applicationStatus);
+
+		if (res1 == 1 && res2 == 1)
+		{
+			return "success";
+		} else
+		{
+			return "数据库更新错误：updateApplicationStatus=" + res1 + "，updateAuditStatus=" + res2;
+		}
+	}
+
+}

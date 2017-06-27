@@ -1,0 +1,96 @@
+<div class="content_area" ng-controller="wActivity">
+	<div class="content_area_fullpage">
+		<div class="content_area_title">
+			<h2>发布活动</h2>
+		</div>
+		<div class="content_main">
+			<div class="hint" ng-show="ifFail">
+				<p class="hint_text">审核不通过原因：{{typeInfo.auditNotPassReason}}</p>
+			</div>
+			<div class="inputArea">
+				<h3>查看活动</h3>
+				<form>
+					<div class="row">
+						<div class="form-item form-item-large">
+							<label for="username">活动类型：<span class="justify"></span></label>
+							<div class="form-field">
+								{{aTypeName}}
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label for="username">活动地区：<span class="justify"></span></label>
+							<div class="form-field">
+								{{typeInfo.referencePrice}}
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label for="username"> 活动楼盘：<span class="justify"></span></label>
+							<div class="form-field">
+								{{typeInfo.referenceMonthlyPayments}}<span class="hasUnitInput_unit">元</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label for="username"> 活动名称：<span class="justify"></span></label>
+							<div class="form-field">
+								{{typeInfo.downPayment}}<span class="hasUnitInput_unit">元起</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label for="username">活动房源：<span class="justify"></span></label>
+							<div class="form-field">
+								{{typeInfo.styleArea}}<span class="hasUnitInput_unit">平米</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-large">
+							<label>购房特惠：<span class="justify"></span></label>
+							<div class="form-field">
+								{{typeInfo.styleDescription[0]}} {{typeInfo.styleDescription[1]}} {{typeInfo.styleDescription[2]}} {{typeInfo.styleDescription[3]}}
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-large">
+							<label class="label-long">开始时间：<span class="justify"></span></label>
+							<div class="form-field">
+								{{typeInfo.stylePic}}
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-large">
+							<label>结束时间：</label>
+							<div class="form-field">
+								{{typeInfo.specialitiesPic}}
+							</div>
+						</div>
+					</div>
+				</form>
+				<div class="button-area">
+					<button type="button" class="btn goback" ng-click="ifNotPass = true">审核不通过</button>
+					<button type="button" class="btn save-continue" ng-click="pass()">审核通过</button>
+				</div>
+			</div>
+			<div class="refuse-box" ng-show="ifNotPass">
+				<img src="./image/close_1.png" ng-click="ifNotPass = false">
+				<div class="refuse-body">
+					<div>审核不通过原因：</div>
+					<textarea rows="10" cols="50" ng-model="backMessage"></textarea>
+				</div>
+				<div class="button-area">
+					<button type="button" class="btn save-continue" ng-click="submitReason()">提交</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	

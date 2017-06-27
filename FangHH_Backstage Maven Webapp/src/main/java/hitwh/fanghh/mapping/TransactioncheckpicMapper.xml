@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.TransactioncheckpicDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Transactioncheckpic">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="check_id" jdbcType="INTEGER" property="checkId" />
+    <result column="evidence_source" jdbcType="VARCHAR" property="evidenceSource" />
+    <result column="evidence_pic" jdbcType="VARCHAR" property="evidencePic" />
+    <result column="upload_time" jdbcType="TIMESTAMP" property="uploadTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, check_id, evidence_source, evidence_pic, upload_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.TransactionCheckPic
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.TransactionCheckPic
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Transactioncheckpic">
+    insert into dbo.TransactionCheckPic (id, check_id, evidence_source, 
+      evidence_pic, upload_time)
+    values (#{id,jdbcType=INTEGER}, #{checkId,jdbcType=INTEGER}, #{evidenceSource,jdbcType=VARCHAR}, 
+      #{evidencePic,jdbcType=VARCHAR}, #{uploadTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Transactioncheckpic">
+    insert into dbo.TransactionCheckPic
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="checkId != null">
+        check_id,
+      </if>
+      <if test="evidenceSource != null">
+        evidence_source,
+      </if>
+      <if test="evidencePic != null">
+        evidence_pic,
+      </if>
+      <if test="uploadTime != null">
+        upload_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="checkId != null">
+        #{checkId,jdbcType=INTEGER},
+      </if>
+      <if test="evidenceSource != null">
+        #{evidenceSource,jdbcType=VARCHAR},
+      </if>
+      <if test="evidencePic != null">
+        #{evidencePic,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadTime != null">
+        #{uploadTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Transactioncheckpic">
+    update dbo.TransactionCheckPic
+    <set>
+      <if test="checkId != null">
+        check_id = #{checkId,jdbcType=INTEGER},
+      </if>
+      <if test="evidenceSource != null">
+        evidence_source = #{evidenceSource,jdbcType=VARCHAR},
+      </if>
+      <if test="evidencePic != null">
+        evidence_pic = #{evidencePic,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadTime != null">
+        upload_time = #{uploadTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Transactioncheckpic">
+    update dbo.TransactionCheckPic
+    set check_id = #{checkId,jdbcType=INTEGER},
+      evidence_source = #{evidenceSource,jdbcType=VARCHAR},
+      evidence_pic = #{evidencePic,jdbcType=VARCHAR},
+      upload_time = #{uploadTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

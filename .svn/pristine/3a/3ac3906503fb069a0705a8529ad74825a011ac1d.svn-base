@@ -1,0 +1,66 @@
+
+<!-- <link type="text/css" rel="stylesheet" href="../frame.css"/> -->
+<link type="text/css" rel="stylesheet" href="./css/frame.css"/>
+<link type="text/css" rel="stylesheet" href="./css/inputStyle.css"/>
+<link type="text/css" rel="stylesheet" href="./css/list_dynamicManagement.css"/>
+
+<div class="content" ng-controller="dynamicManagement">
+	<p class="content_title">威海华润湾九里</p>
+
+	<div class="table_area">
+		<div><buildingmanagenavigator nowpageid="8" /></div>
+
+		<div class="table_content">
+			<div id="table_before">
+				<button class="before-input">发布新动态</button>
+			</div>
+			<table class="building_table">
+				<tr class="line0">
+					<td class="checkbox"></td>
+					<td class="title">标题</td>
+					<td class="time">发布时间</td>
+					<td class="operation" colspan="2">操作</td>
+				</tr>
+				<tr class="line1" ng-repeat="">
+					<td class="checkbox">
+						<input id="{{ i.userId }}" class="checkbox-input" type="checkbox"  name="tr-select" ng-model="x" ng-checked="master" ng-click="chk(i.userId, x)">
+					</td>
+					<td class="title">华润威海湾九里四期新品即将上市，一、二期已成熟入住，三期交房在即</td>
+					<td class="time">2016-07-20 08:30:20</td>
+					<td class="operation1">编辑</td>
+					<td class="operation2">删除</td>
+				</tr>
+
+				<tr class="table-bottom">
+					<td class="checkbox-bottom">
+						<input type="checkbox" name="tr-select" ng-model="master" ng-click="all(master,tesarry)">全选
+					</td>
+					<td class="up-select">上架所选</td>
+					<td class="down-select">下架所选</td>
+				</tr>
+
+			</table>
+
+			<div class="page-num">
+				<p class="first" ng-click="changePage(1)" ng-show="page.pageNumber != 1">首页</p>
+				<p class="before" ng-click="changePage(page.pageNumber - 1)" ng-show="page.pageNumber - 1 > 0">上一页</p>
+				<p class="page-1" ng-click="changePage(pageButton[1])" ng-show="pageButton[1] != null" ng-class="{nowpage: pageButton[1] == page.pageNumber}">{{ pageButton[1] }}</p>
+				<p class="page-2" ng-click="changePage(pageButton[2])" ng-show="pageButton[2] != null" ng-class="{nowpage: pageButton[2] == page.pageNumber}">{{ pageButton[2] }}</p>
+				<p class="page-3" ng-click="changePage(pageButton[3])" ng-show="pageButton[3] != null" ng-class="{nowpage: pageButton[3] == page.pageNumber}">{{ pageButton[3] }}</p>
+				<p class="page-4" ng-click="changePage(pageButton[4])" ng-show="pageButton[4] != null" ng-class="{nowpage: pageButton[4] == page.pageNumber}">{{ pageButton[4] }}</p>
+				<p class="page-5" ng-click="changePage(pageButton[5])" ng-show="pageButton[5] != null" ng-class="{nowpage: pageButton[5] == page.pageNumber}">{{ pageButton[5] }}</p>
+				<p class="next" ng-click="changePage(page.pageNumber + 1)" ng-show="page.pageNumber + 1 <= page.pageMax">下一页</p>
+				<p class="last" ng-click="changePage(page.pageMax)" ng-show="page.pageNumber != page.pageMax">末页</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+<script type="text/javascript">
+
+</script>
+<script src="../script.js"></script>
+</body>

@@ -1,0 +1,124 @@
+package hitwh.fanghh.service;
+
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
+import hitwh.fanghh.bean.HouseStyleBean;
+
+public interface HouseStyleService
+{
+	/**
+	 * 添加新户型
+	 *
+	 * @Title: addStyle
+	 * @version:
+	 * @author: ZY
+	 * 
+	 * @param houseStyleBean
+	 * @return "success",成功
+	 */
+	public String addStyle(HouseStyleBean houseStyleBean);
+
+	/**
+	 * 更新户型信息
+	 *
+	 * @Title: updateStyle
+	 * @version:
+	 * @author: ZY
+	 * 
+	 * @param houseStyleBean
+	 * @return "success",成功
+	 */
+	public String updateStyle(HouseStyleBean houseStyleBean);
+
+	/**
+	 * 获取单个户型信息
+	 *
+	 * @Title: getStyleByStyleId
+	 * @version:
+	 * @author: ZY
+	 * 
+	 * @param styleId
+	 * @return "success",成功
+	 */
+	public HouseStyleBean getStyleByStyleId(int styleId);
+
+	/**
+	 * 根据楼盘获取户型信息
+	 *
+	 * @Title: getStyleByBuildingId
+	 * @version:
+	 * @author: ZY
+	 * 
+	 * @param buildingId楼盘id
+	 * @param pageMaxNum每页最大数量
+	 * @param pageNo页号，起始为1
+	 * @return户型表
+	 */
+	public List<HouseStyleBean> getStyleByBuildingId(int buildingId, int pageMaxNum, int pageNo);
+
+	/**
+	 * 获取户型列表页数
+	 *
+	 * @Title: getHouseStylePageNumByBuildingId
+	 * @version:
+	 * @author: ZY
+	 * 
+	 * @param buildingId楼盘id
+	 * @param pageMaxNum每页最大数量
+	 * @return
+	 */
+	public int getHouseStylePageNumByBuildingId(int buildingId, int pageMaxNum);
+
+	/**
+	 * 户型特色图上传
+	 *
+	 * @Title: uploadSpecialitiesPic
+	 * @version:
+	 * @author: ZY
+	 * 
+	 * @param file
+	 * @return
+	 */
+	public String uploadSpecialitiesPic(MultipartFile file);
+
+	/**
+	 * 户型图上传
+	 *
+	 * @Title: uploadStylePic
+	 * @version:
+	 * @author: ZY
+	 * 
+	 * @param file
+	 * @return
+	 */
+	public String uploadStylePic(MultipartFile file);
+
+	/**
+	 * 户型申请上下架
+	 *
+	 * @Title: updateHouseStyleApplicationStatus
+	 * @version:
+	 * @author: ZY
+	 * 
+	 * @param styleId
+	 * @param status为true上架false下架
+	 * @return
+	 */
+	public String updateHouseStyleApplicationStatus(int styleId, boolean status);
+
+	/**
+	 * 审核
+	 *
+	 * @Title: updateHouseStyleAuditStatus
+	 * @version:
+	 * @author: ZY
+	 * 
+	 * @param styleId
+	 * @param status为true通过false不通过
+	 * @param auditNotPassReason未通过原因
+	 * @return
+	 */
+	public String updateHouseStyleAuditStatus(int styleId, boolean status, String auditNotPassReason);
+}

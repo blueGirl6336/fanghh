@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.ConsultantbuildingrelDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Consultantbuildingrel">
+    <id column="re_id" jdbcType="INTEGER" property="reId" />
+    <result column="building_id" jdbcType="INTEGER" property="buildingId" />
+    <result column="consultant_id" jdbcType="INTEGER" property="consultantId" />
+    <result column="bind_time" jdbcType="TIMESTAMP" property="bindTime" />
+    <result column="unbind_time" jdbcType="TIMESTAMP" property="unbindTime" />
+    <result column="is_unbound" jdbcType="BIT" property="isUnbound" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    re_id, building_id, consultant_id, bind_time, unbind_time, is_unbound
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.ConsultantBuildingRel
+    where re_id = #{reId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.ConsultantBuildingRel
+    where re_id = #{reId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Consultantbuildingrel">
+    insert into dbo.ConsultantBuildingRel (re_id, building_id, consultant_id, 
+      bind_time, unbind_time, is_unbound
+      )
+    values (#{reId,jdbcType=INTEGER}, #{buildingId,jdbcType=INTEGER}, #{consultantId,jdbcType=INTEGER}, 
+      #{bindTime,jdbcType=TIMESTAMP}, #{unbindTime,jdbcType=TIMESTAMP}, #{isUnbound,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Consultantbuildingrel">
+    insert into dbo.ConsultantBuildingRel
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="reId != null">
+        re_id,
+      </if>
+      <if test="buildingId != null">
+        building_id,
+      </if>
+      <if test="consultantId != null">
+        consultant_id,
+      </if>
+      <if test="bindTime != null">
+        bind_time,
+      </if>
+      <if test="unbindTime != null">
+        unbind_time,
+      </if>
+      <if test="isUnbound != null">
+        is_unbound,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="reId != null">
+        #{reId,jdbcType=INTEGER},
+      </if>
+      <if test="buildingId != null">
+        #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="consultantId != null">
+        #{consultantId,jdbcType=INTEGER},
+      </if>
+      <if test="bindTime != null">
+        #{bindTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unbindTime != null">
+        #{unbindTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isUnbound != null">
+        #{isUnbound,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Consultantbuildingrel">
+    update dbo.ConsultantBuildingRel
+    <set>
+      <if test="buildingId != null">
+        building_id = #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="consultantId != null">
+        consultant_id = #{consultantId,jdbcType=INTEGER},
+      </if>
+      <if test="bindTime != null">
+        bind_time = #{bindTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unbindTime != null">
+        unbind_time = #{unbindTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isUnbound != null">
+        is_unbound = #{isUnbound,jdbcType=BIT},
+      </if>
+    </set>
+    where re_id = #{reId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Consultantbuildingrel">
+    update dbo.ConsultantBuildingRel
+    set building_id = #{buildingId,jdbcType=INTEGER},
+      consultant_id = #{consultantId,jdbcType=INTEGER},
+      bind_time = #{bindTime,jdbcType=TIMESTAMP},
+      unbind_time = #{unbindTime,jdbcType=TIMESTAMP},
+      is_unbound = #{isUnbound,jdbcType=BIT}
+    where re_id = #{reId,jdbcType=INTEGER}
+  </update>
+</mapper>

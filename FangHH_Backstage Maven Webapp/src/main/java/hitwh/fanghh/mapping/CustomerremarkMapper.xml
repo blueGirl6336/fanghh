@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.CustomerremarkDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Customerremark">
+    <id column="remark_id" jdbcType="INTEGER" property="remarkId" />
+    <result column="building_id" jdbcType="INTEGER" property="buildingId" />
+    <result column="customer_id" jdbcType="INTEGER" property="customerId" />
+    <result column="customer_remark" jdbcType="VARCHAR" property="customerRemark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    remark_id, building_id, customer_id, customer_remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.CustomerRemark
+    where remark_id = #{remarkId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.CustomerRemark
+    where remark_id = #{remarkId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Customerremark">
+    insert into dbo.CustomerRemark (remark_id, building_id, customer_id, 
+      customer_remark)
+    values (#{remarkId,jdbcType=INTEGER}, #{buildingId,jdbcType=INTEGER}, #{customerId,jdbcType=INTEGER}, 
+      #{customerRemark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Customerremark">
+    insert into dbo.CustomerRemark
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="remarkId != null">
+        remark_id,
+      </if>
+      <if test="buildingId != null">
+        building_id,
+      </if>
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="customerRemark != null">
+        customer_remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="remarkId != null">
+        #{remarkId,jdbcType=INTEGER},
+      </if>
+      <if test="buildingId != null">
+        #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="customerRemark != null">
+        #{customerRemark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Customerremark">
+    update dbo.CustomerRemark
+    <set>
+      <if test="buildingId != null">
+        building_id = #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="customerRemark != null">
+        customer_remark = #{customerRemark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where remark_id = #{remarkId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Customerremark">
+    update dbo.CustomerRemark
+    set building_id = #{buildingId,jdbcType=INTEGER},
+      customer_id = #{customerId,jdbcType=INTEGER},
+      customer_remark = #{customerRemark,jdbcType=VARCHAR}
+    where remark_id = #{remarkId,jdbcType=INTEGER}
+  </update>
+</mapper>

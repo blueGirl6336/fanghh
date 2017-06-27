@@ -1,0 +1,23 @@
+/**
+* fanghhms Module
+*
+* Description
+*/
+angular
+	.module('fanghhmsDirective', [])
+	.directive('buildingmanagenavigator', function(){
+		// Runs during compile
+		return {
+			// name: '',
+			// terminal: true,
+			scope: {
+				nowpageid: '='
+			},
+			restrict: 'EA', // E = Element, A = Attribute, C = Class, M = Comment
+			templateUrl: 'template/buildingmanageavigator.html',
+			replace: true,
+			link: function($scope) {
+				
+			}
+		};
+	});

@@ -1,0 +1,266 @@
+/**     
+ * @discription {楼盘管理接口文件}
+ * @author wangxinjie       
+ * @created 2016年11月6日 下午9:25:22    
+ */
+
+package hitwh.fanghh.controller;
+
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
+import hitwh.fanghh.annotation.RequiredPermission;
+import hitwh.fanghh.pojo.Building;
+import hitwh.fanghh.pojo.Housepricetrend;
+import hitwh.fanghh.pojo.Surroundfacility;
+import hitwh.fanghh.service.BuildingComment;
+import hitwh.fanghh.service.BuildingService;
+import hitwh.fanghh.util.DictionaryString;
+import hitwh.fanghh.util.ResponseMapUtil;
+
+/**
+ * Title: BuildingController.java Description: 描述
+ * 
+ * @author wangxinjie
+ * @created 2016年11月6日 下午9:25:22
+ */
+@Controller
+@RequestMapping(value = "building")
+public class BuildingController
+{
+	@Autowired
+	private BuildingService buildingService;
+
+	@Autowired
+	private BuildingComment buildingComment;
+
+	@RequestMapping("/getAllRegion")
+	@ResponseBody
+	public Map<String, Object> getAllRegion(HttpSession session)
+	{
+		return ResponseMapUtil.responseListMap(buildingService.getAllRegion());
+	}
+	
+	@RequestMapping("/getAllDeveloper")
+	@ResponseBody
+	public Map<String, Object> getAllDeveloper(HttpSession session)
+	{
+		return ResponseMapUtil.responseListMap(buildingService.getAllDeveloper());
+	}
+	
+	@RequestMapping("/getAllBuilding")
+	@ResponseBody
+	public Map<String, Object> getAllBuilding(HttpSession session)
+	{
+		return ResponseMapUtil.responseListMap(buildingService.getAllBuilding());
+	}
+
+	@RequestMapping("/getBuildingInfo")
+	@ResponseBody
+	public Map<String, Object> getBuildingInfo(@RequestParam int buildingId, HttpSession session)
+	{
+		return ResponseMapUtil.responseSuccess(buildingService.getBuildingInfo(buildingId));
+	}
+
+	@RequestMapping("/addBuilding")
+	@ResponseBody
+	public Map<String, Object> addBuilding(@RequestBody Building building)
+	{
+		int res = 0;
+		if (building == null)
+		{
+			return ResponseMapUtil.responseError("数据异常,添加失败");
+		}
+		res = buildingService.addBuilding(building);
+		if (res != 0)
+		{
+			return ResponseMapUtil.responseSuccess(res);
+		} else
+		{
+			return ResponseMapUtil.responseError("数据异常,添加失败");
+		}
+	}
+
+	/**
+	 * 楼盘图片上传
+	 *
+	 * @Title: uploadBuildingPic
+	 * @version:
+	 * @author: wangxinjie
+	 * 
+	 * @param file
+	 * @return
+	 */
+	@RequestMapping("/uploadBuildingPic")
+	@ResponseBody
+	public Map<String, Object> uploadStylePic(MultipartFile file, @RequestParam String picType)
+	{
+		String res = buildingService.uploadStylePic(file, picType);
+		if (res != null)
+		{
+			return ResponseMapUtil.responseSuccess(res);
+		} else
+		{
+			return ResponseMapUtil.responseError(null);
+		}
+	}
+
+	@RequestMapping("/addSurround")
+	@ResponseBody
+	public Map<String, Object> addSurround(@RequestParam int buildingId, @RequestBody Surroundfacility surroundfacility)
+	{
+		boolean res = buildingService.addSurround(buildingId, surroundfacility);
+		if (res)
+		{
+			return ResponseMapUtil.responseSuccess(null);
+		} else
+		{
+			return ResponseMapUtil.responseError(null);
+		}
+	}
+
+	@RequestMapping("/updateBuilding")
+	@ResponseBody
+	public Map<String, Object> updateBuilding(@RequestBody Building building)
+	{
+		if (building == null)
+		{
+			return ResponseMapUtil.responseError("数据异常,添加失败");
+		}
+		if (buildingService.updateBuilding(building))
+		{
+			return ResponseMapUtil.responseSuccess("添加成功");
+		} else
+		{
+			return ResponseMapUtil.responseError("数据异常,添加失败");
+		}
+	}
+
+	@RequestMapping("/applicateBuildingOnSaleAndOffSale")
+	@ResponseBody
+	public Map<String, Object> applicateHouseOnSale(@RequestParam int buildingId, @RequestParam boolean applicationType)
+	{
+		int resultCode;
+		String buildingApplicationStatus = null;
+		if (applicationType)
+		{
+			buildingApplicationStatus = DictionaryString.APPLICATION_ON_SALE;
+		} else
+		{
+			buildingApplicationStatus = DictionaryString.APPLICATION_OFF_SALE;
+		}
+		resultCode = buildingService.applicateBuildingOffSaleByHouseId(buildingId, buildingApplicationStatus);
+		if (resultCode == 1)
+		{
+			return ResponseMapUtil.responseSuccess(resultCode);
+		} else
+		{
+			return ResponseMapUtil.responseError("楼盘申请上下架失败");
+		}
+	}
+
+	@RequiredPermission
+	@RequestMapping("/auditBuildingApplication")
+	@ResponseBody
+	public Map<String, Object> auditBuildingApplication(@RequestParam int buildingId, @RequestParam boolean auditResult,
+			@RequestParam String auditNotPassReason)
+	{
+		int resultCode;
+		String auditCode = null;
+		if (!auditResult)
+		{
+			auditCode = DictionaryString.AUDIT_NOT_PASS;
+			resultCode = buildingService.auditBuildingApplicationNotPass(buildingId, auditCode, auditNotPassReason);
+		} else
+		{
+			auditCode = DictionaryString.AUDIT_PASS;
+			resultCode = buildingService.auditBuildingApplicationPass(buildingId, auditCode);
+		}
+		if (resultCode == 1)
+		{
+			return ResponseMapUtil.responseSuccess("楼盘审核成功");
+		} else
+		{
+			return ResponseMapUtil.responseError("楼盘审核失败");
+		}
+	}
+
+	@RequestMapping("/getHouseTrend")
+	@ResponseBody
+	public Map<String, Object> getHouseTrend(@RequestParam int buildingId, HttpSession session)
+	{
+		return ResponseMapUtil.responseListMap(buildingService.selectHouseTrendByBuildingId(buildingId));
+	}
+
+	@RequestMapping("/addHousepricetrend")
+	@ResponseBody
+	public Map<String, Object> addHousepricetrend(@RequestBody Housepricetrend housepricetrend, HttpSession session)
+	{
+		if (housepricetrend == null)
+		{
+			return ResponseMapUtil.responseError("数据异常,添加失败");
+		}
+		if (buildingService.addHousePriceTrend(housepricetrend))
+		{
+			return ResponseMapUtil.responseSuccess("添加成功");
+		} else
+		{
+			return ResponseMapUtil.responseError("数据异常,添加失败");
+		}
+	}
+
+	@RequestMapping("/deleteHousepricetrend")
+	@ResponseBody
+	public Map<String, Object> deleteHousepricetrend(@RequestParam int trendId, HttpSession session)
+	{
+		if (buildingService.deleteHousePriceTrend(trendId))
+		{
+			return ResponseMapUtil.responseSuccess("删除成功");
+		} else
+		{
+			return ResponseMapUtil.responseError("数据异常,删除失败");
+		}
+	}
+
+	@RequestMapping("/updateHousepricetrend")
+	@ResponseBody
+	public Map<String, Object> updateHousepricetrend(@RequestBody Housepricetrend housepricetrend, HttpSession session)
+	{
+		if (buildingService.updateHousePriceTrend(housepricetrend))
+		{
+			return ResponseMapUtil.responseSuccess("删除成功");
+		} else
+		{
+			return ResponseMapUtil.responseError("数据异常,删除失败");
+		}
+	}
+
+	@RequestMapping("/selectBuildingcomment")
+	@ResponseBody
+	public Map<String, Object> selectBuildingcomment(@RequestParam int commentId, HttpSession session)
+	{
+		return ResponseMapUtil.responseObjectMap(buildingComment.selectBuildingComment(commentId));
+	}
+
+	@RequestMapping("/deleteBuildingcomment")
+	@ResponseBody
+	public Map<String, Object> deleteBuildingcomment(@RequestParam int commentId, HttpSession session)
+	{
+		if (buildingComment.deleteBuildingComment(commentId))
+		{
+			return ResponseMapUtil.responseSuccess("删除成功");
+		} else
+		{
+			return ResponseMapUtil.responseError("出现异常,删除失败");
+		}
+	}
+}

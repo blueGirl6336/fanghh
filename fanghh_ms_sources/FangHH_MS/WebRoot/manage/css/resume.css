@@ -1,0 +1,61 @@
+body {
+	font-size: 14px;
+}
+
+table {
+	width: 970px;
+	border: 1px solid black;
+	border-bottom: none;
+	border-left: none;
+	border-top: none;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+table td,table th {
+	border-bottom: 1px solid black;
+	border-left: 1px solid black;
+	padding: 10px;
+}
+
+.columnHeader {
+	height: 32px;
+	font-size: 22px;
+	background-color: #ccc;
+	text-align: left;
+}
+
+.columnRemark {
+	font-size: 14px;
+}
+
+.printButton{
+	top:10px;  
+  	position:fixed;
+}
+
+.pageBreak {
+	page-break-after: always;
+}
+
+td {
+	height: 30px;
+	margin-top: 20px;
+	line-height: 30px;
+	padding: 3px;
+	border: 1px solid #000;
+	text-align: center;
+}
+
+@media print {
+	.x-ux-grid-printer body {
+		margin: 0;
+		padding: 0;
+	}
+	.x-ux-grid-printer div.x-ux-grid-printer-noprint {
+		display: none;
+	}
+	.button {
+		display: none;
+	}
+}

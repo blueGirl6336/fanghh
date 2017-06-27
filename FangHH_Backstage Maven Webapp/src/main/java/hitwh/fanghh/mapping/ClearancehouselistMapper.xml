@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.ClearancehouselistDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Clearancehouselist">
+    <id column="chl_id" jdbcType="INTEGER" property="chlId" />
+    <result column="house_id" jdbcType="INTEGER" property="houseId" />
+    <result column="activity_id" jdbcType="VARCHAR" property="activityId" />
+    <result column="child_order_id" jdbcType="VARCHAR" property="childOrderId" />
+    <result column="is_purchased" jdbcType="BIT" property="isPurchased" />
+    <result column="child_order_status" jdbcType="VARCHAR" property="childOrderStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    chl_id, house_id, activity_id, child_order_id, is_purchased, child_order_status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.ClearanceHouseList
+    where chl_id = #{chlId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.ClearanceHouseList
+    where chl_id = #{chlId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Clearancehouselist">
+    insert into dbo.ClearanceHouseList (chl_id, house_id, activity_id, 
+      child_order_id, is_purchased, child_order_status
+      )
+    values (#{chlId,jdbcType=INTEGER}, #{houseId,jdbcType=INTEGER}, #{activityId,jdbcType=VARCHAR}, 
+      #{childOrderId,jdbcType=VARCHAR}, #{isPurchased,jdbcType=BIT}, #{childOrderStatus,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Clearancehouselist">
+    insert into dbo.ClearanceHouseList
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="chlId != null">
+        chl_id,
+      </if>
+      <if test="houseId != null">
+        house_id,
+      </if>
+      <if test="activityId != null">
+        activity_id,
+      </if>
+      <if test="childOrderId != null">
+        child_order_id,
+      </if>
+      <if test="isPurchased != null">
+        is_purchased,
+      </if>
+      <if test="childOrderStatus != null">
+        child_order_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="chlId != null">
+        #{chlId,jdbcType=INTEGER},
+      </if>
+      <if test="houseId != null">
+        #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="activityId != null">
+        #{activityId,jdbcType=VARCHAR},
+      </if>
+      <if test="childOrderId != null">
+        #{childOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="isPurchased != null">
+        #{isPurchased,jdbcType=BIT},
+      </if>
+      <if test="childOrderStatus != null">
+        #{childOrderStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Clearancehouselist">
+    update dbo.ClearanceHouseList
+    <set>
+      <if test="houseId != null">
+        house_id = #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="activityId != null">
+        activity_id = #{activityId,jdbcType=VARCHAR},
+      </if>
+      <if test="childOrderId != null">
+        child_order_id = #{childOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="isPurchased != null">
+        is_purchased = #{isPurchased,jdbcType=BIT},
+      </if>
+      <if test="childOrderStatus != null">
+        child_order_status = #{childOrderStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where chl_id = #{chlId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Clearancehouselist">
+    update dbo.ClearanceHouseList
+    set house_id = #{houseId,jdbcType=INTEGER},
+      activity_id = #{activityId,jdbcType=VARCHAR},
+      child_order_id = #{childOrderId,jdbcType=VARCHAR},
+      is_purchased = #{isPurchased,jdbcType=BIT},
+      child_order_status = #{childOrderStatus,jdbcType=VARCHAR}
+    where chl_id = #{chlId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectByActivityId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dbo.ClearanceHouseList
+    where activity_id = #{activityId,jdbcType=INTEGER}
+  </select>
+  <select id="selectIdByHouseId" parameterType="java.lang.Integer" resultType = "java.lang.Integer">
+    select
+    phl_id
+    from dbo.ClearanceHouseList
+    where house_id = #{houseId,jdbcType=INTEGER}
+  </select>
+  
+   <delete id="deleteByActivityId" parameterType="java.lang.Integer">
+    delete from dbo.ClearanceHouseList
+    where activity_id = #{activityId,jdbcType=INTEGER}
+  </delete>
+</mapper>

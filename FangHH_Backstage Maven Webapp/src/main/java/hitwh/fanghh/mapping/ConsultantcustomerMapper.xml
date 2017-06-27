@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.ConsultantcustomerDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Consultantcustomer">
+    <id column="cc_id" jdbcType="INTEGER" property="ccId" />
+    <result column="consultant_id" jdbcType="INTEGER" property="consultantId" />
+    <result column="customer_name" jdbcType="VARCHAR" property="customerName" />
+    <result column="customer_phone" jdbcType="VARCHAR" property="customerPhone" />
+    <result column="customer_gender" jdbcType="VARCHAR" property="customerGender" />
+    <result column="house_favor" jdbcType="VARCHAR" property="houseFavor" />
+    <result column="area_demand" jdbcType="INTEGER" property="areaDemand" />
+    <result column="type_time" jdbcType="TIMESTAMP" property="typeTime" />
+    <result column="property_type" jdbcType="VARCHAR" property="propertyType" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    cc_id, consultant_id, customer_name, customer_phone, customer_gender, house_favor, 
+    area_demand, type_time, property_type, remark, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.ConsultantCustomer
+    where cc_id = #{ccId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.ConsultantCustomer
+    where cc_id = #{ccId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Consultantcustomer">
+    insert into dbo.ConsultantCustomer (cc_id, consultant_id, customer_name, 
+      customer_phone, customer_gender, house_favor, 
+      area_demand, type_time, property_type, 
+      remark, status)
+    values (#{ccId,jdbcType=INTEGER}, #{consultantId,jdbcType=INTEGER}, #{customerName,jdbcType=VARCHAR}, 
+      #{customerPhone,jdbcType=VARCHAR}, #{customerGender,jdbcType=VARCHAR}, #{houseFavor,jdbcType=VARCHAR}, 
+      #{areaDemand,jdbcType=INTEGER}, #{typeTime,jdbcType=TIMESTAMP}, #{propertyType,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Consultantcustomer">
+    insert into dbo.ConsultantCustomer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ccId != null">
+        cc_id,
+      </if>
+      <if test="consultantId != null">
+        consultant_id,
+      </if>
+      <if test="customerName != null">
+        customer_name,
+      </if>
+      <if test="customerPhone != null">
+        customer_phone,
+      </if>
+      <if test="customerGender != null">
+        customer_gender,
+      </if>
+      <if test="houseFavor != null">
+        house_favor,
+      </if>
+      <if test="areaDemand != null">
+        area_demand,
+      </if>
+      <if test="typeTime != null">
+        type_time,
+      </if>
+      <if test="propertyType != null">
+        property_type,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ccId != null">
+        #{ccId,jdbcType=INTEGER},
+      </if>
+      <if test="consultantId != null">
+        #{consultantId,jdbcType=INTEGER},
+      </if>
+      <if test="customerName != null">
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerPhone != null">
+        #{customerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="customerGender != null">
+        #{customerGender,jdbcType=VARCHAR},
+      </if>
+      <if test="houseFavor != null">
+        #{houseFavor,jdbcType=VARCHAR},
+      </if>
+      <if test="areaDemand != null">
+        #{areaDemand,jdbcType=INTEGER},
+      </if>
+      <if test="typeTime != null">
+        #{typeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="propertyType != null">
+        #{propertyType,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Consultantcustomer">
+    update dbo.ConsultantCustomer
+    <set>
+      <if test="consultantId != null">
+        consultant_id = #{consultantId,jdbcType=INTEGER},
+      </if>
+      <if test="customerName != null">
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerPhone != null">
+        customer_phone = #{customerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="customerGender != null">
+        customer_gender = #{customerGender,jdbcType=VARCHAR},
+      </if>
+      <if test="houseFavor != null">
+        house_favor = #{houseFavor,jdbcType=VARCHAR},
+      </if>
+      <if test="areaDemand != null">
+        area_demand = #{areaDemand,jdbcType=INTEGER},
+      </if>
+      <if test="typeTime != null">
+        type_time = #{typeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="propertyType != null">
+        property_type = #{propertyType,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cc_id = #{ccId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Consultantcustomer">
+    update dbo.ConsultantCustomer
+    set consultant_id = #{consultantId,jdbcType=INTEGER},
+      customer_name = #{customerName,jdbcType=VARCHAR},
+      customer_phone = #{customerPhone,jdbcType=VARCHAR},
+      customer_gender = #{customerGender,jdbcType=VARCHAR},
+      house_favor = #{houseFavor,jdbcType=VARCHAR},
+      area_demand = #{areaDemand,jdbcType=INTEGER},
+      type_time = #{typeTime,jdbcType=TIMESTAMP},
+      property_type = #{propertyType,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
+    where cc_id = #{ccId,jdbcType=INTEGER}
+  </update>
+</mapper>

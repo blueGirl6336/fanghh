@@ -1,0 +1,18 @@
+
+package hitwh.fanghh.dao;
+
+import hitwh.fanghh.pojo.Roofbeam;
+
+public interface RoofbeamDao {
+    int deleteByPrimaryKey(Integer roofId);
+
+    int insert(Roofbeam record);
+
+    int insertSelective(Roofbeam record);
+
+    Roofbeam selectByPrimaryKey(Integer roofId);
+
+    int updateByPrimaryKeySelective(Roofbeam record);
+
+    int updateByPrimaryKey(Roofbeam record);
+}

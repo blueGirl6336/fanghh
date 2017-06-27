@@ -1,0 +1,15 @@
+.grid-row-throughAudit{
+	background-color:green!important;
+}
+
+.grid-row-not-throughAudit{
+	background-color: red;
+}
+
+.go-up-action{
+	background-image: url(../../images/icon/Actions-go-up-icon.png);
+}
+/*报表统计 常用报表 表格css*/
+#common_statements td{
+	padding:10px;
+}

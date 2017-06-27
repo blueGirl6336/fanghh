@@ -1,0 +1,55 @@
+<div class="content"  ng-controller="storeCertCtl">
+	<div class="inputArea form-item form-item-large content_area_head">
+		<img src="./image/search.png" class="img-search">
+		<span class="selectDistrict">搜索：门店名称/门店码：</span>
+		<input type="text" class="form-text shortText" name="">
+		<button type="button" class="submit-file">查询</button>
+	</div>
+	
+	<div class="table_area">
+		<div class="table_head">
+			<div id="buildingManagement">门店认证</div>
+		</div>
+
+		<div class="table_content">
+			<table class="building_table">
+				<tbody>
+				<tr class="line0">
+					<td class="checkbox"></td>
+					<td class="building-name">门店名称/门店码</td>
+					<td class="state">
+						营业执照照片
+					</td>
+					<td class="operation" colspan="2">操作</td>
+				</tr>
+				<tr class="line1" ng-repeat=" i in items">
+					<td class="checkbox">
+						<input type="checkbox" name="tr-select">
+					</td>
+					<td class="building-name">{{ i.storeName }}</td>
+					<td class="modify-date">
+						<img src="{{ i.businessLicensePhoto }}" class="sort-up">
+					</td>
+					<td class="operation1">通过</td>
+					<td class="operation2">不通过</td>
+				</tr>
+
+				<tr class="table-bottom">
+					<td class="checkbox-bottom">
+						<input type="checkbox" name="tr-select">全选
+					</td>
+					<td class="up-select">审核通过</td>
+					<td class="down-select">审核不通过</td>
+				</tr>
+			</tbody></table>
+
+			<div class="page-num">
+{{ pagesNum }}
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+
+</script>
+<script src="script.js"></script>
+</body>

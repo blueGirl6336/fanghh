@@ -1,0 +1,73 @@
+package hitwh.fanghh.pojo;
+
+public class Perferentialrule {
+    private Integer ruleId;
+
+    private String activityId;
+
+    private String perferentialRuleType;
+
+    private String discountRate;
+
+    private Long reducedPrice;
+
+    private String perferentialDescription;
+    
+    private String perferentialTitle;
+
+    public Integer getRuleId() {
+        return ruleId;
+    }
+
+    public void setRuleId(Integer ruleId) {
+        this.ruleId = ruleId;
+    }
+    
+    public String getPerferentialTitle() {
+        return perferentialTitle;
+    }
+
+    public void setPerferentialTitle(String perferentialTitle) {
+        this.perferentialTitle = perferentialTitle ;
+    }
+
+    public String getActivityId() {
+        return activityId;
+    }
+
+    public void setActivityId(String activityId) {
+        this.activityId = activityId == null ? null : activityId.trim();
+    }
+
+    public String getPerferentialRuleType() {
+        return perferentialRuleType;
+    }
+
+    public void setPerferentialRuleType(String perferentialRuleType) {
+        this.perferentialRuleType = perferentialRuleType == null ? null : perferentialRuleType.trim();
+    }
+
+    public String getDiscountRate() {
+        return discountRate;
+    }
+
+    public void setDiscountRate(String discountRate) {
+        this.discountRate = discountRate == null ? null : discountRate.trim();
+    }
+
+    public Long getReducedPrice() {
+        return reducedPrice;
+    }
+
+    public void setReducedPrice(Long reducedPrice) {
+        this.reducedPrice = reducedPrice;
+    }
+
+    public String getPerferentialDescription() {
+        return perferentialDescription;
+    }
+
+    public void setPerferentialDescription(String perferentialDescription) {
+        this.perferentialDescription = perferentialDescription == null ? null : perferentialDescription.trim();
+    }
+}

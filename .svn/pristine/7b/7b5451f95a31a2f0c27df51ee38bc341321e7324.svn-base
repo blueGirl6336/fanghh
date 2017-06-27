@@ -1,0 +1,67 @@
+<link rel="stylesheet" href="./css/pictalk.css">
+<link type="text/css" rel="stylesheet" href="./css/list_dynamicManagement.css"/>
+
+<div class="content_area">
+<div class="pic-talk-container" ng-controller="PicTalkController as picTalk">
+  <p class="content_title">威海华润湾九里<img src="./image/fpzh.png" class="assign-account"></p>
+  <div class="table_area">
+    <!-- 模板 -->
+    <!-- <div ui-view="buildingPanel"></div> -->
+    <div><buildingmanagenavigator nowpageid="6" /></div>
+
+    <div class="table_content">
+      <div class="inputArea">
+        <form>
+
+          <div class="row">
+            <div class="form-item form-item-middle">
+              <label>标题：<span class="justify"></span></label>
+              <div class="form-field">
+                <input type="text" class="form-text" ng-model="picTalk.title">
+              </div>
+            </div>
+          </div>
+
+          <div class="pic-talk-model-box" ng-repeat="model in picTalk.picTalkModels">
+
+            <img src="./image/close_1.png" class="pic-talk-delete-btn" ng-click="picTalk.deleteModel($index)" ng-show="picTalk.picTalkModels.length > 1" />
+
+            <div class="row">
+              <div class="form-item form-item-large">
+                <label>内容：<span class="justify"></span></label>
+                <div class="form-field">
+                  <div class="fileupload">
+                    <label class="choose-file" onclick="$(this).next().click()">选择文件</label>
+                    <input type="file" name="file" ng-file-select="picTalk.upload($files)" accept="image/gif,image/jpeg,image/png,image/jpg,image/bmp" nv-file-select="" uploader="picTalk.uploader" ng-click="picTalk.setCurrentIndex($index)" />
+                  </div>
+                  <img class="pic-talk-img" width="150" height="150" ng-src="{{model.filePath}}" ng-show="model.filePath !== undefined && model.filePath !== ''">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-item form-item-explain">
+                <div class="form-field">
+                  <textarea class="form-text" placeholder="添加文字说明" ng-model="model.ptcContent"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-item form-item-large">
+              <div class="form-field">
+                <button type="button" class="submit-file continue-upload" ng-click="picTalk.addBlankPicTalkModel()">继续上传图片</button>
+              </div>
+            </div>
+          </div>
+
+        </form>
+        <div class="button-area">
+          <button type="button" class="btn save-continue" ng-click="picTalk.commit()">发布</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>

@@ -1,0 +1,43 @@
+var module = angular.module('DynamicManagement', ['meta.umeditor']);
+
+module.controller('AddDynamicController', ['$http', '$scope', '$stateParams', function($http, $scope, $stateParams){
+
+  var that = this;
+
+  $scope.activePage = 4;
+
+  this.title = '';
+  this.content = '';
+
+  this.umconfig = {
+    imageUrl: 'houseStyle/uploadStylePic',
+    imagePath: 'http://localhost:8080/FangHH_Backstage/'
+  };
+
+  this.commit = function () {
+    if (!that.title) {
+      alert('请填写动态标题');
+      return;
+    }
+
+    if (!that.content) {
+      alert('请填写动态内容');
+      return;
+    }
+
+    console.log($stateParams);
+    $http.post('dynamiccontent/addDynamiccontent', {
+      bdiId: $stateParams.buildingId,
+      dcPic: that.title,
+      dcWriting: that.content
+    }).success(function (response) {
+      if (response.success === true) {
+        alert('发表动态成功');
+        window.location.reload();
+      } else {
+        console.log('error when add dynamic ' + that.title);
+      }
+    });
+  };
+
+}]);

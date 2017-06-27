@@ -1,0 +1,48 @@
+
+package hitwh.fanghh.dao;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import hitwh.fanghh.pojo.Activity;
+import hitwh.fanghh.util.PageCalculate;
+
+public interface ActivityDao
+{
+	int deleteByPrimaryKey(Integer activityId);
+
+	int insert(Activity record);
+
+	int insertSelective(Activity record);
+
+	Activity selectByPrimaryKey(Integer activityId);
+
+	int updateByPrimaryKeySelective(Activity record);
+
+	int updateByPrimaryKey(Activity record);
+
+	Activity selectByActivityName(@Param("activityName") String activityName);
+
+	List<Activity> selectAll(@Param("page") PageCalculate pageCalculate);
+
+	int countActivity(@Param("activityType") String activityType, @Param("cityId") Integer cityId,
+			@Param("regionId") Integer regionId, @Param("keyBuildingName") String keyBuildingName);
+
+	List<Activity> selectByRegionIdAndKeyBuildingNameAndCityId(@Param("activityType") String activityType,
+			@Param("cityId") Integer cityId, @Param("regionId") Integer regionId,
+			@Param("keyBuildingName") String keyBuildingName, @Param("page") PageCalculate pageCalculate);
+
+	int updateAuditStatusByActivityId(@Param("activityId") Integer activityId, @Param("state") String state);
+
+	int updateActivityApplicationStatusByActivityId(@Param("activityId") Integer activityId,
+			@Param("activityApplicationStatus") String activityApplicationStatus);
+
+	String getActivityApplicationStatusByActivityId(int activityId);
+
+	String getAuditStatusByActivityId(int activityId);
+
+	int updateAuditNotPassReason(@Param("activityId") Integer activityId,
+			@Param("auditNotPassReason") String auditNotPassReason);
+
+}

@@ -1,0 +1,48 @@
+@import  "list_houseManagement.scss";
+@import  "list.scss";
+
+#houseManagement
+{
+	border-top:0px;
+	border-right:1px solid;
+	border-bottom:1px solid;
+	border-color:rgb(229,229,229);
+}
+#sourceManagement
+{
+	border-left:0px;
+	border-right:0px;
+	border-top:7px solid;
+	border-color:rgb(253,103,32);
+	border-bottom:0px;
+}
+
+#table_before
+{
+	justify-content: flex-end;
+}
+
+.checkbox
+{
+	width:3%;
+}
+.number
+{
+	width:5%;
+}
+.type,.source,.price,.month-pay,.first-pay,.admin
+{
+	width:10%;
+}
+.floor,.area
+{
+	width:8%;
+}
+.operation
+{
+	width:16%;
+}
+.operation
+{
+	width:8%;
+}

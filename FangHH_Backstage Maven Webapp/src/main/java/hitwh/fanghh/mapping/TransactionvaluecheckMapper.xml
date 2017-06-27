@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.TransactionvaluecheckDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Transactionvaluecheck">
+    <id column="check_id" jdbcType="INTEGER" property="checkId" />
+    <result column="so_id" jdbcType="INTEGER" property="soId" />
+    <result column="developer_id" jdbcType="VARCHAR" property="developerId" />
+    <result column="developer_quoted_price" jdbcType="DECIMAL" property="developerQuotedPrice" />
+    <result column="developer_commission_price" jdbcType="DECIMAL" property="developerCommissionPrice" />
+    <result column="is_agreed" jdbcType="BIT" property="isAgreed" />
+    <result column="broker_id" jdbcType="VARCHAR" property="brokerId" />
+    <result column="broker_quoted_price" jdbcType="DECIMAL" property="brokerQuotedPrice" />
+    <result column="check_status" jdbcType="VARCHAR" property="checkStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    check_id, so_id, developer_id, developer_quoted_price, developer_commission_price, 
+    is_agreed, broker_id, broker_quoted_price, check_status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.TransactionValueCheck
+    where check_id = #{checkId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.TransactionValueCheck
+    where check_id = #{checkId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Transactionvaluecheck">
+    insert into dbo.TransactionValueCheck (check_id, so_id, developer_id, 
+      developer_quoted_price, developer_commission_price, 
+      is_agreed, broker_id, broker_quoted_price, 
+      check_status)
+    values (#{checkId,jdbcType=INTEGER}, #{soId,jdbcType=INTEGER}, #{developerId,jdbcType=VARCHAR}, 
+      #{developerQuotedPrice,jdbcType=DECIMAL}, #{developerCommissionPrice,jdbcType=DECIMAL}, 
+      #{isAgreed,jdbcType=BIT}, #{brokerId,jdbcType=VARCHAR}, #{brokerQuotedPrice,jdbcType=DECIMAL}, 
+      #{checkStatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Transactionvaluecheck">
+    insert into dbo.TransactionValueCheck
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="checkId != null">
+        check_id,
+      </if>
+      <if test="soId != null">
+        so_id,
+      </if>
+      <if test="developerId != null">
+        developer_id,
+      </if>
+      <if test="developerQuotedPrice != null">
+        developer_quoted_price,
+      </if>
+      <if test="developerCommissionPrice != null">
+        developer_commission_price,
+      </if>
+      <if test="isAgreed != null">
+        is_agreed,
+      </if>
+      <if test="brokerId != null">
+        broker_id,
+      </if>
+      <if test="brokerQuotedPrice != null">
+        broker_quoted_price,
+      </if>
+      <if test="checkStatus != null">
+        check_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="checkId != null">
+        #{checkId,jdbcType=INTEGER},
+      </if>
+      <if test="soId != null">
+        #{soId,jdbcType=INTEGER},
+      </if>
+      <if test="developerId != null">
+        #{developerId,jdbcType=VARCHAR},
+      </if>
+      <if test="developerQuotedPrice != null">
+        #{developerQuotedPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="developerCommissionPrice != null">
+        #{developerCommissionPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="isAgreed != null">
+        #{isAgreed,jdbcType=BIT},
+      </if>
+      <if test="brokerId != null">
+        #{brokerId,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerQuotedPrice != null">
+        #{brokerQuotedPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="checkStatus != null">
+        #{checkStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Transactionvaluecheck">
+    update dbo.TransactionValueCheck
+    <set>
+      <if test="soId != null">
+        so_id = #{soId,jdbcType=INTEGER},
+      </if>
+      <if test="developerId != null">
+        developer_id = #{developerId,jdbcType=VARCHAR},
+      </if>
+      <if test="developerQuotedPrice != null">
+        developer_quoted_price = #{developerQuotedPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="developerCommissionPrice != null">
+        developer_commission_price = #{developerCommissionPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="isAgreed != null">
+        is_agreed = #{isAgreed,jdbcType=BIT},
+      </if>
+      <if test="brokerId != null">
+        broker_id = #{brokerId,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerQuotedPrice != null">
+        broker_quoted_price = #{brokerQuotedPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="checkStatus != null">
+        check_status = #{checkStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where check_id = #{checkId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Transactionvaluecheck">
+    update dbo.TransactionValueCheck
+    set so_id = #{soId,jdbcType=INTEGER},
+      developer_id = #{developerId,jdbcType=VARCHAR},
+      developer_quoted_price = #{developerQuotedPrice,jdbcType=DECIMAL},
+      developer_commission_price = #{developerCommissionPrice,jdbcType=DECIMAL},
+      is_agreed = #{isAgreed,jdbcType=BIT},
+      broker_id = #{brokerId,jdbcType=VARCHAR},
+      broker_quoted_price = #{brokerQuotedPrice,jdbcType=DECIMAL},
+      check_status = #{checkStatus,jdbcType=VARCHAR}
+    where check_id = #{checkId,jdbcType=INTEGER}
+  </update>
+</mapper>

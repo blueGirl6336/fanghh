@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.BuildingsearchstatisticsDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Buildingsearchstatistics">
+    <id column="bss_id" jdbcType="INTEGER" property="bssId" />
+    <result column="building_name" jdbcType="VARCHAR" property="buildingName" />
+    <result column="staticstic_times" jdbcType="BIGINT" property="staticsticTimes" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    bss_id, building_name, staticstic_times, start_time, end_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.BuildingSearchStatistics
+    where bss_id = #{bssId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.BuildingSearchStatistics
+    where bss_id = #{bssId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Buildingsearchstatistics">
+    insert into dbo.BuildingSearchStatistics (bss_id, building_name, staticstic_times, 
+      start_time, end_time)
+    values (#{bssId,jdbcType=INTEGER}, #{buildingName,jdbcType=VARCHAR}, #{staticsticTimes,jdbcType=BIGINT}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Buildingsearchstatistics">
+    insert into dbo.BuildingSearchStatistics
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bssId != null">
+        bss_id,
+      </if>
+      <if test="buildingName != null">
+        building_name,
+      </if>
+      <if test="staticsticTimes != null">
+        staticstic_times,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bssId != null">
+        #{bssId,jdbcType=INTEGER},
+      </if>
+      <if test="buildingName != null">
+        #{buildingName,jdbcType=VARCHAR},
+      </if>
+      <if test="staticsticTimes != null">
+        #{staticsticTimes,jdbcType=BIGINT},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Buildingsearchstatistics">
+    update dbo.BuildingSearchStatistics
+    <set>
+      <if test="buildingName != null">
+        building_name = #{buildingName,jdbcType=VARCHAR},
+      </if>
+      <if test="staticsticTimes != null">
+        staticstic_times = #{staticsticTimes,jdbcType=BIGINT},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where bss_id = #{bssId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Buildingsearchstatistics">
+    update dbo.BuildingSearchStatistics
+    set building_name = #{buildingName,jdbcType=VARCHAR},
+      staticstic_times = #{staticsticTimes,jdbcType=BIGINT},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP}
+    where bss_id = #{bssId,jdbcType=INTEGER}
+  </update>
+</mapper>

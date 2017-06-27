@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.StrategycontentDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Strategycontent">
+    <id column="sc_id" jdbcType="INTEGER" property="scId" />
+    <result column="hs_id" jdbcType="INTEGER" property="hsId" />
+    <result column="sc_pic" jdbcType="VARCHAR" property="scPic" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="hitwh.fanghh.pojo.Strategycontent">
+    <result column="sc_writing" jdbcType="LONGNVARCHAR" property="scWriting" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sc_id, hs_id, sc_pic
+  </sql>
+  <sql id="Blob_Column_List">
+    sc_writing
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from dbo.StrategyContent
+    where sc_id = #{scId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.StrategyContent
+    where sc_id = #{scId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Strategycontent">
+    insert into dbo.StrategyContent (sc_id, hs_id, sc_pic, 
+      sc_writing)
+    values (#{scId,jdbcType=INTEGER}, #{hsId,jdbcType=INTEGER}, #{scPic,jdbcType=VARCHAR}, 
+      #{scWriting,jdbcType=LONGNVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Strategycontent">
+    insert into dbo.StrategyContent
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="scId != null">
+        sc_id,
+      </if>
+      <if test="hsId != null">
+        hs_id,
+      </if>
+      <if test="scPic != null">
+        sc_pic,
+      </if>
+      <if test="scWriting != null">
+        sc_writing,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="scId != null">
+        #{scId,jdbcType=INTEGER},
+      </if>
+      <if test="hsId != null">
+        #{hsId,jdbcType=INTEGER},
+      </if>
+      <if test="scPic != null">
+        #{scPic,jdbcType=VARCHAR},
+      </if>
+      <if test="scWriting != null">
+        #{scWriting,jdbcType=LONGNVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Strategycontent">
+    update dbo.StrategyContent
+    <set>
+      <if test="hsId != null">
+        hs_id = #{hsId,jdbcType=INTEGER},
+      </if>
+      <if test="scPic != null">
+        sc_pic = #{scPic,jdbcType=VARCHAR},
+      </if>
+      <if test="scWriting != null">
+        sc_writing = #{scWriting,jdbcType=LONGNVARCHAR},
+      </if>
+    </set>
+    where sc_id = #{scId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="hitwh.fanghh.pojo.Strategycontent">
+    update dbo.StrategyContent
+    set hs_id = #{hsId,jdbcType=INTEGER},
+      sc_pic = #{scPic,jdbcType=VARCHAR},
+      sc_writing = #{scWriting,jdbcType=LONGNVARCHAR}
+    where sc_id = #{scId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Strategycontent">
+    update dbo.StrategyContent
+    set hs_id = #{hsId,jdbcType=INTEGER},
+      sc_pic = #{scPic,jdbcType=VARCHAR}
+    where sc_id = #{scId,jdbcType=INTEGER}
+  </update>
+</mapper>

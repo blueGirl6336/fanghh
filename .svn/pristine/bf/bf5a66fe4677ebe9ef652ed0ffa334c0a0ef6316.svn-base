@@ -1,0 +1,169 @@
+package hitwh.fanghh.service.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import hitwh.fanghh.bean.HouseBean;
+import hitwh.fanghh.dao.HouseDao;
+import hitwh.fanghh.pojo.House;
+import hitwh.fanghh.service.HouseService;
+import hitwh.fanghh.util.DictionaryString;
+import hitwh.fanghh.util.PageCalculate;
+
+@Service
+public class HouseServiceImpl implements HouseService
+{
+	@Autowired
+	private HouseDao houseDao;
+
+	@Override
+	public List<HouseBean> getHouseByBuildingId(int buildingId, int pageMaxNum, int pageNo)
+	{
+		
+		int pageNum = getHousePageNumByBuildingId(buildingId, pageMaxNum);
+		PageCalculate pageCalculate = new PageCalculate(pageNum, pageMaxNum, pageNo);
+		List<House> houseList = houseDao.selectByBuildingId(buildingId, pageCalculate);
+		List<HouseBean> houseBeanList = new ArrayList<HouseBean>();
+		for(House house : houseList){
+			HouseBean houseBean = new HouseBean();
+			if(house != null){
+				houseBean.setArea(house.getArea());
+				houseBean.setAuditStatus(house.getAuditStatus());
+				houseBean.setBasementSquare(house.getBasementSquare());
+				houseBean.setBuildingId(house.getBuildingId());
+				houseBean.setDecoration(house.getDecoration());
+				houseBean.setDownPayment(house.getDownPayment());
+				houseBean.setFace(house.getFace());
+				houseBean.setFloor(house.getFloor());
+				houseBean.setHouseId(house.getHouseId());
+				houseBean.setHouseNum(house.getHouseNum());
+				houseBean.setHousePic(house.getHousePic());
+				houseBean.setMaxFloor(house.getMaxFloor());
+				houseBean.setMonthlyPayment(house.getMonthlyPayment());
+				houseBean.setOrginalPrice(house.getOrginalPrice());
+				houseBean.setParkingLotPrice(house.getParkingLotPrice());
+				houseBean.setParkingPlaceArea(house.getParkingPlaceArea());
+				houseBean.setRecommendReason(house.getRecommendReason());
+				houseBean.setStyleId(house.getStyleId());
+				houseBean.setUnitId(house.getUnitId());
+				houseBean.setAuditNotPassReason(house.getAuditNotPassReason());
+				houseBean.setHouseApplicationStatus(house.getHouseApplicationStatus());
+			}
+			houseBeanList.add(houseBean);
+		}
+		return houseBeanList;
+		
+		
+	}
+
+	@Override
+	public HouseBean getHouseById(int houseId)
+	{
+		House house =houseDao.selectByPrimaryKey(houseId);
+		HouseBean houseBean= new HouseBean();
+	
+		if(house != null){
+			houseBean.setArea(house.getArea());
+			houseBean.setAuditStatus(house.getAuditStatus());
+			houseBean.setBasementSquare(house.getBasementSquare());
+			houseBean.setBuildingId(house.getBuildingId());
+			houseBean.setDecoration(house.getDecoration());
+			houseBean.setDownPayment(house.getDownPayment());
+			houseBean.setFace(house.getFace());
+			houseBean.setFloor(house.getFloor());
+			houseBean.setHouseId(house.getHouseId());
+			houseBean.setHouseNum(house.getHouseNum());
+			houseBean.setHousePic(house.getHousePic());
+			houseBean.setMaxFloor(house.getMaxFloor());
+			houseBean.setMonthlyPayment(house.getMonthlyPayment());
+			houseBean.setOrginalPrice(house.getOrginalPrice());
+			houseBean.setParkingLotPrice(house.getParkingLotPrice());
+			houseBean.setParkingPlaceArea(house.getParkingPlaceArea());
+			houseBean.setRecommendReason(house.getRecommendReason());
+			houseBean.setStyleId(house.getStyleId());
+			houseBean.setUnitId(house.getUnitId());
+			houseBean.setAuditNotPassReason(house.getAuditNotPassReason());
+			houseBean.setHouseApplicationStatus(house.getHouseApplicationStatus());
+		}
+		
+		return houseBean;
+	}
+
+	@Override
+	public int getHousePageNumByBuildingId(int buildingId, int pageMaxNum)
+	{
+		int houseNum = houseDao.countHouseByBuildingId(buildingId);
+		return houseNum % pageMaxNum == 0 ? houseNum / pageMaxNum : houseNum / pageMaxNum + 1;
+	}
+
+	@Override
+	public int applicateHouseOnSaleByHouseId(int houseId , String houseApplicationStatus) {
+		// TODO Auto-generated method stub
+		String applicationDicCode;
+		applicationDicCode = houseDao.getHouseApplicationStatusByHouseId(houseId);
+		if(applicationDicCode.equals(DictionaryString.APPLICATION_WAIT))
+		{
+			houseDao.updateHouseApplicationStatusByHouseId(houseId, houseApplicationStatus);
+			return 1;
+		}
+		else
+			return 0;
+	}
+
+	@Override
+	public int applicateHouseOffSaleByHouseId(int houseId , String houseApplicationStatus) {
+		// TODO Auto-generated method stub
+		String applicationDicCode;
+		applicationDicCode = houseDao.getHouseApplicationStatusByHouseId(houseId);
+		if(applicationDicCode.equals(DictionaryString.ON_SALE_ALREADY))
+		{
+			houseDao.updateHouseApplicationStatusByHouseId(houseId, houseApplicationStatus);
+			return 1;
+		}
+		else
+			return 0;
+	}
+
+	@Override
+	public int auditHouseApplicationByHouseId(int houseId, String auditStatus) 
+	{
+		// TODO Auto-generated method stub
+		String auditDicCode;
+		auditDicCode = houseDao.getHouseApplicationStatusByHouseId(houseId);
+		if(auditDicCode.equals(DictionaryString.APPLICATION_ON_SALE))
+		{
+			houseDao.updateAuditStatusByHouseId(houseId, auditStatus);
+			if(auditStatus.equals(DictionaryString.AUDIT_PASS))
+			{
+			houseDao.updateHouseApplicationStatusByHouseId(houseId, DictionaryString.ON_SALE_ALREADY);
+			houseDao.updateAuditNotPassReason(houseId, null);
+			}
+			return 1;
+		}
+		if(auditDicCode.equals(DictionaryString.APPLICATION_OFF_SALE))
+		{
+			houseDao.updateAuditStatusByHouseId(houseId, auditStatus);
+			if(auditStatus.equals(DictionaryString.AUDIT_PASS))
+			{
+			houseDao.updateHouseApplicationStatusByHouseId(houseId, DictionaryString.OFF_SALE_ALREADY);
+			houseDao.updateAuditNotPassReason(houseId, "null");
+			}
+			return 2;
+		}
+		else
+			return 0;
+	}
+	public int giveAuditNotPassReason(int houseId , String auditNotPassReason)
+	{
+		houseDao.updateAuditNotPassReason(houseId, auditNotPassReason);
+		return 1;
+	}
+	public String getAuditNotPassReason(int houseId)
+	{
+		return houseDao.getAuditNotPassReasonByHouseId(houseId);
+	}
+
+}

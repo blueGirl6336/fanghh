@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.HousestyleDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Housestyle">
+    <id column="style_id" jdbcType="INTEGER" property="styleId" />
+    <result column="building_id" jdbcType="INTEGER" property="buildingId" />
+    <result column="house_style" jdbcType="VARCHAR" property="houseStyle" />
+    <result column="style_description" jdbcType="VARCHAR" property="styleDescription" />
+    <result column="style_pic" jdbcType="VARCHAR" property="stylePic" />
+    <result column="recommend_reason" jdbcType="VARCHAR" property="recommendReason" />
+    <result column="room" jdbcType="INTEGER" property="room" />
+    <result column="hall" jdbcType="INTEGER" property="hall" />
+    <result column="restroom" jdbcType="INTEGER" property="restroom" />
+    <result column="reference_price" jdbcType="DECIMAL" property="referencePrice" />
+    <result column="reference_monthly_payments" jdbcType="DECIMAL" property="referenceMonthlyPayments" />
+    <result column="down_payment" jdbcType="DECIMAL" property="downPayment" />
+    <result column="is_cooperated" jdbcType="BIT" property="isCooperated" />
+    <result column="audit_status" jdbcType="VARCHAR" property="auditStatus" />
+    <result column="specialities_pic" jdbcType="VARCHAR" property="specialitiesPic" />
+    <result column="style_area" jdbcType="DECIMAL" property="styleArea" />
+    <result column="application_status" jdbcType="VARCHAR" property="applicationStatus" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="hitwh.fanghh.pojo.Housestyle">
+    <result column="audit_not_pass_reason" jdbcType="LONGVARCHAR" property="auditNotPassReason" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    style_id, building_id, house_style, style_description, style_pic, recommend_reason, 
+    room, hall, restroom, reference_price, reference_monthly_payments, down_payment, 
+    is_cooperated, audit_status, specialities_pic, style_area, application_status
+  </sql>
+  <sql id="Blob_Column_List">
+    audit_not_pass_reason
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from dbo.HouseStyle
+    where style_id = #{styleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.HouseStyle
+    where style_id = #{styleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Housestyle">
+    insert into dbo.HouseStyle (style_id, building_id, house_style, 
+      style_description, style_pic, recommend_reason, 
+      room, hall, restroom, 
+      reference_price, reference_monthly_payments, 
+      down_payment, is_cooperated, audit_status, 
+      specialities_pic, style_area, application_status, 
+      audit_not_pass_reason)
+    values (#{styleId,jdbcType=INTEGER}, #{buildingId,jdbcType=INTEGER}, #{houseStyle,jdbcType=VARCHAR}, 
+      #{styleDescription,jdbcType=VARCHAR}, #{stylePic,jdbcType=VARCHAR}, #{recommendReason,jdbcType=VARCHAR}, 
+      #{room,jdbcType=INTEGER}, #{hall,jdbcType=INTEGER}, #{restroom,jdbcType=INTEGER}, 
+      #{referencePrice,jdbcType=DECIMAL}, #{referenceMonthlyPayments,jdbcType=DECIMAL}, 
+      #{downPayment,jdbcType=DECIMAL}, #{isCooperated,jdbcType=BIT}, #{auditStatus,jdbcType=VARCHAR}, 
+      #{specialitiesPic,jdbcType=VARCHAR}, #{styleArea,jdbcType=DECIMAL}, #{applicationStatus,jdbcType=VARCHAR}, 
+      #{auditNotPassReason,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Housestyle">
+    insert into dbo.HouseStyle
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="styleId != null">
+        style_id,
+      </if>
+      <if test="buildingId != null">
+        building_id,
+      </if>
+      <if test="houseStyle != null">
+        house_style,
+      </if>
+      <if test="styleDescription != null">
+        style_description,
+      </if>
+      <if test="stylePic != null">
+        style_pic,
+      </if>
+      <if test="recommendReason != null">
+        recommend_reason,
+      </if>
+      <if test="room != null">
+        room,
+      </if>
+      <if test="hall != null">
+        hall,
+      </if>
+      <if test="restroom != null">
+        restroom,
+      </if>
+      <if test="referencePrice != null">
+        reference_price,
+      </if>
+      <if test="referenceMonthlyPayments != null">
+        reference_monthly_payments,
+      </if>
+      <if test="downPayment != null">
+        down_payment,
+      </if>
+      <if test="isCooperated != null">
+        is_cooperated,
+      </if>
+      <if test="auditStatus != null">
+        audit_status,
+      </if>
+      <if test="specialitiesPic != null">
+        specialities_pic,
+      </if>
+      <if test="styleArea != null">
+        style_area,
+      </if>
+      <if test="applicationStatus != null">
+        application_status,
+      </if>
+      <if test="auditNotPassReason != null">
+        audit_not_pass_reason,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="styleId != null">
+        #{styleId,jdbcType=INTEGER},
+      </if>
+      <if test="buildingId != null">
+        #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="houseStyle != null">
+        #{houseStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="styleDescription != null">
+        #{styleDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="stylePic != null">
+        #{stylePic,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendReason != null">
+        #{recommendReason,jdbcType=VARCHAR},
+      </if>
+      <if test="room != null">
+        #{room,jdbcType=INTEGER},
+      </if>
+      <if test="hall != null">
+        #{hall,jdbcType=INTEGER},
+      </if>
+      <if test="restroom != null">
+        #{restroom,jdbcType=INTEGER},
+      </if>
+      <if test="referencePrice != null">
+        #{referencePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="referenceMonthlyPayments != null">
+        #{referenceMonthlyPayments,jdbcType=DECIMAL},
+      </if>
+      <if test="downPayment != null">
+        #{downPayment,jdbcType=DECIMAL},
+      </if>
+      <if test="isCooperated != null">
+        #{isCooperated,jdbcType=BIT},
+      </if>
+      <if test="auditStatus != null">
+        #{auditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="specialitiesPic != null">
+        #{specialitiesPic,jdbcType=VARCHAR},
+      </if>
+      <if test="styleArea != null">
+        #{styleArea,jdbcType=DECIMAL},
+      </if>
+      <if test="applicationStatus != null">
+        #{applicationStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="auditNotPassReason != null">
+        #{auditNotPassReason,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Housestyle">
+    update dbo.HouseStyle
+    <set>
+      <if test="buildingId != null">
+        building_id = #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="houseStyle != null">
+        house_style = #{houseStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="styleDescription != null">
+        style_description = #{styleDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="stylePic != null">
+        style_pic = #{stylePic,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendReason != null">
+        recommend_reason = #{recommendReason,jdbcType=VARCHAR},
+      </if>
+      <if test="room != null">
+        room = #{room,jdbcType=INTEGER},
+      </if>
+      <if test="hall != null">
+        hall = #{hall,jdbcType=INTEGER},
+      </if>
+      <if test="restroom != null">
+        restroom = #{restroom,jdbcType=INTEGER},
+      </if>
+      <if test="referencePrice != null">
+        reference_price = #{referencePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="referenceMonthlyPayments != null">
+        reference_monthly_payments = #{referenceMonthlyPayments,jdbcType=DECIMAL},
+      </if>
+      <if test="downPayment != null">
+        down_payment = #{downPayment,jdbcType=DECIMAL},
+      </if>
+      <if test="isCooperated != null">
+        is_cooperated = #{isCooperated,jdbcType=BIT},
+      </if>
+      <if test="auditStatus != null">
+        audit_status = #{auditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="specialitiesPic != null">
+        specialities_pic = #{specialitiesPic,jdbcType=VARCHAR},
+      </if>
+      <if test="styleArea != null">
+        style_area = #{styleArea,jdbcType=DECIMAL},
+      </if>
+      <if test="applicationStatus != null">
+        application_status = #{applicationStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="auditNotPassReason != null">
+        audit_not_pass_reason = #{auditNotPassReason,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where style_id = #{styleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="hitwh.fanghh.pojo.Housestyle">
+    update dbo.HouseStyle
+    set building_id = #{buildingId,jdbcType=INTEGER},
+      house_style = #{houseStyle,jdbcType=VARCHAR},
+      style_description = #{styleDescription,jdbcType=VARCHAR},
+      style_pic = #{stylePic,jdbcType=VARCHAR},
+      recommend_reason = #{recommendReason,jdbcType=VARCHAR},
+      room = #{room,jdbcType=INTEGER},
+      hall = #{hall,jdbcType=INTEGER},
+      restroom = #{restroom,jdbcType=INTEGER},
+      reference_price = #{referencePrice,jdbcType=DECIMAL},
+      reference_monthly_payments = #{referenceMonthlyPayments,jdbcType=DECIMAL},
+      down_payment = #{downPayment,jdbcType=DECIMAL},
+      is_cooperated = #{isCooperated,jdbcType=BIT},
+      audit_status = #{auditStatus,jdbcType=VARCHAR},
+      specialities_pic = #{specialitiesPic,jdbcType=VARCHAR},
+      style_area = #{styleArea,jdbcType=DECIMAL},
+      application_status = #{applicationStatus,jdbcType=VARCHAR},
+      audit_not_pass_reason = #{auditNotPassReason,jdbcType=LONGVARCHAR}
+    where style_id = #{styleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Housestyle">
+    update dbo.HouseStyle
+    set building_id = #{buildingId,jdbcType=INTEGER},
+      house_style = #{houseStyle,jdbcType=VARCHAR},
+      style_description = #{styleDescription,jdbcType=VARCHAR},
+      style_pic = #{stylePic,jdbcType=VARCHAR},
+      recommend_reason = #{recommendReason,jdbcType=VARCHAR},
+      room = #{room,jdbcType=INTEGER},
+      hall = #{hall,jdbcType=INTEGER},
+      restroom = #{restroom,jdbcType=INTEGER},
+      reference_price = #{referencePrice,jdbcType=DECIMAL},
+      reference_monthly_payments = #{referenceMonthlyPayments,jdbcType=DECIMAL},
+      down_payment = #{downPayment,jdbcType=DECIMAL},
+      is_cooperated = #{isCooperated,jdbcType=BIT},
+      audit_status = #{auditStatus,jdbcType=VARCHAR},
+      specialities_pic = #{specialitiesPic,jdbcType=VARCHAR},
+      style_area = #{styleArea,jdbcType=DECIMAL},
+      application_status = #{applicationStatus,jdbcType=VARCHAR}
+    where style_id = #{styleId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="countHouseStyleByBuildingId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+	    select 
+	    count(*)
+	    from dbo.HouseStyle
+	    where building_id = #{buildingId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectByBuildingId" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from
+    (select *,tid=row_number()over(order by style_id ASC) from dbo.HouseStyle 
+    where building_id = #{buildingId,jdbcType=INTEGER}
+    <if test="applicationStatus != null">
+        and application_status &lt;&gt; #{applicationStatus,jdbcType=VARCHAR}
+     </if>
+    )tmp where tid between #{page.min,jdbcType=INTEGER} and #{page.max,jdbcType=INTEGER}
+    
+  </select>
+  
+  <update id="updateApplicationStatus">
+  	update dbo.HouseStyle
+  	set
+  	application_status = #{applicationStatus,jdbcType=VARCHAR}
+  	where
+  	style_id = #{styleId,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateAuditStatus">
+  	update dbo.HouseStyle
+  	set
+  	audit_status = #{auditStatus,jdbcType=VARCHAR}
+  	<if test="auditNotPassReason != null">
+        , audit_not_pass_reason = #{auditNotPassReason,jdbcType=LONGVARCHAR}
+      </if>
+  	where
+  	style_id = #{styleId,jdbcType=INTEGER}
+  </update>
+  
+</mapper>

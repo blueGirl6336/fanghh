@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.AuthenticatedpicDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Authenticatedpic">
+    <id column="ap_id" jdbcType="INTEGER" property="apId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="real_pic" jdbcType="VARCHAR" property="realPic" />
+    <result column="upload_time" jdbcType="TIMESTAMP" property="uploadTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ap_id, user_id, real_pic, upload_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.AuthenticatedPic
+    where ap_id = #{apId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.AuthenticatedPic
+    where ap_id = #{apId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Authenticatedpic">
+    insert into dbo.AuthenticatedPic (ap_id, user_id, real_pic, 
+      upload_time)
+    values (#{apId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{realPic,jdbcType=VARCHAR}, 
+      #{uploadTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Authenticatedpic">
+    insert into dbo.AuthenticatedPic
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="apId != null">
+        ap_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="realPic != null">
+        real_pic,
+      </if>
+      <if test="uploadTime != null">
+        upload_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="apId != null">
+        #{apId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="realPic != null">
+        #{realPic,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadTime != null">
+        #{uploadTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Authenticatedpic">
+    update dbo.AuthenticatedPic
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="realPic != null">
+        real_pic = #{realPic,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadTime != null">
+        upload_time = #{uploadTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ap_id = #{apId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Authenticatedpic">
+    update dbo.AuthenticatedPic
+    set user_id = #{userId,jdbcType=INTEGER},
+      real_pic = #{realPic,jdbcType=VARCHAR},
+      upload_time = #{uploadTime,jdbcType=TIMESTAMP}
+    where ap_id = #{apId,jdbcType=INTEGER}
+  </update>
+</mapper>

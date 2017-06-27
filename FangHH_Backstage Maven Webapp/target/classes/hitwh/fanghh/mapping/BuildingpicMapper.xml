@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.BuildingpicDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Buildingpic">
+    <id column="bp_id" jdbcType="INTEGER" property="bpId" />
+    <result column="building_id" jdbcType="INTEGER" property="buildingId" />
+    <result column="pic_type" jdbcType="VARCHAR" property="picType" />
+    <result column="pic_location" jdbcType="VARCHAR" property="picLocation" />
+    <result column="pic_description" jdbcType="VARCHAR" property="picDescription" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    bp_id, building_id, pic_type, pic_location, pic_description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.BuildingPic
+    where bp_id = #{bpId,jdbcType=INTEGER}
+  </select>
+  <select id="selectByBuildingId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.BuildingPic
+    where building_id = #{buildingId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.BuildingPic
+    where bp_id = #{bpId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Buildingpic">
+    insert into dbo.BuildingPic (bp_id, building_id, pic_type, 
+      pic_location, pic_description)
+    values (#{bpId,jdbcType=INTEGER}, #{buildingId,jdbcType=INTEGER}, #{picType,jdbcType=VARCHAR}, 
+      #{picLocation,jdbcType=VARCHAR}, #{picDescription,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Buildingpic">
+    insert into dbo.BuildingPic
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bpId != null">
+        bp_id,
+      </if>
+      <if test="buildingId != null">
+        building_id,
+      </if>
+      <if test="picType != null">
+        pic_type,
+      </if>
+      <if test="picLocation != null">
+        pic_location,
+      </if>
+      <if test="picDescription != null">
+        pic_description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bpId != null">
+        #{bpId,jdbcType=INTEGER},
+      </if>
+      <if test="buildingId != null">
+        #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="picType != null">
+        #{picType,jdbcType=VARCHAR},
+      </if>
+      <if test="picLocation != null">
+        #{picLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="picDescription != null">
+        #{picDescription,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Buildingpic">
+    update dbo.BuildingPic
+    <set>
+      <if test="buildingId != null">
+        building_id = #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="picType != null">
+        pic_type = #{picType,jdbcType=VARCHAR},
+      </if>
+      <if test="picLocation != null">
+        pic_location = #{picLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="picDescription != null">
+        pic_description = #{picDescription,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where bp_id = #{bpId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Buildingpic">
+    update dbo.BuildingPic
+    set building_id = #{buildingId,jdbcType=INTEGER},
+      pic_type = #{picType,jdbcType=VARCHAR},
+      pic_location = #{picLocation,jdbcType=VARCHAR},
+      pic_description = #{picDescription,jdbcType=VARCHAR}
+    where bp_id = #{bpId,jdbcType=INTEGER}
+  </update>
+</mapper>

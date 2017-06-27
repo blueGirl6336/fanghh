@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.SignationstatusrecordDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Signationstatusrecord">
+    <id column="ssr_id" jdbcType="INTEGER" property="ssrId" />
+    <result column="so_id" jdbcType="INTEGER" property="soId" />
+    <result column="signation_status" jdbcType="VARCHAR" property="signationStatus" />
+    <result column="signation_value" jdbcType="DECIMAL" property="signationValue" />
+    <result column="signation_time" jdbcType="TIMESTAMP" property="signationTime" />
+    <result column="typer_id" jdbcType="VARCHAR" property="typerId" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ssr_id, so_id, signation_status, signation_value, signation_time, typer_id, order_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.SignationStatusRecord
+    where ssr_id = #{ssrId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.SignationStatusRecord
+    where ssr_id = #{ssrId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Signationstatusrecord">
+    insert into dbo.SignationStatusRecord (ssr_id, so_id, signation_status, 
+      signation_value, signation_time, typer_id, 
+      order_id)
+    values (#{ssrId,jdbcType=INTEGER}, #{soId,jdbcType=INTEGER}, #{signationStatus,jdbcType=VARCHAR}, 
+      #{signationValue,jdbcType=DECIMAL}, #{signationTime,jdbcType=TIMESTAMP}, #{typerId,jdbcType=VARCHAR}, 
+      #{orderId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Signationstatusrecord">
+    insert into dbo.SignationStatusRecord
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ssrId != null">
+        ssr_id,
+      </if>
+      <if test="soId != null">
+        so_id,
+      </if>
+      <if test="signationStatus != null">
+        signation_status,
+      </if>
+      <if test="signationValue != null">
+        signation_value,
+      </if>
+      <if test="signationTime != null">
+        signation_time,
+      </if>
+      <if test="typerId != null">
+        typer_id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ssrId != null">
+        #{ssrId,jdbcType=INTEGER},
+      </if>
+      <if test="soId != null">
+        #{soId,jdbcType=INTEGER},
+      </if>
+      <if test="signationStatus != null">
+        #{signationStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="signationValue != null">
+        #{signationValue,jdbcType=DECIMAL},
+      </if>
+      <if test="signationTime != null">
+        #{signationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="typerId != null">
+        #{typerId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Signationstatusrecord">
+    update dbo.SignationStatusRecord
+    <set>
+      <if test="soId != null">
+        so_id = #{soId,jdbcType=INTEGER},
+      </if>
+      <if test="signationStatus != null">
+        signation_status = #{signationStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="signationValue != null">
+        signation_value = #{signationValue,jdbcType=DECIMAL},
+      </if>
+      <if test="signationTime != null">
+        signation_time = #{signationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="typerId != null">
+        typer_id = #{typerId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ssr_id = #{ssrId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Signationstatusrecord">
+    update dbo.SignationStatusRecord
+    set so_id = #{soId,jdbcType=INTEGER},
+      signation_status = #{signationStatus,jdbcType=VARCHAR},
+      signation_value = #{signationValue,jdbcType=DECIMAL},
+      signation_time = #{signationTime,jdbcType=TIMESTAMP},
+      typer_id = #{typerId,jdbcType=VARCHAR},
+      order_id = #{orderId,jdbcType=VARCHAR}
+    where ssr_id = #{ssrId,jdbcType=INTEGER}
+  </update>
+</mapper>

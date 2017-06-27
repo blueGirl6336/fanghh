@@ -1,0 +1,34 @@
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/myEclipse\/workspace\/\.metadata\/\.me_tcat7\/webapps\/FangHH_Backstage\/sass\/list\.scss}line{font-family:\000031}}
+.table_head {
+  height: 50px;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/myEclipse\/workspace\/\.metadata\/\.me_tcat7\/webapps\/FangHH_Backstage\/sass\/list\.scss}line{font-family:\000039}}
+.table_head div {
+  width: 150px;
+  height: 50px;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-left: 1px solid;
+  border-bottom: 1px solid;
+  border-color: #e5e5e5;
+  color: #666666;
+  font-size: 16px;
+  background-color: #fff;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/myEclipse\/workspace\/\.metadata\/\.me_tcat7\/webapps\/FangHH_Backstage\/sass\/list\.scss}line{font-family:\0000323}}
+.table_head div .nowPage {
+  position: relative;
+  top: -7px;
+  font-weight: bold;
+  border-top: 7px solid;
+  border-left: 0px;
+  border-bottom: 0px;
+  border-color: #fd6720;
+}

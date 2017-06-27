@@ -1,0 +1,15 @@
+package hitwh.fanghh.service;
+
+import hitwh.fanghh.bean.PerferentialActivityBean;
+
+public interface ActivityService {
+
+	/**
+	 * 
+	 * @param activityBean
+	 * @return
+	 */
+	
+	public String addPerferentialActivity(PerferentialActivityBean activityBean);
+	
+}

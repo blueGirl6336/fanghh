@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.RoofbeamDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Roofbeam">
+    <id column="roof_id" jdbcType="INTEGER" property="roofId" />
+    <result column="building_id" jdbcType="INTEGER" property="buildingId" />
+    <result column="roof_name" jdbcType="VARCHAR" property="roofName" />
+    <result column="property_type" jdbcType="VARCHAR" property="propertyType" />
+    <result column="roof_structer" jdbcType="VARCHAR" property="roofStructer" />
+    <result column="roof_height" jdbcType="VARCHAR" property="roofHeight" />
+    <result column="roof_face" jdbcType="VARCHAR" property="roofFace" />
+    <result column="air_floors" jdbcType="INTEGER" property="airFloors" />
+    <result column="earth_floors" jdbcType="INTEGER" property="earthFloors" />
+    <result column="roof_num" jdbcType="INTEGER" property="roofNum" />
+    <result column="roof_desc" jdbcType="VARCHAR" property="roofDesc" />
+    <result column="roof_remark" jdbcType="VARCHAR" property="roofRemark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    roof_id, building_id, roof_name, property_type, roof_structer, roof_height, roof_face, 
+    air_floors, earth_floors, roof_num, roof_desc, roof_remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.RoofBeam
+    where roof_id = #{roofId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.RoofBeam
+    where roof_id = #{roofId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Roofbeam">
+    insert into dbo.RoofBeam (roof_id, building_id, roof_name, 
+      property_type, roof_structer, roof_height, 
+      roof_face, air_floors, earth_floors, 
+      roof_num, roof_desc, roof_remark
+      )
+    values (#{roofId,jdbcType=INTEGER}, #{buildingId,jdbcType=INTEGER}, #{roofName,jdbcType=VARCHAR}, 
+      #{propertyType,jdbcType=VARCHAR}, #{roofStructer,jdbcType=VARCHAR}, #{roofHeight,jdbcType=VARCHAR}, 
+      #{roofFace,jdbcType=VARCHAR}, #{airFloors,jdbcType=INTEGER}, #{earthFloors,jdbcType=INTEGER}, 
+      #{roofNum,jdbcType=INTEGER}, #{roofDesc,jdbcType=VARCHAR}, #{roofRemark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Roofbeam" useGeneratedKeys="true" keyProperty="roofId">
+	  
+    insert into dbo.RoofBeam
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roofId != null">
+        roof_id,
+      </if>
+      <if test="buildingId != null">
+        building_id,
+      </if>
+      <if test="roofName != null">
+        roof_name,
+      </if>
+      <if test="propertyType != null">
+        property_type,
+      </if>
+      <if test="roofStructer != null">
+        roof_structer,
+      </if>
+      <if test="roofHeight != null">
+        roof_height,
+      </if>
+      <if test="roofFace != null">
+        roof_face,
+      </if>
+      <if test="airFloors != null">
+        air_floors,
+      </if>
+      <if test="earthFloors != null">
+        earth_floors,
+      </if>
+      <if test="roofNum != null">
+        roof_num,
+      </if>
+      <if test="roofDesc != null">
+        roof_desc,
+      </if>
+      <if test="roofRemark != null">
+        roof_remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roofId != null">
+        #{roofId,jdbcType=INTEGER},
+      </if>
+      <if test="buildingId != null">
+        #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="roofName != null">
+        #{roofName,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyType != null">
+        #{propertyType,jdbcType=VARCHAR},
+      </if>
+      <if test="roofStructer != null">
+        #{roofStructer,jdbcType=VARCHAR},
+      </if>
+      <if test="roofHeight != null">
+        #{roofHeight,jdbcType=VARCHAR},
+      </if>
+      <if test="roofFace != null">
+        #{roofFace,jdbcType=VARCHAR},
+      </if>
+      <if test="airFloors != null">
+        #{airFloors,jdbcType=INTEGER},
+      </if>
+      <if test="earthFloors != null">
+        #{earthFloors,jdbcType=INTEGER},
+      </if>
+      <if test="roofNum != null">
+        #{roofNum,jdbcType=INTEGER},
+      </if>
+      <if test="roofDesc != null">
+        #{roofDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="roofRemark != null">
+        #{roofRemark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Roofbeam">
+    update dbo.RoofBeam
+    <set>
+      <if test="buildingId != null">
+        building_id = #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="roofName != null">
+        roof_name = #{roofName,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyType != null">
+        property_type = #{propertyType,jdbcType=VARCHAR},
+      </if>
+      <if test="roofStructer != null">
+        roof_structer = #{roofStructer,jdbcType=VARCHAR},
+      </if>
+      <if test="roofHeight != null">
+        roof_height = #{roofHeight,jdbcType=VARCHAR},
+      </if>
+      <if test="roofFace != null">
+        roof_face = #{roofFace,jdbcType=VARCHAR},
+      </if>
+      <if test="airFloors != null">
+        air_floors = #{airFloors,jdbcType=INTEGER},
+      </if>
+      <if test="earthFloors != null">
+        earth_floors = #{earthFloors,jdbcType=INTEGER},
+      </if>
+      <if test="roofNum != null">
+        roof_num = #{roofNum,jdbcType=INTEGER},
+      </if>
+      <if test="roofDesc != null">
+        roof_desc = #{roofDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="roofRemark != null">
+        roof_remark = #{roofRemark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where roof_id = #{roofId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Roofbeam">
+    update dbo.RoofBeam
+    set building_id = #{buildingId,jdbcType=INTEGER},
+      roof_name = #{roofName,jdbcType=VARCHAR},
+      property_type = #{propertyType,jdbcType=VARCHAR},
+      roof_structer = #{roofStructer,jdbcType=VARCHAR},
+      roof_height = #{roofHeight,jdbcType=VARCHAR},
+      roof_face = #{roofFace,jdbcType=VARCHAR},
+      air_floors = #{airFloors,jdbcType=INTEGER},
+      earth_floors = #{earthFloors,jdbcType=INTEGER},
+      roof_num = #{roofNum,jdbcType=INTEGER},
+      roof_desc = #{roofDesc,jdbcType=VARCHAR},
+      roof_remark = #{roofRemark,jdbcType=VARCHAR}
+    where roof_id = #{roofId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="getRoofNameById" parameterType="java.lang.Integer"  resultType="java.lang.String">
+    select
+    roof_name
+    from dbo.RoofBeam
+    where roof_id = #{roofId,jdbcType=INTEGER}
+  </select>
+</mapper>

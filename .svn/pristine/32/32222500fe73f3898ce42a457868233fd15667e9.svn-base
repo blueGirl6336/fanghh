@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.BrokercommissionrecordDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Brokercommissionrecord">
+    <id column="bcr_id" jdbcType="INTEGER" property="bcrId" />
+    <result column="broker_id" jdbcType="INTEGER" property="brokerId" />
+    <result column="so_id" jdbcType="INTEGER" property="soId" />
+    <result column="commission_value" jdbcType="VARCHAR" property="commissionValue" />
+    <result column="offer_time" jdbcType="TIMESTAMP" property="offerTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    bcr_id, broker_id, so_id, commission_value, offer_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.BrokerCommissionRecord
+    where bcr_id = #{bcrId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.BrokerCommissionRecord
+    where bcr_id = #{bcrId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Brokercommissionrecord">
+    insert into dbo.BrokerCommissionRecord (bcr_id, broker_id, so_id, 
+      commission_value, offer_time)
+    values (#{bcrId,jdbcType=INTEGER}, #{brokerId,jdbcType=INTEGER}, #{soId,jdbcType=INTEGER}, 
+      #{commissionValue,jdbcType=VARCHAR}, #{offerTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Brokercommissionrecord">
+    insert into dbo.BrokerCommissionRecord
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bcrId != null">
+        bcr_id,
+      </if>
+      <if test="brokerId != null">
+        broker_id,
+      </if>
+      <if test="soId != null">
+        so_id,
+      </if>
+      <if test="commissionValue != null">
+        commission_value,
+      </if>
+      <if test="offerTime != null">
+        offer_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bcrId != null">
+        #{bcrId,jdbcType=INTEGER},
+      </if>
+      <if test="brokerId != null">
+        #{brokerId,jdbcType=INTEGER},
+      </if>
+      <if test="soId != null">
+        #{soId,jdbcType=INTEGER},
+      </if>
+      <if test="commissionValue != null">
+        #{commissionValue,jdbcType=VARCHAR},
+      </if>
+      <if test="offerTime != null">
+        #{offerTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Brokercommissionrecord">
+    update dbo.BrokerCommissionRecord
+    <set>
+      <if test="brokerId != null">
+        broker_id = #{brokerId,jdbcType=INTEGER},
+      </if>
+      <if test="soId != null">
+        so_id = #{soId,jdbcType=INTEGER},
+      </if>
+      <if test="commissionValue != null">
+        commission_value = #{commissionValue,jdbcType=VARCHAR},
+      </if>
+      <if test="offerTime != null">
+        offer_time = #{offerTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where bcr_id = #{bcrId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Brokercommissionrecord">
+    update dbo.BrokerCommissionRecord
+    set broker_id = #{brokerId,jdbcType=INTEGER},
+      so_id = #{soId,jdbcType=INTEGER},
+      commission_value = #{commissionValue,jdbcType=VARCHAR},
+      offer_time = #{offerTime,jdbcType=TIMESTAMP}
+    where bcr_id = #{bcrId,jdbcType=INTEGER}
+  </update>
+</mapper>

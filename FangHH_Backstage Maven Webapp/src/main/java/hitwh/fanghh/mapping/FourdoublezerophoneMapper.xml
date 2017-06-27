@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.FourdoublezerophoneDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Fourdoublezerophone">
+    <id column="cast_id" jdbcType="INTEGER" property="castId" />
+    <result column="orginal_phone_num" jdbcType="VARCHAR" property="orginalPhoneNum" />
+    <result column="target_phone_num" jdbcType="VARCHAR" property="targetPhoneNum" />
+    <result column="status" jdbcType="BIT" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    cast_id, orginal_phone_num, target_phone_num, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.FourDoubleZeroPhone
+    where cast_id = #{castId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.FourDoubleZeroPhone
+    where cast_id = #{castId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Fourdoublezerophone">
+    insert into dbo.FourDoubleZeroPhone (cast_id, orginal_phone_num, target_phone_num, 
+      status)
+    values (#{castId,jdbcType=INTEGER}, #{orginalPhoneNum,jdbcType=VARCHAR}, #{targetPhoneNum,jdbcType=VARCHAR}, 
+      #{status,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Fourdoublezerophone">
+    insert into dbo.FourDoubleZeroPhone
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="castId != null">
+        cast_id,
+      </if>
+      <if test="orginalPhoneNum != null">
+        orginal_phone_num,
+      </if>
+      <if test="targetPhoneNum != null">
+        target_phone_num,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="castId != null">
+        #{castId,jdbcType=INTEGER},
+      </if>
+      <if test="orginalPhoneNum != null">
+        #{orginalPhoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="targetPhoneNum != null">
+        #{targetPhoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Fourdoublezerophone">
+    update dbo.FourDoubleZeroPhone
+    <set>
+      <if test="orginalPhoneNum != null">
+        orginal_phone_num = #{orginalPhoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="targetPhoneNum != null">
+        target_phone_num = #{targetPhoneNum,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=BIT},
+      </if>
+    </set>
+    where cast_id = #{castId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Fourdoublezerophone">
+    update dbo.FourDoubleZeroPhone
+    set orginal_phone_num = #{orginalPhoneNum,jdbcType=VARCHAR},
+      target_phone_num = #{targetPhoneNum,jdbcType=VARCHAR},
+      status = #{status,jdbcType=BIT}
+    where cast_id = #{castId,jdbcType=INTEGER}
+  </update>
+</mapper>

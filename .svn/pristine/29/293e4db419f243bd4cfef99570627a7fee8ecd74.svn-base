@@ -1,0 +1,48 @@
+package hitwh.fanghh.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import hitwh.fanghh.dao.BuildingcommentDao;
+import hitwh.fanghh.pojo.Buildingcomment;
+import hitwh.fanghh.service.BuildingComment;
+@Service
+public class BuildingCommnetImpl implements BuildingComment
+{
+
+	@Autowired
+	private BuildingcommentDao buildingcommentDao;
+
+	/**
+	 * @discription {获取楼圈点评信息}
+	 * @author xingfeng
+	 * @created 2016年12月14日 上午10:38:30
+	 * @param commnetId
+	 * @return
+	 * @see hitwh.fanghh.service.BuildingComment#selectBuildingComment(java.lang.Integer)
+	 */
+	@Override
+	public Buildingcomment selectBuildingComment(Integer commentId)
+	{
+		return buildingcommentDao.selectByPrimaryKey(commentId);
+	}
+
+	/**
+	 * @discription {删除楼圈点评信息}
+	 * @author xingfeng
+	 * @created 2016年12月14日 上午10:38:30
+	 * @param commnetId
+	 * @return
+	 * @see hitwh.fanghh.service.BuildingComment#deleteBuildingComment(java.lang.Integer)
+	 */
+	@Override
+	public boolean deleteBuildingComment(Integer commentId)
+	{
+		int result = buildingcommentDao.deleteByPrimaryKey(commentId);
+		if (result == 1)
+			return true;
+		else
+			return false;
+	}
+
+}

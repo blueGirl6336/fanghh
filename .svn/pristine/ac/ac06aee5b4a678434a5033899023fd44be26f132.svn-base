@@ -1,0 +1,145 @@
+a {
+  text-decoration: none; }
+
+ul {
+  padding: 0; }
+
+li {
+  list-style: none; }
+
+.clearfix:before, .clearfix:after {
+  content: "";
+  display: table; }
+
+.clearfix:after {
+  clear: both;
+  overflow: hidden; }
+
+.clearfix {
+  zoom: 1; }
+
+html {
+  width: 100%;
+  height: 100%; }
+
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0; }
+
+.leftArea {
+  float: left;
+  height: 100%;
+  width: 180px;
+  background-color: #2b3543;
+  overflow: hidden; }
+  .leftArea .logoBox {
+    position: relative;
+    width: 100%;
+    height: 80px; }
+    .leftArea .logoBox .logo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin: -25px 0 0 -65px;
+      width: 130px;
+      height: 50px; }
+  .leftArea .nav {
+    width: 100%; }
+    .leftArea .nav .navigation_group {
+      margin: 18px 0 0 0; }
+      .leftArea .nav .navigation_group .navigation_groupname {
+        width: 100%;
+        height: 42px;
+        line-height: 42px;
+        font-size: 14px;
+        font-weight: bold;
+        color: #fff;
+        padding: 0 0 0 45px;
+        background-color: #262f3a; }
+      .leftArea .nav .navigation_group .linkset {
+        padding: 10px 0 0 0; }
+        .leftArea .nav .navigation_group .linkset .link {
+          height: 32px;
+          line-height: 32px;
+          padding: 0 0 0 45px; }
+          .leftArea .nav .navigation_group .linkset .link .navigation_link {
+            font-size: 12px;
+            color: #999; }
+            .leftArea .nav .navigation_group .linkset .link .navigation_link:hover {
+              color: #ff6600; }
+
+.header {
+  position: absolute;
+  top: 0;
+  left: 180px;
+  right: 0;
+  width: auto;
+  height: 80px;
+  z-index: 999;
+  background-color: #2b3543;
+  overflow: hidden; }
+  .header .titleBox {
+    float: left;
+    height: 100%;
+    padding: 0 0 0 30px;
+    line-height: 80px; }
+    .header .titleBox h1 {
+      margin: 0;
+      font-family: 'Microsoft YaHei';
+      font-size: 20px;
+      color: #fff; }
+  .header .account {
+    float: right;
+    height: 100%;
+    line-height: 80px;
+    margin: 0 30px 0 0;
+    font-size: 12px;
+    color: #666; }
+    .header .account a {
+      color: #666; }
+
+.content {
+  position: fixed;
+  left: 180px;
+  top: 80px;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+  background-color: #f5f5f5; }
+  .content .content_area {
+    min-height: 350px;
+    margin: 18px 18px 50px 18px;
+    border: 1px solid #e5e5e5;
+    background-color: #fff; }
+    .content .content_area .content_area_title {
+      height: 60px;
+      border-bottom: 1px solid #e5e5e5; }
+      .content .content_area .content_area_title h2 {
+        margin: 0;
+        line-height: 60px;
+        padding: 0 0 0 35px;
+        font-size: 14px; }
+    .content .content_area .content_main {
+      padding: 30px 0; }
+      .content .content_area .content_main .hint {
+        width: 90%;
+        height: 60px;
+        margin: 0 auto;
+        border: 1px solid #ffca83;
+        background-color: #fff4ed; }
+        .content .content_area .content_main .hint .hint_text {
+          color: red;
+          padding: 20px 0 0 20px;
+          font-size: 12px; }
+  .content .footer {
+    position: absolute;
+    width: 100%;
+    margin: 0 0 15px 0; }
+    .content .footer .footer_content {
+      text-align: center;
+      line-height: 1.5;
+      font-size: 8px;
+      color: #666; }
+
+/*# sourceMappingURL=frame.css.map */

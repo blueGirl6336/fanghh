@@ -1,0 +1,149 @@
+<div class="content_area" ng-controller="buildingAudit">
+	<div class="content_area_fullpage">
+		<div class="content_area_title">
+			<h2>发布新楼盘</h2>
+		</div>
+		<div class="content_main">
+			<div class="hint" ng-show="ifFail">
+				<p class="hint_text">审核不通过原因：{{buildingInfo.auditNotPassReason}}</p>
+			</div>
+			<div class="inputArea">
+				<h3>楼盘录入</h3>
+				<form>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label for="username">楼盘名称：</label>
+							<div class="form-field">{{buildingInfo.buildingName}}</div>
+						</div>
+						<div class="form-item form-item-middle">
+							<label for="username">所在区域：</label>
+							<div class="form-field">{{buildingInfo.regionName}}</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label for="username">开发商：</label>
+							<div class="form-field">{{buildingInfo.developName}}</div>
+						</div>
+						<div class="form-item form-item-middle">
+							<label for="username">详细地址：</label>
+							<div class="form-field">{{buildingInfo.buildingLocation}}</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label for="username">均价：</label>
+							<div class="form-field">{{buildingInfo.averagePrice}}<span class="hasUnitInput_unit">元</span></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label for="username">开盘时间：</label>
+							<div class="form-field">{{buildingInfo.openingTime|date:"yyyy-MM-dd"}}</div>
+						</div>
+						<div class="form-item form-item-middle">
+							<label for="username">入住时间：</label>
+							<div class="form-field">{{buildingInfo.launchTime|date:"yyyy-MM-dd"}}</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label for="username">建筑面积：</label>
+							<div class="form-field">{{buildingInfo.constructionArea}}</div>
+						</div>
+						<div class="form-item form-item-middle">
+							<label for="username">总户数：</label>
+							<div class="form-field">{{buildingInfo.householdNum}}</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label for="username">绿化率：</label>
+							<div class="form-field">{{buildingInfo.greeningRate}}</div>
+						</div>
+						<div class="form-item form-item-middle">
+							<label for="username">容积率：</label>
+							<div class="form-field">{{buildingInfo.plotRate}}</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label for="username">物业公司：</label>
+							<div class="form-field"><!-- 盛德物业 --></div>
+						</div>
+						<div class="form-item form-item-middle">
+							<label for="username">物业费：</label>
+							<div class="form-field">-<!--<span>元/平方米</span>--></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label for="username">产权年限：</label>
+							<div class="form-field">{{buildingInfo.duration}}</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label for="username">售楼地址：<span class="justify"></span></label>
+							<div class="form-field">{{building.saleSiteLocation}}</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-broad">
+							<label for="username">楼盘简介：</label>
+							<div class="form-field">
+								{{buildingInfo.developmentprofile}}
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-broad">
+							<label for="username">推荐理由：</label>
+							<div class="form-field">
+								{{buildingInfo.recommendReason}}
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-large">
+							<label>特色标签：</label>
+							<div class="form-field">
+								{{buildingInfo.buildingLabel}}
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-large">
+							<label>400电话：</label>
+							<div class="form-field">
+								{{buildingInfo.phoneFdz}}
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-large">
+							<label>楼盘类型：</label>
+							<div class="form-field">
+								{{buildingInfo.buildingType}}
+							</div>
+						</div>
+					</div>
+				</form>
+				<div class="button-area">
+					<button type="button" class="btn goback" ng-click="ifNotPass = true">审核不通过</button>
+					<button type="button" class="btn save-continue" ng-click="pass()">审核通过</button>
+				</div>
+			</div>
+			<div class="refuse-box" ng-show="ifNotPass">
+				<img src="./image/close_1.png" ng-click="ifNotPass = false">
+				<div class="refuse-body">
+					<div>审核不通过原因：</div>
+					<textarea rows="10" cols="50" ng-model="backMessage"></textarea>
+				</div>
+				<div class="button-area">
+					<button type="button" class="btn save-continue" ng-click="submitReason()">提交</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,312 @@
+<!-- <link type="text/css" rel="stylesheet" href="./css/list.css"/> -->
+<link type="text/css" rel="stylesheet" href="./css/list_buildingManagement.css"/>
+
+<div class="content-div">
+	<div class="inputArea form-item form-item-large content_area_head">
+		<img src="././image/search.png" class="img-search"/>
+		<span class="selectDistrict">选择地区</span>
+		<select name="" id="shortSelect-province" class="form-text shortSelect"></select>
+		<span class="province">省</span>
+		<select name="" id="shortSelect-city" class="form-text shortSelect"></select>
+		<span class="city">市</span>
+		<select name="" id="shortSelect-zone" class="form-text shortSelect"></select>
+		<span class="zone">区</span>
+		<span class="buildingName">楼盘名称：</span>
+		<input type="text" class="form-text shortText" name="">
+		<button type="button" class="submit-file">添加</button>
+	</div>
+		
+	<div class="table_area">
+		<div class="table_head">
+			<div id="buildingManagement">楼盘f管理</div>
+		</div>
+
+		<div class="table_content">
+			<table class="building_table">
+				<tr class="line0">
+					<td class="checkbox"></td>
+					<td class="building-name">楼盘名称</td>
+					<td class="state">
+						<span>状态</span>
+						<img src="././image/point_1.png" class="sort-up"/>
+						<img src="././image/point_2.png" class="sort-down"/>
+					</td>
+					<td class="tele">联系电话</td>
+					<td class="modify-date">
+						<span>修改日期</span>
+						<img src="././image/point_1.png" class="sort-up"/>
+						<img src="././image/point_2.png" class="sort-down"/>
+					</td>
+					<td class="operation" colspan="2">操作</td>
+					<td class="manage-operation">管理员操作</td>
+					<td class="recommend">首页推荐</td>
+					<td class="manage">权限管理</td>
+					<td class="online"></td>
+					<td class="recommend-or-not"></td>
+					<td class="team-buy"></td>
+				</tr>
+				<tr class="line1">
+					<td class="checkbox">
+						<input type="checkbox" name="tr-select">
+					</td>
+					<td class="building-name">威海华润·湾九里</td>
+					<td class="state">待完善</td>
+					<td class="tele">1122-13306316789</td>
+					<td class="modify-date">2016-09-12</td>
+					<td class="operation1">修改</td>
+					<td class="operation2">完善</td>
+					<td class="manage-operation">-</td>
+					<td class="recommend">是</td>
+					<td class="manage">设置</td>
+					<td class="online">
+						<input type="checkbox" name="select">在线报名
+					</td>
+					<td class="recommend-or-not">
+						<input type="checkbox" name="select">是否开放推荐
+					</td>
+					<td class="team-buy">
+						<input type="checkbox" name="select">团购
+					</td>
+				</tr>
+				<tr class="line2">
+					<td class="checkbox">
+						<input type="checkbox" name="tr-select">
+					</td>
+					<td class="building-name">威海五洲太阳城</td>
+					<td class="state">已完善</td>
+					<td class="tele">400-8779-683&nbsp;转2666</td>
+					<td class="modify-date">2016-09-12</td>
+					<td class="operation1">修改</td>
+					<td class="operation2">申请上架</td>
+					<td class="manage-operation">审核</td>
+					<td class="recommend">否</td>
+					<td class="manage">设置</td>
+					<td class="online"></td>
+					<td class="recommend-or-not"></td>
+					<td class="team-buy"></td>
+				</tr>
+				<tr class="line1">
+					<td class="checkbox">
+						<input type="checkbox" name="tr-select">
+					</td>
+					<td class="building-name">威海华润·湾九里</td>
+					<td class="state">待完善</td>
+					<td class="tele">1122-13306316789</td>
+					<td class="modify-date">2016-09-12</td>
+					<td class="operation1">修改</td>
+					<td class="operation2">完善</td>
+					<td class="manage-operation">-</td>
+					<td class="recommend">是</td>
+					<td class="manage">设置</td>
+					<td class="online">
+						<input type="checkbox" name="select">在线报名
+					</td>
+					<td class="recommend-or-not">
+						<input type="checkbox" name="select">是否开放推荐
+					</td>
+					<td class="team-buy">
+						<input type="checkbox" name="select">团购
+					</td>
+				</tr>
+				<tr class="line2">
+					<td class="checkbox">
+						<input type="checkbox" name="tr-select">
+					</td>
+					<td class="building-name">威海五洲太阳城</td>
+					<td class="state">已完善</td>
+					<td class="tele">400-8779-683&nbsp;转2666</td>
+					<td class="modify-date">2016-09-12</td>
+					<td class="operation1">修改</td>
+					<td class="operation2">申请上架3</td>
+					<td class="manage-operation">审核</td>
+					<td class="recommend">否</td>
+					<td class="manage">设置</td>
+					<td class="online"></td>
+					<td class="recommend-or-not"></td>
+					<td class="team-buy"></td>
+				</tr>
+				<tr class="line1">
+					<td class="checkbox">
+						<input type="checkbox" name="tr-select">
+					</td>
+					<td class="building-name">威海华润·湾九里</td>
+					<td class="state">待完善</td>
+					<td class="tele">1122-13306316789</td>
+					<td class="modify-date">2016-09-12</td>
+					<td class="operation1">修改</td>
+					<td class="operation2">完善</td>
+					<td class="manage-operation">-</td>
+					<td class="recommend">是</td>
+					<td class="manage">设置</td>
+					<td class="online">
+						<input type="checkbox" name="select">在线报名
+					</td>
+					<td class="recommend-or-not">
+						<input type="checkbox" name="select">是否开放推荐
+					</td>
+					<td class="team-buy">
+						<input type="checkbox" name="select">团购
+					</td>
+				</tr>
+				<tr class="line2">
+					<td class="checkbox">
+						<input type="checkbox" name="tr-select">
+					</td>
+					<td class="building-name">威海五洲太阳城</td>
+					<td class="state">已完善</td>
+					<td class="tele">400-8779-683&nbsp;转2666</td>
+					<td class="modify-date">2016-09-12</td>
+					<td class="operation1">修改</td>
+					<td class="operation2">申请上架</td>
+					<td class="manage-operation">审核</td>
+					<td class="recommend">否</td>
+					<td class="manage">设置</td>
+					<td class="online"></td>
+					<td class="recommend-or-not"></td>
+					<td class="team-buy"></td>
+				</tr>
+				<tr class="line1">
+					<td class="checkbox">
+						<input type="checkbox" name="tr-select">
+					</td>
+					<td class="building-name">威海华润·湾九里</td>
+					<td class="state">待完善</td>
+					<td class="tele">1122-13306316789</td>
+					<td class="modify-date">2016-09-12</td>
+					<td class="operation1">修改</td>
+					<td class="operation2">完善</td>
+					<td class="manage-operation">-</td>
+					<td class="recommend">是</td>
+					<td class="manage">设置</td>
+					<td class="online">
+						<input type="checkbox" name="select">在线报名
+					</td>
+					<td class="recommend-or-not">
+						<input type="checkbox" name="select">是否开放推荐
+					</td>
+					<td class="team-buy">
+						<input type="checkbox" name="select">团购
+					</td>
+				</tr>
+				<tr class="line2">
+					<td class="checkbox">
+						<input type="checkbox" name="tr-select">
+					</td>
+					<td class="building-name">威海五洲太阳城</td>
+					<td class="state">已完善</td>
+					<td class="tele">400-8779-683&nbsp;转2666</td>
+					<td class="modify-date">2016-09-12</td>
+					<td class="operation1">修改</td>
+					<td class="operation2">申请上架</td>
+					<td class="manage-operation">审核</td>
+					<td class="recommend">否</td>
+					<td class="manage">设置</td>
+					<td class="online"></td>
+					<td class="recommend-or-not"></td>
+					<td class="team-buy"></td>
+				</tr>
+				<tr class="line1">
+					<td class="checkbox">
+						<input type="checkbox" name="tr-select">
+					</td>
+					<td class="building-name">威海华润·湾九里</td>
+					<td class="state">待完善</td>
+					<td class="tele">1122-13306316789</td>
+					<td class="modify-date">2016-09-12</td>
+					<td class="operation1">修改</td>
+					<td class="operation2">完善</td>
+					<td class="manage-operation">-</td>
+					<td class="recommend">是</td>
+					<td class="manage">设置</td>
+					<td class="online">
+						<input type="checkbox" name="select">在线报名
+					</td>
+					<td class="recommend-or-not">
+						<input type="checkbox" name="select">是否开放推荐
+					</td>
+					<td class="team-buy">
+						<input type="checkbox" name="select">团购
+					</td>
+				</tr>
+				<tr class="line2">
+					<td class="checkbox">
+						<input type="checkbox" name="tr-select">
+					</td>
+					<td class="building-name">威海五洲太阳城</td>
+					<td class="state">已完善</td>
+					<td class="tele">400-8779-683&nbsp;转2666</td>
+					<td class="modify-date">2016-09-12</td>
+					<td class="operation1">修改</td>
+					<td class="operation2">申请上架</td>
+					<td class="manage-operation">审核</td>
+					<td class="recommend">否</td>
+					<td class="manage">设置</td>
+					<td class="online"></td>
+					<td class="recommend-or-not"></td>
+					<td class="team-buy"></td>
+				</tr>
+				<tr class="line1">
+					<td class="checkbox">
+						<input type="checkbox" name="tr-select">
+					</td>
+					<td class="building-name">威海华润·湾九里</td>
+					<td class="state">待完善</td>
+					<td class="tele">1122-13306316789</td>
+					<td class="modify-date">2016-09-12</td>
+					<td class="operation1">修改</td>
+					<td class="operation2">完善</td>
+					<td class="manage-operation">-</td>
+					<td class="recommend">是</td>
+					<td class="manage">设置</td>
+					<td class="online">
+						<input type="checkbox" name="select">在线报名
+					</td>
+					<td class="recommend-or-not">
+						<input type="checkbox" name="select">是否开放推荐
+					</td>
+					<td class="team-buy">
+						<input type="checkbox" name="select">团购
+					</td>
+				</tr>
+				<tr class="line2">
+					<td class="checkbox">
+						<input type="checkbox" name="tr-select">
+					</td>
+					<td class="building-name">威海五洲太阳城</td>
+					<td class="state">已完善</td>
+					<td class="tele">400-8779-683&nbsp;转2666</td>
+					<td class="modify-date">2016-09-12</td>
+					<td class="operation1">修改</td>
+					<td class="operation2">申请上架</td>
+					<td class="manage-operation">审核</td>
+					<td class="recommend">否</td>
+					<td class="manage">设置</td>
+					<td class="online"></td>
+					<td class="recommend-or-not"></td>
+					<td class="team-buy"></td>
+				</tr>
+
+				<tr class="table-bottom">
+					<td class="checkbox-bottom">
+						<input type="checkbox" name="tr-select">全选
+					</td>
+					<td class="up-select">上架所选</td>
+					<td class="down-select">下架所选</td>
+				</tr>
+			</table>
+
+			<div class="page-num">
+					<p class="first">首页</p>
+					<p class="before">上一页</p>
+					<p class="page-1">1</p>
+					<p class="page-2">2</p>
+					<p class="page-3">3</p>
+					<p class="page-4">4</p>
+					<p class="page-5">5</p>
+					<p class="next">下一页</p>
+					<p class="last">末页</p>
+			</div>
+		</div>
+	</div>
+</div>
+				

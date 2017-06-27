@@ -1,0 +1,18 @@
+
+package hitwh.fanghh.dao;
+
+import hitwh.fanghh.pojo.Developer;
+
+public interface DeveloperDao {
+    int deleteByPrimaryKey(Integer developerId);
+
+    int insert(Developer record);
+
+    int insertSelective(Developer record);
+
+    Developer selectByPrimaryKey(Integer developerId);
+
+    int updateByPrimaryKeySelective(Developer record);
+
+    int updateByPrimaryKey(Developer record);
+}

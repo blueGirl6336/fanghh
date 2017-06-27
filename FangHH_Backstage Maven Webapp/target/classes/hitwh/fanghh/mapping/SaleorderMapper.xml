@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.SaleorderDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Saleorder">
+    <id column="so_id" jdbcType="INTEGER" property="soId" />
+    <result column="customer_id" jdbcType="INTEGER" property="customerId" />
+    <result column="house_id" jdbcType="INTEGER" property="houseId" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="reception_time" jdbcType="TIMESTAMP" property="receptionTime" />
+    <result column="order_status" jdbcType="VARCHAR" property="orderStatus" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    so_id, customer_id, house_id, order_id, reception_time, order_status, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.SaleOrder
+    where so_id = #{soId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.SaleOrder
+    where so_id = #{soId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Saleorder">
+    insert into dbo.SaleOrder (so_id, customer_id, house_id, 
+      order_id, reception_time, order_status, 
+      remark)
+    values (#{soId,jdbcType=INTEGER}, #{customerId,jdbcType=INTEGER}, #{houseId,jdbcType=INTEGER}, 
+      #{orderId,jdbcType=VARCHAR}, #{receptionTime,jdbcType=TIMESTAMP}, #{orderStatus,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Saleorder">
+    insert into dbo.SaleOrder
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="soId != null">
+        so_id,
+      </if>
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="houseId != null">
+        house_id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="receptionTime != null">
+        reception_time,
+      </if>
+      <if test="orderStatus != null">
+        order_status,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="soId != null">
+        #{soId,jdbcType=INTEGER},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="houseId != null">
+        #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="receptionTime != null">
+        #{receptionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderStatus != null">
+        #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Saleorder">
+    update dbo.SaleOrder
+    <set>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="houseId != null">
+        house_id = #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="receptionTime != null">
+        reception_time = #{receptionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderStatus != null">
+        order_status = #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where so_id = #{soId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Saleorder">
+    update dbo.SaleOrder
+    set customer_id = #{customerId,jdbcType=INTEGER},
+      house_id = #{houseId,jdbcType=INTEGER},
+      order_id = #{orderId,jdbcType=VARCHAR},
+      reception_time = #{receptionTime,jdbcType=TIMESTAMP},
+      order_status = #{orderStatus,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where so_id = #{soId,jdbcType=INTEGER}
+  </update>
+</mapper>

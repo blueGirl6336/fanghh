@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type"  content="text/html;charset=UTF-8">
+		<title>活动管理</title>
+		<link rel="stylesheet" type="text/css" href="css/frame.css"/>
+		<link rel="stylesheet" type="text/css" href="css/inputStyle.css"/>
+	</head>
+	<body>
+			<div class="leftArea">
+	<div class="logoBox">
+		<img src="logo1.png" alt="logo" class="logo">
+	</div>
+	<div class="nav">
+		<ul class="navigation">
+			<li class="navigation_group">
+				<div class="navigation_groupname">楼盘管理</div>
+				<ul class="linkset">
+					<li class="link">
+						<a href="" class="navigation_link">发布新楼盘</a>
+					</li>
+					<li class="link">
+						<a href="" class="navigation_link">管理楼盘</a>
+					</li>
+				</ul>
+			</li>
+			<li class="navigation_group">
+				<div class="navigation_groupname">活动管理</div>
+				<ul class="linkset">
+					<li class="link">
+						<a href="" class="navigation_link">发布新活动</a>
+					</li>
+					<li class="link">
+						<a href="" class="navigation_link">管理活动</a>
+					</li>
+				</ul>
+			</li>
+			<li class="navigation_group">
+				<div class="navigation_groupname">用户认证管理</div>
+				<ul class="linkset">
+					<li class="link">
+						<a href="" class="navigation_link">实名认证</a>
+					</li>
+					<li class="link">
+						<a href="" class="navigation_link">门店认证</a>
+					</li>
+					<li class="link">
+						<a href="" class="navigation_link">分配用户</a>
+					</li>
+				</ul>
+			</li>
+			<li class="navigation_group">
+				<div class="navigation_groupname">报表统计</div>
+				<ul class="linkset"></ul>
+			</li>
+			<li class="navigation_group">
+				<div class="navigation_groupname">系统设置</div>
+				<ul class="linkset">
+					<li class="link">
+						<a href="" class="navigation_link">数据字典管理</a>
+					</li>
+					<li class="link">
+						<a href="" class="navigation_link">用户管理</a>
+					</li>
+					<li class="link">
+						<a href="" class="navigation_link">角色管理</a>
+					</li>
+					<li class="link">
+						<a href="" class="navigation_link">权限/模块管理</a>
+					</li>
+					<li class="link">
+						<a href="" class="navigation_link">日志管理</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</div>
+<div class="header clearfix">
+	<div class="titleBox">
+		<h1>后台管理中心</h1>
+	</div>
+	<div class="account">
+		欢迎您: <span>1863110186</span> | <a href="">退出</a>
+	</div>
+</div>
+<div class="content">
+	<div class="content_main">
+		<div class="inputArea">
+		<div class="row">
+			<div class="form-item form-item-middle">
+				<label for="username"><span class="requireMark">*</span>选择地区：<span class="justify"></span></label>
+							<div class="form-field">
+								<select name="" id="" class="form-text shortSelect"></select>
+								<span>省</span>
+								<select name="" id="" class="form-text shortSelect"></select>
+								<span>市</span>
+								<select name="" id="" class="form-text shortSelect"></select>
+								<span>区</span>
+							</div>
+							
+						</div>			
+					</div>
+		<div class="row">
+			<div class="form-item form-item-middle">
+							<label for="username"><span class="requireMark">*</span>楼盘名称<span class="justify"></span></label>
+							<div class="form-field">
+								<input type="text" class="form-text hasUnitInput" id="username" name="username" placeholder=""><span class="hasUnitInput_unit"></span>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+	</div>
+</div>
+	</body>
+</html>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.TeambrokerlistDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Teambrokerlist">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="team_id" jdbcType="INTEGER" property="teamId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="join_time" jdbcType="TIMESTAMP" property="joinTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="total_commission" jdbcType="DECIMAL" property="totalCommission" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, team_id, user_id, join_time, remark, total_commission
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.TeamBrokerList
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.TeamBrokerList
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Teambrokerlist">
+    insert into dbo.TeamBrokerList (id, team_id, user_id, 
+      join_time, remark, total_commission
+      )
+    values (#{id,jdbcType=INTEGER}, #{teamId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{joinTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, #{totalCommission,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Teambrokerlist">
+    insert into dbo.TeamBrokerList
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="teamId != null">
+        team_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="joinTime != null">
+        join_time,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="totalCommission != null">
+        total_commission,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="teamId != null">
+        #{teamId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="joinTime != null">
+        #{joinTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="totalCommission != null">
+        #{totalCommission,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Teambrokerlist">
+    update dbo.TeamBrokerList
+    <set>
+      <if test="teamId != null">
+        team_id = #{teamId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="joinTime != null">
+        join_time = #{joinTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="totalCommission != null">
+        total_commission = #{totalCommission,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Teambrokerlist">
+    update dbo.TeamBrokerList
+    set team_id = #{teamId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      join_time = #{joinTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      total_commission = #{totalCommission,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,18 @@
+
+package hitwh.fanghh.dao;
+
+import hitwh.fanghh.pojo.Dynamiccontent;
+
+public interface DynamiccontentDao {
+    int deleteByPrimaryKey(Integer dcId);
+
+    int insert(Dynamiccontent record);
+
+    int insertSelective(Dynamiccontent record);
+
+    Dynamiccontent selectByPrimaryKey(Integer dcId);
+
+    int updateByPrimaryKeySelective(Dynamiccontent record);
+
+    int updateByPrimaryKey(Dynamiccontent record);
+}

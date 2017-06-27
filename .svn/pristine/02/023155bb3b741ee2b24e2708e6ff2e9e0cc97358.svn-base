@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.BrokerDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Broker">
+    <id column="broker_id" jdbcType="INTEGER" property="brokerId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="store_id" jdbcType="INTEGER" property="storeId" />
+    <result column="team_id" jdbcType="INTEGER" property="teamId" />
+    <result column="broker_name" jdbcType="VARCHAR" property="brokerName" />
+    <result column="broker_idcard" jdbcType="VARCHAR" property="brokerIdcard" />
+    <result column="broker_type" jdbcType="VARCHAR" property="brokerType" />
+    <result column="invitation_code" jdbcType="VARCHAR" property="invitationCode" />
+    <result column="idcard_pic" jdbcType="VARCHAR" property="idcardPic" />
+    <result column="failed_reason" jdbcType="VARCHAR" property="failedReason" />
+    <result column="applicate_authentication" jdbcType="VARCHAR" property="applicateAuthentication" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    broker_id, user_id, store_id, team_id, broker_name, broker_idcard, broker_type, invitation_code, 
+    idcard_pic, failed_reason , applicate_authentication , status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.Broker
+    where broker_id = #{brokerId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.Broker
+    where broker_id = #{brokerId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Broker">
+    insert into dbo.Broker (broker_id, user_id, store_id, 
+      team_id, broker_name, broker_idcard, 
+      broker_type, invitation_code, idcard_pic, 
+      failed_reason ,applicate_authentication , status)
+    values (#{brokerId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{storeId,jdbcType=INTEGER}, 
+      #{teamId,jdbcType=INTEGER}, #{brokerName,jdbcType=VARCHAR}, #{brokerIdcard,jdbcType=VARCHAR}, 
+      #{brokerType,jdbcType=VARCHAR}, #{invitationCode,jdbcType=VARCHAR}, #{idcardPic,jdbcType=VARCHAR}, 
+      #{failedReason,jdbcType=VARCHAR} , #{applicateAuthentication,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Broker">
+    insert into dbo.Broker
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="brokerId != null">
+        broker_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="storeId != null">
+        store_id,
+      </if>
+      <if test="teamId != null">
+        team_id,
+      </if>
+      <if test="brokerName != null">
+        broker_name,
+      </if>
+      <if test="brokerIdcard != null">
+        broker_idcard,
+      </if>
+      <if test="brokerType != null">
+        broker_type,
+      </if>
+      <if test="invitationCode != null">
+        invitation_code,
+      </if>
+      <if test="idcardPic != null">
+        idcard_pic,
+      </if>
+      <if test="failedReason != null">
+        failed_reason,
+      </if>
+      <if test="applicateAuthentication != null">
+        applicate_authentication,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="brokerId != null">
+        #{brokerId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="storeId != null">
+        #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="teamId != null">
+        #{teamId,jdbcType=INTEGER},
+      </if>
+      <if test="brokerName != null">
+        #{brokerName,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerIdcard != null">
+        #{brokerIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerType != null">
+        #{brokerType,jdbcType=VARCHAR},
+      </if>
+      <if test="invitationCode != null">
+        #{invitationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardPic != null">
+        #{idcardPic,jdbcType=VARCHAR},
+      </if>
+      <if test="failedReason != null">
+        #{failedReason,jdbcType=VARCHAR},
+      </if>
+      <if test="applicateAuthentication != null">
+        #{applicateAuthentication,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Broker">
+    update dbo.Broker
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="storeId != null">
+        store_id = #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="teamId != null">
+        team_id = #{teamId,jdbcType=INTEGER},
+      </if>
+      <if test="brokerName != null">
+        broker_name = #{brokerName,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerIdcard != null">
+        broker_idcard = #{brokerIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerType != null">
+        broker_type = #{brokerType,jdbcType=VARCHAR},
+      </if>
+      <if test="invitationCode != null">
+        invitation_code = #{invitationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardPic != null">
+        idcard_pic = #{idcardPic,jdbcType=VARCHAR},
+      </if>
+      <if test="failedReason != null">
+        failed_reason = #{failedReason,jdbcType=VARCHAR},
+      </if>
+      <if test="applicateAuthentication != null">
+        applicate_authentication = #{applicateAuthentication,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where broker_id = #{brokerId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Broker">
+    update dbo.Broker
+    set user_id = #{userId,jdbcType=INTEGER},
+      store_id = #{storeId,jdbcType=INTEGER},
+      team_id = #{teamId,jdbcType=INTEGER},
+      broker_name = #{brokerName,jdbcType=VARCHAR},
+      broker_idcard = #{brokerIdcard,jdbcType=VARCHAR},
+      broker_type = #{brokerType,jdbcType=VARCHAR},
+      invitation_code = #{invitationCode,jdbcType=VARCHAR},
+      idcard_pic = #{idcardPic,jdbcType=VARCHAR},
+      failed_reason = #{failedReason,jdbcType=VARCHAR}
+      applicate_authentication = #{applicateAuthentication,jdbcType=VARCHAR}
+      status = #{status,jdbcType=VARCHAR}
+    where broker_id = #{brokerId,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateBrokerTypeByBrokerId">
+  update dbo.Broker
+    set broker_type = #{brokerType,jdbcType=VARCHAR}
+    where broker_id = #{brokerId,jdbcType=INTEGER}
+  </update>
+  
+   <select id="countUser" resultType="java.lang.Integer">
+	    select 
+	    count(*)
+	    from dbo.Broker
+	    where applicate_authentication = #{applicateAuthentication,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectAllApplicatedUser" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from
+    (select *,tid=row_number()over(order by user_id ASC) from dbo.Broker where applicate_authentication =#{applicateAuthentication,jdbcType=VARCHAR})tmp 
+    where tid between #{page.min,jdbcType=INTEGER} and #{page.max,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectByKeyBrokerName" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from
+    (select *,tid=row_number()over(order by user_id ASC) from dbo.Broker
+    where broker_name like '%'+#{keyBrokerName,jdbcType=VARCHAR}+'%')tmp 
+    where tid between #{page.min,jdbcType=INTEGER} and #{page.max,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectByKeyUserNameAndKeyRealNameAndIdNum" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from
+    (select b.*,tid=row_number()over(order by b.broker_id ASC) from dbo.Broker b,dbo.Users u
+    where b.user_id = u.user_id and b.applicate_authentication = #{applicateAuthentication,jdbcType=VARCHAR}
+	
+    <if test="keyBrokerName != null">
+       and b.broker_name like '%'+#{keyBrokerName,jdbcType=VARCHAR}+'%'
+    </if>
+    <if test="keyUserName != null">
+       and u.user_name like '%'+#{keyUserName,jdbcType=VARCHAR}+'%'
+    </if>
+    <if test="brokerIdcard != null">
+       and b.broker_idcard = #{brokerIdcard,jdbcType=INTEGER}
+    </if>
+    ) tmp where tid between #{page.min,jdbcType=INTEGER} and #{page.max,jdbcType=INTEGER}
+    
+  </select>
+  
+  <update id="updateUserAuthentation">
+  	update dbo.Broker
+  	set
+  	broker_type = #{brokerType,jdbcType=VARCHAR}
+  	<if test="failedReason != null">
+    , failed_reason = #{failedReason,jdbcType=VARCHAR}
+    </if>
+    , status = #{status,jdbcType=VARCHAR}
+  	where
+  	user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  
+    <select id="selectByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.Broker
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+   <select id="selectByIdNum" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.Broker
+    where broker_idcard = #{brokerIdcard,jdbcType=INTEGER}
+  </select>
+  
+  
+</mapper>

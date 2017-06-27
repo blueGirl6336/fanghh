@@ -1,0 +1,231 @@
+package hitwh.fanghh.bean;
+
+import java.math.BigDecimal;
+
+/**
+ * 
+ * @ClassName:HouseBean
+ * @Description:TODO
+ * @author:LY
+ * @date:{date}
+ *
+ */
+public class HouseBean {
+	private Integer houseId;//房源id 主键
+	private Integer styleId;//房源所属户型id 
+	private Integer buildingId;//房源所属楼号
+	private Integer unitId;//房源所属单元
+	private String houseNum;//房源所属室
+	private BigDecimal orginalPrice;//参考售价
+	private BigDecimal downPayment;//首付
+	private BigDecimal monthlyPayment;//参考月供
+	private String auditStatus;//审核状态
+	private String face;//户型朝向 dictionary——dicName=朝向,01090000.
+	private String maxFloor;//最高楼层
+	private String floor;//房源楼层
+	private BigDecimal area;//住房面积
+	private String decoration;//装修
+	private BigDecimal basementSquare;//储藏室面积
+	private Long parkingLotPrice;//车位价格
+	private BigDecimal parkingPlaceArea;//车库面积
+	private String housePic;// 房源图，使用英文半角逗号分割，[url,url,url,...]
+	private String recommendReason;//推荐理由
+	private String auditNotPassReason;//审核不通过原因
+	private String houseApplicationStatus;//房源审核状态
+
+	
+	
+	public Integer getHouseIdId()
+	{
+		return houseId;
+	}
+
+	public void setHouseId(Integer houseId)
+	{
+		this.houseId = houseId;
+	}
+	
+	public Integer getBuildingId()
+	{
+		return buildingId;
+	}
+
+	public void setBuildingId(Integer buildingId)
+	{
+		this.buildingId = buildingId;
+	}
+	
+	public Integer getStyleId()
+	{
+		return styleId;
+	}
+
+	public void setStyleId(Integer styleId)
+	{
+		this.styleId = styleId;
+	}
+	
+	public Integer getUnitId()
+	{
+		return unitId;
+	}
+
+	public void setUnitId(Integer unitId)
+	{
+		this.unitId = unitId;
+	}
+	public String getHouseNum()
+	{
+		return houseNum;
+	}
+
+	public void setHouseNum(String houseNum)
+	{
+		this.houseNum = houseNum;
+	}
+	public BigDecimal getOrginalPrice()
+	{
+		return orginalPrice;
+	}
+
+	public void setOrginalPrice(BigDecimal orginalPrice)
+	{
+		this.orginalPrice = orginalPrice;
+	}
+	public BigDecimal getDownPayment()
+	{
+		return downPayment;
+	}
+
+	public void setDownPayment(BigDecimal downPayment)
+	{
+		this.downPayment = downPayment;
+	}
+	public BigDecimal getMonthlyPayment()
+	{
+		return monthlyPayment;
+	}
+
+	public void setMonthlyPayment(BigDecimal monthlyPayment)
+	{
+		this.monthlyPayment = monthlyPayment;
+	}
+	public String getAuditStatus()
+	{
+		return auditStatus;
+	}
+
+	public void setAuditStatus(String auditStatus)
+	{
+		this.auditStatus = auditStatus;
+	}
+	public String getFace()
+	{
+		return face;
+	}
+
+	public void setFace(String face)
+	{
+		this.face = face;
+	}
+	public String getMaxFloor()
+	{
+		return maxFloor;
+	}
+
+	public void setMaxFloor(String maxFloor)
+	{
+		this.maxFloor = maxFloor;
+	}
+	public String getFloor()
+	{
+		return floor;
+	}
+
+	public void setFloor(String floor)
+	{
+		this.floor = floor;
+	}
+	public String getDecoration()
+	{
+		return decoration;
+	}
+
+	public void setDecoration(String decoration)
+	{
+		this.decoration = decoration;
+	}
+	public String getHousePic()
+	{
+		return housePic;
+	}
+
+	public void setHousePic(String housePic)
+	{
+		this.housePic = housePic;
+	}
+	public String getRecommendReason()
+	{
+		return recommendReason;
+	}
+
+	public void setRecommendReason(String recommendReason)
+	{
+		this.recommendReason = recommendReason;
+	}
+	public BigDecimal getArea()
+	{
+		return area;
+	}
+
+	public void setArea(BigDecimal area)
+	{
+		this.area = area;
+	}
+	public BigDecimal getBasementSquare()
+	{
+		return basementSquare;
+	}
+
+	public void setBasementSquare(BigDecimal basementSquare)
+	{
+		this.basementSquare = basementSquare;
+	}
+	public Long getParkingLotPrice()
+	{
+		return parkingLotPrice;
+	}
+
+	public void setParkingLotPrice(Long long1)
+	{
+		this.parkingLotPrice = long1;
+	}
+	public BigDecimal getParkingPlaceArea()
+	{
+		return parkingPlaceArea;
+	}
+
+	public void setParkingPlaceArea(BigDecimal parkingPlaceArea)
+	{
+		this.parkingPlaceArea = parkingPlaceArea;
+	}
+	public String getAuditNotPassReason()
+	{
+		return auditNotPassReason;
+	}
+
+	public void setAuditNotPassReason(String auditNotPassReason)
+	{
+		this.auditNotPassReason = auditNotPassReason;
+	}
+	public String getHouseApplicationStatus()
+	{
+		return houseApplicationStatus;
+	}
+
+	public void setHouseApplicationStatus(String houseApplicationStatus)
+	{
+		this.houseApplicationStatus = houseApplicationStatus;
+	}
+	
+}

@@ -1,0 +1,77 @@
+<link type="text/css" rel="stylesheet" href="./css/comment.css" />
+<link type="text/css" rel="stylesheet" href="./css/list_buildingManagement.css" />
+<link type="text/css" rel="stylesheet" href="./css/moneyPrincple.css" />
+<link type="text/css" rel="stylesheet" href="./css/list.css" />
+<link type="text/css" rel="stylesheet" href="./css/list_houseManagement.css" />
+<div class="content-div" ng-controller="storeCertCtl">
+	<div class="inputArea form-item form-item-large content_area_head">
+		<img src="./image/search.png" class="img-search">
+		<div class="content_area_head_mainsearcharea">
+			<span class="search_label">搜索：</span>
+			<span class="search_label">门店名称/门店码：</span>
+			<input type="text" class="form-text simpleText" ng-model="mendian">
+			<button type="button" class="simpleSubmit" ng-model="name" ng-click="search(mendian)">查询</button>
+		</div>
+
+	</div>
+
+	<div class="table_area">
+		<div class="table_head">
+			<div id="buildingManagement">门店认证</div>
+		</div>
+
+		<div class="table_content">
+			<table class="building_table">
+				<tbody>
+					<tr class="line0">
+						<td class="checkbox"></td>
+						<td class="" style="width:30%">门店名称/门店码</td>
+						<td class="" style="width:30%">
+							营业执照照片
+						</td>
+						<td class="" style="width:20%">
+							状态
+						</td>
+						<td class="" colspan="2" style="width:20%">操作</td>
+					</tr>
+					<tr ng-class="{'line2': $odd, 'line1': $even}" ng-repeat=" i in items">
+						<td class="checkbox">
+							<input id="{{ i.storeId }}" type="checkbox" name="tr-select" ng-model="x" ng-checked="master" ng-click="chk(i.storeId, x)">
+						</td>
+						<td class="" style="width:30%">{{ i.storeName }}</td>
+						<td class="" style="width:30%">
+							<img src="{{ i.businessLicensePhoto }}" class="sort-up">
+						</td>
+						<td class="operation1" ng-show="i.status == 06110200" style="width:20%; color:green">{{i.status|exchangeNum}}</td>
+						<td class="operation1" ng-show="i.status == 06110300" style="width:20%; color:red">{{i.status|exchangeNum}}</td>
+						<td class="operation1" ng-show="i.status != 06110200 && i.status != 06110300" ng-click="pass(i.storeId)" style="width:20%; color:yellow">待审核</td>
+
+						<td class="operation1" ng-click="pass(i.storeId)" style="width:10%">通过</td>
+						<td class="operation2" ng-click="notPass(i.storeId)" style="width:10%">不通过</td>
+
+					</tr>
+
+					<tr class="table-bottom">
+						<td class="checkbox-bottom">
+							<input type="checkbox" name="tr-select" ng-model="master" ng-click="all(master,tesarry)">全选
+						</td>
+						<td class="up-select" ng-click="allPass()">审核通过</td>
+						<td class="down-select" ng-click="allNotPass()">审核不通过</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<div class="page-num">
+				<p class="first" ng-click="changePage(1)" ng-show="page.pageNumber != 1">首页</p>
+				<p class="before" ng-click="changePage(page.pageNumber - 1)" ng-show="page.pageNumber - 1 > 0">上一页</p>
+				<p class="page-1" ng-click="changePage(pageButton[1])" ng-show="pageButton[1] != null" ng-class="{nowpage: pageButton[1] == page.pageNumber}">{{ pageButton[1] }}</p>
+				<p class="page-2" ng-click="changePage(pageButton[2])" ng-show="pageButton[2] != null" ng-class="{nowpage: pageButton[2] == page.pageNumber}">{{ pageButton[2] }}</p>
+				<p class="page-3" ng-click="changePage(pageButton[3])" ng-show="pageButton[3] != null" ng-class="{nowpage: pageButton[3] == page.pageNumber}">{{ pageButton[3] }}</p>
+				<p class="page-4" ng-click="changePage(pageButton[4])" ng-show="pageButton[4] != null" ng-class="{nowpage: pageButton[4] == page.pageNumber}">{{ pageButton[4] }}</p>
+				<p class="page-5" ng-click="changePage(pageButton[5])" ng-show="pageButton[5] != null" ng-class="{nowpage: pageButton[5] == page.pageNumber}">{{ pageButton[5] }}</p>
+				<p class="next" ng-click="changePage(page.pageNumber + 1)" ng-show="page.pageNumber + 1 <= page.pageMax">下一页</p>
+				<p class="last" ng-click="changePage(page.pageMax)" ng-show="page.pageNumber != page.pageMax">末页</p>
+			</div>
+		</div>
+	</div>
+</div>

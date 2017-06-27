@@ -1,0 +1,183 @@
+var modules = [
+	'ui.router',
+	'fanghhmsCtrl', 
+	'releaseNewBuildingCtrl', 
+	'manageBuildingCtrl', 
+	'manageBuildingFilter', 
+	'fhhStore', 
+	'fhhUser', 
+	'navigator', 
+	'fanghhmsDirective', 
+	'ActivitiesLaunch', 	// 添加活动
+	'manageBuilding',
+	'DynamicManagement',	// 添加动态
+	'BuildingList'				// 楼盘列表
+];
+
+angular
+	.module('fanghhms', modules)
+	.config(function($stateProvider, $urlRouterProvider) {
+		$urlRouterProvider.otherwise('login');
+		$stateProvider
+			.state('index', {
+				url : '/index',
+				views : {
+					'' : {
+						templateUrl : './template/index.html'
+					}
+				}
+			})
+			.state('login', {
+				url : '/login',
+				views : {
+					'' : {
+						templateUrl : './template/login.html'
+					}
+				}
+			})
+			.state('index.buildingEnter',{
+				url:'/buildingEnter',
+				views:{
+					'':{
+						templateUrl:'./template/building/releaseNewBuilding/buildingEnter.html'
+					}
+				}
+			})
+			.state('index.buildingAudit',{
+				url:'/buildingAudit',
+				views:{
+					'':{
+						templateUrl:'./template/building/releaseNewBuilding/buildingAudit.html'
+					}
+				}
+			})
+			.state('index.typeEnter',{
+				url:'/typeEnter/{styleId}',
+				views:{
+					'':{
+						templateUrl:'./template/building/releaseNewBuilding/typeEnter.html'
+					}
+				}
+			})
+			.state('index.typeAudit',{
+				url:'/typeAudit',
+				views:{
+					'':{
+						templateUrl:'./template/building/releaseNewBuilding/typeAudit.html'
+					}
+				}
+			})
+			.state('index.houseEnter',{
+				url:'/houseEnter',
+				views:{
+					'':{
+						templateUrl:'./template/building/releaseNewBuilding/houseEnter.html'
+					}
+				}
+			})
+			.state('index.houseAudit',{
+				url:'/houseAudit',
+				views:{
+					'':{
+						templateUrl:'./template/building/releaseNewBuilding/houseAudit.html'
+					}
+				}
+			})
+			.state('index.listBuildingManagement',{
+				url:'/listBuildingManagement',
+				views:{
+					'':{
+						templateUrl:'./template/building/manageBuilding/list_buildingManagement.html'
+					}
+				}
+			})
+			.state('index.listHouseManagement',{
+				url:'/listHouseManagement',
+				views:{
+					'':{
+						templateUrl:'./template/building/manageBuilding/list_houseManagement.html'
+					}
+				}
+			})
+			.state('index.userAuthentication',{
+				url:'/userAuthentication',
+				views:{
+					'':{
+						templateUrl:'./template/userAuthentication/userAuthentication.html'
+					}
+				}
+			})
+			.state('index.storeCertification',{
+				url:'/storeCertification',
+				views:{
+					'':{
+						templateUrl:'./template/userAuthentication/storeCertification.html'
+					}
+				}
+			})
+			.state('index.moneyPrincple',{
+				url:'/moneyPrincple',
+				views:{
+					'':{
+						templateUrl:'./template/building/manageBuilding/moneyPrincple.html'
+					}
+				}
+			})
+			.state('index.priceTrendPrice',{
+				url:'/priceTrendPrice',
+				views:{
+					'':{
+						templateUrl:'./template/building/manageBuilding/priceTrendPrice.html'
+					}
+				}
+			})
+			.state('index.listSourceManagement',{
+				url:'/listSourceManagement',
+				views:{
+					'':{
+						templateUrl:'./template/building/manageBuilding/list_sourceManagement.html'
+					}
+				}
+			})
+			.state('index.launchActivity', {
+				url: '/launchActivity',
+				views: {
+					'': {
+						templateUrl: './template/activityManagement/activitieslaunch.html'
+					}
+				}
+			})
+			.state('index.listWatchMethod', {
+				url: '/listWatchMethod',
+				views: {
+					'': {
+						templateUrl: './template/building/manageBuilding/list_watchMethod.html'
+					}
+				}
+			})
+			.state('index.dynamicManagement', {
+				url: '/listDynamicManagement',
+				views: {
+					'': {
+						templateUrl: './template/building/manageBuilding/list_dynamicManagement.html'
+					}
+				}
+			})
+			.state('index.avtivitiemManagement', {
+				url: '/avtivitieManagement',
+				views: {
+					'': {
+						templateUrl: './template/activityManagement/activityManagement.html'
+					}
+				}
+			})
+			.state('index.addDynamic', {
+				url: '/addDynamic',
+				views: {
+					'': {
+						templateUrl: './template/dynamic/adddynamic.html'
+					}
+				}
+			});
+			
+	});

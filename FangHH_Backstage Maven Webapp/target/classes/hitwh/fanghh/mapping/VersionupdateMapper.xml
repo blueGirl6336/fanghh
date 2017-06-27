@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.VersionupdateDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Versionupdate">
+    <id column="vu_id" jdbcType="INTEGER" property="vuId" />
+    <result column="version_code" jdbcType="VARCHAR" property="versionCode" />
+    <result column="download_url" jdbcType="VARCHAR" property="downloadUrl" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="update_message" jdbcType="VARCHAR" property="updateMessage" />
+    <result column="update_size" jdbcType="DECIMAL" property="updateSize" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    vu_id, version_code, download_url, type, update_message, update_size
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.VersionUpdate
+    where vu_id = #{vuId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.VersionUpdate
+    where vu_id = #{vuId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Versionupdate">
+    insert into dbo.VersionUpdate (vu_id, version_code, download_url, 
+      type, update_message, update_size
+      )
+    values (#{vuId,jdbcType=INTEGER}, #{versionCode,jdbcType=VARCHAR}, #{downloadUrl,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{updateMessage,jdbcType=VARCHAR}, #{updateSize,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Versionupdate">
+    insert into dbo.VersionUpdate
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="vuId != null">
+        vu_id,
+      </if>
+      <if test="versionCode != null">
+        version_code,
+      </if>
+      <if test="downloadUrl != null">
+        download_url,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="updateMessage != null">
+        update_message,
+      </if>
+      <if test="updateSize != null">
+        update_size,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="vuId != null">
+        #{vuId,jdbcType=INTEGER},
+      </if>
+      <if test="versionCode != null">
+        #{versionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="downloadUrl != null">
+        #{downloadUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="updateMessage != null">
+        #{updateMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="updateSize != null">
+        #{updateSize,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Versionupdate">
+    update dbo.VersionUpdate
+    <set>
+      <if test="versionCode != null">
+        version_code = #{versionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="downloadUrl != null">
+        download_url = #{downloadUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="updateMessage != null">
+        update_message = #{updateMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="updateSize != null">
+        update_size = #{updateSize,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where vu_id = #{vuId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Versionupdate">
+    update dbo.VersionUpdate
+    set version_code = #{versionCode,jdbcType=VARCHAR},
+      download_url = #{downloadUrl,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      update_message = #{updateMessage,jdbcType=VARCHAR},
+      update_size = #{updateSize,jdbcType=DECIMAL}
+    where vu_id = #{vuId,jdbcType=INTEGER}
+  </update>
+</mapper>

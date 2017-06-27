@@ -1,0 +1,18 @@
+
+package hitwh.fanghh.dao;
+
+import hitwh.fanghh.pojo.Commissionruleinfo;
+
+public interface CommissionruleinfoDao {
+    int deleteByPrimaryKey(Integer criId);
+
+    int insert(Commissionruleinfo record);
+
+    int insertSelective(Commissionruleinfo record);
+
+    Commissionruleinfo selectByPrimaryKey(Integer criId);
+
+    int updateByPrimaryKeySelective(Commissionruleinfo record);
+
+    int updateByPrimaryKey(Commissionruleinfo record);
+}

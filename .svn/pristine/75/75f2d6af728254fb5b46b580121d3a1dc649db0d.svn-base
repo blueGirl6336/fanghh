@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.SurroundfacilityDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Surroundfacility">
+    <id column="sf_id" jdbcType="INTEGER" property="sfId" />
+    <result column="building_id" jdbcType="INTEGER" property="buildingId" />
+    <result column="busStation" jdbcType="VARCHAR" property="busstation" />
+    <result column="school" jdbcType="VARCHAR" property="school" />
+    <result column="hospital" jdbcType="VARCHAR" property="hospital" />
+    <result column="bank" jdbcType="VARCHAR" property="bank" />
+    <result column="entertainment" jdbcType="VARCHAR" property="entertainment" />
+    <result column="shopping" jdbcType="VARCHAR" property="shopping" />
+    <result column="repast" jdbcType="VARCHAR" property="repast" />
+    <result column="exercise" jdbcType="VARCHAR" property="exercise" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sf_id, building_id, busStation, school, hospital, bank, entertainment, shopping, 
+    repast, exercise
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.SurroundFacility
+    where sf_id = #{sfId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.SurroundFacility
+    where sf_id = #{sfId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Surroundfacility">
+    insert into dbo.SurroundFacility (sf_id, building_id, busStation, 
+      school, hospital, bank, 
+      entertainment, shopping, repast, 
+      exercise)
+    values (#{sfId,jdbcType=INTEGER}, #{buildingId,jdbcType=INTEGER}, #{busstation,jdbcType=VARCHAR}, 
+      #{school,jdbcType=VARCHAR}, #{hospital,jdbcType=VARCHAR}, #{bank,jdbcType=VARCHAR}, 
+      #{entertainment,jdbcType=VARCHAR}, #{shopping,jdbcType=VARCHAR}, #{repast,jdbcType=VARCHAR}, 
+      #{exercise,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Surroundfacility">
+    insert into dbo.SurroundFacility
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sfId != null">
+        sf_id,
+      </if>
+      <if test="buildingId != null">
+        building_id,
+      </if>
+      <if test="busstation != null">
+        busStation,
+      </if>
+      <if test="school != null">
+        school,
+      </if>
+      <if test="hospital != null">
+        hospital,
+      </if>
+      <if test="bank != null">
+        bank,
+      </if>
+      <if test="entertainment != null">
+        entertainment,
+      </if>
+      <if test="shopping != null">
+        shopping,
+      </if>
+      <if test="repast != null">
+        repast,
+      </if>
+      <if test="exercise != null">
+        exercise,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sfId != null">
+        #{sfId,jdbcType=INTEGER},
+      </if>
+      <if test="buildingId != null">
+        #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="busstation != null">
+        #{busstation,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null">
+        #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="hospital != null">
+        #{hospital,jdbcType=VARCHAR},
+      </if>
+      <if test="bank != null">
+        #{bank,jdbcType=VARCHAR},
+      </if>
+      <if test="entertainment != null">
+        #{entertainment,jdbcType=VARCHAR},
+      </if>
+      <if test="shopping != null">
+        #{shopping,jdbcType=VARCHAR},
+      </if>
+      <if test="repast != null">
+        #{repast,jdbcType=VARCHAR},
+      </if>
+      <if test="exercise != null">
+        #{exercise,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Surroundfacility">
+    update dbo.SurroundFacility
+    <set>
+      <if test="buildingId != null">
+        building_id = #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="busstation != null">
+        busStation = #{busstation,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null">
+        school = #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="hospital != null">
+        hospital = #{hospital,jdbcType=VARCHAR},
+      </if>
+      <if test="bank != null">
+        bank = #{bank,jdbcType=VARCHAR},
+      </if>
+      <if test="entertainment != null">
+        entertainment = #{entertainment,jdbcType=VARCHAR},
+      </if>
+      <if test="shopping != null">
+        shopping = #{shopping,jdbcType=VARCHAR},
+      </if>
+      <if test="repast != null">
+        repast = #{repast,jdbcType=VARCHAR},
+      </if>
+      <if test="exercise != null">
+        exercise = #{exercise,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sf_id = #{sfId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Surroundfacility">
+    update dbo.SurroundFacility
+    set building_id = #{buildingId,jdbcType=INTEGER},
+      busStation = #{busstation,jdbcType=VARCHAR},
+      school = #{school,jdbcType=VARCHAR},
+      hospital = #{hospital,jdbcType=VARCHAR},
+      bank = #{bank,jdbcType=VARCHAR},
+      entertainment = #{entertainment,jdbcType=VARCHAR},
+      shopping = #{shopping,jdbcType=VARCHAR},
+      repast = #{repast,jdbcType=VARCHAR},
+      exercise = #{exercise,jdbcType=VARCHAR}
+    where sf_id = #{sfId,jdbcType=INTEGER}
+  </update>
+</mapper>

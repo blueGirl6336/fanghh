@@ -1,0 +1,18 @@
+
+package hitwh.fanghh.dao;
+
+import hitwh.fanghh.pojo.Houserealpic;
+
+public interface HouserealpicDao {
+    int deleteByPrimaryKey(Integer id);
+
+    int insert(Houserealpic record);
+
+    int insertSelective(Houserealpic record);
+
+    Houserealpic selectByPrimaryKey(Integer id);
+
+    int updateByPrimaryKeySelective(Houserealpic record);
+
+    int updateByPrimaryKey(Houserealpic record);
+}

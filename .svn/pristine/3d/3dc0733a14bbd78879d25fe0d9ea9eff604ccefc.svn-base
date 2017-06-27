@@ -1,0 +1,23 @@
+
+package hitwh.fanghh.dao;
+
+import java.util.List;
+
+import hitwh.fanghh.pojo.Housepricetrend;
+
+public interface HousepricetrendDao {
+    int deleteByPrimaryKey(Integer trendId);
+
+    int insert(Housepricetrend record);
+
+    int insertSelective(Housepricetrend record);
+
+    Housepricetrend selectByPrimaryKey(Integer trendId);
+
+    int updateByPrimaryKeySelective(Housepricetrend record);
+
+    int updateByPrimaryKey(Housepricetrend record);
+    
+    List<Housepricetrend> selectByBuildingId(Integer buildingId);
+    
+}

@@ -1,0 +1,98 @@
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\000036}}
+#picHouse {
+  border-right: 1px solid #e5e5e5;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000310}}
+#moneyPrincple {
+  border-top: 7px solid;
+  border-bottom: 0px;
+  border-left: 0px;
+  border-color: #fd6720;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000317}}
+.content_title {
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  margin-top: 20px;
+  height: 60px;
+  padding-left: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000330}}
+.princple-table {
+  margin-top: 150px;
+  width: 100%;
+  border: 0px;
+  border-collapse: collapse;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000336}}
+.princple-table tr {
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+  height: 45px;
+  width: 100%;
+  margin: 0px;
+  border: 1px solid;
+  border-color: #ebebeb;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000346}}
+.princple-table tr td {
+  display: -webkit-flex;
+  display: flex;
+  height: 45px;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  color: #666;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000357}}
+.princple-table .line0 {
+  background-color: #f4f4f4;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000361}}
+.princple-table .line1 {
+  background-color: #fff;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000364}}
+.princple-table .line1 .operation1, .princple-table .line1 .operation2 {
+  color: #0066cc;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000369}}
+.princple-table .line2 {
+  background-color: #eff3fb;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000372}}
+.princple-table .line2 .operation1, .princple-table .line2 .operation2 {
+  color: #0066cc;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000377}}
+.princple-table .title {
+  width: 185px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000381}}
+.princple-table .type {
+  width: 255px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000385}}
+.princple-table .detail {
+  width: 310px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000389}}
+.princple-table .explain {
+  width: 350px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000393}}
+.princple-table .operation {
+  width: 160px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000397}}
+.princple-table .operation1, .princple-table .operation2 {
+  width: 80px;
+}

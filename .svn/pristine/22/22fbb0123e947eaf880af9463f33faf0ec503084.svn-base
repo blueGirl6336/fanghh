@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.UsersDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Users">
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="phone_no" jdbcType="VARCHAR" property="phoneNo" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="portrait" jdbcType="VARCHAR" property="portrait" />
+    <result column="role" jdbcType="VARCHAR" property="role" />
+    <result column="user_degree" jdbcType="INTEGER" property="userDegree" />
+    <result column="current_integral" jdbcType="INTEGER" property="currentIntegral" />
+    <result column="share_code" jdbcType="VARCHAR" property="shareCode" />
+    <result column="code_times" jdbcType="INTEGER" property="codeTimes" />
+    <result column="is_authenticated" jdbcType="BIT" property="isAuthenticated" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="is_activited" jdbcType="BIT" property="isActivited" />
+    <result column="recent_login_time" jdbcType="TIMESTAMP" property="recentLoginTime" />
+    <result column="push_app_id" jdbcType="VARCHAR" property="pushAppId" />
+    <result column="push_user_id" jdbcType="VARCHAR" property="pushUserId" />
+    <result column="push_channel_id" jdbcType="VARCHAR" property="pushChannelId" />
+    <result column="pattern_passwd" jdbcType="VARCHAR" property="patternPasswd" />
+    <result column="stagnation_point" jdbcType="VARCHAR" property="stagnationPoint" />
+    <result column="token" jdbcType="VARCHAR" property="token" />
+
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_id, user_name, phone_no, password, portrait, role, user_degree, current_integral, 
+    share_code, code_times, is_authenticated, create_time, is_activited, recent_login_time, 
+    push_app_id, push_user_id, push_channel_id, pattern_passwd, stagnation_point, token
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.Users
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.Users
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Users">
+    insert into dbo.Users (user_id, user_name, phone_no, 
+      password, portrait, role, 
+      user_degree, current_integral, share_code, 
+      code_times, is_authenticated, create_time, 
+      is_activited, recent_login_time, push_app_id, 
+      push_user_id, push_channel_id, pattern_passwd, 
+      stagnation_point, token)
+    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{phoneNo,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{portrait,jdbcType=VARCHAR}, #{role,jdbcType=VARCHAR}, 
+      #{userDegree,jdbcType=INTEGER}, #{currentIntegral,jdbcType=INTEGER}, #{shareCode,jdbcType=VARCHAR}, 
+      #{codeTimes,jdbcType=INTEGER}, #{isAuthenticated,jdbcType=BIT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{isActivited,jdbcType=BIT}, #{recentLoginTime,jdbcType=TIMESTAMP}, #{pushAppId,jdbcType=VARCHAR}, 
+      #{pushUserId,jdbcType=VARCHAR}, #{pushChannelId,jdbcType=VARCHAR}, #{patternPasswd,jdbcType=VARCHAR}, 
+      #{stagnationPoint,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Users">
+    insert into dbo.Users
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="phoneNo != null">
+        phone_no,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="portrait != null">
+        portrait,
+      </if>
+      <if test="role != null">
+        role,
+      </if>
+      <if test="userDegree != null">
+        user_degree,
+      </if>
+      <if test="currentIntegral != null">
+        current_integral,
+      </if>
+      <if test="shareCode != null">
+        share_code,
+      </if>
+      <if test="codeTimes != null">
+        code_times,
+      </if>
+      <if test="isAuthenticated != null">
+        is_authenticated,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="isActivited != null">
+        is_activited,
+      </if>
+      <if test="recentLoginTime != null">
+        recent_login_time,
+      </if>
+      <if test="pushAppId != null">
+        push_app_id,
+      </if>
+      <if test="pushUserId != null">
+        push_user_id,
+      </if>
+      <if test="pushChannelId != null">
+        push_channel_id,
+      </if>
+      <if test="patternPasswd != null">
+        pattern_passwd,
+      </if>
+      <if test="stagnationPoint != null">
+        stagnation_point,
+      </if>
+      <if test="token != null">
+        token,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNo != null">
+        #{phoneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="portrait != null">
+        #{portrait,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null">
+        #{role,jdbcType=VARCHAR},
+      </if>
+      <if test="userDegree != null">
+        #{userDegree,jdbcType=INTEGER},
+      </if>
+      <if test="currentIntegral != null">
+        #{currentIntegral,jdbcType=INTEGER},
+      </if>
+      <if test="shareCode != null">
+        #{shareCode,jdbcType=VARCHAR},
+      </if>
+      <if test="codeTimes != null">
+        #{codeTimes,jdbcType=INTEGER},
+      </if>
+      <if test="isAuthenticated != null">
+        #{isAuthenticated,jdbcType=BIT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isActivited != null">
+        #{isActivited,jdbcType=BIT},
+      </if>
+      <if test="recentLoginTime != null">
+        #{recentLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pushAppId != null">
+        #{pushAppId,jdbcType=VARCHAR},
+      </if>
+      <if test="pushUserId != null">
+        #{pushUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="pushChannelId != null">
+        #{pushChannelId,jdbcType=VARCHAR},
+      </if>
+      <if test="patternPasswd != null">
+        #{patternPasswd,jdbcType=VARCHAR},
+      </if>
+      <if test="stagnationPoint != null">
+        #{stagnationPoint,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null">
+        #{token,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Users">
+    update dbo.Users
+    <set>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNo != null">
+        phone_no = #{phoneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="portrait != null">
+        portrait = #{portrait,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null">
+        role = #{role,jdbcType=VARCHAR},
+      </if>
+      <if test="userDegree != null">
+        user_degree = #{userDegree,jdbcType=INTEGER},
+      </if>
+      <if test="currentIntegral != null">
+        current_integral = #{currentIntegral,jdbcType=INTEGER},
+      </if>
+      <if test="shareCode != null">
+        share_code = #{shareCode,jdbcType=VARCHAR},
+      </if>
+      <if test="codeTimes != null">
+        code_times = #{codeTimes,jdbcType=INTEGER},
+      </if>
+      <if test="isAuthenticated != null">
+        is_authenticated = #{isAuthenticated,jdbcType=BIT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isActivited != null">
+        is_activited = #{isActivited,jdbcType=BIT},
+      </if>
+      <if test="recentLoginTime != null">
+        recent_login_time = #{recentLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pushAppId != null">
+        push_app_id = #{pushAppId,jdbcType=VARCHAR},
+      </if>
+      <if test="pushUserId != null">
+        push_user_id = #{pushUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="pushChannelId != null">
+        push_channel_id = #{pushChannelId,jdbcType=VARCHAR},
+      </if>
+      <if test="patternPasswd != null">
+        pattern_passwd = #{patternPasswd,jdbcType=VARCHAR},
+      </if>
+      <if test="stagnationPoint != null">
+        stagnation_point = #{stagnationPoint,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null">
+        token = #{token,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Users">
+    update dbo.Users
+    set user_name = #{userName,jdbcType=VARCHAR},
+      phone_no = #{phoneNo,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      portrait = #{portrait,jdbcType=VARCHAR},
+      role = #{role,jdbcType=VARCHAR},
+      user_degree = #{userDegree,jdbcType=INTEGER},
+      current_integral = #{currentIntegral,jdbcType=INTEGER},
+      share_code = #{shareCode,jdbcType=VARCHAR},
+      code_times = #{codeTimes,jdbcType=INTEGER},
+      is_authenticated = #{isAuthenticated,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      is_activited = #{isActivited,jdbcType=BIT},
+      recent_login_time = #{recentLoginTime,jdbcType=TIMESTAMP},
+      push_app_id = #{pushAppId,jdbcType=VARCHAR},
+      push_user_id = #{pushUserId,jdbcType=VARCHAR},
+      push_channel_id = #{pushChannelId,jdbcType=VARCHAR},
+      pattern_passwd = #{patternPasswd,jdbcType=VARCHAR},
+      stagnation_point = #{stagnationPoint,jdbcType=VARCHAR},
+      token = #{token,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectByUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from dbo.Users
+    where user_name = #{userName,jdbcType=VARCHAR}
+  </select>
+  <update id="updateUserAuthentation" >
+    update
+    dbo.Users
+   	set is_authenticated = #{isAuthenticated,jdbcType=BIT}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+   <select id="countUser" resultType="java.lang.Integer">
+	    select 
+	    count(*)
+	    from dbo.Users
+  </select>
+  
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from
+    (select *,tid=row_number()over(order by user_id ASC) from dbo.Users)tmp 
+    where tid between #{page.min,jdbcType=INTEGER} and #{page.max,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectByKeyUserName" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from
+    (select *,tid=row_number()over(order by user_id ASC) from dbo.Users
+    where user_name like '%'+#{keyUserName,jdbcType=VARCHAR}+'%')tmp 
+    where tid between #{page.min,jdbcType=INTEGER} and #{page.max,jdbcType=INTEGER}
+  </select>
+</mapper>

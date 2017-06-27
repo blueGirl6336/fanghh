@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.HouseDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.House">
+    <id column="house_id" jdbcType="INTEGER" property="houseId" />
+    <result column="unit_id" jdbcType="INTEGER" property="unitId" />
+    <result column="style_id" jdbcType="INTEGER" property="styleId" />
+    <result column="building_id" jdbcType="INTEGER" property="buildingId" />
+    <result column="house_type" jdbcType="VARCHAR" property="houseType" />
+    <result column="max_floor" jdbcType="VARCHAR" property="maxFloor" />
+    <result column="floor" jdbcType="VARCHAR" property="floor" />
+    <result column="house_num" jdbcType="VARCHAR" property="houseNum" />
+    <result column="house_status" jdbcType="VARCHAR" property="houseStatus" />
+    <result column="face" jdbcType="VARCHAR" property="face" />
+    <result column="decoration" jdbcType="VARCHAR" property="decoration" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="highest_commission" jdbcType="DECIMAL" property="highestCommission" />
+    <result column="area" jdbcType="DECIMAL" property="area" />
+    <result column="orginal_price_per_square" jdbcType="DECIMAL" property="orginalPricePerSquare" />
+    <result column="current_price_per_square" jdbcType="DECIMAL" property="currentPricePerSquare" />
+    <result column="orginal_price" jdbcType="DECIMAL" property="orginalPrice" />
+    <result column="current_price" jdbcType="DECIMAL" property="currentPrice" />
+    <result column="have_basement" jdbcType="BIT" property="haveBasement" />
+    <result column="basement_square" jdbcType="DECIMAL" property="basementSquare" />
+    <result column="basement_price" jdbcType="DECIMAL" property="basementPrice" />
+    <result column="parking_place_area" jdbcType="DECIMAL" property="parkingPlaceArea" />
+    <result column="has_parking_place" jdbcType="BIT" property="hasParkingPlace" />
+    <result column="other_facility" jdbcType="VARCHAR" property="otherFacility" />
+    <result column="attached_house_description" jdbcType="VARCHAR" property="attachedHouseDescription" />
+    <result column="master_bedroom_face" jdbcType="VARCHAR" property="masterBedroomFace" />
+    <result column="recommend_reason" jdbcType="VARCHAR" property="recommendReason" />
+    <result column="monthly_payment" jdbcType="DECIMAL" property="monthlyPayment" />
+    <result column="down_payment" jdbcType="DECIMAL" property="downPayment" />
+    <result column="audit_status" jdbcType="VARCHAR" property="auditStatus" />
+    <result column="house_label" jdbcType="VARCHAR" property="houseLabel" />
+    <result column="has_parking_lot" jdbcType="BIT" property="hasParkingLot" />
+    <result column="parking_lot_price" jdbcType="DECIMAL" property="parkingLotPrice" />
+    <result column="house_pic" jdbcType="VARCHAR" property="housePic" />
+    <result column="house_application_status" jdbcType="VARCHAR" property="houseApplicationStatus" />
+    <result column="audit_not_pass_reason" jdbcType="LONGVARCHAR" property="auditNotPassReason" />
+    <result column="building_no" jdbcType="INTEGER" property="buildingNo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    house_id, unit_id, style_id, building_id, house_type, max_floor, floor, house_num, 
+    house_status, face, decoration, remark, highest_commission, area, orginal_price_per_square, 
+    current_price_per_square, orginal_price, current_price, have_basement, basement_square, 
+    basement_price, parking_place_area, has_parking_place, other_facility, attached_house_description, 
+    master_bedroom_face, recommend_reason, monthly_payment, down_payment, audit_status, 
+    house_label, has_parking_lot, parking_lot_price, house_pic,house_application_status,audit_not_pass_reason,
+    building_no
+    
+  </sql>
+  
+  <sql id="Blob_Column_List">
+  audit_not_pass_reason
+  </sql>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.House
+    where house_id = #{houseId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.House
+    where house_id = #{houseId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.House">
+    insert into dbo.House (house_id, unit_id, style_id, 
+      building_id, house_type, max_floor, 
+      floor, house_num, house_status, 
+      face, decoration, remark, 
+      highest_commission, area, orginal_price_per_square, 
+      current_price_per_square, orginal_price, current_price, 
+      have_basement, basement_square, basement_price, 
+      parking_place_area, has_parking_place, other_facility, 
+      attached_house_description, master_bedroom_face, 
+      recommend_reason, monthly_payment, down_payment, 
+      audit_status, house_label, has_parking_lot, 
+      parking_lot_price, house_pic,house_application_status,audit_not_pass_reason,building_no)
+    values (#{houseId,jdbcType=INTEGER}, #{unitId,jdbcType=INTEGER}, #{styleId,jdbcType=INTEGER}, 
+      #{buildingId,jdbcType=INTEGER}, #{houseType,jdbcType=VARCHAR}, #{maxFloor,jdbcType=VARCHAR}, 
+      #{floor,jdbcType=VARCHAR}, #{houseNum,jdbcType=VARCHAR}, #{houseStatus,jdbcType=VARCHAR}, 
+      #{face,jdbcType=VARCHAR}, #{decoration,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{highestCommission,jdbcType=DECIMAL}, #{area,jdbcType=DECIMAL}, #{orginalPricePerSquare,jdbcType=DECIMAL}, 
+      #{currentPricePerSquare,jdbcType=DECIMAL}, #{orginalPrice,jdbcType=DECIMAL}, #{currentPrice,jdbcType=DECIMAL}, 
+      #{haveBasement,jdbcType=BIT}, #{basementSquare,jdbcType=DECIMAL}, #{basementPrice,jdbcType=DECIMAL}, 
+      #{parkingPlaceArea,jdbcType=DECIMAL}, #{hasParkingPlace,jdbcType=BIT}, #{otherFacility,jdbcType=VARCHAR}, 
+      #{attachedHouseDescription,jdbcType=VARCHAR}, #{masterBedroomFace,jdbcType=VARCHAR}, 
+      #{recommendReason,jdbcType=VARCHAR}, #{monthlyPayment,jdbcType=DECIMAL}, #{downPayment,jdbcType=DECIMAL}, 
+      #{auditStatus,jdbcType=VARCHAR}, #{houseLabel,jdbcType=VARCHAR}, #{hasParkingLot,jdbcType=BIT}, 
+      #{parkingLotPrice,jdbcType=DECIMAL}, #{housePic,jdbcType=VARCHAR},#{houseApplicationStatus,jdbcType=VARCHAR},
+      #{auditNotPassReason,jdbcType=LONGVARCHAR},#{buildingNo,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.House">
+    insert into dbo.House
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="houseId != null">
+        house_id,
+      </if>
+      <if test="unitId != null">
+        unit_id,
+      </if>
+      <if test="styleId != null">
+        style_id,
+      </if>
+      <if test="buildingId != null">
+        building_id,
+      </if>
+      <if test="houseType != null">
+        house_type,
+      </if>
+      <if test="maxFloor != null">
+        max_floor,
+      </if>
+      <if test="floor != null">
+        floor,
+      </if>
+      <if test="houseNum != null">
+        house_num,
+      </if>
+      <if test="houseStatus != null">
+        house_status,
+      </if>
+      <if test="face != null">
+        face,
+      </if>
+      <if test="decoration != null">
+        decoration,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="highestCommission != null">
+        highest_commission,
+      </if>
+      <if test="area != null">
+        area,
+      </if>
+      <if test="orginalPricePerSquare != null">
+        orginal_price_per_square,
+      </if>
+      <if test="currentPricePerSquare != null">
+        current_price_per_square,
+      </if>
+      <if test="orginalPrice != null">
+        orginal_price,
+      </if>
+      <if test="currentPrice != null">
+        current_price,
+      </if>
+      <if test="haveBasement != null">
+        have_basement,
+      </if>
+      <if test="basementSquare != null">
+        basement_square,
+      </if>
+      <if test="basementPrice != null">
+        basement_price,
+      </if>
+      <if test="parkingPlaceArea != null">
+        parking_place_area,
+      </if>
+      <if test="hasParkingPlace != null">
+        has_parking_place,
+      </if>
+      <if test="otherFacility != null">
+        other_facility,
+      </if>
+      <if test="attachedHouseDescription != null">
+        attached_house_description,
+      </if>
+      <if test="masterBedroomFace != null">
+        master_bedroom_face,
+      </if>
+      <if test="recommendReason != null">
+        recommend_reason,
+      </if>
+      <if test="monthlyPayment != null">
+        monthly_payment,
+      </if>
+      <if test="downPayment != null">
+        down_payment,
+      </if>
+      <if test="auditStatus != null">
+        audit_status,
+      </if>
+      <if test="houseLabel != null">
+        house_label,
+      </if>
+      <if test="hasParkingLot != null">
+        has_parking_lot,
+      </if>
+      <if test="parkingLotPrice != null">
+        parking_lot_price,
+      </if>
+      <if test="housePic != null">
+        house_pic,
+      </if>
+      <if test="houseApplicationStatus != null">
+        house_application_status,
+      </if>
+      <if test="auditNotPassReason != null">
+        audit_not_pass_reason,
+      </if>
+       <if test="buildingNo != null">
+        building_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="houseId != null">
+        #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="unitId != null">
+        #{unitId,jdbcType=INTEGER},
+      </if>
+      <if test="styleId != null">
+        #{styleId,jdbcType=INTEGER},
+      </if>
+      <if test="buildingId != null">
+        #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="houseType != null">
+        #{houseType,jdbcType=VARCHAR},
+      </if>
+      <if test="maxFloor != null">
+        #{maxFloor,jdbcType=VARCHAR},
+      </if>
+      <if test="floor != null">
+        #{floor,jdbcType=VARCHAR},
+      </if>
+      <if test="houseNum != null">
+        #{houseNum,jdbcType=VARCHAR},
+      </if>
+      <if test="houseStatus != null">
+        #{houseStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="face != null">
+        #{face,jdbcType=VARCHAR},
+      </if>
+      <if test="decoration != null">
+        #{decoration,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="highestCommission != null">
+        #{highestCommission,jdbcType=DECIMAL},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=DECIMAL},
+      </if>
+      <if test="orginalPricePerSquare != null">
+        #{orginalPricePerSquare,jdbcType=DECIMAL},
+      </if>
+      <if test="currentPricePerSquare != null">
+        #{currentPricePerSquare,jdbcType=DECIMAL},
+      </if>
+      <if test="orginalPrice != null">
+        #{orginalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="currentPrice != null">
+        #{currentPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="haveBasement != null">
+        #{haveBasement,jdbcType=BIT},
+      </if>
+      <if test="basementSquare != null">
+        #{basementSquare,jdbcType=DECIMAL},
+      </if>
+      <if test="basementPrice != null">
+        #{basementPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="parkingPlaceArea != null">
+        #{parkingPlaceArea,jdbcType=DECIMAL},
+      </if>
+      <if test="hasParkingPlace != null">
+        #{hasParkingPlace,jdbcType=BIT},
+      </if>
+      <if test="otherFacility != null">
+        #{otherFacility,jdbcType=VARCHAR},
+      </if>
+      <if test="attachedHouseDescription != null">
+        #{attachedHouseDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="masterBedroomFace != null">
+        #{masterBedroomFace,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendReason != null">
+        #{recommendReason,jdbcType=VARCHAR},
+      </if>
+      <if test="monthlyPayment != null">
+        #{monthlyPayment,jdbcType=DECIMAL},
+      </if>
+      <if test="downPayment != null">
+        #{downPayment,jdbcType=DECIMAL},
+      </if>
+      <if test="auditStatus != null">
+        #{auditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="houseLabel != null">
+        #{houseLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="hasParkingLot != null">
+        #{hasParkingLot,jdbcType=BIT},
+      </if>
+      <if test="parkingLotPrice != null">
+        #{parkingLotPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="housePic != null">
+        #{housePic,jdbcType=VARCHAR},
+      </if>
+      <if test="houseApplicationStatus != null">
+       	#{houseApplicationStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="auditNotPassReason != null">
+       	#{auditNotPassReason,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="buildingNo != null">
+       	#{buildingNo,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.House">
+    update dbo.House
+    <set>
+      <if test="unitId != null">
+        unit_id = #{unitId,jdbcType=INTEGER},
+      </if>
+      <if test="styleId != null">
+        style_id = #{styleId,jdbcType=INTEGER},
+      </if>
+      <if test="buildingId != null">
+        building_id = #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="houseType != null">
+        house_type = #{houseType,jdbcType=VARCHAR},
+      </if>
+      <if test="maxFloor != null">
+        max_floor = #{maxFloor,jdbcType=VARCHAR},
+      </if>
+      <if test="floor != null">
+        floor = #{floor,jdbcType=VARCHAR},
+      </if>
+      <if test="houseNum != null">
+        house_num = #{houseNum,jdbcType=VARCHAR},
+      </if>
+      <if test="houseStatus != null">
+        house_status = #{houseStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="face != null">
+        face = #{face,jdbcType=VARCHAR},
+      </if>
+      <if test="decoration != null">
+        decoration = #{decoration,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="highestCommission != null">
+        highest_commission = #{highestCommission,jdbcType=DECIMAL},
+      </if>
+      <if test="area != null">
+        area = #{area,jdbcType=DECIMAL},
+      </if>
+      <if test="orginalPricePerSquare != null">
+        orginal_price_per_square = #{orginalPricePerSquare,jdbcType=DECIMAL},
+      </if>
+      <if test="currentPricePerSquare != null">
+        current_price_per_square = #{currentPricePerSquare,jdbcType=DECIMAL},
+      </if>
+      <if test="orginalPrice != null">
+        orginal_price = #{orginalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="currentPrice != null">
+        current_price = #{currentPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="haveBasement != null">
+        have_basement = #{haveBasement,jdbcType=BIT},
+      </if>
+      <if test="basementSquare != null">
+        basement_square = #{basementSquare,jdbcType=DECIMAL},
+      </if>
+      <if test="basementPrice != null">
+        basement_price = #{basementPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="parkingPlaceArea != null">
+        parking_place_area = #{parkingPlaceArea,jdbcType=DECIMAL},
+      </if>
+      <if test="hasParkingPlace != null">
+        has_parking_place = #{hasParkingPlace,jdbcType=BIT},
+      </if>
+      <if test="otherFacility != null">
+        other_facility = #{otherFacility,jdbcType=VARCHAR},
+      </if>
+      <if test="attachedHouseDescription != null">
+        attached_house_description = #{attachedHouseDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="masterBedroomFace != null">
+        master_bedroom_face = #{masterBedroomFace,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendReason != null">
+        recommend_reason = #{recommendReason,jdbcType=VARCHAR},
+      </if>
+      <if test="monthlyPayment != null">
+        monthly_payment = #{monthlyPayment,jdbcType=DECIMAL},
+      </if>
+      <if test="downPayment != null">
+        down_payment = #{downPayment,jdbcType=DECIMAL},
+      </if>
+      <if test="auditStatus != null">
+        audit_status = #{auditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="houseLabel != null">
+        house_label = #{houseLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="hasParkingLot != null">
+        has_parking_lot = #{hasParkingLot,jdbcType=BIT},
+      </if>
+      <if test="parkingLotPrice != null">
+        parking_lot_price = #{parkingLotPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="housePic != null">
+        house_pic = #{housePic,jdbcType=VARCHAR},
+      </if>
+       <if test="houseApplicationStatus != null">
+        house_application_status = #{houseApplicationStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="auditNotPassReason != null">
+        audit_not_pass_reason = #{auditNotPassReason,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="buildingNo != null">
+        building_no = #{buildingNo,jdbcType=INTEGER},
+      </if>
+    </set>
+    where house_id = #{houseId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.House">
+    update dbo.House
+    set unit_id = #{unitId,jdbcType=INTEGER},
+      style_id = #{styleId,jdbcType=INTEGER},
+      building_id = #{buildingId,jdbcType=INTEGER},
+      house_type = #{houseType,jdbcType=VARCHAR},
+      max_floor = #{maxFloor,jdbcType=VARCHAR},
+      floor = #{floor,jdbcType=VARCHAR},
+      house_num = #{houseNum,jdbcType=VARCHAR},
+      house_status = #{houseStatus,jdbcType=VARCHAR},
+      face = #{face,jdbcType=VARCHAR},
+      decoration = #{decoration,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      highest_commission = #{highestCommission,jdbcType=DECIMAL},
+      area = #{area,jdbcType=DECIMAL},
+      orginal_price_per_square = #{orginalPricePerSquare,jdbcType=DECIMAL},
+      current_price_per_square = #{currentPricePerSquare,jdbcType=DECIMAL},
+      orginal_price = #{orginalPrice,jdbcType=DECIMAL},
+      current_price = #{currentPrice,jdbcType=DECIMAL},
+      have_basement = #{haveBasement,jdbcType=BIT},
+      basement_square = #{basementSquare,jdbcType=DECIMAL},
+      basement_price = #{basementPrice,jdbcType=DECIMAL},
+      parking_place_area = #{parkingPlaceArea,jdbcType=DECIMAL},
+      has_parking_place = #{hasParkingPlace,jdbcType=BIT},
+      other_facility = #{otherFacility,jdbcType=VARCHAR},
+      attached_house_description = #{attachedHouseDescription,jdbcType=VARCHAR},
+      master_bedroom_face = #{masterBedroomFace,jdbcType=VARCHAR},
+      recommend_reason = #{recommendReason,jdbcType=VARCHAR},
+      monthly_payment = #{monthlyPayment,jdbcType=DECIMAL},
+      down_payment = #{downPayment,jdbcType=DECIMAL},
+      audit_status = #{auditStatus,jdbcType=VARCHAR},
+      house_label = #{houseLabel,jdbcType=VARCHAR},
+      has_parking_lot = #{hasParkingLot,jdbcType=BIT},
+      parking_lot_price = #{parkingLotPrice,jdbcType=DECIMAL},
+      house_pic = #{housePic,jdbcType=VARCHAR}
+      house_application_status = #{houseApplicationStatus,jdbcType=VARCHAR}
+      audit_not_pass_reason = #{auditNotPassReason,jdbcType=LONGVARCHAR}
+      building_no = #{buildingNo,jdbcType=INTEGER}
+    where house_id = #{houseId,jdbcType=INTEGER}
+  </update>
+  
+  
+
+  <select id="selectByBuildingId" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from
+    (select *,tid=row_number()over(order by house_id ASC) from dbo.House 
+    where building_id = #{buildingId,jdbcType=INTEGER}) 
+    tmp where tid between #{page.min,jdbcType=INTEGER} and #{page.max,jdbcType=INTEGER}
+    
+  </select>
+  
+  
+  <select id="countHouseByBuildingId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select 
+    count(*)
+    from dbo.House
+    where building_id = #{buildingId,jdbcType=INTEGER}
+  </select>
+  <update id="updateAuditStatusByHouseId"  >
+    update
+    dbo.House
+    set audit_status = #{auditStatus,jdbcType=VARCHAR}
+    where house_id = #{houseId,jdbcType=INTEGER}
+  </update>
+   <update id="updateHouseApplicationStatusByHouseId" >
+    update
+    dbo.House
+   	set house_application_status = #{houseApplicationStatus,jdbcType=VARCHAR}
+    where house_id = #{houseId,jdbcType=INTEGER}
+  </update>
+  
+
+   <select id="getAuditStatusByHouseId" parameterType="java.lang.Integer"  resultType="java.lang.String">
+    select
+    audit_status
+    from dbo.House
+    where house_id = #{houseId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getHouseApplicationStatusByHouseId" parameterType="java.lang.Integer"  resultType="java.lang.String">
+    select
+    house_application_status
+    from dbo.House
+    where house_id = #{houseId,jdbcType=INTEGER}
+  </select>
+   <update id="updateAuditNotPassReason" >
+    update
+    dbo.House
+   	set audit_not_pass_reason = #{auditNotPassReason,jdbcType=LONGVARCHAR}
+    where house_id = #{houseId,jdbcType=INTEGER}
+  </update>
+   <select id="getAuditNotPassReasonByHouseId" parameterType="java.lang.Integer"  resultType="java.lang.String">
+    select
+    audit_not_pass_reason
+    from dbo.House
+    where house_id = #{houseId,jdbcType=INTEGER}
+  </select>
+  
+</mapper>

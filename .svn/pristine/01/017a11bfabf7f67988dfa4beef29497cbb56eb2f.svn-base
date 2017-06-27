@@ -1,0 +1,22 @@
+angular
+	.module('fanghhms', [ 'ui.router', 'fanghhmsCtrl'])
+	.config(function($stateProvider, $urlRouterProvider) {
+		$urlRouterProvider.otherwise('login');
+		$stateProvider
+			.state('index', {
+				url : '/index',
+				views : {
+					'' : {
+						templateUrl : './template/index.html'
+					}
+				}
+			})
+			.state('login', {
+				url : '/login',
+				views : {
+					'' : {
+						templateUrl : './template/login.html'
+					}
+				}
+			})
+	})

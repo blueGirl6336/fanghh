@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.DistcustomerinfoDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Distcustomerinfo">
+    <result column="customer_id" jdbcType="INTEGER" property="customerId" />
+    <result column="director_id" jdbcType="INTEGER" property="directorId" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="consultant_id" jdbcType="INTEGER" property="consultantId" />
+    <result column="customer_name" jdbcType="VARCHAR" property="customerName" />
+    <result column="consultant_name" jdbcType="VARCHAR" property="consultantName" />
+    <result column="customer_phone" jdbcType="VARCHAR" property="customerPhone" />
+    <result column="customer_source" jdbcType="VARCHAR" property="customerSource" />
+    <result column="distribution_time" jdbcType="TIMESTAMP" property="distributionTime" />
+  </resultMap>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Distcustomerinfo">
+    insert into dbo.DistCustomerInfo (customer_id, director_id, order_id, 
+      consultant_id, customer_name, consultant_name, 
+      customer_phone, customer_source, distribution_time
+      )
+    values (#{customerId,jdbcType=INTEGER}, #{directorId,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}, 
+      #{consultantId,jdbcType=INTEGER}, #{customerName,jdbcType=VARCHAR}, #{consultantName,jdbcType=VARCHAR}, 
+      #{customerPhone,jdbcType=VARCHAR}, #{customerSource,jdbcType=VARCHAR}, #{distributionTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Distcustomerinfo">
+    insert into dbo.DistCustomerInfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="directorId != null">
+        director_id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="consultantId != null">
+        consultant_id,
+      </if>
+      <if test="customerName != null">
+        customer_name,
+      </if>
+      <if test="consultantName != null">
+        consultant_name,
+      </if>
+      <if test="customerPhone != null">
+        customer_phone,
+      </if>
+      <if test="customerSource != null">
+        customer_source,
+      </if>
+      <if test="distributionTime != null">
+        distribution_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="customerId != null">
+        #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="directorId != null">
+        #{directorId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="consultantId != null">
+        #{consultantId,jdbcType=INTEGER},
+      </if>
+      <if test="customerName != null">
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="consultantName != null">
+        #{consultantName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerPhone != null">
+        #{customerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="customerSource != null">
+        #{customerSource,jdbcType=VARCHAR},
+      </if>
+      <if test="distributionTime != null">
+        #{distributionTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

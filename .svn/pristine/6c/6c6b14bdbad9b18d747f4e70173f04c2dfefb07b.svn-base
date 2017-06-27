@@ -1,0 +1,1205 @@
+@charset "UTF-8";
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\000031}}
+.content_area_head {
+  display: -webkit-flex;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: #666666;
+  font-size: 14px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\000039}}
+.content_area_head .img-search {
+  position: relative;
+  left: 30px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\0000314}}
+.content_area_head_mainsearcharea {
+  position: relative;
+  left: 60px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\0000318}}
+.content_area_head_mainsearcharea .search_label {
+  margin: 0 6px 0 8px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\0000322}}
+.content_area_head .selectDistrict {
+  position: relative;
+  left: 40px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\0000327}}
+.content_area_head .shortSelect {
+  width: 130px;
+  height: 35px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\0000332}}
+.content_area_head #shortSelect-province {
+  position: relative;
+  left: 50px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\0000337}}
+.content_area_head .province {
+  position: relative;
+  left: 60px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\0000342}}
+.content_area_head #shortSelect-city {
+  position: relative;
+  left: 70px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\0000347}}
+.content_area_head .city {
+  position: relative;
+  left: 80px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\0000352}}
+.content_area_head #shortSelect-zone {
+  position: relative;
+  left: 90px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\0000357}}
+.content_area_head .zone {
+  position: relative;
+  left: 100px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\0000362}}
+.content_area_head .buildingName {
+  position: relative;
+  left: 120px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\0000367}}
+.content_area_head .shortText {
+  width: 250px;
+  height: 35px;
+  position: relative;
+  left: 130px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\0000374}}
+.content_area_head .simpleText {
+  width: 250px;
+  height: 35px;
+  padding: 4px 8px;
+  box-sizing: border-box;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\0000381}}
+.content_area_head .simpleSubmit {
+  width: 100px;
+  height: 35px;
+  margin: 0 6px;
+  border: 1px solid #ccc;
+  FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=white,endColorStr=#ccc);
+  /*IE 6 7 8*/
+  background: -ms-linear-gradient(top, white, #ccc);
+  /* IE 10 */
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(white), to(#ccc));
+  /*璋锋瓕*/
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(white), to(#ccc));
+  /* Safari 4-5, Chrome 1-9*/
+  background: -webkit-linear-gradient(top, white, #ccc);
+  /*Safari5.1 Chrome 10+*/
+  background: -o-linear-gradient(top, white, #ccc);
+  /*Opera 11.10+*/
+  color: #666;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\0000395}}
+.content_area_head .submit-file {
+  width: 100px;
+  height: 35px;
+  position: relative;
+  left: 140px;
+  color: #666;
+  border: 1px solid #ccc;
+  FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=white,endColorStr=#ccc);
+  /*IE 6 7 8*/
+  background: -ms-linear-gradient(top, white, #ccc);
+  /* IE 10 */
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(white), to(#ccc));
+  /*璋锋瓕*/
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(white), to(#ccc));
+  /* Safari 4-5, Chrome 1-9*/
+  background: -webkit-linear-gradient(top, white, #ccc);
+  /*Safari5.1 Chrome 10+*/
+  background: -o-linear-gradient(top, white, #ccc);
+  /*Opera 11.10+*/
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003109}}
+.content_area_head .submit-file div {
+  float: left;
+  margin-right: 5px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003116}}
+#buildingManagement {
+  height: 45px;
+  border-right: 1px solid #e5e5e5;
+  border-left: 0px;
+  border-bottom: 0px;
+  border-top: 7px solid #fd6720;
+  z-index: 2;
+  background-color: #fff;
+  font-weight: bold;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003127}}
+.content-div {
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003133}}
+.content_area_head {
+  width: 100%;
+  height: 60px;
+  background-color: #fff;
+  border: 1px solid;
+  border-color: #e5e5e5;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003141}}
+.table_area {
+  margin: 10px 0px 35px 0px;
+  background-color: #fff;
+  border: 1px solid;
+  border-color: #e5e5e5;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003149}}
+.table_head {
+  height: 50px;
+  border: 1px solid;
+  border-color: #e5e5e5;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003156}}
+.table_content {
+  width: 100%;
+  background-color: #fff;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003161}}
+.building_table {
+  position: relative;
+  top: 20px;
+  border: 0px;
+  border-collapse: collapse;
+  width: 100%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003169}}
+.building_table tr {
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+  height: 45px;
+  width: 100%;
+  margin: 0px;
+  border: 1px solid;
+  border-color: #ebebeb;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003180}}
+.building_table tr td {
+  display: -webkit-flex;
+  display: flex;
+  height: 45px;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  color: #666;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003192}}
+.building_table .line0 {
+  background-color: #f4f4f4;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003195}}
+.building_table .line0 .sort-up {
+  position: relative;
+  left: 8px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003200}}
+.building_table .line0 .sort-down {
+  position: relative;
+  left: 15px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003206}}
+.building_table .line1 {
+  background-color: #fff;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003209}}
+.building_table .line1 .operation1, .building_table .line1 .operation2, .building_table .line1 .recommend, .building_table .line1 .manage {
+  color: #0066cc;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003213}}
+.building_table .line1 .manage-operation {
+  color: #fd6720;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003218}}
+.building_table .line2 {
+  background-color: #eff3fb;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003221}}
+.building_table .line2 .operation1, .building_table .line2 .operation2, .building_table .line2 .recommend, .building_table .line2 .manage {
+  color: #0066cc;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003225}}
+.building_table .line2 .manage-operation {
+  color: #fd6720;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003230}}
+.building_table .checkbox {
+  width: 6%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003234}}
+.building_table .building-name {
+  width: 10%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003238}}
+.building_table .state {
+  width: 8%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003242}}
+.building_table .operation {
+  width: 12%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003246}}
+.building_table .operation1, .building_table .operation2 {
+  width: 6%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003250}}
+.building_table .tele, .building_table .modify-date {
+  width: 20%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003254}}
+.building_table .manage-operation {
+  width: 8%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003258}}
+.building_table .recommend {
+  width: 8%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003262}}
+.building_table .manage {
+  width: 7%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003267}}
+.building_table .table-bottom {
+  background-color: #fff;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003271}}
+.building_table .checkbox-bottom {
+  width: 106px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003275}}
+.building_table .up-select, .building_table .down-select {
+  width: 80px;
+  text-decoration: underline;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003281}}
+.building_table .modify:hover, .building_table .stateOperation:hover, .building_table .look:hover, .building_table .up-select:hover, .building_table .down-select:hover, .building_table .buildingName:hover {
+  cursor: pointer;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003287}}
+.page-num {
+  display: -webkit-flex;
+  display: flex;
+  height: 150px;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  color: #999;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003297}}
+.page-num .first, .page-num .before, .page-num .next, .page-num .page-1, .page-num .page-2, .page-num .page-3, .page-num .page-4, .page-num .page-5, .page-num .last {
+  display: -webkit-flex;
+  display: flex;
+  height: 30px;
+  width: 50px;
+  border: 1px solid #efefef;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003309}}
+.page-num .before, .page-num .next {
+  width: 60px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003314}}
+.page-num .page-1, .page-num .page-2, .page-num .page-3, .page-num .page-4, .page-num .page-5 {
+  height: 30px;
+  width: 30px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003344}}
+.page-num .first:hover, .page-num .before:hover, .page-num .next:hover, .page-num .page-1:hover, .page-num .page-2:hover, .page-num .page-3:hover, .page-num .page-4:hover, .page-num .page-5:hover, .page-num .last:hover, .page-num .page-1:hover, .page-num .page-2:hover, .page-num .page-3:hover, .page-num .page-4:hover, .page-num .page-5:hover, .page-num .page-2:hover, .page-num .page-3:hover, .page-num .page-4:hover, .page-num .page-5:hover, .page-num .next:hover, .page-num .last:hover {
+  cursor: pointer;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\000036}}
+#picHouse {
+  border-right: 1px solid #e5e5e5;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000310}}
+#moneyPrincple {
+  border-top: 7px solid;
+  border-bottom: 0px;
+  border-left: 0px;
+  border-color: #fd6720;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000317}}
+.content_title {
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  margin-top: 20px;
+  height: 60px;
+  padding-left: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000330}}
+.princple-table {
+  margin-top: 150px;
+  width: 100%;
+  border: 0px;
+  border-collapse: collapse;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000336}}
+.princple-table tr {
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+  height: 45px;
+  width: 100%;
+  margin: 0px;
+  border: 1px solid;
+  border-color: #ebebeb;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000346}}
+.princple-table tr td {
+  display: -webkit-flex;
+  display: flex;
+  height: 45px;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  color: #666;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000357}}
+.princple-table .line0 {
+  background-color: #f4f4f4;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000361}}
+.princple-table .line1 {
+  background-color: #fff;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000364}}
+.princple-table .line1 .operation1, .princple-table .line1 .operation2 {
+  color: #0066cc;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000369}}
+.princple-table .line2 {
+  background-color: #eff3fb;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000372}}
+.princple-table .line2 .operation1, .princple-table .line2 .operation2 {
+  color: #0066cc;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000377}}
+.princple-table .title {
+  width: 185px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000381}}
+.princple-table .type {
+  width: 255px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000385}}
+.princple-table .detail {
+  width: 310px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000389}}
+.princple-table .explain {
+  width: 350px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000393}}
+.princple-table .operation {
+  width: 160px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000397}}
+.princple-table .operation1, .princple-table .operation2 {
+  width: 80px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_houseManagement\.scss}line{font-family:\000038}}
+#moneyPrincple {
+  border-top: 0px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_houseManagement\.scss}line{font-family:\0000313}}
+.building_table {
+  border-top: #fff;
+  width: 100%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_houseManagement\.scss}line{font-family:\0000318}}
+#table_before {
+  height: 60px;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  border: 0px;
+  font-size: 14px;
+  color: #666;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_houseManagement\.scss}line{font-family:\0000330}}
+.all-select, .all-select-span {
+  position: relative;
+  left: 30px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_houseManagement\.scss}line{font-family:\0000335}}
+.before-up-select {
+  position: relative;
+  left: 60px;
+  text-decoration: underline;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_houseManagement\.scss}line{font-family:\0000341}}
+.before-down-select {
+  position: relative;
+  left: 90px;
+  text-decoration: underline;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_houseManagement\.scss}line{font-family:\0000347}}
+.before-input {
+  position: relative;
+  right: 85px;
+  width: 100px;
+  height: 35px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  background-color: #fd6720;
+  border: 0px;
+  border-radius: 5px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_houseManagement\.scss}line{font-family:\0000361}}
+.checkbox {
+  width: 10%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_houseManagement\.scss}line{font-family:\0000365}}
+.number {
+  width: 10%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_houseManagement\.scss}line{font-family:\0000369}}
+.type, .price, .month-pay, .first-pay, .cooperation, .admin {
+  width: 10%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_houseManagement\.scss}line{font-family:\0000373}}
+.operation {
+  width: 20%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_houseManagement\.scss}line{font-family:\0000377}}
+.operation1, .operation2 {
+  width: 10%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_houseManagement\.scss}line{font-family:\0000383}}
+.line1 .admin, .line2 .admin {
+  color: #0066cc;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_houseManagement\.scss}line{font-family:\0000389}}
+.before-up-select:hover, .before-down-select:hover, .before-input:hover, .modify:hover, .houseState:hover, .look:hover, .up-select:hover, .down-select:hover {
+  cursor: pointer;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_sourceManagement\.scss}line{font-family:\0000319}}
+#table_before {
+  justify-content: flex-end;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_sourceManagement\.scss}line{font-family:\0000324}}
+.checkbox {
+  width: 3%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_sourceManagement\.scss}line{font-family:\0000328}}
+.number {
+  width: 5%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_sourceManagement\.scss}line{font-family:\0000332}}
+.type, .source, .price, .month-pay, .first-pay, .admin {
+  width: 10%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_sourceManagement\.scss}line{font-family:\0000336}}
+.floor, .area {
+  width: 8%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_sourceManagement\.scss}line{font-family:\0000340}}
+.operation {
+  width: 16%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_sourceManagement\.scss}line{font-family:\0000344}}
+.operation {
+  width: 8%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_sourceManagement\.scss}line{font-family:\0000348}}
+.before-input:hover, .modify:hover, .state:hover, .look:hover, .up-select:hover, .down-select:hover {
+  cursor: pointer;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_dynamicManagement\.scss}line{font-family:\000033}}
+#sourceManagement {
+  border-top: 0px;
+  border-bottom: 1px solid;
+  border-color: #e5e5e5;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_dynamicManagement\.scss}line{font-family:\000039}}
+#picManagement {
+  border-right: 1px solid;
+  border-color: #e5e5e5;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_dynamicManagement\.scss}line{font-family:\0000314}}
+#dynamicManagement {
+  border-top: 7px solid;
+  border-bottom: 0px;
+  border-left: 0px;
+  border-color: #fd6720;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_dynamicManagement\.scss}line{font-family:\0000321}}
+#moneyPrincple {
+  border-top: 0px;
+  border-bottom: 1px solid;
+  border-color: #e5e5e5;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_dynamicManagement\.scss}line{font-family:\0000332}}
+.building_table tr .checkbox {
+  width: 6%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_dynamicManagement\.scss}line{font-family:\0000336}}
+.building_table tr .checkbox-input {
+  position: relative;
+  left: 20%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_dynamicManagement\.scss}line{font-family:\0000341}}
+.building_table tr .title {
+  display: -webkit-flex;
+  display: flex;
+  justify-content: flex-start;
+  color: #666666;
+  width: 50%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_dynamicManagement\.scss}line{font-family:\0000353}}
+.building_table tr .time {
+  width: 26%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_dynamicManagement\.scss}line{font-family:\0000357}}
+.building_table tr .operation {
+  width: 18%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_dynamicManagement\.scss}line{font-family:\0000361}}
+.building_table tr .operation1, .building_table tr .operation2 {
+  width: 9%;
+  color: #666666;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\000031}}
+.content_area_head {
+  display: -webkit-flex;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: #666666;
+  font-size: 14px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\000039}}
+.content_area_head .img-search {
+  position: relative;
+  left: 30px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\0000314}}
+.content_area_head_mainsearcharea {
+  position: relative;
+  left: 60px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\0000318}}
+.content_area_head_mainsearcharea .search_label {
+  margin: 0 6px 0 8px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\0000322}}
+.content_area_head .selectDistrict {
+  position: relative;
+  left: 40px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\0000327}}
+.content_area_head .shortSelect {
+  width: 130px;
+  height: 35px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\0000332}}
+.content_area_head #shortSelect-province {
+  position: relative;
+  left: 50px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\0000337}}
+.content_area_head .province {
+  position: relative;
+  left: 60px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\0000342}}
+.content_area_head #shortSelect-city {
+  position: relative;
+  left: 70px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\0000347}}
+.content_area_head .city {
+  position: relative;
+  left: 80px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\0000352}}
+.content_area_head #shortSelect-zone {
+  position: relative;
+  left: 90px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\0000357}}
+.content_area_head .zone {
+  position: relative;
+  left: 100px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\0000362}}
+.content_area_head .buildingName {
+  position: relative;
+  left: 120px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\0000367}}
+.content_area_head .shortText {
+  width: 250px;
+  height: 35px;
+  position: relative;
+  left: 130px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\0000374}}
+.content_area_head .simpleText {
+  width: 250px;
+  height: 35px;
+  padding: 4px 8px;
+  box-sizing: border-box;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\0000381}}
+.content_area_head .simpleSubmit {
+  width: 100px;
+  height: 35px;
+  margin: 0 6px;
+  border: 1px solid #ccc;
+  FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=white,endColorStr=#ccc);
+  /*IE 6 7 8*/
+  background: -ms-linear-gradient(top, white, #ccc);
+  /* IE 10 */
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(white), to(#ccc));
+  /*璋锋瓕*/
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(white), to(#ccc));
+  /* Safari 4-5, Chrome 1-9*/
+  background: -webkit-linear-gradient(top, white, #ccc);
+  /*Safari5.1 Chrome 10+*/
+  background: -o-linear-gradient(top, white, #ccc);
+  /*Opera 11.10+*/
+  color: #666;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\0000395}}
+.content_area_head .submit-file {
+  width: 100px;
+  height: 35px;
+  position: relative;
+  left: 140px;
+  color: #666;
+  border: 1px solid #ccc;
+  FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=white,endColorStr=#ccc);
+  /*IE 6 7 8*/
+  background: -ms-linear-gradient(top, white, #ccc);
+  /* IE 10 */
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(white), to(#ccc));
+  /*璋锋瓕*/
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(white), to(#ccc));
+  /* Safari 4-5, Chrome 1-9*/
+  background: -webkit-linear-gradient(top, white, #ccc);
+  /*Safari5.1 Chrome 10+*/
+  background: -o-linear-gradient(top, white, #ccc);
+  /*Opera 11.10+*/
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003109}}
+.content_area_head .submit-file div {
+  float: left;
+  margin-right: 5px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003116}}
+#buildingManagement {
+  height: 45px;
+  border-right: 1px solid #e5e5e5;
+  border-left: 0px;
+  border-bottom: 0px;
+  border-top: 7px solid #fd6720;
+  z-index: 2;
+  background-color: #fff;
+  font-weight: bold;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003127}}
+.content-div {
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003133}}
+.content_area_head {
+  width: 100%;
+  height: 60px;
+  background-color: #fff;
+  border: 1px solid;
+  border-color: #e5e5e5;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003141}}
+.table_area {
+  margin: 10px 0px 35px 0px;
+  background-color: #fff;
+  border: 1px solid;
+  border-color: #e5e5e5;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003149}}
+.table_head {
+  height: 50px;
+  border: 1px solid;
+  border-color: #e5e5e5;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003156}}
+.table_content {
+  width: 100%;
+  background-color: #fff;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003161}}
+.building_table {
+  position: relative;
+  top: 20px;
+  border: 0px;
+  border-collapse: collapse;
+  width: 100%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003169}}
+.building_table tr {
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+  height: 45px;
+  width: 100%;
+  margin: 0px;
+  border: 1px solid;
+  border-color: #ebebeb;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003180}}
+.building_table tr td {
+  display: -webkit-flex;
+  display: flex;
+  height: 45px;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  color: #666;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003192}}
+.building_table .line0 {
+  background-color: #f4f4f4;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003195}}
+.building_table .line0 .sort-up {
+  position: relative;
+  left: 8px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003200}}
+.building_table .line0 .sort-down {
+  position: relative;
+  left: 15px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003206}}
+.building_table .line1 {
+  background-color: #fff;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003209}}
+.building_table .line1 .operation1, .building_table .line1 .operation2, .building_table .line1 .recommend, .building_table .line1 .manage {
+  color: #0066cc;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003213}}
+.building_table .line1 .manage-operation {
+  color: #fd6720;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003218}}
+.building_table .line2 {
+  background-color: #eff3fb;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003221}}
+.building_table .line2 .operation1, .building_table .line2 .operation2, .building_table .line2 .recommend, .building_table .line2 .manage {
+  color: #0066cc;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003225}}
+.building_table .line2 .manage-operation {
+  color: #fd6720;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003230}}
+.building_table .checkbox {
+  width: 6%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003234}}
+.building_table .building-name {
+  width: 10%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003238}}
+.building_table .state {
+  width: 8%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003242}}
+.building_table .operation {
+  width: 12%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003246}}
+.building_table .operation1, .building_table .operation2 {
+  width: 6%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003250}}
+.building_table .tele, .building_table .modify-date {
+  width: 20%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003254}}
+.building_table .manage-operation {
+  width: 8%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003258}}
+.building_table .recommend {
+  width: 8%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003262}}
+.building_table .manage {
+  width: 7%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003267}}
+.building_table .table-bottom {
+  background-color: #fff;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003271}}
+.building_table .checkbox-bottom {
+  width: 106px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003275}}
+.building_table .up-select, .building_table .down-select {
+  width: 80px;
+  text-decoration: underline;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003281}}
+.building_table .modify:hover, .building_table .stateOperation:hover, .building_table .look:hover, .building_table .up-select:hover, .building_table .down-select:hover, .building_table .buildingName:hover {
+  cursor: pointer;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003287}}
+.page-num {
+  display: -webkit-flex;
+  display: flex;
+  height: 150px;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  color: #999;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003297}}
+.page-num .first, .page-num .before, .page-num .next, .page-num .page-1, .page-num .page-2, .page-num .page-3, .page-num .page-4, .page-num .page-5, .page-num .last {
+  display: -webkit-flex;
+  display: flex;
+  height: 30px;
+  width: 50px;
+  border: 1px solid #efefef;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003309}}
+.page-num .before, .page-num .next {
+  width: 60px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003314}}
+.page-num .page-1, .page-num .page-2, .page-num .page-3, .page-num .page-4, .page-num .page-5 {
+  height: 30px;
+  width: 30px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_buildingManagement\.scss}line{font-family:\00003344}}
+.page-num .first:hover, .page-num .before:hover, .page-num .next:hover, .page-num .page-1:hover, .page-num .page-2:hover, .page-num .page-3:hover, .page-num .page-4:hover, .page-num .page-5:hover, .page-num .last:hover, .page-num .page-1:hover, .page-num .page-2:hover, .page-num .page-3:hover, .page-num .page-4:hover, .page-num .page-5:hover, .page-num .page-2:hover, .page-num .page-3:hover, .page-num .page-4:hover, .page-num .page-5:hover, .page-num .next:hover, .page-num .last:hover {
+  cursor: pointer;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\000036}}
+#picHouse {
+  border-right: 1px solid #e5e5e5;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000310}}
+#moneyPrincple {
+  border-top: 7px solid;
+  border-bottom: 0px;
+  border-left: 0px;
+  border-color: #fd6720;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000317}}
+.content_title {
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  margin-top: 20px;
+  height: 60px;
+  padding-left: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000330}}
+.princple-table {
+  margin-top: 150px;
+  width: 100%;
+  border: 0px;
+  border-collapse: collapse;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000336}}
+.princple-table tr {
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+  height: 45px;
+  width: 100%;
+  margin: 0px;
+  border: 1px solid;
+  border-color: #ebebeb;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000346}}
+.princple-table tr td {
+  display: -webkit-flex;
+  display: flex;
+  height: 45px;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  color: #666;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000357}}
+.princple-table .line0 {
+  background-color: #f4f4f4;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000361}}
+.princple-table .line1 {
+  background-color: #fff;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000364}}
+.princple-table .line1 .operation1, .princple-table .line1 .operation2 {
+  color: #0066cc;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000369}}
+.princple-table .line2 {
+  background-color: #eff3fb;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000372}}
+.princple-table .line2 .operation1, .princple-table .line2 .operation2 {
+  color: #0066cc;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000377}}
+.princple-table .title {
+  width: 185px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000381}}
+.princple-table .type {
+  width: 255px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000385}}
+.princple-table .detail {
+  width: 310px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000389}}
+.princple-table .explain {
+  width: 350px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000393}}
+.princple-table .operation {
+  width: 160px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/moneyPrincple\.scss}line{font-family:\0000397}}
+.princple-table .operation1, .princple-table .operation2 {
+  width: 80px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_houseManagement\.scss}line{font-family:\000038}}
+#moneyPrincple {
+  border-top: 0px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_houseManagement\.scss}line{font-family:\0000313}}
+.building_table {
+  border-top: #fff;
+  width: 100%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_houseManagement\.scss}line{font-family:\0000318}}
+#table_before {
+  height: 60px;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  border: 0px;
+  font-size: 14px;
+  color: #666;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_houseManagement\.scss}line{font-family:\0000330}}
+.all-select, .all-select-span {
+  position: relative;
+  left: 30px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_houseManagement\.scss}line{font-family:\0000335}}
+.before-up-select {
+  position: relative;
+  left: 60px;
+  text-decoration: underline;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_houseManagement\.scss}line{font-family:\0000341}}
+.before-down-select {
+  position: relative;
+  left: 90px;
+  text-decoration: underline;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_houseManagement\.scss}line{font-family:\0000347}}
+.before-input {
+  position: relative;
+  right: 85px;
+  width: 100px;
+  height: 35px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  background-color: #fd6720;
+  border: 0px;
+  border-radius: 5px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_houseManagement\.scss}line{font-family:\0000361}}
+.checkbox {
+  width: 10%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_houseManagement\.scss}line{font-family:\0000365}}
+.number {
+  width: 10%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_houseManagement\.scss}line{font-family:\0000369}}
+.type, .price, .month-pay, .first-pay, .cooperation, .admin {
+  width: 10%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_houseManagement\.scss}line{font-family:\0000373}}
+.operation {
+  width: 20%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_houseManagement\.scss}line{font-family:\0000377}}
+.operation1, .operation2 {
+  width: 10%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_houseManagement\.scss}line{font-family:\0000383}}
+.line1 .admin, .line2 .admin {
+  color: #0066cc;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/list_houseManagement\.scss}line{font-family:\0000389}}
+.before-up-select:hover, .before-down-select:hover, .before-input:hover, .modify:hover, .houseState:hover, .look:hover, .up-select:hover, .down-select:hover {
+  cursor: pointer;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/comment\.scss}line{font-family:\000039}}
+.building_table tr .checkbox {
+  width: 6%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/comment\.scss}line{font-family:\0000313}}
+.building_table tr .checkbox-input {
+  position: relative;
+  left: 20%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/comment\.scss}line{font-family:\0000318}}
+.building_table tr .title {
+  display: -webkit-flex;
+  display: flex;
+  justify-content: flex-start;
+  color: #666666;
+  width: 50%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/comment\.scss}line{font-family:\0000326}}
+.building_table tr .time {
+  width: 26%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/comment\.scss}line{font-family:\0000330}}
+.building_table tr .operation {
+  width: 18%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/comment\.scss}line{font-family:\0000334}}
+.building_table tr .operation1, .building_table tr .operation2 {
+  width: 9%;
+  color: #666666;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/comment\.scss}line{font-family:\0000342}}
+.onePass:hover, .oneNoPass:hover {
+  cursor: pointer;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/E\:\/we\%20run\/fanghh\/FangHH_Backstage\%20Maven\%20Webapp\/src\/main\/webapp\/sass\/comment\.scss}line{font-family:\0000346}}
+#commentCircle {
+  height: 45px;
+  border-right: 1px solid #e5e5e5;
+  border-left: 0px;
+  border-bottom: 0px;
+  border-top: 7px solid #fd6720;
+  z-index: 2;
+  background-color: #fff;
+  font-weight: bold;
+}

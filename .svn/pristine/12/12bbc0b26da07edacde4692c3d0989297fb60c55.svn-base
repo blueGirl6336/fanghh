@@ -1,0 +1,25 @@
+<div class="contain" ng-controller="login">
+    <div class="login-box">
+        <form class="login-form">
+            <div class="inputDiv">
+                <span class="name">用户名:</span>
+                <input type="text" class="input-name inp form-text" ng-model="userName">
+            </div>
+            <div class="inputDiv">
+                <span class="password">密&nbsp;码:</span>
+                <input type="password" class="input-name inp form-text" ng-model="password">
+            </div>
+            <div class="inputDiv">
+                <span class="icode">验证码:</span>
+                <img src="user/getCheckCode?width={{confirmCodeWidth}}&height=43&stringSize=20" ng-click="refreshConfirmCode()">
+                <input type="text" class="input-name iinp form-text" ng-model="checkCode">
+            </div>
+            <div class="inputDiv">
+                <input type="submit" class="button-login btn-l" value="登录" id="login" ng-click="submit()">
+            </div>
+        </form>
+    </div>
+    <div class="footer-l">
+        <p>威海翰宝科技有限公司版权所有</p>
+    </div>
+</div>

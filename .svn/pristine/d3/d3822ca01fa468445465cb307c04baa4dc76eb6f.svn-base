@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.GrouppurchaseinfoDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Grouppurchaseinfo">
+    <id column="gp_id" jdbcType="INTEGER" property="gpId" />
+    <result column="activity_id" jdbcType="VARCHAR" property="activityId" />
+    <result column="activity_pic" jdbcType="VARCHAR" property="activityPic" />
+    <result column="building_id" jdbcType="INTEGER" property="buildingId" />
+    <result column="person_num_in_favor" jdbcType="INTEGER" property="personNumInFavor" />
+    <result column="min_person_num_standard" jdbcType="INTEGER" property="minPersonNumStandard" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="total_offer_num" jdbcType="INTEGER" property="totalOfferNum" />
+    <result column="current_purchased_num" jdbcType="INTEGER" property="currentPurchasedNum" />
+    <result column="orginal_price_per_square_meter" jdbcType="DECIMAL" property="orginalPricePerSquareMeter" />
+    <result column="orginal_house_price" jdbcType="DECIMAL" property="orginalHousePrice" />
+    <result column="current_price_per_square_metre" jdbcType="DECIMAL" property="currentPricePerSquareMetre" />
+    <result column="current_house_price" jdbcType="DECIMAL" property="currentHousePrice" />
+    <result column="is_success" jdbcType="BIT" property="isSuccess" />
+    <result column="rule_id" jdbcType="INTEGER" property="ruleId" />
+    <result column="activity_label" jdbcType="VARCHAR" property="activityLabel" />
+    <result column="activity_status" jdbcType="VARCHAR" property="activityStatus" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="validate_start_time" jdbcType="TIMESTAMP" property="validateStartTime" />
+    <result column="validate_end_time" jdbcType="TIMESTAMP" property="validateEndTime" />
+    <result column="validate_code" jdbcType="VARCHAR" property="validateCode" />
+    <result column="favourable" jdbcType="VARCHAR" property="favourable" />
+    <result column="activity_name" jdbcType="VARCHAR" property="activityName" />
+    <result column="payment" jdbcType="DECIMAL" property="payment" />
+    <result column="highest_price_per_square_meter" jdbcType="DECIMAL" property="highestPricePerSquareMeter" />
+    <result column="lowest_price_per_square_meter" jdbcType="DECIMAL" property="lowestPricePerSquareMeter" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="hitwh.fanghh.pojo.Grouppurchaseinfo">
+    <result column="purchase_note" jdbcType="LONGNVARCHAR" property="purchaseNote" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    gp_id, activity_id, activity_pic, building_id, person_num_in_favor, min_person_num_standard, 
+    start_time, end_time, total_offer_num, current_purchased_num, orginal_price_per_square_meter, 
+    orginal_house_price, current_price_per_square_metre, current_house_price, is_success, 
+    rule_id, activity_label, activity_status, remark, validate_start_time, validate_end_time, 
+    validate_code, favourable, activity_name, payment, highest_price_per_square_meter, 
+    lowest_price_per_square_meter, status
+  </sql>
+  <sql id="Blob_Column_List">
+    purchase_note
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from dbo.GroupPurchaseInfo
+    where gp_id = #{gpId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.GroupPurchaseInfo
+    where gp_id = #{gpId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Grouppurchaseinfo">
+    insert into dbo.GroupPurchaseInfo (gp_id, activity_id, activity_pic, 
+      building_id, person_num_in_favor, min_person_num_standard, 
+      start_time, end_time, total_offer_num, 
+      current_purchased_num, orginal_price_per_square_meter, 
+      orginal_house_price, current_price_per_square_metre, 
+      current_house_price, is_success, rule_id, 
+      activity_label, activity_status, remark, 
+      validate_start_time, validate_end_time, 
+      validate_code, favourable, activity_name, 
+      payment, highest_price_per_square_meter, lowest_price_per_square_meter, 
+      status, purchase_note)
+    values (#{gpId,jdbcType=INTEGER}, #{activityId,jdbcType=VARCHAR}, #{activityPic,jdbcType=VARCHAR}, 
+      #{buildingId,jdbcType=INTEGER}, #{personNumInFavor,jdbcType=INTEGER}, #{minPersonNumStandard,jdbcType=INTEGER}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{totalOfferNum,jdbcType=INTEGER}, 
+      #{currentPurchasedNum,jdbcType=INTEGER}, #{orginalPricePerSquareMeter,jdbcType=DECIMAL}, 
+      #{orginalHousePrice,jdbcType=DECIMAL}, #{currentPricePerSquareMetre,jdbcType=DECIMAL}, 
+      #{currentHousePrice,jdbcType=DECIMAL}, #{isSuccess,jdbcType=BIT}, #{ruleId,jdbcType=INTEGER}, 
+      #{activityLabel,jdbcType=VARCHAR}, #{activityStatus,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{validateStartTime,jdbcType=TIMESTAMP}, #{validateEndTime,jdbcType=TIMESTAMP}, 
+      #{validateCode,jdbcType=VARCHAR}, #{favourable,jdbcType=VARCHAR}, #{activityName,jdbcType=VARCHAR}, 
+      #{payment,jdbcType=DECIMAL}, #{highestPricePerSquareMeter,jdbcType=DECIMAL}, #{lowestPricePerSquareMeter,jdbcType=DECIMAL}, 
+      #{status,jdbcType=INTEGER}, #{purchaseNote,jdbcType=LONGNVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Grouppurchaseinfo">
+    insert into dbo.GroupPurchaseInfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="gpId != null">
+        gp_id,
+      </if>
+      <if test="activityId != null">
+        activity_id,
+      </if>
+      <if test="activityPic != null">
+        activity_pic,
+      </if>
+      <if test="buildingId != null">
+        building_id,
+      </if>
+      <if test="personNumInFavor != null">
+        person_num_in_favor,
+      </if>
+      <if test="minPersonNumStandard != null">
+        min_person_num_standard,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="totalOfferNum != null">
+        total_offer_num,
+      </if>
+      <if test="currentPurchasedNum != null">
+        current_purchased_num,
+      </if>
+      <if test="orginalPricePerSquareMeter != null">
+        orginal_price_per_square_meter,
+      </if>
+      <if test="orginalHousePrice != null">
+        orginal_house_price,
+      </if>
+      <if test="currentPricePerSquareMetre != null">
+        current_price_per_square_metre,
+      </if>
+      <if test="currentHousePrice != null">
+        current_house_price,
+      </if>
+      <if test="isSuccess != null">
+        is_success,
+      </if>
+      <if test="ruleId != null">
+        rule_id,
+      </if>
+      <if test="activityLabel != null">
+        activity_label,
+      </if>
+      <if test="activityStatus != null">
+        activity_status,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="validateStartTime != null">
+        validate_start_time,
+      </if>
+      <if test="validateEndTime != null">
+        validate_end_time,
+      </if>
+      <if test="validateCode != null">
+        validate_code,
+      </if>
+      <if test="favourable != null">
+        favourable,
+      </if>
+      <if test="activityName != null">
+        activity_name,
+      </if>
+      <if test="payment != null">
+        payment,
+      </if>
+      <if test="highestPricePerSquareMeter != null">
+        highest_price_per_square_meter,
+      </if>
+      <if test="lowestPricePerSquareMeter != null">
+        lowest_price_per_square_meter,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="purchaseNote != null">
+        purchase_note,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="gpId != null">
+        #{gpId,jdbcType=INTEGER},
+      </if>
+      <if test="activityId != null">
+        #{activityId,jdbcType=VARCHAR},
+      </if>
+      <if test="activityPic != null">
+        #{activityPic,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingId != null">
+        #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="personNumInFavor != null">
+        #{personNumInFavor,jdbcType=INTEGER},
+      </if>
+      <if test="minPersonNumStandard != null">
+        #{minPersonNumStandard,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="totalOfferNum != null">
+        #{totalOfferNum,jdbcType=INTEGER},
+      </if>
+      <if test="currentPurchasedNum != null">
+        #{currentPurchasedNum,jdbcType=INTEGER},
+      </if>
+      <if test="orginalPricePerSquareMeter != null">
+        #{orginalPricePerSquareMeter,jdbcType=DECIMAL},
+      </if>
+      <if test="orginalHousePrice != null">
+        #{orginalHousePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="currentPricePerSquareMetre != null">
+        #{currentPricePerSquareMetre,jdbcType=DECIMAL},
+      </if>
+      <if test="currentHousePrice != null">
+        #{currentHousePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="isSuccess != null">
+        #{isSuccess,jdbcType=BIT},
+      </if>
+      <if test="ruleId != null">
+        #{ruleId,jdbcType=INTEGER},
+      </if>
+      <if test="activityLabel != null">
+        #{activityLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="activityStatus != null">
+        #{activityStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="validateStartTime != null">
+        #{validateStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="validateEndTime != null">
+        #{validateEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="validateCode != null">
+        #{validateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="favourable != null">
+        #{favourable,jdbcType=VARCHAR},
+      </if>
+      <if test="activityName != null">
+        #{activityName,jdbcType=VARCHAR},
+      </if>
+      <if test="payment != null">
+        #{payment,jdbcType=DECIMAL},
+      </if>
+      <if test="highestPricePerSquareMeter != null">
+        #{highestPricePerSquareMeter,jdbcType=DECIMAL},
+      </if>
+      <if test="lowestPricePerSquareMeter != null">
+        #{lowestPricePerSquareMeter,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="purchaseNote != null">
+        #{purchaseNote,jdbcType=LONGNVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Grouppurchaseinfo">
+    update dbo.GroupPurchaseInfo
+    <set>
+      <if test="activityId != null">
+        activity_id = #{activityId,jdbcType=VARCHAR},
+      </if>
+      <if test="activityPic != null">
+        activity_pic = #{activityPic,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingId != null">
+        building_id = #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="personNumInFavor != null">
+        person_num_in_favor = #{personNumInFavor,jdbcType=INTEGER},
+      </if>
+      <if test="minPersonNumStandard != null">
+        min_person_num_standard = #{minPersonNumStandard,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="totalOfferNum != null">
+        total_offer_num = #{totalOfferNum,jdbcType=INTEGER},
+      </if>
+      <if test="currentPurchasedNum != null">
+        current_purchased_num = #{currentPurchasedNum,jdbcType=INTEGER},
+      </if>
+      <if test="orginalPricePerSquareMeter != null">
+        orginal_price_per_square_meter = #{orginalPricePerSquareMeter,jdbcType=DECIMAL},
+      </if>
+      <if test="orginalHousePrice != null">
+        orginal_house_price = #{orginalHousePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="currentPricePerSquareMetre != null">
+        current_price_per_square_metre = #{currentPricePerSquareMetre,jdbcType=DECIMAL},
+      </if>
+      <if test="currentHousePrice != null">
+        current_house_price = #{currentHousePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="isSuccess != null">
+        is_success = #{isSuccess,jdbcType=BIT},
+      </if>
+      <if test="ruleId != null">
+        rule_id = #{ruleId,jdbcType=INTEGER},
+      </if>
+      <if test="activityLabel != null">
+        activity_label = #{activityLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="activityStatus != null">
+        activity_status = #{activityStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="validateStartTime != null">
+        validate_start_time = #{validateStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="validateEndTime != null">
+        validate_end_time = #{validateEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="validateCode != null">
+        validate_code = #{validateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="favourable != null">
+        favourable = #{favourable,jdbcType=VARCHAR},
+      </if>
+      <if test="activityName != null">
+        activity_name = #{activityName,jdbcType=VARCHAR},
+      </if>
+      <if test="payment != null">
+        payment = #{payment,jdbcType=DECIMAL},
+      </if>
+      <if test="highestPricePerSquareMeter != null">
+        highest_price_per_square_meter = #{highestPricePerSquareMeter,jdbcType=DECIMAL},
+      </if>
+      <if test="lowestPricePerSquareMeter != null">
+        lowest_price_per_square_meter = #{lowestPricePerSquareMeter,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="purchaseNote != null">
+        purchase_note = #{purchaseNote,jdbcType=LONGNVARCHAR},
+      </if>
+    </set>
+    where gp_id = #{gpId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="hitwh.fanghh.pojo.Grouppurchaseinfo">
+    update dbo.GroupPurchaseInfo
+    set activity_id = #{activityId,jdbcType=VARCHAR},
+      activity_pic = #{activityPic,jdbcType=VARCHAR},
+      building_id = #{buildingId,jdbcType=INTEGER},
+      person_num_in_favor = #{personNumInFavor,jdbcType=INTEGER},
+      min_person_num_standard = #{minPersonNumStandard,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      total_offer_num = #{totalOfferNum,jdbcType=INTEGER},
+      current_purchased_num = #{currentPurchasedNum,jdbcType=INTEGER},
+      orginal_price_per_square_meter = #{orginalPricePerSquareMeter,jdbcType=DECIMAL},
+      orginal_house_price = #{orginalHousePrice,jdbcType=DECIMAL},
+      current_price_per_square_metre = #{currentPricePerSquareMetre,jdbcType=DECIMAL},
+      current_house_price = #{currentHousePrice,jdbcType=DECIMAL},
+      is_success = #{isSuccess,jdbcType=BIT},
+      rule_id = #{ruleId,jdbcType=INTEGER},
+      activity_label = #{activityLabel,jdbcType=VARCHAR},
+      activity_status = #{activityStatus,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      validate_start_time = #{validateStartTime,jdbcType=TIMESTAMP},
+      validate_end_time = #{validateEndTime,jdbcType=TIMESTAMP},
+      validate_code = #{validateCode,jdbcType=VARCHAR},
+      favourable = #{favourable,jdbcType=VARCHAR},
+      activity_name = #{activityName,jdbcType=VARCHAR},
+      payment = #{payment,jdbcType=DECIMAL},
+      highest_price_per_square_meter = #{highestPricePerSquareMeter,jdbcType=DECIMAL},
+      lowest_price_per_square_meter = #{lowestPricePerSquareMeter,jdbcType=DECIMAL},
+      status = #{status,jdbcType=INTEGER},
+      purchase_note = #{purchaseNote,jdbcType=LONGNVARCHAR}
+    where gp_id = #{gpId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Grouppurchaseinfo">
+    update dbo.GroupPurchaseInfo
+    set activity_id = #{activityId,jdbcType=VARCHAR},
+      activity_pic = #{activityPic,jdbcType=VARCHAR},
+      building_id = #{buildingId,jdbcType=INTEGER},
+      person_num_in_favor = #{personNumInFavor,jdbcType=INTEGER},
+      min_person_num_standard = #{minPersonNumStandard,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      total_offer_num = #{totalOfferNum,jdbcType=INTEGER},
+      current_purchased_num = #{currentPurchasedNum,jdbcType=INTEGER},
+      orginal_price_per_square_meter = #{orginalPricePerSquareMeter,jdbcType=DECIMAL},
+      orginal_house_price = #{orginalHousePrice,jdbcType=DECIMAL},
+      current_price_per_square_metre = #{currentPricePerSquareMetre,jdbcType=DECIMAL},
+      current_house_price = #{currentHousePrice,jdbcType=DECIMAL},
+      is_success = #{isSuccess,jdbcType=BIT},
+      rule_id = #{ruleId,jdbcType=INTEGER},
+      activity_label = #{activityLabel,jdbcType=VARCHAR},
+      activity_status = #{activityStatus,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      validate_start_time = #{validateStartTime,jdbcType=TIMESTAMP},
+      validate_end_time = #{validateEndTime,jdbcType=TIMESTAMP},
+      validate_code = #{validateCode,jdbcType=VARCHAR},
+      favourable = #{favourable,jdbcType=VARCHAR},
+      activity_name = #{activityName,jdbcType=VARCHAR},
+      payment = #{payment,jdbcType=DECIMAL},
+      highest_price_per_square_meter = #{highestPricePerSquareMeter,jdbcType=DECIMAL},
+      lowest_price_per_square_meter = #{lowestPricePerSquareMeter,jdbcType=DECIMAL},
+      status = #{status,jdbcType=INTEGER}
+    where gp_id = #{gpId,jdbcType=INTEGER}
+  </update>
+</mapper>

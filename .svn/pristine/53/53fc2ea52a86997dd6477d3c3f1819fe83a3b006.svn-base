@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content ="text/html;charset=utf-8"/>
+<title>FormPage</title>
+<!-- <link type="text/css" rel="stylesheet" href="frame.css"/> -->
+<link type="text/css" rel="stylesheet" href="../../css/frame.css"/>
+<link type="text/css" rel="stylesheet" href="../../css/inputStyle.css"/>
+<style type="text/css">
+
+</style>
+</head>
+<body>
+<div class="leftArea">
+	<div class="logoBox">
+		<img src="../../image/logo1.png" alt="logo" class="logo">
+	</div>
+	<div class="nav">
+		<ul class="navigation">
+			<li class="navigation_group">
+				<div class="navigation_groupname">楼盘管理</div>
+				<ul class="linkset">
+					<li class="link">
+						<a href="" class="navigation_link">发布新楼盘</a>
+					</li>
+					<li class="link">
+						<a href="" class="navigation_link">管理楼盘</a>
+					</li>
+					<li class="link">
+						<a href="" class="navigation_link">楼圈点评</a>
+					</li>
+				</ul>
+			</li>
+			<li class="navigation_group">
+				<div class="navigation_groupname">活动管理</div>
+				<ul class="linkset">
+					<li class="link">
+						<a href="" class="navigation_link">发布新活动</a>
+					</li>
+					<li class="link">
+						<a href="" class="navigation_link">管理活动</a>
+					</li>
+				</ul>
+			</li>
+			<li class="navigation_group">
+				<div class="navigation_groupname">用户认证管理</div>
+				<ul class="linkset">
+					<li class="link">
+						<a href="" class="navigation_link">实名认证</a>
+					</li>
+					<li class="link">
+						<a href="" class="navigation_link">门店认证</a>
+					</li>
+				</ul>
+			</li>
+			<li class="navigation_group">
+				<div class="navigation_groupname">报表统计</div>
+				<ul class="linkset">
+					<li class="link">
+						<a href="" class="navigation_link">预留</a>
+					</li>
+					<li class="link">
+						<a href="" class="navigation_link">预留</a>
+					</li>
+				</ul>
+			</li>
+			<li class="navigation_group">
+				<div class="navigation_groupname">系统设置</div>
+				<ul class="linkset">
+					<li class="link">
+						<a href="" class="navigation_link">数据字典管理</a>
+					</li>
+					<li class="link">
+						<a href="" class="navigation_link">用户管理</a>
+					</li>
+					<li class="link">
+						<a href="" class="navigation_link">角色管理</a>
+					</li>
+					<li class="link">
+						<a href="" class="navigation_link">权限/模块管理</a>
+					</li>
+					<li class="link">
+						<a href="" class="navigation_link">日志管理</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</div>
+<div class="header clearfix">
+	<div class="titleBox">
+		<h1>后台管理中心</h1>
+	</div>
+	<div class="account">
+		欢迎您， <span>1863110186</span> | <a href="">退出</a>
+	</div>
+</div>
+
+<div class="content">
+	<div class="content_area">
+		<div class="content_area_title">
+			<h2>发布新楼盘</h2>
+		</div>
+		<div class="content_main">
+			<div class="hint">
+				<p class="hint_text">审核不通过原因：价格填写错误</p>
+			</div>
+			<div class="inputArea">
+				<h3>楼盘录入</h3>
+				<form>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label for="username">楼盘名称：</label>
+							<div class="form-field">福地传奇</div>
+						</div>
+						<div class="form-item form-item-middle">
+							<label for="username">所在区域：</label>
+							<div class="form-field">山东省威海市环翠区</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label for="username">开发商：</label>
+							<div class="form-field">威高地产</div>
+						</div>
+						<div class="form-item form-item-middle">
+							<label for="username">详细地址：</label>
+							<div class="form-field">环翠区金线顶抱海大酒店东南侧</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-large">
+							<label>房屋类型：</label>
+							<div class="form-field">普通住宅</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label for="username">起价：</label>
+							<div class="form-field">4800<span class="hasUnitInput_unit">元</span>
+							</div>
+						</div>
+						<div class="form-item form-item-middle">
+							<label for="username">均价：</label>
+							<div class="form-field">4783<span class="hasUnitInput_unit">元</span></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label for="username">开盘时间：</label>
+							<div class="form-field">2014-12-08</div>
+						</div>
+						<div class="form-item form-item-middle">
+							<label for="username">入住时间：</label>
+							<div class="form-field">2015-04-03</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label for="username">建筑面积：</label>
+							<div class="form-field">256321</div>
+						</div>
+						<div class="form-item form-item-middle">
+							<label for="username">总户数：</label>
+							<div class="form-field">206</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label for="username">绿化率：</label>
+							<div class="form-field">40%</div>
+						</div>
+						<div class="form-item form-item-middle">
+							<label for="username">容积率：</label>
+							<div class="form-field">2.7</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label for="username">物业公司：</label>
+							<div class="form-field">盛德物业</div>
+						</div>
+						<div class="form-item form-item-middle">
+							<label for="username">物业费：</label>
+							<div class="form-field">-<!--<span>元/平方米</span>--></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label for="username">产权年限：</label>
+							<div class="form-field">70年</div>
+						</div>
+						<div class="form-item form-item-middle">
+							<label for="username">装修类型：</label>
+							<div class="form-field">毛坯</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label for="username">售楼地址：<span class="justify"></span></label>
+							<div class="form-field">威海市环翠区抱海大酒店东南侧</div>
+						</div>
+						<div class="form-item form-item-middle">
+							<label for="username">交通情况：</label>
+							<div class="form-field">周边交通路线密集，1路、10路、12路、36路等多路公交车在银座家居下车都能到达。</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-broad">
+							<label for="username">配套设施：</label>
+							<div class="form-field">
+								银行：中行、建行、工行、交行等；<br>
+								医院：四零四医院、威海卫医院、威海中医院；<br>
+								综合商场：银座家居、振华商厦、百货大楼、华联商厦、天虹商场等；<br>
+								中小学：竹岛小学、塔山中、小学、十中、二中（重点高中）。
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-broad">
+							<label for="username">楼盘简介：</label>
+							<div class="form-field">
+								华润威海湾九里项目位于环翠区的金线顶板块，属于威海核心区域。金线顶改造项目整体占地1600多亩，由10个大小不一的地块组成，其中华润中心占地约815亩，总建筑面积128.5万平方米，由金线顶项目中的5-10号地块组成，规划为城市核心的滨海综合体。业态包括滨海商业中心、五星级以上酒店、海景住宅、游艇码头、公寓及低密度别墅，整个金线顶项目终将规划建设成为集商业办公、海洋观光、文化娱乐、休闲度假和居住于一体的旅游度假休闲区。
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-broad">
+							<label for="username" class="label-long">开发商介绍：</label>
+							<div class="form-field">
+								华润威海湾九里项目位于环翠区的金线顶板块，属于威海核心区域。金线顶改造项目整体占地1600多亩，由10个大小不一的地块组成，其中华润中心占地约815亩，总建筑面积128.5万平方米，由金线顶项目中的5-10号地块组成，规划为城市核心的滨海综合体
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-broad">
+							<label for="username">推荐理由：</label>
+							<div class="form-field">
+								封闭式小区，现已全部交房，楼间距为35-48米，五证齐全。
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-large">
+							<label>特色标签：</label>
+							<div class="form-field">
+								水景地产 海景地产 公园地产
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-large">
+							<label>400电话：</label>
+							<div class="form-field">
+								400-500-6800-11-13689652356
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-large">
+							<label>楼盘类型：</label>
+							<div class="form-field">
+								在售
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-large">
+							<label for="username" class="label-long">楼盘关键字：</label>
+							<div class="form-field">
+
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-broad">
+							<label for="username">楼盘描述：</label>
+							<div class="form-field">
+
+							</div>
+						</div>
+					</div>
+				</form>
+				<div class="button-area">
+					<button type="button" class="btn goback">审核不通过</button>
+					<button type="button" class="btn save-continue">审核通过</button>
+				</div>
+			</div>
+			<div class="refuse-box" ng-show="ifNotPass">
+				<img src="../../image/close_1.png">
+				<div class="refuse-body">
+					<div>审核不通过原因：</div>
+					<textarea rows="10" cols="50" ng-model="backMessage"></textarea>
+				</div>
+				<div class="button-area">
+					<button type="button" class="btn save-continue" ng-click="submitReason()">提交</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="footer">
+		<div class="footer_content">Copyright(c) 2005-2014 威海翰宝科技 All Rights Reserved</div>
+		<div class="footer_content">联系电话: 0631-52123456</div>
+		<div class="footer_content">鲁ICP备05003732号</div>
+	</div>
+</div>
+
+
+
+
+<script type="text/javascript">
+
+</script>
+<script src="script.js"></script>
+</body>
+</html>

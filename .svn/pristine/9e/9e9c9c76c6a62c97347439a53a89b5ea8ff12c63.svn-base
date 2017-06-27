@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.BuildingfeatureDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Buildingfeature">
+    <id column="bf_id" jdbcType="INTEGER" property="bfId" />
+    <result column="building_id" jdbcType="INTEGER" property="buildingId" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="order" jdbcType="INTEGER" property="order" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    bf_id, building_id, url, order
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.BuildingFeature
+    where bf_id = #{bfId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.BuildingFeature
+    where bf_id = #{bfId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Buildingfeature">
+    insert into dbo.BuildingFeature (bf_id, building_id, url, 
+      order)
+    values (#{bfId,jdbcType=INTEGER}, #{buildingId,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, 
+      #{order,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Buildingfeature">
+    insert into dbo.BuildingFeature
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bfId != null">
+        bf_id,
+      </if>
+      <if test="buildingId != null">
+        building_id,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="order != null">
+        order,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bfId != null">
+        #{bfId,jdbcType=INTEGER},
+      </if>
+      <if test="buildingId != null">
+        #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="order != null">
+        #{order,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Buildingfeature">
+    update dbo.BuildingFeature
+    <set>
+      <if test="buildingId != null">
+        building_id = #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="order != null">
+        order = #{order,jdbcType=INTEGER},
+      </if>
+    </set>
+    where bf_id = #{bfId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Buildingfeature">
+    update dbo.BuildingFeature
+    set building_id = #{buildingId,jdbcType=INTEGER},
+      url = #{url,jdbcType=VARCHAR},
+      order = #{order,jdbcType=INTEGER}
+    where bf_id = #{bfId,jdbcType=INTEGER}
+  </update>
+</mapper>

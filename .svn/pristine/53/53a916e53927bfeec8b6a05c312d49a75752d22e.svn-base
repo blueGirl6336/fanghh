@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content ="text/html;charset=utf-8"/>
+<title>FormPage</title>
+<!-- <link type="text/css" rel="stylesheet" href="frame.css"/> -->
+<link type="text/css" rel="stylesheet" href="../css/frame.css"/>
+<link rel="stylesheet" type="text/css" href="../css/login.css">
+<link rel="stylesheet" type="text/css" href="../css/inputStyle.css">
+<style type="text/css">
+
+</style>
+</head>
+<body>
+
+ <div class="contain">
+    <div class="login-box">
+     <form class="login-form">
+
+       <div class="inputDiv">
+         <span class="name">用户名:</span>
+         <input type="text" class="input-name inp form-text">
+       </div>
+       <div class="inputDiv">
+         <span class="password">密&nbsp;码:</span>
+         <input type="password" class="input-name inp form-text">
+       </div>
+       <div class="inputDiv">
+         <span class="icode">验证码:</span>
+         <img src="">
+         <input type="text" class="input-name iinp form-text">
+       </div>
+       <div class="inputDiv">
+         <input type="submit" class="button-login btn" value="登录" id="login">
+       </div>
+
+     </form>
+    </div>
+    <div class="footer">
+      <p>威海韩宝科技有限公司版权所有</p>
+    </div>
+ </div>
+
+<script type="text/javascript">
+
+</script>
+<script src="script.js"></script>
+</body>
+</html>

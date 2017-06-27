@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.ContractpictureDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Contractpicture">
+    <id column="con_id" jdbcType="INTEGER" property="conId" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="order_status" jdbcType="VARCHAR" property="orderStatus" />
+    <result column="contract_pic" jdbcType="VARCHAR" property="contractPic" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    con_id, order_id, order_status, contract_pic
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.ContractPicture
+    where con_id = #{conId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.ContractPicture
+    where con_id = #{conId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Contractpicture">
+    insert into dbo.ContractPicture (con_id, order_id, order_status, 
+      contract_pic)
+    values (#{conId,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}, #{orderStatus,jdbcType=VARCHAR}, 
+      #{contractPic,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Contractpicture">
+    insert into dbo.ContractPicture
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="conId != null">
+        con_id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="orderStatus != null">
+        order_status,
+      </if>
+      <if test="contractPic != null">
+        contract_pic,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="conId != null">
+        #{conId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null">
+        #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="contractPic != null">
+        #{contractPic,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Contractpicture">
+    update dbo.ContractPicture
+    <set>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null">
+        order_status = #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="contractPic != null">
+        contract_pic = #{contractPic,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where con_id = #{conId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Contractpicture">
+    update dbo.ContractPicture
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      order_status = #{orderStatus,jdbcType=VARCHAR},
+      contract_pic = #{contractPic,jdbcType=VARCHAR}
+    where con_id = #{conId,jdbcType=INTEGER}
+  </update>
+</mapper>

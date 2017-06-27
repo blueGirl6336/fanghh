@@ -1,0 +1,20 @@
+angular
+	.module('commentCtrl', ['ngCookies'])
+	//户型管理
+	.controller('comment', ['$scope', '$http', '$location', '$rootScope', '$cookieStore', function($scope, $http, $location, $rootScope, $cookieStore) {
+
+		//获取点评信息
+	    $http({
+	        url: "building/selectBuildingcomment",
+	        method: "post",
+	        headers: {
+	            'Content-Type': 'multipart/form-data'
+	        },
+	        params: {
+	            commentId:1036
+	        }
+	    }).success(function (response) {
+	        console.log("success");
+	    });
+
+	}])

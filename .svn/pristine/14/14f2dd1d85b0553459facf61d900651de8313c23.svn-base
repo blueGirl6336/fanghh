@@ -1,0 +1,43 @@
+package hitwh.fanghh.pojo;
+
+public class Pictalkcontent {
+    private Integer ptcId;
+
+    private Integer ptId;
+
+    private String ptcPic;
+
+    private Integer order;
+
+    public Integer getPtcId() {
+        return ptcId;
+    }
+
+    public void setPtcId(Integer ptcId) {
+        this.ptcId = ptcId;
+    }
+
+    public Integer getPtId() {
+        return ptId;
+    }
+
+    public void setPtId(Integer ptId) {
+        this.ptId = ptId;
+    }
+
+    public String getPtcPic() {
+        return ptcPic;
+    }
+
+    public void setPtcPic(String ptcPic) {
+        this.ptcPic = ptcPic == null ? null : ptcPic.trim();
+    }
+
+    public Integer getOrder() {
+        return order;
+    }
+
+    public void setOrder(Integer order) {
+        this.order = order;
+    }
+}

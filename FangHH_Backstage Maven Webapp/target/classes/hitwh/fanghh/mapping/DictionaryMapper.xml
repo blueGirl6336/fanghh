@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.DictionaryDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Dictionary">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="dictAdminvisible" jdbcType="TINYINT" property="dictadminvisible" />
+    <result column="dictCode" jdbcType="VARCHAR" property="dictcode" />
+    <result column="dictDetailgroup" jdbcType="INTEGER" property="dictdetailgroup" />
+    <result column="dictLogogram" jdbcType="VARCHAR" property="dictlogogram" />
+    <result column="dictModuleCode" jdbcType="VARCHAR" property="dictmodulecode" />
+    <result column="dictName" jdbcType="VARCHAR" property="dictname" />
+    <result column="dictParentCode" jdbcType="VARCHAR" property="dictparentcode" />
+    <result column="dictLevel" jdbcType="INTEGER" property="dictlevel" />
+    <result column="dictValue" jdbcType="VARCHAR" property="dictvalue" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, dictAdminvisible, dictCode, dictDetailgroup, dictLogogram, dictModuleCode, dictName, 
+    dictParentCode, dictLevel, dictValue, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.Dictionary
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.Dictionary
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Dictionary">
+    insert into dbo.Dictionary (id, dictAdminvisible, dictCode, 
+      dictDetailgroup, dictLogogram, dictModuleCode, 
+      dictName, dictParentCode, dictLevel, 
+      dictValue, remark)
+    values (#{id,jdbcType=INTEGER}, #{dictadminvisible,jdbcType=TINYINT}, #{dictcode,jdbcType=VARCHAR}, 
+      #{dictdetailgroup,jdbcType=INTEGER}, #{dictlogogram,jdbcType=VARCHAR}, #{dictmodulecode,jdbcType=VARCHAR}, 
+      #{dictname,jdbcType=VARCHAR}, #{dictparentcode,jdbcType=VARCHAR}, #{dictlevel,jdbcType=INTEGER}, 
+      #{dictvalue,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Dictionary">
+    insert into dbo.Dictionary
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="dictadminvisible != null">
+        dictAdminvisible,
+      </if>
+      <if test="dictcode != null">
+        dictCode,
+      </if>
+      <if test="dictdetailgroup != null">
+        dictDetailgroup,
+      </if>
+      <if test="dictlogogram != null">
+        dictLogogram,
+      </if>
+      <if test="dictmodulecode != null">
+        dictModuleCode,
+      </if>
+      <if test="dictname != null">
+        dictName,
+      </if>
+      <if test="dictparentcode != null">
+        dictParentCode,
+      </if>
+      <if test="dictlevel != null">
+        dictLevel,
+      </if>
+      <if test="dictvalue != null">
+        dictValue,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="dictadminvisible != null">
+        #{dictadminvisible,jdbcType=TINYINT},
+      </if>
+      <if test="dictcode != null">
+        #{dictcode,jdbcType=VARCHAR},
+      </if>
+      <if test="dictdetailgroup != null">
+        #{dictdetailgroup,jdbcType=INTEGER},
+      </if>
+      <if test="dictlogogram != null">
+        #{dictlogogram,jdbcType=VARCHAR},
+      </if>
+      <if test="dictmodulecode != null">
+        #{dictmodulecode,jdbcType=VARCHAR},
+      </if>
+      <if test="dictname != null">
+        #{dictname,jdbcType=VARCHAR},
+      </if>
+      <if test="dictparentcode != null">
+        #{dictparentcode,jdbcType=VARCHAR},
+      </if>
+      <if test="dictlevel != null">
+        #{dictlevel,jdbcType=INTEGER},
+      </if>
+      <if test="dictvalue != null">
+        #{dictvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Dictionary">
+    update dbo.Dictionary
+    <set>
+      <if test="dictadminvisible != null">
+        dictAdminvisible = #{dictadminvisible,jdbcType=TINYINT},
+      </if>
+      <if test="dictcode != null">
+        dictCode = #{dictcode,jdbcType=VARCHAR},
+      </if>
+      <if test="dictdetailgroup != null">
+        dictDetailgroup = #{dictdetailgroup,jdbcType=INTEGER},
+      </if>
+      <if test="dictlogogram != null">
+        dictLogogram = #{dictlogogram,jdbcType=VARCHAR},
+      </if>
+      <if test="dictmodulecode != null">
+        dictModuleCode = #{dictmodulecode,jdbcType=VARCHAR},
+      </if>
+      <if test="dictname != null">
+        dictName = #{dictname,jdbcType=VARCHAR},
+      </if>
+      <if test="dictparentcode != null">
+        dictParentCode = #{dictparentcode,jdbcType=VARCHAR},
+      </if>
+      <if test="dictlevel != null">
+        dictLevel = #{dictlevel,jdbcType=INTEGER},
+      </if>
+      <if test="dictvalue != null">
+        dictValue = #{dictvalue,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Dictionary">
+    update dbo.Dictionary
+    set dictAdminvisible = #{dictadminvisible,jdbcType=TINYINT},
+      dictCode = #{dictcode,jdbcType=VARCHAR},
+      dictDetailgroup = #{dictdetailgroup,jdbcType=INTEGER},
+      dictLogogram = #{dictlogogram,jdbcType=VARCHAR},
+      dictModuleCode = #{dictmodulecode,jdbcType=VARCHAR},
+      dictName = #{dictname,jdbcType=VARCHAR},
+      dictParentCode = #{dictparentcode,jdbcType=VARCHAR},
+      dictLevel = #{dictlevel,jdbcType=INTEGER},
+      dictValue = #{dictvalue,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectByDictCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from dbo.Dictionary
+    where dictCode = #{dictcode,jdbcType=VARCHAR}
+  </select>
+  
+</mapper>

@@ -1,0 +1,57 @@
+package hitwh.fanghh.service.impl;
+
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import hitwh.fanghh.dao.DynamiccontentDao;
+import hitwh.fanghh.pojo.Dynamiccontent;
+import hitwh.fanghh.service.DynamiccontentService;
+
+@Service
+public class DynamiccontentServiceImpl implements DynamiccontentService{
+
+	@Autowired
+	private DynamiccontentDao dynamiccontentDao;
+	
+	@Override
+	public Dynamiccontent getDynamiccontentByBdId(int dcId) {
+		// TODO Auto-generated method stub
+		return dynamiccontentDao.selectByPrimaryKey(dcId);
+	}
+
+	@Override
+	public boolean addDynamiccontent(Dynamiccontent dynamiccontent) {
+		// TODO Auto-generated method stub
+		int result = dynamiccontentDao.insert(dynamiccontent);
+		if (result == 1) {
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public boolean deleteDynamiccontent(int dcId) {
+		// TODO Auto-generated method stub
+		int result = dynamiccontentDao.deleteByPrimaryKey(dcId);
+		if (result == 1) {
+			return true;
+		}
+		return false;
+		
+	}
+
+	@Override
+	public boolean updateDynamiccontent(Dynamiccontent dynamiccontent) {
+		// TODO Auto-generated method stub
+		int result = dynamiccontentDao.updateByPrimaryKeySelective(dynamiccontent);
+		if (result == 1) {
+			return true;
+		}
+		return false;
+	}
+
+}

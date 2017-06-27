@@ -1,0 +1,18 @@
+
+package hitwh.fanghh.dao;
+
+import hitwh.fanghh.pojo.Unit;
+
+public interface UnitDao {
+    int deleteByPrimaryKey(Integer unitId);
+
+    int insert(Unit record);
+
+    int insertSelective(Unit record);
+
+    Unit selectByPrimaryKey(Integer unitId);
+
+    int updateByPrimaryKeySelective(Unit record);
+
+    int updateByPrimaryKey(Unit record);
+}

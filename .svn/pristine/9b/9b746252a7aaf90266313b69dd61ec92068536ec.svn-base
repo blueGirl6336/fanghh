@@ -1,0 +1,57 @@
+package hitwh.fanghh.bean;
+
+public class PerferentialRuleBean {
+	private String perferentialRuleType;
+	private String perferentialRuleTitle;
+	private String perferentialDescription;
+	private Integer ruleId;
+	private Integer activityId;
+	
+	public String getPerferentialRuleType()
+	{
+		return perferentialRuleType;
+	}
+	public void setPerferentialRuleType(String perferentialRuleType)
+	{
+		this.perferentialRuleType = perferentialRuleType;
+	}
+	
+
+
+	public String getPerferentialDescription()
+	{
+		return perferentialDescription;
+	}
+	public void setPerferentialDescription(String perferentialDescription)
+	{
+		this.perferentialDescription = perferentialDescription;
+	}
+	
+	public String getPerferentialRuleTitle()
+	{
+		return perferentialRuleTitle;
+	}
+	public void setPerferentialRuleTitle(String perferentialRuleTitle)
+	{
+		this.perferentialRuleTitle = perferentialRuleTitle;
+	}
+	
+	public Integer getRuleId()
+	{
+		return ruleId;
+	}
+	public void setRuleId(Integer ruleId)
+	{
+		this.ruleId = ruleId;
+	}
+	
+	public int getActivityId()
+	{
+		return activityId;
+	}
+	public void setActivityId(Integer activityId)
+	{
+		this.activityId = activityId;
+	}
+	
+}

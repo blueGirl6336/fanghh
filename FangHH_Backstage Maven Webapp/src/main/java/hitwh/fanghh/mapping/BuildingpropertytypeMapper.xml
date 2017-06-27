@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.BuildingpropertytypeDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Buildingpropertytype">
+    <id column="bpt_id" jdbcType="INTEGER" property="bptId" />
+    <result column="building_id" jdbcType="INTEGER" property="buildingId" />
+    <result column="property_type" jdbcType="VARCHAR" property="propertyType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    bpt_id, building_id, property_type
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.BuildingPropertyType
+    where bpt_id = #{bptId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.BuildingPropertyType
+    where bpt_id = #{bptId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Buildingpropertytype">
+    insert into dbo.BuildingPropertyType (bpt_id, building_id, property_type
+      )
+    values (#{bptId,jdbcType=INTEGER}, #{buildingId,jdbcType=INTEGER}, #{propertyType,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Buildingpropertytype">
+    insert into dbo.BuildingPropertyType
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bptId != null">
+        bpt_id,
+      </if>
+      <if test="buildingId != null">
+        building_id,
+      </if>
+      <if test="propertyType != null">
+        property_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bptId != null">
+        #{bptId,jdbcType=INTEGER},
+      </if>
+      <if test="buildingId != null">
+        #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="propertyType != null">
+        #{propertyType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Buildingpropertytype">
+    update dbo.BuildingPropertyType
+    <set>
+      <if test="buildingId != null">
+        building_id = #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="propertyType != null">
+        property_type = #{propertyType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where bpt_id = #{bptId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Buildingpropertytype">
+    update dbo.BuildingPropertyType
+    set building_id = #{buildingId,jdbcType=INTEGER},
+      property_type = #{propertyType,jdbcType=VARCHAR}
+    where bpt_id = #{bptId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.ConsultantcustomerstatusrecordDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Consultantcustomerstatusrecord">
+    <id column="ccsr_id" jdbcType="INTEGER" property="ccsrId" />
+    <result column="cc_id" jdbcType="INTEGER" property="ccId" />
+    <result column="customer_status" jdbcType="VARCHAR" property="customerStatus" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="type_time" jdbcType="TIMESTAMP" property="typeTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ccsr_id, cc_id, customer_status, remark, type_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.ConsultantCustomerStatusRecord
+    where ccsr_id = #{ccsrId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.ConsultantCustomerStatusRecord
+    where ccsr_id = #{ccsrId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Consultantcustomerstatusrecord">
+    insert into dbo.ConsultantCustomerStatusRecord (ccsr_id, cc_id, customer_status, 
+      remark, type_time)
+    values (#{ccsrId,jdbcType=INTEGER}, #{ccId,jdbcType=INTEGER}, #{customerStatus,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{typeTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Consultantcustomerstatusrecord">
+    insert into dbo.ConsultantCustomerStatusRecord
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ccsrId != null">
+        ccsr_id,
+      </if>
+      <if test="ccId != null">
+        cc_id,
+      </if>
+      <if test="customerStatus != null">
+        customer_status,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="typeTime != null">
+        type_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ccsrId != null">
+        #{ccsrId,jdbcType=INTEGER},
+      </if>
+      <if test="ccId != null">
+        #{ccId,jdbcType=INTEGER},
+      </if>
+      <if test="customerStatus != null">
+        #{customerStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="typeTime != null">
+        #{typeTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Consultantcustomerstatusrecord">
+    update dbo.ConsultantCustomerStatusRecord
+    <set>
+      <if test="ccId != null">
+        cc_id = #{ccId,jdbcType=INTEGER},
+      </if>
+      <if test="customerStatus != null">
+        customer_status = #{customerStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="typeTime != null">
+        type_time = #{typeTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ccsr_id = #{ccsrId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Consultantcustomerstatusrecord">
+    update dbo.ConsultantCustomerStatusRecord
+    set cc_id = #{ccId,jdbcType=INTEGER},
+      customer_status = #{customerStatus,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      type_time = #{typeTime,jdbcType=TIMESTAMP}
+    where ccsr_id = #{ccsrId,jdbcType=INTEGER}
+  </update>
+</mapper>

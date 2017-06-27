@@ -1,0 +1,327 @@
+package hitwh.fanghh.service.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import hitwh.fanghh.bean.StoreAuthenticationBean;
+
+import hitwh.fanghh.bean.UserAuthenticationBean;
+import hitwh.fanghh.dao.BrokerDao;
+
+import hitwh.fanghh.dao.StoreDao;
+
+import hitwh.fanghh.pojo.Broker;
+import hitwh.fanghh.pojo.Dictionary;
+
+import hitwh.fanghh.dao.UsersDao;
+
+import hitwh.fanghh.pojo.Store;
+import hitwh.fanghh.pojo.Users;
+import hitwh.fanghh.service.AuthenticationService;
+import hitwh.fanghh.util.DictionaryString;
+import hitwh.fanghh.util.PageCalculate;
+
+@Service
+public class AuthenticationServiceImpl implements AuthenticationService
+{
+	@Autowired
+	private StoreDao storeDao;
+
+	@Autowired
+	private BrokerDao brokerDao;
+	@Autowired
+	private UsersDao usersDao;
+
+
+
+	@Override
+	public List<StoreAuthenticationBean> getAllStore(int pageMaxNum, int pageNo)
+	{
+		int pageNum = getStoreAuthenticationPageNum(pageMaxNum);
+		PageCalculate pageCalculate = new PageCalculate(pageNum, pageMaxNum, pageNo);
+		List<Store> storeList = storeDao.selectAll(pageCalculate);
+		List<StoreAuthenticationBean> storeAuthenticationBeanlList = new ArrayList<StoreAuthenticationBean>();
+
+		for (Store store : storeList)
+		{
+			StoreAuthenticationBean storeAuthenticationBean = new StoreAuthenticationBean();
+			storeAuthenticationBean.setBusinessLicensePhoto(store.getStorePortrait());
+			storeAuthenticationBean.setFailedReason(store.getFailedReason());
+			storeAuthenticationBean.setStatus(store.getStatus());
+			storeAuthenticationBean.setStoreId(store.getStoreId());
+			storeAuthenticationBean.setStoreName(store.getStoreName());
+
+			storeAuthenticationBeanlList.add(storeAuthenticationBean);
+		}
+
+		return storeAuthenticationBeanlList;
+	}
+
+	@Override
+	public List<StoreAuthenticationBean> getStoreBySearchStoreName(String keyStoreName, int pageMaxNum, int pageNo)
+	{
+		int pageNum = getStoreAuthenticationPageNum(pageMaxNum);
+		PageCalculate pageCalculate = new PageCalculate(pageNum, pageMaxNum, pageNo);
+		List<Store> storeList = storeDao.selectByKeyStoreName(keyStoreName, pageCalculate);
+		List<StoreAuthenticationBean> storeAuthenticationBeanlList = new ArrayList<StoreAuthenticationBean>();
+
+		for (Store store : storeList)
+		{
+			StoreAuthenticationBean storeAuthenticationBean = new StoreAuthenticationBean();
+			storeAuthenticationBean.setBusinessLicensePhoto(store.getStorePortrait());
+			storeAuthenticationBean.setFailedReason(store.getFailedReason());
+			storeAuthenticationBean.setStatus(store.getStatus());
+			storeAuthenticationBean.setStoreId(store.getStoreId());
+			storeAuthenticationBean.setStoreName(store.getStoreName());
+
+			storeAuthenticationBeanlList.add(storeAuthenticationBean);
+		}
+
+		return storeAuthenticationBeanlList;
+	}
+
+	@Override
+	public StoreAuthenticationBean getSingleStore(int storeId)
+	{
+		StoreAuthenticationBean storeAuthenticationBean = null;
+		Store store = storeDao.selectByPrimaryKey(storeId);
+
+		if (store != null)
+		{
+			storeAuthenticationBean = new StoreAuthenticationBean();
+			storeAuthenticationBean.setBusinessLicensePhoto(store.getStorePortrait());
+			storeAuthenticationBean.setFailedReason(store.getFailedReason());
+			storeAuthenticationBean.setStatus(store.getStatus());
+			storeAuthenticationBean.setStoreId(store.getStoreId());
+			storeAuthenticationBean.setStoreName(store.getStoreName());
+		}
+
+		return storeAuthenticationBean;
+	}
+
+	@Override
+	public String authenticateStore(int storeId, boolean status, String failedReason)
+	{
+		Store store = storeDao.selectByPrimaryKey(storeId);
+		if (store == null)
+		{
+			return "未找到门店信息，错误的storeId：" + storeId;
+		}
+
+		String authenticationStatus = null;
+		if (status)
+		{
+			authenticationStatus = DictionaryString.STORE_AUTHENTICATE_PASS;
+			failedReason = null;
+		} else
+		{
+			authenticationStatus = DictionaryString.STORE_AUTHENTICATE_NOT_PASS;
+		}
+
+		int res1 = storeDao.updateAuthenticationStatus(storeId, authenticationStatus, failedReason);
+		int res2 = 1;
+		if (status)
+		{
+			res2 = brokerDao.updateBrokerTypeByBrokerId(store.getStoreLeader(), DictionaryString.STORE_MANAGER);
+		}
+
+		if (res1 == 1 && res2 == 1)
+		{
+			return "success";
+		} else
+		{
+			return "数据库错误：updateAuthenticationStatus:res1=" + res1 + ",res2=" + res2;
+		}
+	}
+
+	@Override
+	public int getStoreAuthenticationPageNum(int pageMaxNum)
+	{
+		if (pageMaxNum < 1)
+		{
+			pageMaxNum = 1;
+		}
+		int num = storeDao.countStore();
+		return num % pageMaxNum == 0 ? num / pageMaxNum : num / pageMaxNum + 1;
+	}
+
+	@Override
+	public String authenticateUser(int userId, boolean status , String failedReason) {
+
+		// TODO Auto-generated method stub
+		Broker broker = brokerDao.selectByPrimaryKey(userId);
+		if(broker == null)
+
+		{
+			return "未找到用户信息,错误的userId" + userId;
+		}
+		Boolean authenticationCode; 
+		String brokerType;
+		if(status)
+		{
+			authenticationCode = true;
+			brokerType = DictionaryString.ORDERNARY_BROKER;
+		}else
+		{
+			authenticationCode = false;
+			brokerType = null;
+			
+		}
+		int res1 = brokerDao.updateUserAuthentation(userId, brokerType,failedReason);
+		int res2 = usersDao.updateUserAuthentation(userId, authenticationCode);
+		if(res1 == 1 && res2 == 1)
+		{
+			return "success";
+		}
+		if(res1 == 1 && res2 == 0)
+		{
+			return "Broker表更新成功,Users表更新失败";
+		}
+		if(res1 == 0 && res2 == 1)
+		{
+			return "审核异常，Users表修改成功";
+		}
+		return "数据库错误：brokerType" + brokerType + "authenticationCode" + authenticationCode;
+	
+	}
+
+	@Override
+	public List<UserAuthenticationBean> getAllUser(int pageMaxNum, int pageNo)
+	{
+		int pageNum = getUserAuthenticationPageNum(pageMaxNum);
+		PageCalculate pageCalculate = new PageCalculate(pageNum, pageMaxNum, pageNo);
+		List<Broker> brokerList = brokerDao.selectAllApplicatedUser(pageCalculate, DictionaryString.USER_AUTHENTICATION_APPLICATED);
+		List<UserAuthenticationBean> userAuthenticationBeanlList = new ArrayList<UserAuthenticationBean>();
+
+		for (Broker broker : brokerList)
+		{
+
+			Users user = usersDao.selectByPrimaryKey(broker.getUserId());
+			UserAuthenticationBean userAuthenticationBean = new UserAuthenticationBean();
+			userAuthenticationBean.setIdNumber(broker.getBrokerIdcard());
+			userAuthenticationBean.setRealName(broker.getBrokerName());
+			userAuthenticationBean.setUserId(broker.getUserId());
+			userAuthenticationBean.setUserName(user.getUserName());
+			userAuthenticationBean.setRealPic(broker.getIdcardPic());
+			userAuthenticationBean.setFailedReason(broker.getFailedReason());
+			userAuthenticationBeanlList.add(userAuthenticationBean);
+		}
+
+		return userAuthenticationBeanlList;
+	}
+
+	@Override
+	public List<UserAuthenticationBean> getUserBySearchUserName(String keyBrokerName, int pageMaxNum, int pageNo) 
+	{
+		// TODO Auto-generated method stub
+		int pageNum = getUserAuthenticationPageNum(pageMaxNum);
+		PageCalculate pageCalculate = new PageCalculate(pageNum, pageMaxNum, pageNo);
+		List<Broker> userList = brokerDao.selectByKeyBrokerName(keyBrokerName, pageCalculate);
+		List<UserAuthenticationBean> userAuthenticationBeanlList = new ArrayList<UserAuthenticationBean>();
+
+		for (Broker broker : userList)
+		{
+			Users user = usersDao.selectByPrimaryKey(broker.getUserId());
+			UserAuthenticationBean userAuthenticationBean = new UserAuthenticationBean();
+			userAuthenticationBean.setIdNumber(broker.getBrokerIdcard());
+			userAuthenticationBean.setRealName(broker.getBrokerName());
+			userAuthenticationBean.setUserId(broker.getUserId());
+			userAuthenticationBean.setUserName(user.getUserName());
+			userAuthenticationBean.setRealPic(broker.getIdcardPic());
+			userAuthenticationBean.setFailedReason(broker.getFailedReason());
+			userAuthenticationBeanlList.add(userAuthenticationBean);
+		}
+
+		return userAuthenticationBeanlList;
+	}
+
+	@Override
+	public UserAuthenticationBean getSingleUser(int userId)
+	{
+		UserAuthenticationBean userAuthenticationBean = null;
+		Broker broker = brokerDao.selectByUserId(userId);
+
+		if (broker != null)
+		{
+			userAuthenticationBean = new UserAuthenticationBean();
+			Users user = usersDao.selectByPrimaryKey(broker.getUserId());
+			userAuthenticationBean.setIdNumber(broker.getBrokerIdcard());
+			userAuthenticationBean.setRealName(broker.getBrokerName());
+			userAuthenticationBean.setUserId(broker.getUserId());
+			userAuthenticationBean.setUserName(user.getUserName());
+			userAuthenticationBean.setRealPic(broker.getIdcardPic());
+			userAuthenticationBean.setFailedReason(broker.getFailedReason());
+		}
+
+		return userAuthenticationBean;
+	}
+
+	@Override
+	public int getUserAuthenticationPageNum(int pageMaxNum)
+	{
+		// TODO Auto-generated method stub
+		if (pageMaxNum < 1)
+		{
+			pageMaxNum = 1;
+		}
+		int num = brokerDao.countUser(DictionaryString.USER_AUTHENTICATION_APPLICATED);
+		return num % pageMaxNum == 0 ? num / pageMaxNum : num / pageMaxNum + 1;
+	}
+
+	@Override
+	public UserAuthenticationBean getUserByIdNum(String userIdNum ) {
+		// TODO Auto-generated method stub
+		UserAuthenticationBean userAuthenticationBean = null;
+		Broker broker = brokerDao.selectByIdNum(userIdNum);
+		if(broker != null)
+		{
+			if(broker.getApplicateAuthentication().equals(DictionaryString.USER_AUTHENTICATION_APPLICATED))
+			{
+				userAuthenticationBean = new UserAuthenticationBean();
+				Users user = usersDao.selectByPrimaryKey(broker.getUserId());
+				userAuthenticationBean.setIdNumber(broker.getBrokerIdcard());
+				userAuthenticationBean.setRealName(broker.getBrokerName());
+				userAuthenticationBean.setUserId(broker.getUserId());
+				userAuthenticationBean.setUserName(user.getUserName());
+				userAuthenticationBean.setRealPic(broker.getIdcardPic());
+				userAuthenticationBean.setFailedReason(broker.getFailedReason());
+			}else
+			{
+				return null;
+			}
+		}
+		return userAuthenticationBean;
+	}
+
+	@Override
+	public UserAuthenticationBean getUserByUserName(String userName) {
+		// TODO Auto-generated method stub
+		
+		UserAuthenticationBean userAuthenticationBean = null;
+		Users user = usersDao.selectByUserName(userName);
+		if(user != null)
+		{
+			
+			Broker broker = brokerDao.selectByUserId(user.getUserId());
+			if(broker != null && DictionaryString.USER_AUTHENTICATION_APPLICATED.equals(broker.getApplicateAuthentication()))
+			{
+				userAuthenticationBean = new UserAuthenticationBean();
+				userAuthenticationBean.setIdNumber(broker.getBrokerIdcard());
+				userAuthenticationBean.setRealName(broker.getBrokerName());
+				userAuthenticationBean.setUserId(broker.getUserId());
+				userAuthenticationBean.setUserName(user.getUserName());
+				userAuthenticationBean.setRealPic(broker.getIdcardPic());
+				userAuthenticationBean.setFailedReason(broker.getFailedReason());
+			}else
+			{
+				return null;
+			}
+			
+		}
+		return userAuthenticationBean;
+	}
+
+}

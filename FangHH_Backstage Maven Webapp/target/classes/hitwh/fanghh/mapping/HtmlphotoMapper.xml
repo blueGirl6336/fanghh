@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.HtmlphotoDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Htmlphoto">
+    <id column="photo_id" jdbcType="INTEGER" property="photoId" />
+    <result column="session_key" jdbcType="VARCHAR" property="sessionKey" />
+    <result column="photo_path" jdbcType="VARCHAR" property="photoPath" />
+    <result column="upload_time" jdbcType="TIMESTAMP" property="uploadTime" />
+    <result column="photo_description" jdbcType="VARCHAR" property="photoDescription" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    photo_id, session_key, photo_path, upload_time, photo_description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.HtmlPhoto
+    where photo_id = #{photoId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.HtmlPhoto
+    where photo_id = #{photoId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Htmlphoto">
+    insert into dbo.HtmlPhoto (photo_id, session_key, photo_path, 
+      upload_time, photo_description)
+    values (#{photoId,jdbcType=INTEGER}, #{sessionKey,jdbcType=VARCHAR}, #{photoPath,jdbcType=VARCHAR}, 
+      #{uploadTime,jdbcType=TIMESTAMP}, #{photoDescription,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Htmlphoto">
+    insert into dbo.HtmlPhoto
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="photoId != null">
+        photo_id,
+      </if>
+      <if test="sessionKey != null">
+        session_key,
+      </if>
+      <if test="photoPath != null">
+        photo_path,
+      </if>
+      <if test="uploadTime != null">
+        upload_time,
+      </if>
+      <if test="photoDescription != null">
+        photo_description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="photoId != null">
+        #{photoId,jdbcType=INTEGER},
+      </if>
+      <if test="sessionKey != null">
+        #{sessionKey,jdbcType=VARCHAR},
+      </if>
+      <if test="photoPath != null">
+        #{photoPath,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadTime != null">
+        #{uploadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="photoDescription != null">
+        #{photoDescription,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Htmlphoto">
+    update dbo.HtmlPhoto
+    <set>
+      <if test="sessionKey != null">
+        session_key = #{sessionKey,jdbcType=VARCHAR},
+      </if>
+      <if test="photoPath != null">
+        photo_path = #{photoPath,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadTime != null">
+        upload_time = #{uploadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="photoDescription != null">
+        photo_description = #{photoDescription,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where photo_id = #{photoId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Htmlphoto">
+    update dbo.HtmlPhoto
+    set session_key = #{sessionKey,jdbcType=VARCHAR},
+      photo_path = #{photoPath,jdbcType=VARCHAR},
+      upload_time = #{uploadTime,jdbcType=TIMESTAMP},
+      photo_description = #{photoDescription,jdbcType=VARCHAR}
+    where photo_id = #{photoId,jdbcType=INTEGER}
+  </update>
+</mapper>

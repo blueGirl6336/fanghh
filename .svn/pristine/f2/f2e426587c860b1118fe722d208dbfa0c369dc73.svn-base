@@ -1,0 +1,71 @@
+<link rel="stylesheet" href="./framework/umeditor/dist/utf8-php/themes/default/css/umeditor.css">
+<link rel="stylesheet" href="./css/dynamic.css">
+
+<div class="add-dynamic-box" ng-controller="AddDynamicController as dynamic">
+  <p class="content_title">
+    威海华润湾九里
+    <img src="./image/fpzh.png" class="assign-account"></p>
+  <div class="content_area">
+    <div class="header-nav">
+      <div>
+        <a href="#">户型管理</a>
+      </div>
+      <div>
+        <a href="#">房源管理</a>
+      </div>
+      <div>
+        <a href="#">图片管理</a>
+      </div>
+      <div class="nav-active">
+        <a href="#">动态管理</a>
+      </div>
+      <div>
+        <a href="#">房价走势</a>
+      </div>
+      <div>
+        <a href="#">看图说房</a>
+      </div>
+      <div>
+        <a href="#">佣金规则</a>
+      </div>
+      <div>
+        <a href="#">楼全点评</a>
+      </div>
+    </div>
+    <div class="content_main">
+      <div class="inputArea">
+        <form>
+          <div class="row">
+            <div class="form-item form-item-middle">
+              <label>动态标题：</label>
+              <div class="form-field">
+                <input id="dynamic-title" type="text" class="form-text dynamic-title" placeholder="">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-item form-item-broad">
+              <label>动态内容：</label>
+              <div class="form-field">
+                <!-- controller -->
+                <div style="width:800px;margin:auto;">
+                  <!-- complete demo -->
+                  <div class="all">
+                    <script type="text/html" style="margin:auto;height:300px;width:100%;" ng-model="dynamic.content" meta-umeditor meta-umeditor-config="dynamic.umconfig" meta-umeditor-placeholder="提示文案!这里是完整的示例"></script>
+                    <div class="model">
+                      <div ng-bind="all_text"></div>
+                    </div>
+                  </div>
+                  <!-- end complete demo -->
+                </div>
+              </div>
+            </div>
+        </form>
+        <div class="button-area">
+          <button type="button" class="btn save-continue">发表</button>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

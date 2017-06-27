@@ -1,0 +1,18 @@
+
+package hitwh.fanghh.dao;
+
+import hitwh.fanghh.pojo.Perferentialhouselist;
+
+public interface PerferentialhouselistDao {
+    int deleteByPrimaryKey(Integer phlId);
+
+    int insert(Perferentialhouselist record);
+
+    int insertSelective(Perferentialhouselist record);
+
+    Perferentialhouselist selectByPrimaryKey(Integer phlId);
+
+    int updateByPrimaryKeySelective(Perferentialhouselist record);
+
+    int updateByPrimaryKey(Perferentialhouselist record);
+}

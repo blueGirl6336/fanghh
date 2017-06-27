@@ -1,0 +1,34 @@
+package hitwh.fanghh.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import hitwh.fanghh.bean.HouseBean;
+import hitwh.fanghh.bean.PerferentialActivityBean;
+import hitwh.fanghh.dao.ActivityDao;
+import hitwh.fanghh.dao.HouseDao;
+import hitwh.fanghh.dao.PerferentialhouseinfoDao;
+import hitwh.fanghh.dao.PerferentialruleDao;
+import hitwh.fanghh.pojo.Activity;
+import hitwh.fanghh.service.ActivityService;
+
+public class ActivityServiceImpl implements ActivityService{
+	@Autowired
+	private ActivityDao activityDao;
+	@Autowired
+	private HouseDao houseDao;
+	@Autowired
+	private PerferentialruleDao perferentialruleDao;
+	@Autowired
+	private PerferentialhouseinfoDao perferentialhouseinfoDao;
+	@Override
+	public String addPerferentialActivity(PerferentialActivityBean activityBean ) {
+		
+		
+		// TODO Auto-generated method stub
+		return null;
+		
+	}
+	
+	
+
+}

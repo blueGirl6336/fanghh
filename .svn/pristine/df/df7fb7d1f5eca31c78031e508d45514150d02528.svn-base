@@ -1,0 +1,186 @@
+<link rel="stylesheet" href="./css/activity.css">
+
+<div class="activity-launch" ng-controller="ActivitiesLaunchController as activityController">
+  <div class="content_area_title">
+    <h2>发布新楼盘</h2>
+  </div>
+  <div class="content_main">
+    <div class="inputArea">
+      <h3>创建新活动</h3>
+      <form>
+        <div class="row">
+          <div class="form-item form-item-middle">
+            <label><span class="requireMark">*</span> 选择类型：<span class="justify"></span></label>
+            <div class="form-field">
+              <select class="form-text" ng-model="activityController.selectedType">
+                <option ng-repeat="type in activityController.activityTypes">{{type | exchangeNum}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-item form-item-middle">
+            <label><span class="requireMark">*</span>选择地区：<span class="justify"></span></label>
+            <div class="form-field">
+              <select name="" id="" class="form-text shortSelect">
+                <option>山东</option>
+              </select>
+              <span>省</span>
+              <select name="" id="" class="form-text shortSelect" ng-model="selectedCity" ng-options="city.cityName for city in activityController.allCities track by city.cityId" ng-change="activityController.chooseCity(selectedCity)"></select>
+              <span>市</span>
+              <select name="" id="" class="form-text shortSelect" ng-model="selectedRegion" ng-options="region.regionName for region in activityController.allRegions track by region.regionId" ng-change="activityController.fetchBuildings(selectedRegion)"></select>
+              <span>区</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-item form-item-middle">
+            <label><span class="requireMark">*</span> 选择楼盘：<span class="justify"></span></label>
+            <div class="form-field">
+              <select name="" id="" class="form-text" ng-model="activityController.selectedBuilding" ng-options="building.buildingName for building in activityController.allBuildings track by building.buildingId" ng-change="activityController.fetchHouses()"></select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-item form-item-middle">
+            <label><span class="requireMark">*</span> 活动名称：<span class="justify"></span></label>
+            <div class="form-field">
+              <input type="text" class="form-text hasUnitInput" id="act-name" name="username" placeholder=""><span class="hasUnitInput_unit"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-item form-item-large">
+            <label><span class="requireMark">*</span> 选择房源：<span class="justify"></span></label>
+            <div class="form-field">
+              <input type="button" value="添加已有房源" ng-click="activityController.showAddExistedHouse()" />
+              <span>添加新房源, 点<a ui-sref="index.houseEnter">这里</a></span>
+            </div>
+
+            <!-- 添加已有房源弹出框 begin -->
+            <div class="pop-up-cover"></div>
+            <div class="pop-up">
+              <div class="add-house-pop-up">
+                <span class="close-btn" ng-click="activityController.closePopup();">×</span>
+                <h2 class="add-house-title">添加已有房源</h2>
+                <div class="separate-line"></div>
+
+                <div class="add-house-form">
+                  <div class="add-house-section">
+                    <span class="form-title">选择房源</span>
+                    <select id="act-add-house-selected-house" class="form-field" ng-model="activityController.selectedHouse" ng-options="house.houseName for house in activityController.allHouses track by house.houseId" ng-change="activityController.showHousePrice()"></select>
+                  </div>
+
+                  <div class="add-house-section">
+                    <span class="form-title">原价</span>
+                    <input type="number" disabled="true" class="form-field form-disabled-field" id="act-add-house-org-price"></input>
+                  </div>
+
+                  <div class="add-house-section">
+                    <span class="form-title">{{activityController.selectedType}}价</span>
+                    <input type="number" class="form-field" id="act-add-house-sp-price"></input>
+                  </div>
+
+                  <button class="add-house-btn" ng-click="activityController.checkAndAddHouse()">添加</button>
+                </div>
+                
+              </div>
+            </div>
+            <!-- 添加以后房源弹出框 end -->
+          </div>
+    
+          <div class="house-box-container"> 
+            <div class="house-box" ng-repeat="house in activityController.selectedHouses">
+              <div class="house-name">{{house.houseName}}</div>
+              <div class="price-box">
+                <span class="fl">原价: {{house.orginalPrice}}元</span><span class="fl">{{activityController.selectedType}}价: {{house.specialPrice}}元</span>
+              </div>
+              <img src="./image/close_1.png" class="close-btn" ng-click="activityController.deleteAddedHouse(house)" />
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="form-item form-item middle">
+            <label><span class="requireMark">*</span> 购房特惠：<span class="justify"></span></label>
+            <ul class="rule-list">
+              <li ng-class="{select: activityController.activeRulePanel === 1}" ng-click="activityController.changeActiveRulePanel(1)">减</li>
+              <li ng-class="{select: activityController.activeRulePanel === 2}" ng-click="activityController.changeActiveRulePanel(2)">满</li>
+              <li ng-class="{select: activityController.activeRulePanel === 3}" ng-click="activityController.changeActiveRulePanel(3)">顶</li>
+            </ul>
+          </div>
+          <div class="rule-box" ng-class="{active: activityController.activeRulePanel === 1}">
+            <div class="rule-title-box">
+              <div class="form-field">
+                <textarea class="form-text" id="rule-title-1" placeholder="请输入特惠标题"></textarea>
+              </div>
+            </div>
+            <div class="form-item form-item-broad rule-content-box">
+              <div class="form-field">
+                <textarea class="form-text" id="rule-content-1" placeholder="请输入特惠内容"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rule-box" ng-class="{active: activityController.activeRulePanel === 2}">
+            <div class="rule-title-box">
+              <div class="form-field">
+                <textarea class="form-text" id="rule-title-1" placeholder="请输入特惠标题"></textarea>
+              </div>
+            </div>
+            <div class="form-item form-item-broad rule-content-box">
+              <div class="form-field">
+                <textarea class="form-text" id="rule-content-1" placeholder="请输入特惠内容"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="rule-box" ng-class="{active: activityController.activeRulePanel === 3}">
+            <div class="rule-title-box">
+              <div class="form-field">
+                <textarea class="form-text" id="rule-title-1" placeholder="请输入特惠标题"></textarea>
+              </div>
+            </div>
+            <div class="form-item form-item-broad rule-content-box">
+              <div class="form-field">
+                <textarea class="form-text" id="rule-content-1" placeholder="请输入特惠内容"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-item form-item-large">
+            <label><span class="requireMark">*</span> 开始时间：<span class="justify"></span></label>
+            <div class="form-field">
+              <select id="act-begin-yr" class="form-text shortSelect" ng-model="activityController.beginYear" ng-options="year for year in activityController.yearArray track by year"></select>
+              <span>年</span>
+              <select id="act-begin-mth" class="form-text shortSelect" ng-model="activityController.beginMonth" ng-options="month for month in activityController.getSequence(1, 12) track by month"></select>
+              <span>月</span>
+              <select id="act-begin-day" class="form-text shortSelect" ng-model="activityController.beginDay" ng-options="day for day in activityController.calculateDays(activityController.beginMonth - 1, activityController.beginYear) track by day"></select>
+              <span>日</span>
+              <select id="act-begin-hr" class="form-text shortSelect" ng-model="activityController.beginHour" ng-options="hour for hour in activityController.getSequence(1, 24) track by hour"></select>
+              <span>时</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-item form-item-large">
+            <label><span class="requireMark">*</span> 结束时间：<span class="justify"></span></label>
+            <div class="form-field">
+              <select id="act-end-yr" class="form-text shortSelect" ng-model="activityController.endYear" ng-options="year for year in activityController.yearArray track by year"></select>
+              <span>年</span>
+              <select id="act-end-mth" class="form-text shortSelect" ng-model="activityController.endMonth" ng-options="month for month in activityController.getSequence(1, 12) track by month"></select>
+              <span>月</span>
+              <select id="act-end-day" class="form-text shortSelect" ng-model="activityController.endDay" ng-options="day for day in activityController.calculateDays(activityController.endMonth - 1, activityController.endYear) track by day"></select>
+              <span>日</span>
+              <select id="act-end-hr" class="form-text shortSelect" ng-model="activityController.endHour" ng-options="hour for hour in activityController.getSequence(1, 24) track by hour"></select>
+              <span>时</span>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <div class="button-area">
+        <button type="button" class="btn save-continue" ng-click="activityController.submitActivity()">发布</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.PictalkDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Pictalk">
+    <id column="pt_id" jdbcType="INTEGER" property="ptId" />
+    <result column="building_id" jdbcType="INTEGER" property="buildingId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="placard_times" jdbcType="INTEGER" property="placardTimes" />
+    <result column="issue_time" jdbcType="TIMESTAMP" property="issueTime" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    pt_id, building_id, title, placard_times, issue_time, url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.PicTalk
+    where pt_id = #{ptId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.PicTalk
+    where pt_id = #{ptId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Pictalk">
+    insert into dbo.PicTalk (pt_id, building_id, title, 
+      placard_times, issue_time, url
+      )
+    values (#{ptId,jdbcType=INTEGER}, #{buildingId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+      #{placardTimes,jdbcType=INTEGER}, #{issueTime,jdbcType=TIMESTAMP}, #{url,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Pictalk">
+    insert into dbo.PicTalk
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ptId != null">
+        pt_id,
+      </if>
+      <if test="buildingId != null">
+        building_id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="placardTimes != null">
+        placard_times,
+      </if>
+      <if test="issueTime != null">
+        issue_time,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ptId != null">
+        #{ptId,jdbcType=INTEGER},
+      </if>
+      <if test="buildingId != null">
+        #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="placardTimes != null">
+        #{placardTimes,jdbcType=INTEGER},
+      </if>
+      <if test="issueTime != null">
+        #{issueTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Pictalk">
+    update dbo.PicTalk
+    <set>
+      <if test="buildingId != null">
+        building_id = #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="placardTimes != null">
+        placard_times = #{placardTimes,jdbcType=INTEGER},
+      </if>
+      <if test="issueTime != null">
+        issue_time = #{issueTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pt_id = #{ptId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Pictalk">
+    update dbo.PicTalk
+    set building_id = #{buildingId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      placard_times = #{placardTimes,jdbcType=INTEGER},
+      issue_time = #{issueTime,jdbcType=TIMESTAMP},
+      url = #{url,jdbcType=VARCHAR}
+    where pt_id = #{ptId,jdbcType=INTEGER}
+  </update>
+</mapper>

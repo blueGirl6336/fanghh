@@ -1,0 +1,112 @@
+<div class="content_main" ng-controller="pictureSubmit">
+	<div class="content_area_fullpage">
+		<div class="content_area_title">
+			<h2>发布新楼盘</h2>
+		</div>
+		<div class="inputArea">
+			<h3>楼盘录入</h3>
+			<form enctype="multipart/form-data">
+				<!-- "01030600", "01030100", "01030700", "01030500", "01030400" 效果，实景，规划，配套，样板间 -->
+				<div class="row">
+					<div class="form-item form-item-large">
+						<label class="label-long">上传效果图：</label>
+						<div class="form-field">
+							<label for="upload_effectPic" class="choose-file">选择文件</label>
+							<input type="file" id="upload_effectPic" nv-file-select uploader="effectpicuploader"/>
+							<br/>
+						</div>
+					</div>
+					<div class="picList">
+						<div class="picItem" ng-repeat="pic in effectPicList">
+							<img src=".{{ pic.picLocation }}" class="pic">
+							<img src="./image/close_1.png" class="close-pic" ng-click="deletePic(effectPicList, $index)">
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="form-item form-item-large">
+						<label class="label-long">上传实景图：</label>
+						<div class="form-field">
+							<label for="upload_realPic" class="choose-file">选择文件</label>
+							<input type="file" id="upload_realPic" nv-file-select uploader="realPicuploader"/>
+							<br/>
+						</div>
+					</div>
+					<div class="picList">
+						<div class="picItem" ng-repeat="pic in realPicList">
+							<img src=".{{ pic.picLocation }}" class="pic">
+							<img src="./image/close_1.png" class="close-pic" ng-click="deletePic(realPicList, $index)">
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="form-item form-item-large">
+						<label class="label-long">上传规划图：</label>
+						<div class="form-field">
+							<label for="upload_planPic" class="choose-file">选择文件</label>
+							<input type="file" id="upload_planPic" nv-file-select uploader="planPicUploader"/>
+							<br/>
+						</div>
+					</div>
+					<div class="picList">
+						<div class="picItem" ng-repeat="pic in planPicList">
+							<img src=".{{ pic.picLocation }}" class="pic">
+							<img src="./image/close_1.png" class="close-pic" ng-click="deletePic(planPicList, $index)">
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-item form-item-large">
+						<label class="label-long">上传配套图：</label>
+						<div class="form-field">
+							<label for="upload_supportingPic" class="choose-file">选择文件</label>
+							<input type="file" id="upload_supportingPic" nv-file-select uploader="supportingPicUploader"/>
+							<br/>
+						</div>
+					</div>
+					<div class="picList">
+						<div class="picItem" ng-repeat="pic in supportingPicList">
+							<img src=".{{ pic.picLocation }}" class="pic">
+							<img src="./image/close_1.png" class="close-pic" ng-click="deletePic(supportingPicList, $index)">
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-item form-item-large">
+						<label class="label-long">上传样板间：</label>
+						<div class="form-field">
+							<label for="upload_modelRoomPic" class="choose-file">选择文件</label>
+							<input type="file" id="upload_modelRoomPic" nv-file-select uploader="modelRoomPicUploader"/>
+							<br/>
+						</div>
+					</div>
+					<div class="picList">
+						<div class="picItem" ng-repeat="pic in modelRoomPicList">
+							<img src=".{{ pic.picLocation }}" class="pic">
+							<img src="./image/close_1.png" class="close-pic" ng-click="deletePic(modelRoomPicList, $index)">
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-item form-item-large">
+						<label class="label-long">位置与周边：</label>
+						<div class="form-field">
+							<select class="form-text middleLength" ng-model="mapOptions" ng-options="value.description for value in mapArray"></select>
+							<span class="map_text">经度: {{ mapNowPositionLng }}</span> <span class="map_text">纬度: {{ mapNowPositionLat }}</span> <span class="map_text">名称: <input type="text " class="form-text shortText" ng-model="mapNowTitle"></span>
+							<button type="button" class="submit-file" ng-click="setOneMapPosition()">添加</button>
+						</div>
+					</div>
+					<!-- <div class="map-pic" id="map"></div> -->
+					<div map="{mapPosition: mapPosition, mapArray: mapArray, mapNowPosition: mapNowPosition}" class="mapArea"></div>
+				</div>
+			</form>
+			<div class="button-area">
+				<button type="button" class="btn goback">上一步</button>
+				<button type="button" class="btn save-continue" ng-click="submitPicAndMapInfo()">保存并下一步</button>
+			</div>
+		</div>
+	</div>
+
+</div>

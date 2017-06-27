@@ -1,0 +1,108 @@
+<link type="text/css" rel="stylesheet" href="./css/moneyPrincple.css"/>
+
+<div class="content_area">
+	<p class="content_title">威海华润湾九里<img src="../../image/fpzh.png" class="assign-account"></p>
+
+	<div class="content_area">
+	<div class="header-nav">
+			<div><a href="../#">户型管理</a></div>
+			<div><a href="../#">房源管理</a></div>
+			<div><a href="../#">图片管理</a></div>
+			<div><a href="../#">动态管理</a></div>
+			<div><a href="../#">房价走势</a></div>
+			<div><a href="../#">看图说房</a></div>
+			<div class="nav-active"><a href="../#">佣金规则</a></div>
+			<div><a href="../#">楼全点评</a></div>			
+		</div>
+		<div class="content_main">
+				<div class="inputArea">
+					<form>
+						<div class="row">
+							<div class="form-item form-item-middle">
+								<label class="label-bold label-long">佣金规则：</label>
+								<div class="form-field">
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-item form-item-middle">
+								<label>规则标题：</label>
+								<div class="form-field">
+									<input type="text" class="form-text" id="username" name="username" placeholder="">
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-item form-item-middle">
+								<label>规则类型：</label>
+								<div class="form-field">
+									<input type="text" class="form-text" id="username" name="username" placeholder="">
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-item form-item-middle">
+								<label>规则细节：</label>
+								<div class="form-field">
+									<input type="text" class="form-text" id="username" name="username" placeholder="">
+								</div>
+							</div>
+						</div>
+						<div class="row">
+						<div class="form-item form-item-broad">
+							<label for="username" class="label-long">开发商说明：<span class="justify"></span></label>
+							<div class="form-field">
+								<textarea class="form-text" id="username" name="username" placeholder=""></textarea>
+							</div>
+						</div>
+					</div>
+					</form>
+					<div class="button-area">
+						<button type="button" class="btn save-continue">提交</button>
+					</div>
+				</div>
+			</div>
+		<table class="princple-table">
+			<tr class="line0">
+				<td class="title">规则标题</td>
+				<td class="type">规则类型</td>
+				<td class="detail">规则细节</td>
+				<td class="explain">开发商说明</td>
+				<td class="operation" colspan="2">操作</td>
+			</tr>
+			<tr class="line1">
+				<td class="title">合同房款2%</td>
+				<td class="type">特价房除外</td>
+				<td class="detail">客户签约并全款付清后，7个工作日内结佣</td>
+				<td class="explain">有效期为半年，2016年5月4日到2016年11月4日......</td>
+				<td class="operation1">修改</td>
+				<td class="operation2">删除</td>
+			</tr>
+			<tr class="line2">
+				<td class="title">合同房款2%</td>
+				<td class="type">特价房除外</td>
+				<td class="detail">客户签约并全款付清后，7个工作日内结佣</td>
+				<td class="explain">有效期为半年，2016年5月4日到2016年11月4日......</td>
+				<td class="operation1">修改</td>
+				<td class="operation2">删除</td>
+			</tr>
+			<tr class="line1">
+				<td class="title">合同房款2%</td>
+				<td class="type">特价房除外</td>
+				<td class="detail">客户签约并全款付清后，7个工作日内结佣</td>
+				<td class="explain">有效期为半年，2016年5月4日到2016年11月4日......</td>
+				<td class="operation1">修改</td>
+				<td class="operation2">删除</td>
+			</tr>
+			<tr class="line2">
+				<td class="title">合同房款2%</td>
+				<td class="type">特价房除外</td>
+				<td class="detail">客户签约并全款付清后，7个工作日内结佣</td>
+				<td class="explain">有效期为半年，2016年5月4日到2016年11月4日......</td>
+				<td class="operation1">修改</td>
+				<td class="operation2">删除</td>
+			</tr>
+		</table>
+	</div>
+	
+</div>

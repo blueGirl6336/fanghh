@@ -1,0 +1,18 @@
+
+package hitwh.fanghh.dao;
+
+import hitwh.fanghh.pojo.Buildingcomment;
+
+public interface BuildingcommentDao {
+    int deleteByPrimaryKey(Integer commentId);
+
+    int insert(Buildingcomment record);
+
+    int insertSelective(Buildingcomment record);
+
+    Buildingcomment selectByPrimaryKey(Integer commentId);
+
+    int updateByPrimaryKeySelective(Buildingcomment record);
+
+    int updateByPrimaryKey(Buildingcomment record);
+}

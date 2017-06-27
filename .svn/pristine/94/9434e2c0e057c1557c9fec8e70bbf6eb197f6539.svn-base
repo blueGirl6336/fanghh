@@ -1,0 +1,30 @@
+package hitwh.fanghh.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import hitwh.fanghh.dao.DictionaryDao;
+import hitwh.fanghh.pojo.Dictionary;
+import hitwh.fanghh.service.DictionaryService;
+
+@Service
+public class DictionaryServiceImpl implements DictionaryService
+{
+	@Autowired
+	private DictionaryDao dictionaryDao;
+
+	@Override
+	public String getDictName(String dictCode)
+	{
+		List<Dictionary> dictionaryList = dictionaryDao.selectByDictCode(dictCode);
+		if (dictionaryList.isEmpty())
+		{
+			return null;
+		} else
+		{
+			return dictionaryList.get(0).getDictname();
+		}
+	}
+}

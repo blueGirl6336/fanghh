@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.IntegralruleDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Integralrule">
+    <id column="rule_id" jdbcType="INTEGER" property="ruleId" />
+    <result column="operation_type" jdbcType="VARCHAR" property="operationType" />
+    <result column="integral_gained" jdbcType="INTEGER" property="integralGained" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    rule_id, operation_type, integral_gained
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.IntegralRule
+    where rule_id = #{ruleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.IntegralRule
+    where rule_id = #{ruleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Integralrule">
+    insert into dbo.IntegralRule (rule_id, operation_type, integral_gained
+      )
+    values (#{ruleId,jdbcType=INTEGER}, #{operationType,jdbcType=VARCHAR}, #{integralGained,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Integralrule">
+    insert into dbo.IntegralRule
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ruleId != null">
+        rule_id,
+      </if>
+      <if test="operationType != null">
+        operation_type,
+      </if>
+      <if test="integralGained != null">
+        integral_gained,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ruleId != null">
+        #{ruleId,jdbcType=INTEGER},
+      </if>
+      <if test="operationType != null">
+        #{operationType,jdbcType=VARCHAR},
+      </if>
+      <if test="integralGained != null">
+        #{integralGained,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Integralrule">
+    update dbo.IntegralRule
+    <set>
+      <if test="operationType != null">
+        operation_type = #{operationType,jdbcType=VARCHAR},
+      </if>
+      <if test="integralGained != null">
+        integral_gained = #{integralGained,jdbcType=INTEGER},
+      </if>
+    </set>
+    where rule_id = #{ruleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Integralrule">
+    update dbo.IntegralRule
+    set operation_type = #{operationType,jdbcType=VARCHAR},
+      integral_gained = #{integralGained,jdbcType=INTEGER}
+    where rule_id = #{ruleId,jdbcType=INTEGER}
+  </update>
+</mapper>

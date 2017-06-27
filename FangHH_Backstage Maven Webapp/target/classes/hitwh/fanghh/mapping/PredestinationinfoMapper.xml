@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.PredestinationinfoDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Predestinationinfo">
+    <id column="pi_id" jdbcType="INTEGER" property="piId" />
+    <result column="customer_id" jdbcType="INTEGER" property="customerId" />
+    <result column="child_order_id" jdbcType="VARCHAR" property="childOrderId" />
+    <result column="predestination_type" jdbcType="VARCHAR" property="predestinationType" />
+    <result column="predestination_time" jdbcType="TIMESTAMP" property="predestinationTime" />
+    <result column="predestination_value" jdbcType="DECIMAL" property="predestinationValue" />
+    <result column="predestination_status" jdbcType="VARCHAR" property="predestinationStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    pi_id, customer_id, child_order_id, predestination_type, predestination_time, predestination_value, 
+    predestination_status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.PredestinationInfo
+    where pi_id = #{piId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.PredestinationInfo
+    where pi_id = #{piId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Predestinationinfo">
+    insert into dbo.PredestinationInfo (pi_id, customer_id, child_order_id, 
+      predestination_type, predestination_time, 
+      predestination_value, predestination_status
+      )
+    values (#{piId,jdbcType=INTEGER}, #{customerId,jdbcType=INTEGER}, #{childOrderId,jdbcType=VARCHAR}, 
+      #{predestinationType,jdbcType=VARCHAR}, #{predestinationTime,jdbcType=TIMESTAMP}, 
+      #{predestinationValue,jdbcType=DECIMAL}, #{predestinationStatus,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Predestinationinfo">
+    insert into dbo.PredestinationInfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="piId != null">
+        pi_id,
+      </if>
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="childOrderId != null">
+        child_order_id,
+      </if>
+      <if test="predestinationType != null">
+        predestination_type,
+      </if>
+      <if test="predestinationTime != null">
+        predestination_time,
+      </if>
+      <if test="predestinationValue != null">
+        predestination_value,
+      </if>
+      <if test="predestinationStatus != null">
+        predestination_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="piId != null">
+        #{piId,jdbcType=INTEGER},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="childOrderId != null">
+        #{childOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="predestinationType != null">
+        #{predestinationType,jdbcType=VARCHAR},
+      </if>
+      <if test="predestinationTime != null">
+        #{predestinationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="predestinationValue != null">
+        #{predestinationValue,jdbcType=DECIMAL},
+      </if>
+      <if test="predestinationStatus != null">
+        #{predestinationStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Predestinationinfo">
+    update dbo.PredestinationInfo
+    <set>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="childOrderId != null">
+        child_order_id = #{childOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="predestinationType != null">
+        predestination_type = #{predestinationType,jdbcType=VARCHAR},
+      </if>
+      <if test="predestinationTime != null">
+        predestination_time = #{predestinationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="predestinationValue != null">
+        predestination_value = #{predestinationValue,jdbcType=DECIMAL},
+      </if>
+      <if test="predestinationStatus != null">
+        predestination_status = #{predestinationStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pi_id = #{piId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Predestinationinfo">
+    update dbo.PredestinationInfo
+    set customer_id = #{customerId,jdbcType=INTEGER},
+      child_order_id = #{childOrderId,jdbcType=VARCHAR},
+      predestination_type = #{predestinationType,jdbcType=VARCHAR},
+      predestination_time = #{predestinationTime,jdbcType=TIMESTAMP},
+      predestination_value = #{predestinationValue,jdbcType=DECIMAL},
+      predestination_status = #{predestinationStatus,jdbcType=VARCHAR}
+    where pi_id = #{piId,jdbcType=INTEGER}
+  </update>
+</mapper>

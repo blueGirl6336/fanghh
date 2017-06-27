@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.HousingstrategyDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Housingstrategy">
+    <id column="hs_id" jdbcType="INTEGER" property="hsId" />
+    <result column="building_id" jdbcType="INTEGER" property="buildingId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="issue_time" jdbcType="TIMESTAMP" property="issueTime" />
+    <result column="visit_time" jdbcType="TIMESTAMP" property="visitTime" />
+    <result column="placard_num" jdbcType="INTEGER" property="placardNum" />
+    <result column="strategy_type" jdbcType="VARCHAR" property="strategyType" />
+    <result column="strategy_sort" jdbcType="INTEGER" property="strategySort" />
+    <result column="is_essence" jdbcType="BIT" property="isEssence" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    hs_id, building_id, user_id, title, issue_time, visit_time, placard_num, strategy_type, 
+    strategy_sort, is_essence
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.HousingStrategy
+    where hs_id = #{hsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.HousingStrategy
+    where hs_id = #{hsId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Housingstrategy">
+    insert into dbo.HousingStrategy (hs_id, building_id, user_id, 
+      title, issue_time, visit_time, 
+      placard_num, strategy_type, strategy_sort, 
+      is_essence)
+    values (#{hsId,jdbcType=INTEGER}, #{buildingId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{title,jdbcType=VARCHAR}, #{issueTime,jdbcType=TIMESTAMP}, #{visitTime,jdbcType=TIMESTAMP}, 
+      #{placardNum,jdbcType=INTEGER}, #{strategyType,jdbcType=VARCHAR}, #{strategySort,jdbcType=INTEGER}, 
+      #{isEssence,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Housingstrategy">
+    insert into dbo.HousingStrategy
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="hsId != null">
+        hs_id,
+      </if>
+      <if test="buildingId != null">
+        building_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="issueTime != null">
+        issue_time,
+      </if>
+      <if test="visitTime != null">
+        visit_time,
+      </if>
+      <if test="placardNum != null">
+        placard_num,
+      </if>
+      <if test="strategyType != null">
+        strategy_type,
+      </if>
+      <if test="strategySort != null">
+        strategy_sort,
+      </if>
+      <if test="isEssence != null">
+        is_essence,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="hsId != null">
+        #{hsId,jdbcType=INTEGER},
+      </if>
+      <if test="buildingId != null">
+        #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="issueTime != null">
+        #{issueTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="visitTime != null">
+        #{visitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="placardNum != null">
+        #{placardNum,jdbcType=INTEGER},
+      </if>
+      <if test="strategyType != null">
+        #{strategyType,jdbcType=VARCHAR},
+      </if>
+      <if test="strategySort != null">
+        #{strategySort,jdbcType=INTEGER},
+      </if>
+      <if test="isEssence != null">
+        #{isEssence,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Housingstrategy">
+    update dbo.HousingStrategy
+    <set>
+      <if test="buildingId != null">
+        building_id = #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="issueTime != null">
+        issue_time = #{issueTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="visitTime != null">
+        visit_time = #{visitTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="placardNum != null">
+        placard_num = #{placardNum,jdbcType=INTEGER},
+      </if>
+      <if test="strategyType != null">
+        strategy_type = #{strategyType,jdbcType=VARCHAR},
+      </if>
+      <if test="strategySort != null">
+        strategy_sort = #{strategySort,jdbcType=INTEGER},
+      </if>
+      <if test="isEssence != null">
+        is_essence = #{isEssence,jdbcType=BIT},
+      </if>
+    </set>
+    where hs_id = #{hsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Housingstrategy">
+    update dbo.HousingStrategy
+    set building_id = #{buildingId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      issue_time = #{issueTime,jdbcType=TIMESTAMP},
+      visit_time = #{visitTime,jdbcType=TIMESTAMP},
+      placard_num = #{placardNum,jdbcType=INTEGER},
+      strategy_type = #{strategyType,jdbcType=VARCHAR},
+      strategy_sort = #{strategySort,jdbcType=INTEGER},
+      is_essence = #{isEssence,jdbcType=BIT}
+    where hs_id = #{hsId,jdbcType=INTEGER}
+  </update>
+</mapper>

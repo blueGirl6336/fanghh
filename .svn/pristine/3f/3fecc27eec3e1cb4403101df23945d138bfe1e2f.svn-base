@@ -1,0 +1,108 @@
+package hitwh.fanghh.bean;
+
+import java.util.List;
+
+import hitwh.fanghh.pojo.House;
+
+public class PerferentialActivityBean {
+	private String activityType;
+	private Integer buildingId;
+	private String activityName;
+	private Integer activityId;
+	private List<HouseBean> houseBeanList;
+	private String startTime;
+	private String endTime;
+	private List<PerferentialRuleBean> perferentialRuleBeanList;
+	private String city;
+	
+	public Integer getBuildingId()
+	{
+		return buildingId;
+	}
+
+	public void setBuildingId(Integer buildingId)
+	{
+		this.buildingId = buildingId;
+	}
+	
+	public Integer getActivityId()
+	{
+		return activityId;
+	}
+
+	public void setActivityId(Integer activityId)
+	{
+		this.activityId = activityId;
+	}
+	
+	public String getActivityType()
+	{
+		return activityType;
+	}
+
+	public void setActivityType(String activityType)
+	{
+		this.activityType = activityType;
+	}
+	
+	public String getActivityName()
+	{
+		return activityName;
+	}
+
+	public void setActivityName(String activityName)
+	{
+		this.activityName = activityName;
+	}
+	
+	public String getStartTime()
+	{
+		return startTime;
+	}
+
+	public void setStartTime(String startTime)
+	{
+		this.startTime = startTime;
+	}
+	
+	public String getEndTime()
+	{
+		return endTime;
+	}
+
+	public void setEndTime(String endTime)
+	{
+		this.endTime = endTime;
+	}
+	
+	public String getCity()
+	{
+		return city;
+	}
+
+	public void setCity(String city)
+	{
+		this.city = city;
+	}
+	
+	public List<HouseBean> getHouseBeanList()
+	{
+		return houseBeanList;
+	}
+
+	public void setHouseBeanList(List<HouseBean> houseBeanList)
+	{
+		this.houseBeanList = houseBeanList;
+	}
+	
+	public List<PerferentialRuleBean> getPerferentialRuleBeanList()
+	{
+		return perferentialRuleBeanList;
+	}
+
+	public void setPerferentialRuleBeanList(List<PerferentialRuleBean> perferentialRuleBeanList)
+	{
+		this.perferentialRuleBeanList = perferentialRuleBeanList;
+	}
+
+}

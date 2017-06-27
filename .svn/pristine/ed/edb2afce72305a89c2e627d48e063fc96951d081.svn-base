@@ -1,0 +1,40 @@
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/myEclipse\/workspace\/\.metadata\/\.me_tcat7\/webapps\/FangHH_Backstage\/sass\/common\.scss}line{font-family:\000038}}
+a {
+  text-decoration: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/myEclipse\/workspace\/\.metadata\/\.me_tcat7\/webapps\/FangHH_Backstage\/sass\/common\.scss}line{font-family:\0000312}}
+ul {
+  padding: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/myEclipse\/workspace\/\.metadata\/\.me_tcat7\/webapps\/FangHH_Backstage\/sass\/common\.scss}line{font-family:\0000316}}
+li {
+  list-style: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/myEclipse\/workspace\/\.metadata\/\.me_tcat7\/webapps\/FangHH_Backstage\/sass\/common\.scss}line{font-family:\0000320}}
+.clearfix:before, .clearfix:after {
+  content: "";
+  display: table;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/myEclipse\/workspace\/\.metadata\/\.me_tcat7\/webapps\/FangHH_Backstage\/sass\/common\.scss}line{font-family:\0000325}}
+.clearfix:after {
+  clear: both;
+  overflow: hidden;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/myEclipse\/workspace\/\.metadata\/\.me_tcat7\/webapps\/FangHH_Backstage\/sass\/common\.scss}line{font-family:\0000330}}
+.clearfix {
+  zoom: 1;
+}
+
+.fl {
+  float: left;
+}
+
+
+.fr {
+  float: right;
+}

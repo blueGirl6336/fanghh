@@ -1,0 +1,4 @@
+db.url=jdbc\:sqlserver\://172.29.131.100\:1433; DatabaseName\=hrms_whTest
+db.driverClassName=com.microsoft.sqlserver.jdbc.SQLServerDriver
+db.user=hrms_test
+db.password=hrms519

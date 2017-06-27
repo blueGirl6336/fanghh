@@ -1,0 +1,28 @@
+package hitwh.fanghh.dao;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import hitwh.fanghh.pojo.Building;
+
+public interface BuildingDao
+{
+	int deleteByPrimaryKey(Integer buildingId);
+
+	int insert(Building record);
+
+	int insertSelective(Building record);
+
+	Building selectByPrimaryKey(Integer buildingId);
+
+	int updateByPrimaryKeySelective(Building record);
+
+	int updateByPrimaryKeyWithBLOBs(Building record);
+
+	int updateByPrimaryKey(Building record);
+
+	String getBuildingNameById(@Param("buildingId") Integer buildingId);
+
+	List<Building> selectAll(Integer regionId);
+}

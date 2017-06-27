@@ -1,0 +1,207 @@
+package hitwh.fanghh.pojo;
+
+import java.util.Date;
+
+public class Users {
+    private Integer userId;
+
+    private String userName;
+
+    private String phoneNo;
+
+    private String password;
+
+    private String portrait;
+
+    private String role;
+
+    private Integer userDegree;
+
+    private Integer currentIntegral;
+
+    private String shareCode;
+
+    private Integer codeTimes;
+
+    private Boolean isAuthenticated;
+
+    private Date createTime;
+
+    private Boolean isActivited;
+
+    private Date recentLoginTime;
+
+    private String pushAppId;
+
+    private String pushUserId;
+
+    private String pushChannelId;
+
+    private String patternPasswd;
+
+    private String stagnationPoint;
+
+    private String token;
+    
+ 
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName == null ? null : userName.trim();
+    }
+
+    public String getPhoneNo() {
+        return phoneNo;
+    }
+
+    public void setPhoneNo(String phoneNo) {
+        this.phoneNo = phoneNo == null ? null : phoneNo.trim();
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
+    }
+
+    public String getPortrait() {
+        return portrait;
+    }
+
+    public void setPortrait(String portrait) {
+        this.portrait = portrait == null ? null : portrait.trim();
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role == null ? null : role.trim();
+    }
+
+    public Integer getUserDegree() {
+        return userDegree;
+    }
+
+    public void setUserDegree(Integer userDegree) {
+        this.userDegree = userDegree;
+    }
+
+    public Integer getCurrentIntegral() {
+        return currentIntegral;
+    }
+
+    public void setCurrentIntegral(Integer currentIntegral) {
+        this.currentIntegral = currentIntegral;
+    }
+
+    public String getShareCode() {
+        return shareCode;
+    }
+
+    public void setShareCode(String shareCode) {
+        this.shareCode = shareCode == null ? null : shareCode.trim();
+    }
+
+    public Integer getCodeTimes() {
+        return codeTimes;
+    }
+
+    public void setCodeTimes(Integer codeTimes) {
+        this.codeTimes = codeTimes;
+    }
+
+    public Boolean getIsAuthenticated() {
+        return isAuthenticated;
+    }
+
+    public void setIsAuthenticated(Boolean isAuthenticated) {
+        this.isAuthenticated = isAuthenticated;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Boolean getIsActivited() {
+        return isActivited;
+    }
+
+    public void setIsActivited(Boolean isActivited) {
+        this.isActivited = isActivited;
+    }
+
+    public Date getRecentLoginTime() {
+        return recentLoginTime;
+    }
+
+    public void setRecentLoginTime(Date recentLoginTime) {
+        this.recentLoginTime = recentLoginTime;
+    }
+
+    public String getPushAppId() {
+        return pushAppId;
+    }
+
+    public void setPushAppId(String pushAppId) {
+        this.pushAppId = pushAppId == null ? null : pushAppId.trim();
+    }
+
+    public String getPushUserId() {
+        return pushUserId;
+    }
+
+    public void setPushUserId(String pushUserId) {
+        this.pushUserId = pushUserId == null ? null : pushUserId.trim();
+    }
+
+    public String getPushChannelId() {
+        return pushChannelId;
+    }
+
+    public void setPushChannelId(String pushChannelId) {
+        this.pushChannelId = pushChannelId == null ? null : pushChannelId.trim();
+    }
+
+    public String getPatternPasswd() {
+        return patternPasswd;
+    }
+
+    public void setPatternPasswd(String patternPasswd) {
+        this.patternPasswd = patternPasswd == null ? null : patternPasswd.trim();
+    }
+
+    public String getStagnationPoint() {
+        return stagnationPoint;
+    }
+
+    public void setStagnationPoint(String stagnationPoint) {
+        this.stagnationPoint = stagnationPoint == null ? null : stagnationPoint.trim();
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token == null ? null : token.trim();
+    }
+}

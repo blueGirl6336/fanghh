@@ -1,0 +1,54 @@
+angular.module("watchActivity", ["ngCookies"])
+    .controller("wActivity", ["$http", "$stateParams", "$scope", "$location", function ($scope, $http, $stateParams, $location) {
+
+        var jianlou = 02020600; //3033
+        var tuangou = 02020200;
+        var tehui = "02020500";
+
+        //获取活动信息
+        console.log("------------" + $stateParams.aId, $stateParams.tId);
+
+        var activityId = $stateParams.aId;
+        var typeId = $stateParams.tId;
+
+        u = "";
+        switch (typeId) {
+            case jianlou:
+                console.log("jianlou");
+                u = "activity/getSingleClearanceActivity";
+                $scope.aTypeName = "捡漏";
+                break;
+            case tuangou:
+                console.log("tuangou");
+                u = "activity/getSingleGroupPurchaseActivity";
+                $scope.aTypeName = "团购";
+                break;
+            case tehui:
+                console.log("tehui");
+                u = "activity/getSinglePerferentialActivity";
+                $scope.aTypeName = "特惠";
+            default:
+                u = "";
+                console.log("defau ");
+                break;
+        }
+$scope.aTypeName = "捡漏";
+        function getInfo(aid) {
+            $http({
+                url: u,
+                method: "post",
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                },
+                params: {
+                    activityId: aid,
+                }
+            }).success(function (response) {
+                if (response.success == true) {
+                    $scope.item = response.data;
+                } else {
+                    console.log("error!");
+                }
+            });
+        }
+    }])

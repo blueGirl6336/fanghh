@@ -1,0 +1,112 @@
+package hitwh.fanghh.service.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import hitwh.fanghh.dao.BuildingcommentDao;
+import hitwh.fanghh.pojo.Building;
+import hitwh.fanghh.pojo.Buildingcomment;
+import hitwh.fanghh.pojo.Region;
+import hitwh.fanghh.service.BuildingComment;
+@Service
+public class BuildingCommnetImpl implements BuildingComment
+{
+
+	@Autowired
+	private BuildingcommentDao buildingcommentDao;
+
+	/**
+	 * @discription {获取楼圈点评信息}
+	 * @author xingfeng
+	 * @created 2016年12月14日 上午10:38:30
+	 * @param commnetId
+	 * @return
+	 * @see hitwh.fanghh.service.BuildingComment#selectBuildingComment(java.lang.Integer)
+	 */
+	@Override
+	public Buildingcomment selectBuildingComment(Integer commentId)
+	{
+		return buildingcommentDao.selectByPrimaryKey(commentId);
+	}
+	
+	/**
+	 * @discription {根据楼盘号获取楼圈点评信息}
+	 * @author xingfeng
+	 * @created 2016年12月27日 下午23:00:30
+	 * @param commnetId
+	 * @return
+	 * @see hitwh.fanghh.service.selectBuildingCommentBybuildingId#selectBuildingCommentBybuildingId(java.lang.Integer)
+	 */
+	@Override
+	public List<Buildingcomment> selectBuildingCommentByBuildingId(Integer buildingId)
+	{
+		return buildingcommentDao.selectByBuildingId(buildingId);
+	}
+
+	
+	
+	/**
+	 * @discription {删除楼圈点评信息}
+	 * @author xingfeng
+	 * @created 2016年12月14日 上午10:38:30
+	 * @param commnetId
+	 * @return
+	 * @see hitwh.fanghh.service.BuildingComment#deleteBuildingComment(java.lang.Integer)
+	 */
+	@Override
+	public boolean deleteBuildingComment(Integer commentId)
+	{
+		int result = buildingcommentDao.deleteByPrimaryKey(commentId);
+		if (result == 1)
+			return true;
+		else
+			return false;
+	}
+
+	/* (non-Javadoc)
+	 * @see hitwh.fanghh.service.BuildingComment#getAllBuildingComment(int, int, int)
+	 */
+	@Override
+	public List<Buildingcomment> getAllBuildingComment(int buildingId, int pageMaxNum, int pageNo) {
+		
+		List<Buildingcomment> list = buildingcommentDao.selectByBuildingId(buildingId);
+		int buildingNum = list.size();
+		int pageNum = getBuildingCommentPageNum(buildingId,pageMaxNum);
+		// 若想查看页数大于总页数则返回null
+		if (pageNum < pageNo) {
+			return null;
+		} else {
+			List<Buildingcomment> resultList = new ArrayList<Buildingcomment>();
+			// 设置起始
+			int start = pageMaxNum * (pageNo - 1);
+			int end = pageMaxNum * pageNo - 1;
+			if (end > buildingNum - 1) {
+				end = buildingNum - 1;
+			}
+			for (int i = start; i <= end; i++) {
+				resultList.add(list.get(i));
+			}
+			return resultList;
+		}
+
+	}
+
+	@Override
+	public int getBuildingCommentPageNum(int buildingId,int pageMaxNum) {
+		if (pageMaxNum < 1) {
+			pageMaxNum = 1;
+		}
+		List<Buildingcomment> list = buildingcommentDao.selectByBuildingId(buildingId);
+		int buildingNum = list.size();
+		return buildingNum % pageMaxNum == 0 ? buildingNum / pageMaxNum
+				: buildingNum / pageMaxNum + 1;
+	}
+
+	
+
+
+	
+}

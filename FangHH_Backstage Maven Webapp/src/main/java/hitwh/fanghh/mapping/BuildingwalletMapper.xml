@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.BuildingwalletDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Buildingwallet">
+    <result column="bw_id" jdbcType="INTEGER" property="bwId" />
+    <result column="building_id" jdbcType="INTEGER" property="buildingId" />
+    <result column="balance" jdbcType="DECIMAL" property="balance" />
+    <result column="total_income" jdbcType="DECIMAL" property="totalIncome" />
+    <result column="recharge_money" jdbcType="DECIMAL" property="rechargeMoney" />
+    <result column="group_total" jdbcType="DECIMAL" property="groupTotal" />
+    <result column="group_verify" jdbcType="DECIMAL" property="groupVerify" />
+    <result column="group_not_verify" jdbcType="DECIMAL" property="groupNotVerify" />
+    <result column="total_pay" jdbcType="DECIMAL" property="totalPay" />
+    <result column="total_commission" jdbcType="DECIMAL" property="totalCommission" />
+    <result column="alter_commission" jdbcType="DECIMAL" property="alterCommission" />
+    <result column="caution_money_need" jdbcType="DECIMAL" property="cautionMoneyNeed" />
+    <result column="caution_money_balance" jdbcType="DECIMAL" property="cautionMoneyBalance" />
+    <result column="caution_money_owe" jdbcType="DECIMAL" property="cautionMoneyOwe" />
+  </resultMap>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Buildingwallet">
+    insert into dbo.BuildingWallet (bw_id, building_id, balance, 
+      total_income, recharge_money, group_total, 
+      group_verify, group_not_verify, total_pay, 
+      total_commission, alter_commission, caution_money_need, 
+      caution_money_balance, caution_money_owe)
+    values (#{bwId,jdbcType=INTEGER}, #{buildingId,jdbcType=INTEGER}, #{balance,jdbcType=DECIMAL}, 
+      #{totalIncome,jdbcType=DECIMAL}, #{rechargeMoney,jdbcType=DECIMAL}, #{groupTotal,jdbcType=DECIMAL}, 
+      #{groupVerify,jdbcType=DECIMAL}, #{groupNotVerify,jdbcType=DECIMAL}, #{totalPay,jdbcType=DECIMAL}, 
+      #{totalCommission,jdbcType=DECIMAL}, #{alterCommission,jdbcType=DECIMAL}, #{cautionMoneyNeed,jdbcType=DECIMAL}, 
+      #{cautionMoneyBalance,jdbcType=DECIMAL}, #{cautionMoneyOwe,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Buildingwallet">
+    insert into dbo.BuildingWallet
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bwId != null">
+        bw_id,
+      </if>
+      <if test="buildingId != null">
+        building_id,
+      </if>
+      <if test="balance != null">
+        balance,
+      </if>
+      <if test="totalIncome != null">
+        total_income,
+      </if>
+      <if test="rechargeMoney != null">
+        recharge_money,
+      </if>
+      <if test="groupTotal != null">
+        group_total,
+      </if>
+      <if test="groupVerify != null">
+        group_verify,
+      </if>
+      <if test="groupNotVerify != null">
+        group_not_verify,
+      </if>
+      <if test="totalPay != null">
+        total_pay,
+      </if>
+      <if test="totalCommission != null">
+        total_commission,
+      </if>
+      <if test="alterCommission != null">
+        alter_commission,
+      </if>
+      <if test="cautionMoneyNeed != null">
+        caution_money_need,
+      </if>
+      <if test="cautionMoneyBalance != null">
+        caution_money_balance,
+      </if>
+      <if test="cautionMoneyOwe != null">
+        caution_money_owe,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bwId != null">
+        #{bwId,jdbcType=INTEGER},
+      </if>
+      <if test="buildingId != null">
+        #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="balance != null">
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="totalIncome != null">
+        #{totalIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="rechargeMoney != null">
+        #{rechargeMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="groupTotal != null">
+        #{groupTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="groupVerify != null">
+        #{groupVerify,jdbcType=DECIMAL},
+      </if>
+      <if test="groupNotVerify != null">
+        #{groupNotVerify,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPay != null">
+        #{totalPay,jdbcType=DECIMAL},
+      </if>
+      <if test="totalCommission != null">
+        #{totalCommission,jdbcType=DECIMAL},
+      </if>
+      <if test="alterCommission != null">
+        #{alterCommission,jdbcType=DECIMAL},
+      </if>
+      <if test="cautionMoneyNeed != null">
+        #{cautionMoneyNeed,jdbcType=DECIMAL},
+      </if>
+      <if test="cautionMoneyBalance != null">
+        #{cautionMoneyBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="cautionMoneyOwe != null">
+        #{cautionMoneyOwe,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+</mapper>

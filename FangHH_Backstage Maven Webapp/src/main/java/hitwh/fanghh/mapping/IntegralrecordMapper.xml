@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.IntegralrecordDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Integralrecord">
+    <id column="record_id" jdbcType="INTEGER" property="recordId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="integral_num" jdbcType="INTEGER" property="integralNum" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="operation" jdbcType="VARCHAR" property="operation" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    record_id, user_id, integral_num, time, operation
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.IntegralRecord
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.IntegralRecord
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Integralrecord">
+    insert into dbo.IntegralRecord (record_id, user_id, integral_num, 
+      time, operation)
+    values (#{recordId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{integralNum,jdbcType=INTEGER}, 
+      #{time,jdbcType=TIMESTAMP}, #{operation,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Integralrecord">
+    insert into dbo.IntegralRecord
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="recordId != null">
+        record_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="integralNum != null">
+        integral_num,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="operation != null">
+        operation,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="recordId != null">
+        #{recordId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="integralNum != null">
+        #{integralNum,jdbcType=INTEGER},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operation != null">
+        #{operation,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Integralrecord">
+    update dbo.IntegralRecord
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="integralNum != null">
+        integral_num = #{integralNum,jdbcType=INTEGER},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operation != null">
+        operation = #{operation,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Integralrecord">
+    update dbo.IntegralRecord
+    set user_id = #{userId,jdbcType=INTEGER},
+      integral_num = #{integralNum,jdbcType=INTEGER},
+      time = #{time,jdbcType=TIMESTAMP},
+      operation = #{operation,jdbcType=VARCHAR}
+    where record_id = #{recordId,jdbcType=INTEGER}
+  </update>
+</mapper>

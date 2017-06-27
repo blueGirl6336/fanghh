@@ -1,0 +1,6 @@
+package hitwh.fanghh.service;
+
+public interface DictionaryService
+{
+	public String getDictName(String dictCode);
+}

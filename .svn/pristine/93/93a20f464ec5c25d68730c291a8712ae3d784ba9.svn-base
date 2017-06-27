@@ -1,0 +1,84 @@
+@import "list_buildingManagement.scss";
+@import "moneyPrincple.scss";
+
+// #houseManagement
+// {
+	
+// }
+#moneyPrincple
+{
+	border-top:0px;
+	border-bottom:1px solid rgb(229,229,229);
+}
+.building_table
+{
+	border-top:#fff;
+	width:100%;
+}
+#table_before
+{
+	height:60px;
+	display: -webkit-flex; //Safari
+  	display: flex;
+	align-items:center;
+	justify-content: space-between;
+	background-color:#fff;
+	border:0px;
+	font-size: 14px;
+	color:#666;
+}
+.all-select,.all-select-span
+{
+	position:relative;
+	left:30px;
+}
+.before-up-select
+{
+	position:relative;
+	left:60px;
+	text-decoration:underline;
+}
+.before-down-select
+{
+	position:relative;
+	left:90px;
+	text-decoration:underline;
+}
+.before-input
+{
+	position:relative;
+	right:85px;
+	width:100px;
+	height:35px;
+	color:#fff;
+	font-size:14px;
+	font-weight:bold;
+	background-color:rgb(253,103,32);
+	border:0px;
+	border-radius:5px;
+}
+
+.checkbox,.number
+{
+	width:5%;
+}
+.type,.price,.month-pay,.first-pay,.cooperation,.admin
+{
+	width:10%
+}
+.operation
+{
+	width:30%;
+}
+.line1,.line2
+{
+	.admin
+	{
+		color:rgb(0,102,204);
+	}
+}
+
+.before-up-select:hover, .before-down-select:hover, .before-input:hover, .modify:hover, .state:hover, .look:hover, .up-select:hover, .down-select:hover
+{
+	cursor: pointer;
+}

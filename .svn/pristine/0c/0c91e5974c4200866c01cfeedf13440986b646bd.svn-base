@@ -1,0 +1,60 @@
+<div class="content" ng-controller="watchMethod">
+	<p class="content_title">威海华润湾九里</p>
+
+	<div class="table_area">
+		<div><buildingmanagenavigator nowpageid="8" /></div>
+
+		<div class="table_content">
+			<div id="table_before">
+				<button class="before-input">发布新动态</button>
+			</div>
+			<table class="building_table">
+				<tr class="line0">
+					<td class="checkbox"></td>
+					<td class="title">标题</td>
+					<td class="author">作者</td>
+					<td class="time">发布时间</td>
+					<td class="operation" colspan="2">操作</td>
+				</tr>
+				<tr class="line2">
+					<td class="checkbox">
+						<input class="checkbox-input" type="checkbox">
+					</td>
+					<td class="title">华润威海湾九里四期新品即将上市，一、二期已成熟入住，三期交房在即</td>
+					<td class="author">U-256332</td>
+					<td class="time">2016-07-20 08:30:20</td>
+					<td class="operation1">编辑</td>
+					<td class="operation2">删除</td>
+				</tr>
+
+				<tr class="table-bottom">
+					<td class="checkbox-bottom">
+						<input type="checkbox" name="tr-select">全选
+					</td>
+					<td class="up-select">上架所选</td>
+					<td class="down-select">下架所选</td>
+				</tr>
+
+			</table>
+
+			<div class="page-num">
+					<p class="first">首页</p>
+					<p class="before">上一页</p>
+					<p class="page-1">1</p>
+					<p class="page-2">2</p>
+					<p class="page-3">3</p>
+					<p class="page-4">4</p>
+					<p class="page-5">5</p>
+					<p class="next">下一页</p>
+					<p class="last">末页</p>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+
+</script>
+<script src="../script.js"></script>
+</body>
+
+

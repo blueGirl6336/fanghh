@@ -1,0 +1,128 @@
+/**     
+ * @discription {楼盘管理接口文件}
+ * @author wangxinjie       
+ * @created 2016年11月6日 下午9:25:22    
+ */
+
+package hitwh.fanghh.controller;
+
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
+import hitwh.fanghh.pojo.Building;
+import hitwh.fanghh.service.BuildingService;
+import hitwh.fanghh.util.DictionaryString;
+import hitwh.fanghh.util.ResponseMapUtil;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+/**
+ * Title: BuildingController.java Description: 描述
+ * 
+ * @author wangxinjie
+ * @created 2016年11月6日 下午9:25:22
+ */
+@Controller
+@RequestMapping(value = "building")
+public class BuildingController {
+	@Autowired
+	private BuildingService buildingService;
+	
+	@RequestMapping("/getAllBuilding")
+	@ResponseBody
+	public Map<String, Object> getAllBuilding(HttpSession session)
+	{
+		return ResponseMapUtil.responseListMap(buildingService.getAllBuilding());
+	}
+
+	@RequestMapping("/getBuildingInfo")
+	@ResponseBody
+	public Map<String, Object> getBuildingInfo(@RequestParam int buildingId,HttpSession session)
+	{
+		return ResponseMapUtil.responseSuccess(buildingService.getBuildingInfo(buildingId));
+	}
+	
+	@RequestMapping("/addBuilding")
+	@ResponseBody
+	public Map<String, Object> addBuilding(@RequestBody Building building){
+		if(building == null){
+			return ResponseMapUtil.responseError("数据异常,添加失败");
+		}
+		if (buildingService.addBuilding(building)){
+			return ResponseMapUtil.responseSuccess("添加成功");
+		} else{
+			return ResponseMapUtil.responseError("数据异常,添加失败");
+		}
+	}
+	
+	@RequestMapping("/updateBuilding")
+	@ResponseBody
+	public Map<String, Object> updateBuilding(@RequestBody Building building){
+		if(building == null){
+			return ResponseMapUtil.responseError("数据异常,添加失败");
+		}
+		if (buildingService.updateBuilding(building)){
+			return ResponseMapUtil.responseSuccess("添加成功");
+		} else{
+			return ResponseMapUtil.responseError("数据异常,添加失败");
+		}
+	}
+	
+	@RequestMapping("/applicateBuildingOnSaleAndOffSale")
+	@ResponseBody
+	public Map<String, Object> applicateHouseOnSale(@RequestParam int buildingId, @RequestParam boolean applicationType)
+	{
+		int resultCode;
+		String buildingApplicationStatus = null;
+		if (applicationType)
+		{	buildingApplicationStatus = DictionaryString.APPLICATION_ON_SALE;
+		}else
+		{
+			buildingApplicationStatus = DictionaryString.APPLICATION_OFF_SALE;
+		}
+		resultCode = buildingService.applicateBuildingOffSaleByHouseId(buildingId, buildingApplicationStatus);
+		if(resultCode==1)
+		{
+			return ResponseMapUtil.responseSuccess(resultCode);
+		}else
+		{
+			return ResponseMapUtil.responseError("楼盘申请上下架失败");
+		}
+	}
+	
+	@RequestMapping("/auditBuildingApplication")
+	@ResponseBody
+	public Map<String, Object> auditBuildingApplication(@RequestParam int buildingId, @RequestParam boolean auditResult,@RequestParam String auditNotPassReason)
+	{
+		int resultCode;
+		String auditCode = null;
+		if (!auditResult){
+			auditCode = DictionaryString.AUDIT_NOT_PASS;
+			resultCode = buildingService.auditBuildingApplicationNotPass(buildingId,auditCode,auditNotPassReason);
+		}
+		else{
+			auditCode = DictionaryString.AUDIT_PASS;
+			resultCode = buildingService.auditBuildingApplicationPass(buildingId,auditCode);
+		} 
+		if(resultCode == 1){
+			return ResponseMapUtil.responseSuccess("楼盘审核成功");
+		}else
+		{
+			return ResponseMapUtil.responseError("楼盘审核失败");
+		}
+	}
+
+	
+	@RequestMapping("/getHouseTrend")
+	@ResponseBody
+	public Map<String, Object> getHouseTrend(@RequestParam int buildingId,HttpSession session){
+		return ResponseMapUtil.responseListMap(buildingService.selectHouseTrendByBuildingId(buildingId));
+	}
+	
+}

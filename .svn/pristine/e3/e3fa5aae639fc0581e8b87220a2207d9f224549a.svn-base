@@ -1,0 +1,81 @@
+<link type="text/css" rel="stylesheet" href="./css/comment.css" />
+<link type="text/css" rel="stylesheet" href="./css/list_buildingManagement.css" />
+<link type="text/css" rel="stylesheet" href="./css/moneyPrincple.css" />
+<link type="text/css" rel="stylesheet" href="./css/list.css" />
+<link type="text/css" rel="stylesheet" href="./css/list_houseManagement.css" />
+<link type="text/css" rel="stylesheet" href="./css/list_dynamicManagement.css" />
+<link type="text/css" rel="stylesheet" href="./css/list_houseManagement.css" />
+<link type="text/css" rel="stylesheet" href="./css/list_sourceManagement.css" />
+
+<div class="content" ng-controller="userAuthCtl">
+	<div class="inputArea form-item form-item-large content_area_head">
+		<img src="./image/search.png" class="img-search">
+		<span class="selectDistrict">搜索：用户名</span>
+		<input type="text" class="form-text shortText" name="">
+		<span class="selectDistrict">姓名：</span>
+		<input type="text" class="form-text shortText" name="">
+		<span class="selectDistrict">身份证号：</span>
+		<input type="text" class="form-text shortText" name="">
+		<button type="button" class="submit-file">查询</button>
+	</div>
+
+	<div class="table_area">
+		<div class="table_head">
+			<div id="buildingManagement">实名认证</div>
+		</div>
+
+		<div class="table_content">
+			<table class="building_table">
+				<tbody>
+					<tr class="line0">
+						<td class="checkbox"></td>
+						<td class="building-name">用户名</td>
+						<td class="state">
+							姓名
+						</td>
+						<td class="tele">身份证号</td>
+						<td class="modify-date">
+							<span>证件照片</span>
+						</td>
+						<td class="operation" colspan="2">操作</td>
+					</tr>
+					<tr class="line1" ng-repeat=" i in items">
+						<td class="checkbox">
+							<input id="{{ i.userId }}" type="checkbox" name="tr-select" ng-model="x" ng-checked="master" ng-click="chk(i.userId, x)">
+						</td>
+						<td class="building-name">{{ i.userName }}</td>
+						<td class="state">{{ i.realName }}</td>
+						<td class="tele">{{ i.idNumber }}</td>
+						<td class="modify-date">
+							<img src="{{ i.realPic }}" class="sort-up">
+							<img src="{{ i.realPic }}" class="sort-down">
+						</td>
+						<td class="operation1" ng-click="pass(i.userId)">通过</td>
+						<td class="operation2" ng-click="notPass(i.userId)">不通过</td>
+					</tr>
+
+					<tr class="table-bottom">
+						<td class="checkbox-bottom">
+							<input type="checkbox" name="tr-select" ng-model="master" ng-click="all(master,tesarry)">全选
+						</td>
+						<td class="up-select" ng-show="i.status != 06110200 && i.status != 06110300" ng-click="allPass()">审核通过</td>
+						<td class="down-select" ng-show="i.status != 06110200 && i.status != 06110300" ng-click="allNotPass()">审核不通过</td>
+						<td class="operation1" ng-show="i.status == 06110200 || i.status == 06110300">{{i.status|exchangeNum}}</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<div class="page-num">
+				<p class="first" ng-click="changePage(1)" ng-show="page.pageNumber != 1">首页</p>
+				<p class="before" ng-click="changePage(page.pageNumber - 1)" ng-show="page.pageNumber - 1 > 0">上一页</p>
+				<p class="page-1" ng-click="changePage(pageButton[1])" ng-show="pageButton[1] != null" ng-class="{nowpage: pageButton[1] == page.pageNumber}">{{ pageButton[1] }}</p>
+				<p class="page-2" ng-click="changePage(pageButton[2])" ng-show="pageButton[2] != null" ng-class="{nowpage: pageButton[2] == page.pageNumber}">{{ pageButton[2] }}</p>
+				<p class="page-3" ng-click="changePage(pageButton[3])" ng-show="pageButton[3] != null" ng-class="{nowpage: pageButton[3] == page.pageNumber}">{{ pageButton[3] }}</p>
+				<p class="page-4" ng-click="changePage(pageButton[4])" ng-show="pageButton[4] != null" ng-class="{nowpage: pageButton[4] == page.pageNumber}">{{ pageButton[4] }}</p>
+				<p class="page-5" ng-click="changePage(pageButton[5])" ng-show="pageButton[5] != null" ng-class="{nowpage: pageButton[5] == page.pageNumber}">{{ pageButton[5] }}</p>
+				<p class="next" ng-click="changePage(page.pageNumber + 1)" ng-show="page.pageNumber + 1 <= page.pageMax">下一页</p>
+				<p class="last" ng-click="changePage(page.pageMax)" ng-show="page.pageNumber != page.pageMax">末页</p>
+			</div>
+		</div>
+	</div>
+</div>

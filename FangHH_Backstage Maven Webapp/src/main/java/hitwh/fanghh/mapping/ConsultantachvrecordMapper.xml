@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.ConsultantachvrecordDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Consultantachvrecord">
+    <id column="car_id" jdbcType="INTEGER" property="carId" />
+    <result column="consultant_id" jdbcType="INTEGER" property="consultantId" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="customer_num" jdbcType="INTEGER" property="customerNum" />
+    <result column="signation_num" jdbcType="INTEGER" property="signationNum" />
+    <result column="sales_volume" jdbcType="DECIMAL" property="salesVolume" />
+    <result column="type_time" jdbcType="TIMESTAMP" property="typeTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    car_id, consultant_id, order_id, customer_num, signation_num, sales_volume, type_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.ConsultantAchvRecord
+    where car_id = #{carId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.ConsultantAchvRecord
+    where car_id = #{carId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Consultantachvrecord">
+    insert into dbo.ConsultantAchvRecord (car_id, consultant_id, order_id, 
+      customer_num, signation_num, sales_volume, 
+      type_time)
+    values (#{carId,jdbcType=INTEGER}, #{consultantId,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}, 
+      #{customerNum,jdbcType=INTEGER}, #{signationNum,jdbcType=INTEGER}, #{salesVolume,jdbcType=DECIMAL}, 
+      #{typeTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Consultantachvrecord">
+    insert into dbo.ConsultantAchvRecord
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="carId != null">
+        car_id,
+      </if>
+      <if test="consultantId != null">
+        consultant_id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="customerNum != null">
+        customer_num,
+      </if>
+      <if test="signationNum != null">
+        signation_num,
+      </if>
+      <if test="salesVolume != null">
+        sales_volume,
+      </if>
+      <if test="typeTime != null">
+        type_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="carId != null">
+        #{carId,jdbcType=INTEGER},
+      </if>
+      <if test="consultantId != null">
+        #{consultantId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerNum != null">
+        #{customerNum,jdbcType=INTEGER},
+      </if>
+      <if test="signationNum != null">
+        #{signationNum,jdbcType=INTEGER},
+      </if>
+      <if test="salesVolume != null">
+        #{salesVolume,jdbcType=DECIMAL},
+      </if>
+      <if test="typeTime != null">
+        #{typeTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Consultantachvrecord">
+    update dbo.ConsultantAchvRecord
+    <set>
+      <if test="consultantId != null">
+        consultant_id = #{consultantId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerNum != null">
+        customer_num = #{customerNum,jdbcType=INTEGER},
+      </if>
+      <if test="signationNum != null">
+        signation_num = #{signationNum,jdbcType=INTEGER},
+      </if>
+      <if test="salesVolume != null">
+        sales_volume = #{salesVolume,jdbcType=DECIMAL},
+      </if>
+      <if test="typeTime != null">
+        type_time = #{typeTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where car_id = #{carId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Consultantachvrecord">
+    update dbo.ConsultantAchvRecord
+    set consultant_id = #{consultantId,jdbcType=INTEGER},
+      order_id = #{orderId,jdbcType=VARCHAR},
+      customer_num = #{customerNum,jdbcType=INTEGER},
+      signation_num = #{signationNum,jdbcType=INTEGER},
+      sales_volume = #{salesVolume,jdbcType=DECIMAL},
+      type_time = #{typeTime,jdbcType=TIMESTAMP}
+    where car_id = #{carId,jdbcType=INTEGER}
+  </update>
+</mapper>

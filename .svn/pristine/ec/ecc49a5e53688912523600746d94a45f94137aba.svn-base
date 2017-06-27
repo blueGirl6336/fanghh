@@ -1,0 +1,827 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="hitwh.fanghh.dao.BuildingDao">
+	<resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Building">
+		<id column="building_id" property="buildingId" jdbcType="INTEGER" />
+		<result column="region_id" property="regionId" jdbcType="INTEGER" />
+		<result column="director_id" property="directorId" jdbcType="INTEGER" />
+		<result column="building_name" property="buildingName"
+			jdbcType="VARCHAR" />
+		<result column="building_portrait" property="buildingPortrait"
+			jdbcType="VARCHAR" />
+		<result column="opening_time" property="openingTime" jdbcType="TIMESTAMP" />
+		<result column="average_price" property="averagePrice"
+			jdbcType="DECIMAL" />
+		<result column="launch_time" property="launchTime" jdbcType="TIMESTAMP" />
+		<result column="building_addr" property="buildingAddr"
+			jdbcType="VARCHAR" />
+		<result column="building_location" property="buildingLocation"
+			jdbcType="VARCHAR" />
+		<result column="building_pic" property="buildingPic" jdbcType="VARCHAR" />
+		<result column="video_link" property="videoLink" jdbcType="VARCHAR" />
+		<result column="sale_site_location" property="saleSiteLocation"
+			jdbcType="VARCHAR" />
+		<result column="highest_commission" property="highestCommission"
+			jdbcType="DECIMAL" />
+		<result column="caution_money" property="cautionMoney"
+			jdbcType="DECIMAL" />
+		<result column="duration" property="duration" jdbcType="INTEGER" />
+		<result column="plan_area" property="planArea" jdbcType="DOUBLE" />
+		<result column="construction_area" property="constructionArea"
+			jdbcType="DOUBLE" />
+		<result column="construction_kind" property="constructionKind"
+			jdbcType="VARCHAR" />
+		<result column="construction_use" property="constructionUse"
+			jdbcType="VARCHAR" />
+		<result column="plot_rate" property="plotRate" jdbcType="DECIMAL" />
+		<result column="greening_rate" property="greeningRate"
+			jdbcType="DECIMAL" />
+		<result column="household_num" property="householdNum"
+			jdbcType="INTEGER" />
+		<result column="parkingspace_num" property="parkingspaceNum"
+			jdbcType="INTEGER" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="is_copartner" property="isCopartner" jdbcType="BIT" />
+		<result column="is_activited" property="isActivited" jdbcType="BIT" />
+		<result column="estimated_opening_date" property="estimatedOpeningDate"
+			jdbcType="NVARCHAR" />
+		<result column="sale_site_phone" property="saleSitePhone"
+			jdbcType="VARCHAR" />
+		<result column="rule_id" property="ruleId" jdbcType="INTEGER" />
+		<result column="developer_id" property="developerId" jdbcType="INTEGER" />
+		<result column="property_id" property="propertyId" jdbcType="INTEGER" />
+		<result column="building_label" property="buildingLabel"
+			jdbcType="VARCHAR" />
+		<result column="paid_caution_money" property="paidCautionMoney"
+			jdbcType="BIT" />
+		<result column="selling_hot_lable" property="sellingHotLable"
+			jdbcType="INTEGER" />
+		<result column="selling_hot_sort" property="sellingHotSort"
+			jdbcType="INTEGER" />
+		<result column="building_type" property="buildingType"
+			jdbcType="INTEGER" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="group_countdown" property="groupCountdown"
+			jdbcType="INTEGER" />
+		<result column="recommend_reason" property="recommendReason"
+			jdbcType="VARCHAR" />
+		<result column="opening_detail" property="openingDetail"
+			jdbcType="VARCHAR" />
+		<result column="phone_fdz" property="phoneFdz" jdbcType="VARCHAR" />
+		<result column="building_application_status" property="buildingApplicationStatus"
+			jdbcType="VARCHAR" />
+		<result column="audit_not_pass_reason" property="auditNotPassReason"
+			jdbcType="VARCHAR" />
+		<result column="supportingfacilities" property="supportingfacilities"
+			jdbcType="VARCHAR" />
+		<result column="developmentprofile" property="developmentprofile"
+			jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs" type="hitwh.fanghh.pojo.Building"
+		extends="BaseResultMap">
+		<result column="purchase_note" property="purchaseNote"
+			jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		building_id, region_id, director_id, building_name,
+		building_portrait,
+		opening_time,
+		average_price, launch_time,
+		building_addr, building_location, building_pic,
+		video_link,
+		sale_site_location, highest_commission, caution_money, duration,
+		plan_area,
+		construction_area,
+		construction_kind, construction_use,
+		plot_rate, greening_rate, household_num,
+		parkingspace_num,
+		create_time,
+		is_copartner, is_activited, estimated_opening_date, sale_site_phone,
+		rule_id, developer_id, property_id, building_label,
+		paid_caution_money, selling_hot_lable,
+		selling_hot_sort, building_type,
+		remark, group_countdown, recommend_reason,
+		opening_detail,
+		phone_fdz,
+		building_application_status, audit_not_pass_reason,
+		supportingfacilities,
+		developmentprofile
+	</sql>
+	<sql id="Blob_Column_List">
+		purchase_note
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from Building
+		where building_id = #{buildingId,jdbcType=INTEGER}
+	</select>
+	<select id="selectAll" resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from Building
+		where region_id = #{0}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		Building
+		where building_id = #{buildingId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="hitwh.fanghh.pojo.Building">
+		insert into Building
+		(building_id, region_id, director_id,
+		building_name, building_portrait,
+		opening_time,
+		average_price, launch_time, building_addr,
+		building_location, building_pic, video_link,
+		sale_site_location,
+		highest_commission, caution_money,
+		duration, plan_area,
+		construction_area,
+		construction_kind, construction_use, plot_rate,
+		greening_rate, household_num, parkingspace_num,
+		create_time,
+		is_copartner, is_activited,
+		estimated_opening_date, sale_site_phone,
+		rule_id,
+		developer_id, property_id, building_label,
+		paid_caution_money,
+		selling_hot_lable, selling_hot_sort,
+		building_type, remark,
+		group_countdown,
+		recommend_reason, opening_detail, phone_fdz,
+		building_application_status, audit_not_pass_reason,
+		supportingfacilities, developmentprofile,
+		purchase_note)
+		values
+		(#{buildingId,jdbcType=INTEGER}, #{regionId,jdbcType=INTEGER},
+		#{directorId,jdbcType=INTEGER},
+		#{buildingName,jdbcType=VARCHAR},
+		#{buildingPortrait,jdbcType=VARCHAR},
+		#{openingTime,jdbcType=TIMESTAMP},
+		#{averagePrice,jdbcType=DECIMAL},
+		#{launchTime,jdbcType=TIMESTAMP}, #{buildingAddr,jdbcType=VARCHAR},
+		#{buildingLocation,jdbcType=VARCHAR}, #{buildingPic,jdbcType=VARCHAR},
+		#{videoLink,jdbcType=VARCHAR},
+		#{saleSiteLocation,jdbcType=VARCHAR},
+		#{highestCommission,jdbcType=DECIMAL},
+		#{cautionMoney,jdbcType=DECIMAL},
+		#{duration,jdbcType=INTEGER},
+		#{planArea,jdbcType=DOUBLE}, #{constructionArea,jdbcType=DOUBLE},
+		#{constructionKind,jdbcType=VARCHAR},
+		#{constructionUse,jdbcType=VARCHAR}, #{plotRate,jdbcType=DECIMAL},
+		#{greeningRate,jdbcType=DECIMAL}, #{householdNum,jdbcType=INTEGER},
+		#{parkingspaceNum,jdbcType=INTEGER},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{isCopartner,jdbcType=BIT}, #{isActivited,jdbcType=BIT},
+		#{estimatedOpeningDate,jdbcType=NVARCHAR},
+		#{saleSitePhone,jdbcType=VARCHAR}, #{ruleId,jdbcType=INTEGER},
+		#{developerId,jdbcType=INTEGER}, #{propertyId,jdbcType=INTEGER},
+		#{buildingLabel,jdbcType=VARCHAR},
+		#{paidCautionMoney,jdbcType=BIT},
+		#{sellingHotLable,jdbcType=INTEGER},
+		#{sellingHotSort,jdbcType=INTEGER},
+		#{buildingType,jdbcType=INTEGER},
+		#{remark,jdbcType=VARCHAR}, #{groupCountdown,jdbcType=INTEGER},
+		#{recommendReason,jdbcType=VARCHAR},
+		#{openingDetail,jdbcType=VARCHAR}, #{phoneFdz,jdbcType=VARCHAR},
+		#{buildingApplicationStatus,jdbcType=VARCHAR},
+		#{auditNotPassReason,jdbcType=VARCHAR},
+		#{supportingfacilities,jdbcType=VARCHAR},
+		#{developmentprofile,jdbcType=VARCHAR},
+		#{purchaseNote,jdbcType=LONGVARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Building" useGeneratedKeys="true" keyProperty="buildingId">
+		insert into Building
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="buildingId != null">
+				building_id,
+			</if>
+			<if test="regionId != null">
+				region_id,
+			</if>
+			<if test="directorId != null">
+				director_id,
+			</if>
+			<if test="buildingName != null">
+				building_name,
+			</if>
+			<if test="buildingPortrait != null">
+				building_portrait,
+			</if>
+			<if test="openingTime != null">
+				opening_time,
+			</if>
+			<if test="averagePrice != null">
+				average_price,
+			</if>
+			<if test="launchTime != null">
+				launch_time,
+			</if>
+			<if test="buildingAddr != null">
+				building_addr,
+			</if>
+			<if test="buildingLocation != null">
+				building_location,
+			</if>
+			<if test="buildingPic != null">
+				building_pic,
+			</if>
+			<if test="videoLink != null">
+				video_link,
+			</if>
+			<if test="saleSiteLocation != null">
+				sale_site_location,
+			</if>
+			<if test="highestCommission != null">
+				highest_commission,
+			</if>
+			<if test="cautionMoney != null">
+				caution_money,
+			</if>
+			<if test="duration != null">
+				duration,
+			</if>
+			<if test="planArea != null">
+				plan_area,
+			</if>
+			<if test="constructionArea != null">
+				construction_area,
+			</if>
+			<if test="constructionKind != null">
+				construction_kind,
+			</if>
+			<if test="constructionUse != null">
+				construction_use,
+			</if>
+			<if test="plotRate != null">
+				plot_rate,
+			</if>
+			<if test="greeningRate != null">
+				greening_rate,
+			</if>
+			<if test="householdNum != null">
+				household_num,
+			</if>
+			<if test="parkingspaceNum != null">
+				parkingspace_num,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="isCopartner != null">
+				is_copartner,
+			</if>
+			<if test="isActivited != null">
+				is_activited,
+			</if>
+			<if test="estimatedOpeningDate != null">
+				estimated_opening_date,
+			</if>
+			<if test="saleSitePhone != null">
+				sale_site_phone,
+			</if>
+			<if test="ruleId != null">
+				rule_id,
+			</if>
+			<if test="developerId != null">
+				developer_id,
+			</if>
+			<if test="propertyId != null">
+				property_id,
+			</if>
+			<if test="buildingLabel != null">
+				building_label,
+			</if>
+			<if test="paidCautionMoney != null">
+				paid_caution_money,
+			</if>
+			<if test="sellingHotLable != null">
+				selling_hot_lable,
+			</if>
+			<if test="sellingHotSort != null">
+				selling_hot_sort,
+			</if>
+			<if test="buildingType != null">
+				building_type,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="groupCountdown != null">
+				group_countdown,
+			</if>
+			<if test="recommendReason != null">
+				recommend_reason,
+			</if>
+			<if test="openingDetail != null">
+				opening_detail,
+			</if>
+			<if test="phoneFdz != null">
+				phone_fdz,
+			</if>
+			<if test="buildingApplicationStatus != null">
+				building_application_status,
+			</if>
+			<if test="auditNotPassReason != null">
+				audit_not_pass_reason,
+			</if>
+			<if test="supportingfacilities != null">
+				supportingfacilities,
+			</if>
+			<if test="developmentprofile != null">
+				developmentprofile,
+			</if>
+			<if test="purchaseNote != null">
+				purchase_note,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="buildingId != null">
+				#{buildingId,jdbcType=INTEGER},
+			</if>
+			<if test="regionId != null">
+				#{regionId,jdbcType=INTEGER},
+			</if>
+			<if test="directorId != null">
+				#{directorId,jdbcType=INTEGER},
+			</if>
+			<if test="buildingName != null">
+				#{buildingName,jdbcType=VARCHAR},
+			</if>
+			<if test="buildingPortrait != null">
+				#{buildingPortrait,jdbcType=VARCHAR},
+			</if>
+			<if test="openingTime != null">
+				#{openingTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="averagePrice != null">
+				#{averagePrice,jdbcType=DECIMAL},
+			</if>
+			<if test="launchTime != null">
+				#{launchTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="buildingAddr != null">
+				#{buildingAddr,jdbcType=VARCHAR},
+			</if>
+			<if test="buildingLocation != null">
+				#{buildingLocation,jdbcType=VARCHAR},
+			</if>
+			<if test="buildingPic != null">
+				#{buildingPic,jdbcType=VARCHAR},
+			</if>
+			<if test="videoLink != null">
+				#{videoLink,jdbcType=VARCHAR},
+			</if>
+			<if test="saleSiteLocation != null">
+				#{saleSiteLocation,jdbcType=VARCHAR},
+			</if>
+			<if test="highestCommission != null">
+				#{highestCommission,jdbcType=DECIMAL},
+			</if>
+			<if test="cautionMoney != null">
+				#{cautionMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="duration != null">
+				#{duration,jdbcType=INTEGER},
+			</if>
+			<if test="planArea != null">
+				#{planArea,jdbcType=DOUBLE},
+			</if>
+			<if test="constructionArea != null">
+				#{constructionArea,jdbcType=DOUBLE},
+			</if>
+			<if test="constructionKind != null">
+				#{constructionKind,jdbcType=VARCHAR},
+			</if>
+			<if test="constructionUse != null">
+				#{constructionUse,jdbcType=VARCHAR},
+			</if>
+			<if test="plotRate != null">
+				#{plotRate,jdbcType=DECIMAL},
+			</if>
+			<if test="greeningRate != null">
+				#{greeningRate,jdbcType=DECIMAL},
+			</if>
+			<if test="householdNum != null">
+				#{householdNum,jdbcType=INTEGER},
+			</if>
+			<if test="parkingspaceNum != null">
+				#{parkingspaceNum,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="isCopartner != null">
+				#{isCopartner,jdbcType=BIT},
+			</if>
+			<if test="isActivited != null">
+				#{isActivited,jdbcType=BIT},
+			</if>
+			<if test="estimatedOpeningDate != null">
+				#{estimatedOpeningDate,jdbcType=NVARCHAR},
+			</if>
+			<if test="saleSitePhone != null">
+				#{saleSitePhone,jdbcType=VARCHAR},
+			</if>
+			<if test="ruleId != null">
+				#{ruleId,jdbcType=INTEGER},
+			</if>
+			<if test="developerId != null">
+				#{developerId,jdbcType=INTEGER},
+			</if>
+			<if test="propertyId != null">
+				#{propertyId,jdbcType=INTEGER},
+			</if>
+			<if test="buildingLabel != null">
+				#{buildingLabel,jdbcType=VARCHAR},
+			</if>
+			<if test="paidCautionMoney != null">
+				#{paidCautionMoney,jdbcType=BIT},
+			</if>
+			<if test="sellingHotLable != null">
+				#{sellingHotLable,jdbcType=INTEGER},
+			</if>
+			<if test="sellingHotSort != null">
+				#{sellingHotSort,jdbcType=INTEGER},
+			</if>
+			<if test="buildingType != null">
+				#{buildingType,jdbcType=INTEGER},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="groupCountdown != null">
+				#{groupCountdown,jdbcType=INTEGER},
+			</if>
+			<if test="recommendReason != null">
+				#{recommendReason,jdbcType=VARCHAR},
+			</if>
+			<if test="openingDetail != null">
+				#{openingDetail,jdbcType=VARCHAR},
+			</if>
+			<if test="phoneFdz != null">
+				#{phoneFdz,jdbcType=VARCHAR},
+			</if>
+			<if test="buildingApplicationStatus != null">
+				#{buildingApplicationStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="auditNotPassReason != null">
+				#{auditNotPassReason,jdbcType=VARCHAR},
+			</if>
+			<if test="supportingfacilities != null">
+				#{supportingfacilities,jdbcType=VARCHAR},
+			</if>
+			<if test="developmentprofile != null">
+				#{developmentprofile,jdbcType=VARCHAR},
+			</if>
+			<if test="purchaseNote != null">
+				#{purchaseNote,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Building">
+		update Building
+		<set>
+			<if test="regionId != null">
+				region_id = #{regionId,jdbcType=INTEGER},
+			</if>
+			<if test="directorId != null">
+				director_id = #{directorId,jdbcType=INTEGER},
+			</if>
+			<if test="buildingName != null">
+				building_name = #{buildingName,jdbcType=VARCHAR},
+			</if>
+			<if test="buildingPortrait != null">
+				building_portrait = #{buildingPortrait,jdbcType=VARCHAR},
+			</if>
+			<if test="openingTime != null">
+				opening_time = #{openingTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="averagePrice != null">
+				average_price = #{averagePrice,jdbcType=DECIMAL},
+			</if>
+			<if test="launchTime != null">
+				launch_time = #{launchTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="buildingAddr != null">
+				building_addr = #{buildingAddr,jdbcType=VARCHAR},
+			</if>
+			<if test="buildingLocation != null">
+				building_location = #{buildingLocation,jdbcType=VARCHAR},
+			</if>
+			<if test="buildingPic != null">
+				building_pic = #{buildingPic,jdbcType=VARCHAR},
+			</if>
+			<if test="videoLink != null">
+				video_link = #{videoLink,jdbcType=VARCHAR},
+			</if>
+			<if test="saleSiteLocation != null">
+				sale_site_location =
+				#{saleSiteLocation,jdbcType=VARCHAR},
+			</if>
+			<if test="highestCommission != null">
+				highest_commission =
+				#{highestCommission,jdbcType=DECIMAL},
+			</if>
+			<if test="cautionMoney != null">
+				caution_money = #{cautionMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="duration != null">
+				duration = #{duration,jdbcType=INTEGER},
+			</if>
+			<if test="planArea != null">
+				plan_area = #{planArea,jdbcType=DOUBLE},
+			</if>
+			<if test="constructionArea != null">
+				construction_area = #{constructionArea,jdbcType=DOUBLE},
+			</if>
+			<if test="constructionKind != null">
+				construction_kind = #{constructionKind,jdbcType=VARCHAR},
+			</if>
+			<if test="constructionUse != null">
+				construction_use = #{constructionUse,jdbcType=VARCHAR},
+			</if>
+			<if test="plotRate != null">
+				plot_rate = #{plotRate,jdbcType=DECIMAL},
+			</if>
+			<if test="greeningRate != null">
+				greening_rate = #{greeningRate,jdbcType=DECIMAL},
+			</if>
+			<if test="householdNum != null">
+				household_num = #{householdNum,jdbcType=INTEGER},
+			</if>
+			<if test="parkingspaceNum != null">
+				parkingspace_num = #{parkingspaceNum,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="isCopartner != null">
+				is_copartner = #{isCopartner,jdbcType=BIT},
+			</if>
+			<if test="isActivited != null">
+				is_activited = #{isActivited,jdbcType=BIT},
+			</if>
+			<if test="estimatedOpeningDate != null">
+				estimated_opening_date =
+				#{estimatedOpeningDate,jdbcType=NVARCHAR},
+			</if>
+			<if test="saleSitePhone != null">
+				sale_site_phone = #{saleSitePhone,jdbcType=VARCHAR},
+			</if>
+			<if test="ruleId != null">
+				rule_id = #{ruleId,jdbcType=INTEGER},
+			</if>
+			<if test="developerId != null">
+				developer_id = #{developerId,jdbcType=INTEGER},
+			</if>
+			<if test="propertyId != null">
+				property_id = #{propertyId,jdbcType=INTEGER},
+			</if>
+			<if test="buildingLabel != null">
+				building_label = #{buildingLabel,jdbcType=VARCHAR},
+			</if>
+			<if test="paidCautionMoney != null">
+				paid_caution_money = #{paidCautionMoney,jdbcType=BIT},
+			</if>
+			<if test="sellingHotLable != null">
+				selling_hot_lable = #{sellingHotLable,jdbcType=INTEGER},
+			</if>
+			<if test="sellingHotSort != null">
+				selling_hot_sort = #{sellingHotSort,jdbcType=INTEGER},
+			</if>
+			<if test="buildingType != null">
+				building_type = #{buildingType,jdbcType=INTEGER},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="groupCountdown != null">
+				group_countdown = #{groupCountdown,jdbcType=INTEGER},
+			</if>
+			<if test="recommendReason != null">
+				recommend_reason = #{recommendReason,jdbcType=VARCHAR},
+			</if>
+			<if test="openingDetail != null">
+				opening_detail = #{openingDetail,jdbcType=VARCHAR},
+			</if>
+			<if test="phoneFdz != null">
+				phone_fdz = #{phoneFdz,jdbcType=VARCHAR},
+			</if>
+			<if test="buildingApplicationStatus != null">
+				building_application_status =
+				#{buildingApplicationStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="auditNotPassReason != null">
+				audit_not_pass_reason =
+				#{auditNotPassReason,jdbcType=VARCHAR},
+			</if>
+			<if test="supportingfacilities != null">
+				supportingfacilities =
+				#{supportingfacilities,jdbcType=VARCHAR},
+			</if>
+			<if test="developmentprofile != null">
+				developmentprofile =
+				#{developmentprofile,jdbcType=VARCHAR},
+			</if>
+			<if test="purchaseNote != null">
+				purchase_note = #{purchaseNote,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where building_id = #{buildingId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="hitwh.fanghh.pojo.Building">
+		update
+		Building
+		set region_id = #{regionId,jdbcType=INTEGER},
+		director_id =
+		#{directorId,jdbcType=INTEGER},
+		building_name =
+		#{buildingName,jdbcType=VARCHAR},
+		building_portrait =
+		#{buildingPortrait,jdbcType=VARCHAR},
+		opening_time =
+		#{openingTime,jdbcType=TIMESTAMP},
+		average_price =
+		#{averagePrice,jdbcType=DECIMAL},
+		launch_time =
+		#{launchTime,jdbcType=TIMESTAMP},
+		building_addr =
+		#{buildingAddr,jdbcType=VARCHAR},
+		building_location =
+		#{buildingLocation,jdbcType=VARCHAR},
+		building_pic =
+		#{buildingPic,jdbcType=VARCHAR},
+		video_link =
+		#{videoLink,jdbcType=VARCHAR},
+		sale_site_location =
+		#{saleSiteLocation,jdbcType=VARCHAR},
+		highest_commission =
+		#{highestCommission,jdbcType=DECIMAL},
+		caution_money =
+		#{cautionMoney,jdbcType=DECIMAL},
+		duration =
+		#{duration,jdbcType=INTEGER},
+		plan_area = #{planArea,jdbcType=DOUBLE},
+		construction_area = #{constructionArea,jdbcType=DOUBLE},
+		construction_kind = #{constructionKind,jdbcType=VARCHAR},
+		construction_use = #{constructionUse,jdbcType=VARCHAR},
+		plot_rate =
+		#{plotRate,jdbcType=DECIMAL},
+		greening_rate =
+		#{greeningRate,jdbcType=DECIMAL},
+		household_num =
+		#{householdNum,jdbcType=INTEGER},
+		parkingspace_num =
+		#{parkingspaceNum,jdbcType=INTEGER},
+		create_time =
+		#{createTime,jdbcType=TIMESTAMP},
+		is_copartner =
+		#{isCopartner,jdbcType=BIT},
+		is_activited =
+		#{isActivited,jdbcType=BIT},
+		estimated_opening_date =
+		#{estimatedOpeningDate,jdbcType=NVARCHAR},
+		sale_site_phone =
+		#{saleSitePhone,jdbcType=VARCHAR},
+		rule_id =
+		#{ruleId,jdbcType=INTEGER},
+		developer_id =
+		#{developerId,jdbcType=INTEGER},
+		property_id =
+		#{propertyId,jdbcType=INTEGER},
+		building_label =
+		#{buildingLabel,jdbcType=VARCHAR},
+		paid_caution_money =
+		#{paidCautionMoney,jdbcType=BIT},
+		selling_hot_lable =
+		#{sellingHotLable,jdbcType=INTEGER},
+		selling_hot_sort =
+		#{sellingHotSort,jdbcType=INTEGER},
+		building_type =
+		#{buildingType,jdbcType=INTEGER},
+		remark = #{remark,jdbcType=VARCHAR},
+		group_countdown = #{groupCountdown,jdbcType=INTEGER},
+		recommend_reason
+		= #{recommendReason,jdbcType=VARCHAR},
+		opening_detail =
+		#{openingDetail,jdbcType=VARCHAR},
+		phone_fdz =
+		#{phoneFdz,jdbcType=VARCHAR},
+		building_application_status =
+		#{buildingApplicationStatus,jdbcType=VARCHAR},
+		audit_not_pass_reason =
+		#{auditNotPassReason,jdbcType=VARCHAR},
+		supportingfacilities =
+		#{supportingfacilities,jdbcType=VARCHAR},
+		developmentprofile =
+		#{developmentprofile,jdbcType=VARCHAR},
+		purchase_note =
+		#{purchaseNote,jdbcType=LONGVARCHAR}
+		where building_id =
+		#{buildingId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Building">
+		update Building
+		set region_id = #{regionId,jdbcType=INTEGER},
+		director_id =
+		#{directorId,jdbcType=INTEGER},
+		building_name =
+		#{buildingName,jdbcType=VARCHAR},
+		building_portrait =
+		#{buildingPortrait,jdbcType=VARCHAR},
+		opening_time =
+		#{openingTime,jdbcType=TIMESTAMP},
+		average_price =
+		#{averagePrice,jdbcType=DECIMAL},
+		launch_time =
+		#{launchTime,jdbcType=TIMESTAMP},
+		building_addr =
+		#{buildingAddr,jdbcType=VARCHAR},
+		building_location =
+		#{buildingLocation,jdbcType=VARCHAR},
+		building_pic =
+		#{buildingPic,jdbcType=VARCHAR},
+		video_link =
+		#{videoLink,jdbcType=VARCHAR},
+		sale_site_location =
+		#{saleSiteLocation,jdbcType=VARCHAR},
+		highest_commission =
+		#{highestCommission,jdbcType=DECIMAL},
+		caution_money =
+		#{cautionMoney,jdbcType=DECIMAL},
+		duration =
+		#{duration,jdbcType=INTEGER},
+		plan_area = #{planArea,jdbcType=DOUBLE},
+		construction_area = #{constructionArea,jdbcType=DOUBLE},
+		construction_kind = #{constructionKind,jdbcType=VARCHAR},
+		construction_use = #{constructionUse,jdbcType=VARCHAR},
+		plot_rate =
+		#{plotRate,jdbcType=DECIMAL},
+		greening_rate =
+		#{greeningRate,jdbcType=DECIMAL},
+		household_num =
+		#{householdNum,jdbcType=INTEGER},
+		parkingspace_num =
+		#{parkingspaceNum,jdbcType=INTEGER},
+		create_time =
+		#{createTime,jdbcType=TIMESTAMP},
+		is_copartner =
+		#{isCopartner,jdbcType=BIT},
+		is_activited =
+		#{isActivited,jdbcType=BIT},
+		estimated_opening_date =
+		#{estimatedOpeningDate,jdbcType=NVARCHAR},
+		sale_site_phone =
+		#{saleSitePhone,jdbcType=VARCHAR},
+		rule_id =
+		#{ruleId,jdbcType=INTEGER},
+		developer_id =
+		#{developerId,jdbcType=INTEGER},
+		property_id =
+		#{propertyId,jdbcType=INTEGER},
+		building_label =
+		#{buildingLabel,jdbcType=VARCHAR},
+		paid_caution_money =
+		#{paidCautionMoney,jdbcType=BIT},
+		selling_hot_lable =
+		#{sellingHotLable,jdbcType=INTEGER},
+		selling_hot_sort =
+		#{sellingHotSort,jdbcType=INTEGER},
+		building_type =
+		#{buildingType,jdbcType=INTEGER},
+		remark = #{remark,jdbcType=VARCHAR},
+		group_countdown = #{groupCountdown,jdbcType=INTEGER},
+		recommend_reason
+		= #{recommendReason,jdbcType=VARCHAR},
+		opening_detail =
+		#{openingDetail,jdbcType=VARCHAR},
+		phone_fdz =
+		#{phoneFdz,jdbcType=VARCHAR},
+		building_application_status =
+		#{buildingApplicationStatus,jdbcType=VARCHAR},
+		audit_not_pass_reason =
+		#{auditNotPassReason,jdbcType=VARCHAR},
+		supportingfacilities =
+		#{supportingfacilities,jdbcType=VARCHAR},
+		developmentprofile =
+		#{developmentprofile,jdbcType=VARCHAR}
+		where building_id =
+		#{buildingId,jdbcType=INTEGER}
+	</update>
+
+	<select id="getBuildingNameById" parameterType="java.lang.Integer"
+		resultType="java.lang.String">
+		select
+		building_name
+		from dbo.Building
+		where building_id =
+		#{buildingId,jdbcType=INTEGER}
+	</select>
+</mapper>

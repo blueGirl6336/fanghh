@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.BankcardbondDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Bankcardbond">
+    <id column="bcb_id" jdbcType="INTEGER" property="bcbId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="card_no" jdbcType="VARCHAR" property="cardNo" />
+    <result column="band_belonged" jdbcType="VARCHAR" property="bandBelonged" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    bcb_id, user_id, card_no, band_belonged
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.BankCardBond
+    where bcb_id = #{bcbId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.BankCardBond
+    where bcb_id = #{bcbId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Bankcardbond">
+    insert into dbo.BankCardBond (bcb_id, user_id, card_no, 
+      band_belonged)
+    values (#{bcbId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{cardNo,jdbcType=VARCHAR}, 
+      #{bandBelonged,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Bankcardbond">
+    insert into dbo.BankCardBond
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bcbId != null">
+        bcb_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="cardNo != null">
+        card_no,
+      </if>
+      <if test="bandBelonged != null">
+        band_belonged,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bcbId != null">
+        #{bcbId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="cardNo != null">
+        #{cardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bandBelonged != null">
+        #{bandBelonged,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Bankcardbond">
+    update dbo.BankCardBond
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="cardNo != null">
+        card_no = #{cardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bandBelonged != null">
+        band_belonged = #{bandBelonged,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where bcb_id = #{bcbId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Bankcardbond">
+    update dbo.BankCardBond
+    set user_id = #{userId,jdbcType=INTEGER},
+      card_no = #{cardNo,jdbcType=VARCHAR},
+      band_belonged = #{bandBelonged,jdbcType=VARCHAR}
+    where bcb_id = #{bcbId,jdbcType=INTEGER}
+  </update>
+</mapper>

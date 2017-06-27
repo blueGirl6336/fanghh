@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.HousesourcepicDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Housesourcepic">
+    <id column="hsp_id" jdbcType="INTEGER" property="hspId" />
+    <result column="ro_id" jdbcType="INTEGER" property="roId" />
+    <result column="hs_pic" jdbcType="VARCHAR" property="hsPic" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    hsp_id, ro_id, hs_pic
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.HouseSourcePic
+    where hsp_id = #{hspId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.HouseSourcePic
+    where hsp_id = #{hspId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Housesourcepic">
+    insert into dbo.HouseSourcePic (hsp_id, ro_id, hs_pic
+      )
+    values (#{hspId,jdbcType=INTEGER}, #{roId,jdbcType=INTEGER}, #{hsPic,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Housesourcepic">
+    insert into dbo.HouseSourcePic
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="hspId != null">
+        hsp_id,
+      </if>
+      <if test="roId != null">
+        ro_id,
+      </if>
+      <if test="hsPic != null">
+        hs_pic,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="hspId != null">
+        #{hspId,jdbcType=INTEGER},
+      </if>
+      <if test="roId != null">
+        #{roId,jdbcType=INTEGER},
+      </if>
+      <if test="hsPic != null">
+        #{hsPic,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Housesourcepic">
+    update dbo.HouseSourcePic
+    <set>
+      <if test="roId != null">
+        ro_id = #{roId,jdbcType=INTEGER},
+      </if>
+      <if test="hsPic != null">
+        hs_pic = #{hsPic,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where hsp_id = #{hspId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Housesourcepic">
+    update dbo.HouseSourcePic
+    set ro_id = #{roId,jdbcType=INTEGER},
+      hs_pic = #{hsPic,jdbcType=VARCHAR}
+    where hsp_id = #{hspId,jdbcType=INTEGER}
+  </update>
+</mapper>

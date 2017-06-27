@@ -1,0 +1,322 @@
+angular
+	.module('releaseNewBuildingCtrl', ['ngCookies'])
+
+	//楼盘录入
+	.controller('buildingEnter', ['$scope', '$stateParams', '$http', '$location', '$cookieStore', function($scope, $stateParams, $http, $location, $cookieStore) {
+		//获取区域
+		$http
+			.get('building/getAllRegion',{
+			})
+			.success(function(response){
+				$scope.regionList=response.data;
+			});
+		//获取开发商
+		$http
+			.get('building/getAllDeveloper',{
+			})
+			.success(function(response){
+				$scope.developerList=response.data;
+			});
+
+		$scope.buildingLabel1=$scope.buildingLabel1==1?1:0;
+		$scope.buildingLabel2=$scope.buildingLabel2==1?1:0;
+		$scope.buildingLabel3=$scope.buildingLabel3==1?1:0;
+		$scope.buildingLabel4=$scope.buildingLabel4==1?1:0;
+		$scope.buildingLabel5=$scope.buildingLabel5==1?1:0;
+		$scope.buildingLabel6=$scope.buildingLabel6==1?1:0;
+		$scope.buildingLabel7=$scope.buildingLabel7==1?1:0;
+		$scope.buildingLabel8=$scope.buildingLabel8==1?1:0;
+		$scope.buildingLabel9=$scope.buildingLabel9==1?1:0;
+		$scope.buildingLabel10=$scope.buildingLabel10==1?1:0;
+		$scope.buildingLabel11=$scope.buildingLabel11==1?1:0;
+
+		//保存并下一步
+		$scope.saveType = function() {
+			$http
+				.post('building/addBuilding',{
+					
+						buildingName:$scope.buildingName,
+						regionId:$scope.regionId,
+						developerId:$scope.developerId,
+						buildingLocation:$scope.buildingLocation,
+						buildingType:$scope.buildingType,
+						averagePrice:$scope.averagePrice,
+						openingTime:$scope.openingTime,
+						launchTime:$scope.launchTime,
+						constructionArea:$scope.constructionArea,
+						householdNum:$scope.householdNum,
+						saleSiteLocation:$scope.saleSiteLocation,
+						duration:$scope.duration,
+						plotRate:$scope.plotRate,
+						greeningRate:$scope.greeningRate,
+						createTime:$scope.createTime,
+						saleSitePhone:$scope.saleSitePhone,
+						propertyId:null,
+						buildingLabel:$scope.buildingLabel1+","+$scope.buildingLabel2+","+$scope.buildingLabel3+","+$scope.buildingLabel4+","+$scope.buildingLabel5+","+$scope.buildingLabel6+","+$scope.buildingLabel7+","+$scope.buildingLabel8+","+$scope.buildingLabel9+","+$scope.buildingLabel10+","+$scope.buildingLabel11,
+						remark:$scope.remark,
+						recommendReason:$scope.recommendReason,
+						openingDetail:$scope.openingDetail,
+						phoneFdz:"4008008600"+$scope.phoneFdz1+$scope.phoneFdz2,
+						developmentprofile:$scope.developmentprofile
+												
+				})
+				.success(function(response){
+					if (response.success==true) {
+						$location.path('index/typeEnter/'+response.data);
+					}else{
+						alert("录入失败");
+					}
+				});
+		}
+	}])
+
+	//户型录入
+	.controller('typeEnter', ['$scope', '$stateParams', '$http', '$location', '$cookieStore', function($scope, $stateParams, $http, $location, $cookieStore) {
+		//保存并下一步
+		$scope.saveType = function() {
+			$scope.styleDescription1 = $scope.styleDescription1==1?1:0;
+			$scope.styleDescription2 = $scope.styleDescription2==1?1:0;
+			$scope.styleDescription3 = $scope.styleDescription3==1?1:0;
+			$scope.styleDescription4 = $scope.styleDescription4==1?1:0;
+			$scope.isCooperated = $scope.isCooperated=="true"?true:false;
+			$http
+				.post('houseStyle/addStyle',{
+					styleId:null,
+					houseStyleCode:$scope.houseStyleCode,
+					style:$scope.room+","+$scope.hall+","+$scope.restroom,
+					referencePrice:$scope.referencePrice,
+					referenceMonthlyPayments:$scope.referenceMonthlyPayments,
+					downPayment:$scope.downPayment,
+					styleArea:$scope.styleArea,
+					auditStatus:null,
+					styleDescription:$scope.styleDescription1+","+$scope.styleDescription2+","+$scope.styleDescription3+","+$scope.styleDescription4,
+					stylePic:null,
+					specialitiesPic:null,
+					recommendReason:$scope.recommendReason,
+					isCooperated:$scope.isCooperated,
+					buildingId:$stateParams.buildingId,
+					applicationStatus:null,
+					auditNotPassReason:null								
+				})
+				.success(function(response){
+					if (response.success==true) {
+						$location.path('index/typeEnter/'+$stateParams.buildingId);
+					}else{
+						alert("录入失败");
+					}
+				});
+		}
+	}])
+
+	//房源录入
+	.controller('houseEnter', ['$scope', '$stateParams', '$http', '$location', '$cookieStore', function($scope, $stateParams, $http, $location, $cookieStore) {
+		//获取所有户型
+		$http
+			.get('houseStyle/ getAllHouseStyle',{
+				params:{
+					buildingId:$stateParams.buildingId,
+					pageMaxNum:100,
+					pageNo:1
+				}		
+			})
+			.success(function(response){
+				$scope.typeList=response.data;
+			});
+		//保存
+		$scope.saveType = function() {
+			$http
+				.post('house/addHouse',{
+					houseId:null,
+					styleId:$scope.styleId,
+					buildingId:$stateParams.buildingId,
+					unit:$scope.unitId,
+					houseNum:$scope.houseNum,
+					orginalPrice:$scope.orginalPrice,
+					downPayment:$scope.downPayment,
+					monthlyPayment:$scope.monthlyPayment,
+					auditStatus:null,
+					face:$scope.face,
+					maxFloor:$scope.maxFloor,
+					floor:$scope.floor,
+					area:$scope.area,
+					decoration:$scope.decoration,
+					basementSquare:$scope.basementSquare,
+					parkingLotPrice:$scope.parkingLotPrice,
+					parkingPlaceArea:$scope.parkingPlaceArea,
+					housePic:null,
+					auditNotPassReason:null,
+					houseApplicationStatus:null,
+					buildingNo:$scope.buildingNo
+				})
+				.success(function(response){
+					alert("录入成功");
+				});
+		}
+	}])
+
+	//户型审核
+	.controller('typeAudit', function($scope, $stateParams, $http, $location, $cookieStore) {
+		$http
+			.get('houseStyle/getSingleHouseStyle',{
+				params:{
+					styleId:1022
+				}		
+			})
+			.success(function(response){
+				$scope.typeInfo=response.data;
+				$scope.ifFail=false;
+				if ($scope.typeInfo.auditStatus=="13020200") {
+					$scope.ifFail=true;
+				}
+				$scope.typeInfo.style=$scope.typeInfo.style.split(',');
+				$scope.typeInfo.styleDescription=$scope.typeInfo.styleDescription.split(',');
+				if ($scope.typeInfo.styleDescription[0]=='1') {
+					$scope.typeInfo.styleDescription[0]="方正户型";
+				} else {
+					$scope.typeInfo.styleDescription[0]="";
+				}
+				if ($scope.typeInfo.styleDescription[1]=='1') {
+					$scope.typeInfo.styleDescription[1]="南北通透";
+				} else {
+					$scope.typeInfo.styleDescription[1]="";
+				}
+				if ($scope.typeInfo.styleDescription[2]=='1') {
+					$scope.typeInfo.styleDescription[2]="超大客厅";
+				} else {
+					$scope.typeInfo.styleDescription[2]="";
+				}
+				if ($scope.typeInfo.styleDescription[3]=='1') {
+					$scope.typeInfo.styleDescription[3]="方正布局";
+				} else {
+					$scope.typeInfo.styleDescription[3]="";
+				}
+				if ($scope.typeInfo.isCooperated==true) {
+					$scope.typeInfo.isCooperated="是";
+				} else{
+					$scope.typeInfo.isCooperated="否";
+				}
+			});
+
+		//审核
+		$scope.ifNotPass = false;
+		$scope.submitReason = function() {
+			$.post('houseStyle/houseStyleAudit', {
+				styleId: 1022,
+				status: false,
+				auditNotPassReason: $scope.backMessage
+			}).success(function(response) {
+					if (response.success==true) {
+						alert("提交审核结果成功");
+					} else{
+						alert("提交审核结果失败");
+					}
+					
+					// $location.path('index/myCustomer');
+				});
+		}
+		$scope.pass = function() {
+			$http
+				.get('houseStyle/houseStyleAudit', {
+					params: {
+						styleId: 1022,
+						status: true,
+						auditNotPassReason:''
+					}
+				})
+				.success(function(response) {
+					if (response.success==true) {
+						alert("提交审核结果成功");
+					} else{
+						alert("提交审核结果失败");
+					}
+					// $location.path('index/myCustomer');
+				});
+		}
+	})
+
+	//房源审核
+	.controller('houseAudit', function($scope, $stateParams, $http, $location, $cookieStore) {
+		$http
+			.get('house/ getSingleHouse',{
+				params:{
+					houseId:1253
+				}		
+			})
+			.success(function(response){
+				$scope.houseInfo=response.data;
+				$scope.ifFail=false;
+				if ($scope.houseInfo.auditStatus=="13020200") {
+					$scope.ifFail=true;
+				}
+				$http
+					.get('houseStyle/ getAllHouseStyle',{
+						params:{
+							buildingId:$scope.houseInfo.buildingId,
+							pageMaxNum:100,
+							pageNo:1
+						}		
+					})
+					.success(function(response){
+						for (var i = 0; i < response.data.length; i++) {
+							if (response.data[i].styleId== $scope.houseInfo.styleId) {
+								$scope.houseInfo.houseStyleCode=response.data[i].houseStyleCode;
+								$http
+									.get('dictionary/getDictName',{
+										params:{
+											dictCode:$scope.houseInfo.face
+										}		
+									})
+									.success(function(response){
+										$scope.houseInfo.face=response.data;
+									})
+								$http
+									.get('dictionary/getDictName',{
+										params:{
+											dictCode:$scope.houseInfo.decoration
+										}		
+									})
+									.success(function(response){
+										$scope.houseInfo.decoration=response.data;
+									})
+							}
+						}
+					})
+			});
+
+		//审核
+		$scope.ifNotPass = false;
+		$scope.submitReason = function() {
+			$.post('house/auditHouseApplication', {
+				houseId: 1253,
+				auditResult: false,
+				notPassReason: $scope.backMessage
+			})
+			.success(function(response) {
+					if (response.success==true) {
+						alert("提交审核结果成功");
+					} else{
+						alert("提交审核结果失败");
+					}
+					
+					// $location.path('index/myCustomer');
+				});
+		}
+		$scope.pass = function() {
+			$http
+				.get('house/auditHouseApplication', {
+					params: {
+						houseId: 1253,
+						auditResult: true,
+						notPassReason:''
+					}
+				})
+				.success(function(response) {
+					if (response.success==true) {
+						alert("提交审核结果成功");
+					} else{
+						alert("提交审核结果失败");
+					}
+					// $location.path('index/myCustomer');
+				});
+		}
+	});

@@ -1,0 +1,51 @@
+/*
+Error: File to import not found or unreadable: dynamicManagement.scss.
+       Load path: E:/we run/fanghh/FangHH_Backstage Maven Webapp/src/main/webapp/sass
+        on line 1 of E:\we run\fanghh\FangHH_Backstage Maven Webapp\src\main\webapp\sass\watchMethod.scss
+
+1: @import "dynamicManagement.scss";
+2: 
+3: .checkbox
+4: {
+5: 	width:6%;
+6: }
+
+Backtrace:
+E:\we run\fanghh\FangHH_Backstage Maven Webapp\src\main\webapp\sass\watchMethod.scss:1
+F:/software/ruby/koala/fold/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/import_node.rb:66:in `rescue in import'
+F:/software/ruby/koala/fold/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/import_node.rb:45:in `import'
+F:/software/ruby/koala/fold/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/import_node.rb:28:in `imported_file'
+F:/software/ruby/koala/fold/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/import_node.rb:37:in `css_import?'
+F:/software/ruby/koala/fold/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:301:in `visit_import'
+F:/software/ruby/koala/fold/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/base.rb:36:in `visit'
+F:/software/ruby/koala/fold/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
+F:/software/ruby/koala/fold/Koala/rubygems/gems/sass-3.4.9/lib/sass/stack.rb:79:in `block in with_base'
+F:/software/ruby/koala/fold/Koala/rubygems/gems/sass-3.4.9/lib/sass/stack.rb:115:in `with_frame'
+F:/software/ruby/koala/fold/Koala/rubygems/gems/sass-3.4.9/lib/sass/stack.rb:79:in `with_base'
+F:/software/ruby/koala/fold/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:158:in `visit'
+F:/software/ruby/koala/fold/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+F:/software/ruby/koala/fold/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/base.rb:52:in `map'
+F:/software/ruby/koala/fold/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+F:/software/ruby/koala/fold/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:167:in `block in visit_children'
+F:/software/ruby/koala/fold/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+F:/software/ruby/koala/fold/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:166:in `visit_children'
+F:/software/ruby/koala/fold/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+F:/software/ruby/koala/fold/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:186:in `visit_root'
+F:/software/ruby/koala/fold/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/base.rb:36:in `visit'
+F:/software/ruby/koala/fold/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:157:in `visit'
+F:/software/ruby/koala/fold/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/visitors/perform.rb:8:in `visit'
+F:/software/ruby/koala/fold/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/root_node.rb:36:in `css_tree'
+F:/software/ruby/koala/fold/Koala/rubygems/gems/sass-3.4.9/lib/sass/tree/root_node.rb:20:in `render'
+F:/software/ruby/koala/fold/Koala/rubygems/gems/sass-3.4.9/lib/sass/engine.rb:268:in `render'
+F:/software/ruby/koala/fold/Koala/rubygems/gems/sass-3.4.9/lib/sass/exec/sass_scss.rb:404:in `run'
+F:/software/ruby/koala/fold/Koala/rubygems/gems/sass-3.4.9/lib/sass/exec/sass_scss.rb:62:in `process_result'
+F:/software/ruby/koala/fold/Koala/rubygems/gems/sass-3.4.9/lib/sass/exec/base.rb:52:in `parse'
+F:/software/ruby/koala/fold/Koala/rubygems/gems/sass-3.4.9/lib/sass/exec/base.rb:19:in `parse!'
+F:/software/ruby/koala/fold/Koala/rubygems/gems/sass-3.4.9/bin/sass:13:in `<top (required)>'
+F:/software/ruby/koala/fold/Koala/bin/sass:18:in `load'
+F:/software/ruby/koala/fold/Koala/bin/sass:18:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: File to import not found or unreadable: dynamicManagement.scss.\A        Load path: E:/we run/fanghh/FangHH_Backstage Maven Webapp/src/main/webapp/sass\A         on line 1 of E:\we run\fanghh\FangHH_Backstage Maven Webapp\src\main\webapp\sass\watchMethod.scss\A \A 1: @import \"dynamicManagement.scss\";\A 2: \A 3: .checkbox\A 4: {\A 5: 	width:6%;\A 6: }"; }

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.BookingorderDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Bookingorder">
+    <id column="bo_id" jdbcType="INTEGER" property="boId" />
+    <result column="house_id" jdbcType="INTEGER" property="houseId" />
+    <result column="customer_id" jdbcType="INTEGER" property="customerId" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="predestinate_value" jdbcType="DECIMAL" property="predestinateValue" />
+    <result column="predestinate_time" jdbcType="TIMESTAMP" property="predestinateTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="activity_id" jdbcType="VARCHAR" property="activityId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    bo_id, house_id, customer_id, order_id, predestinate_value, predestinate_time, remark, 
+    activity_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.BookingOrder
+    where bo_id = #{boId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.BookingOrder
+    where bo_id = #{boId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Bookingorder">
+    insert into dbo.BookingOrder (bo_id, house_id, customer_id, 
+      order_id, predestinate_value, predestinate_time, 
+      remark, activity_id)
+    values (#{boId,jdbcType=INTEGER}, #{houseId,jdbcType=INTEGER}, #{customerId,jdbcType=INTEGER}, 
+      #{orderId,jdbcType=VARCHAR}, #{predestinateValue,jdbcType=DECIMAL}, #{predestinateTime,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR}, #{activityId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Bookingorder">
+    insert into dbo.BookingOrder
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="boId != null">
+        bo_id,
+      </if>
+      <if test="houseId != null">
+        house_id,
+      </if>
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="predestinateValue != null">
+        predestinate_value,
+      </if>
+      <if test="predestinateTime != null">
+        predestinate_time,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="activityId != null">
+        activity_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="boId != null">
+        #{boId,jdbcType=INTEGER},
+      </if>
+      <if test="houseId != null">
+        #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="predestinateValue != null">
+        #{predestinateValue,jdbcType=DECIMAL},
+      </if>
+      <if test="predestinateTime != null">
+        #{predestinateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="activityId != null">
+        #{activityId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Bookingorder">
+    update dbo.BookingOrder
+    <set>
+      <if test="houseId != null">
+        house_id = #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="predestinateValue != null">
+        predestinate_value = #{predestinateValue,jdbcType=DECIMAL},
+      </if>
+      <if test="predestinateTime != null">
+        predestinate_time = #{predestinateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="activityId != null">
+        activity_id = #{activityId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where bo_id = #{boId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Bookingorder">
+    update dbo.BookingOrder
+    set house_id = #{houseId,jdbcType=INTEGER},
+      customer_id = #{customerId,jdbcType=INTEGER},
+      order_id = #{orderId,jdbcType=VARCHAR},
+      predestinate_value = #{predestinateValue,jdbcType=DECIMAL},
+      predestinate_time = #{predestinateTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      activity_id = #{activityId,jdbcType=VARCHAR}
+    where bo_id = #{boId,jdbcType=INTEGER}
+  </update>
+</mapper>

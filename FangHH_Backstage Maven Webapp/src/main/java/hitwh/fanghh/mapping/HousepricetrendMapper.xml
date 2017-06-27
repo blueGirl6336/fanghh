@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.HousepricetrendDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Housepricetrend">
+    <id column="trend_id" jdbcType="INTEGER" property="trendId" />
+    <result column="building_id" jdbcType="INTEGER" property="buildingId" />
+    <result column="current_price" jdbcType="DECIMAL" property="currentPrice" />
+    <result column="udpate_time" jdbcType="TIMESTAMP" property="udpateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    trend_id, building_id, current_price, udpate_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.HousePriceTrend
+    where trend_id = #{trendId,jdbcType=INTEGER}
+  </select>
+  <select id="selectByBuildingId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.HousePriceTrend
+    where building_id = #{buildingId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.HousePriceTrend
+    where trend_id = #{trendId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Housepricetrend">
+    insert into dbo.HousePriceTrend (trend_id, building_id, current_price, 
+      udpate_time)
+    values (#{trendId,jdbcType=INTEGER}, #{buildingId,jdbcType=INTEGER}, #{currentPrice,jdbcType=DECIMAL}, 
+      #{udpateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Housepricetrend">
+    insert into dbo.HousePriceTrend
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="trendId != null">
+        trend_id,
+      </if>
+      <if test="buildingId != null">
+        building_id,
+      </if>
+      <if test="currentPrice != null">
+        current_price,
+      </if>
+      <if test="udpateTime != null">
+        udpate_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="trendId != null">
+        #{trendId,jdbcType=INTEGER},
+      </if>
+      <if test="buildingId != null">
+        #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="currentPrice != null">
+        #{currentPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="udpateTime != null">
+        #{udpateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Housepricetrend">
+    update dbo.HousePriceTrend
+    <set>
+      <if test="buildingId != null">
+        building_id = #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="currentPrice != null">
+        current_price = #{currentPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="udpateTime != null">
+        udpate_time = #{udpateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where trend_id = #{trendId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Housepricetrend">
+    update dbo.HousePriceTrend
+    set building_id = #{buildingId,jdbcType=INTEGER},
+      current_price = #{currentPrice,jdbcType=DECIMAL},
+      udpate_time = #{udpateTime,jdbcType=TIMESTAMP}
+    where trend_id = #{trendId,jdbcType=INTEGER}
+  </update>
+</mapper>

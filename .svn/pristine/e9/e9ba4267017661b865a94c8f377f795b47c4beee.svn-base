@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.BrokerachvrecordDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Brokerachvrecord">
+    <id column="bar_id" jdbcType="INTEGER" property="barId" />
+    <result column="broker_id" jdbcType="INTEGER" property="brokerId" />
+    <result column="building_id" jdbcType="INTEGER" property="buildingId" />
+    <result column="customer_num" jdbcType="INTEGER" property="customerNum" />
+    <result column="deal_num" jdbcType="INTEGER" property="dealNum" />
+    <result column="commission" jdbcType="DECIMAL" property="commission" />
+    <result column="type_time" jdbcType="TIMESTAMP" property="typeTime" />
+    <result column="sale_profit" jdbcType="DECIMAL" property="saleProfit" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    bar_id, broker_id, building_id, customer_num, deal_num, commission, type_time, sale_profit
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.BrokerAchvRecord
+    where bar_id = #{barId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.BrokerAchvRecord
+    where bar_id = #{barId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Brokerachvrecord">
+    insert into dbo.BrokerAchvRecord (bar_id, broker_id, building_id, 
+      customer_num, deal_num, commission, 
+      type_time, sale_profit)
+    values (#{barId,jdbcType=INTEGER}, #{brokerId,jdbcType=INTEGER}, #{buildingId,jdbcType=INTEGER}, 
+      #{customerNum,jdbcType=INTEGER}, #{dealNum,jdbcType=INTEGER}, #{commission,jdbcType=DECIMAL}, 
+      #{typeTime,jdbcType=TIMESTAMP}, #{saleProfit,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Brokerachvrecord">
+    insert into dbo.BrokerAchvRecord
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="barId != null">
+        bar_id,
+      </if>
+      <if test="brokerId != null">
+        broker_id,
+      </if>
+      <if test="buildingId != null">
+        building_id,
+      </if>
+      <if test="customerNum != null">
+        customer_num,
+      </if>
+      <if test="dealNum != null">
+        deal_num,
+      </if>
+      <if test="commission != null">
+        commission,
+      </if>
+      <if test="typeTime != null">
+        type_time,
+      </if>
+      <if test="saleProfit != null">
+        sale_profit,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="barId != null">
+        #{barId,jdbcType=INTEGER},
+      </if>
+      <if test="brokerId != null">
+        #{brokerId,jdbcType=INTEGER},
+      </if>
+      <if test="buildingId != null">
+        #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="customerNum != null">
+        #{customerNum,jdbcType=INTEGER},
+      </if>
+      <if test="dealNum != null">
+        #{dealNum,jdbcType=INTEGER},
+      </if>
+      <if test="commission != null">
+        #{commission,jdbcType=DECIMAL},
+      </if>
+      <if test="typeTime != null">
+        #{typeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="saleProfit != null">
+        #{saleProfit,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Brokerachvrecord">
+    update dbo.BrokerAchvRecord
+    <set>
+      <if test="brokerId != null">
+        broker_id = #{brokerId,jdbcType=INTEGER},
+      </if>
+      <if test="buildingId != null">
+        building_id = #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="customerNum != null">
+        customer_num = #{customerNum,jdbcType=INTEGER},
+      </if>
+      <if test="dealNum != null">
+        deal_num = #{dealNum,jdbcType=INTEGER},
+      </if>
+      <if test="commission != null">
+        commission = #{commission,jdbcType=DECIMAL},
+      </if>
+      <if test="typeTime != null">
+        type_time = #{typeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="saleProfit != null">
+        sale_profit = #{saleProfit,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where bar_id = #{barId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Brokerachvrecord">
+    update dbo.BrokerAchvRecord
+    set broker_id = #{brokerId,jdbcType=INTEGER},
+      building_id = #{buildingId,jdbcType=INTEGER},
+      customer_num = #{customerNum,jdbcType=INTEGER},
+      deal_num = #{dealNum,jdbcType=INTEGER},
+      commission = #{commission,jdbcType=DECIMAL},
+      type_time = #{typeTime,jdbcType=TIMESTAMP},
+      sale_profit = #{saleProfit,jdbcType=DECIMAL}
+    where bar_id = #{barId,jdbcType=INTEGER}
+  </update>
+</mapper>

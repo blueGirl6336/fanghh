@@ -1,0 +1,34 @@
+angular
+	.module('releaseNewBuildingCtrl', ['ngCookies'])
+	.controller('releaseNewBuilding', ['$scope', '$stateParams', '$http', '$location', '$cookieStore', function($scope, $stateParams, $http, $location, $cookieStore) {
+		//户型录入——保存并下一步
+		$scope.saveType = function() {
+			$scope.styleDescription1 = $scope.styleDescription1==1?1:0;
+			$scope.styleDescription2 = $scope.styleDescription2==1?1:0;
+			$scope.styleDescription3 = $scope.styleDescription3==1?1:0;
+			$scope.styleDescription4 = $scope.styleDescription4==1?1:0;
+			$scope.isCooperated = $scope.isCooperated=="true"?true:false;
+			$http
+				.post('houseStyle/addStyle',{
+					styleId:null,
+					houseStyleCode:$scope.houseStyleCode,
+					style:$scope.room+","+$scope.hall+","+$scope.restroom,
+					referencePrice:$scope.referencePrice,
+					referenceMonthlyPayments:$scope.referenceMonthlyPayments,
+					downPayment:$scope.downPayment,
+					styleArea:$scope.styleArea,
+					auditStatus:null,
+					styleDescription:$scope.styleDescription1+","+$scope.styleDescription2+","+$scope.styleDescription3+","+$scope.styleDescription4,
+					stylePic:null,
+					specialitiesPic:null,
+					recommendReason:$scope.recommendReason,
+					isCooperated:$scope.isCooperated,
+					buildingId:4,
+					applicationStatus:null,
+					auditNotPassReason:null								
+				})
+				.success(function(response){
+
+				});
+		}
+	}]);

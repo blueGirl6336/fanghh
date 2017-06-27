@@ -1,0 +1,223 @@
+angular
+    .module('pictureSubmit', ['angularFileUpload'])
+    .controller('pictureSubmit', ['$scope', '$http', '$cookieStore', '$location', '$stateParams', 'FileUploader', function($scope, $http, $cookieStore, $location, $stateParams, FileUploader){
+		//效果图
+		$scope.effectPicList = [];
+		$scope.effectpicuploader = new FileUploader({
+			url: 'houseStyle/uploadStylePic',
+			removeAfterUpload: true
+		});
+		$scope.effectpicuploader.onAfterAddingFile = onAfterAddingFile;
+		$scope.effectpicuploader.onSuccessItem = function(item, response, status, headers) {
+			var pic = {
+				buildingId: $stateParams.buildingId,
+				picType: '01030600',
+				picLocation: response.data,
+				picDescription: ''
+			}
+			$scope.effectPicList.push(pic);
+			addBuildingPic(pic);
+		}
+
+		//实景图
+		$scope.realPicList = [];
+		$scope.realPicuploader = new FileUploader({
+			url: 'houseStyle/uploadStylePic',
+			removeAfterUpload: true
+		});
+		$scope.realPicuploader.onAfterAddingFile = onAfterAddingFile;
+		$scope.realPicuploader.onSuccessItem = function(item, response, status, headers) {
+			var pic = {
+				buildingId: $stateParams.buildingId,
+				picType: '01030100',
+				picLocation: response.data,
+				picDescription: ''
+			}
+			$scope.realPicList.push(pic);
+			addBuildingPic(pic);
+		}
+
+		//规划图
+		$scope.planPicList = [];
+		$scope.planPicUploader = new FileUploader({
+			url: 'houseStyle/uploadStylePic',
+			removeAfterUpload: true
+		});
+		$scope.planPicUploader.onAfterAddingFile = onAfterAddingFile;
+		$scope.planPicUploader.onSuccessItem = function(item, response, status, headers) {
+			var pic = {
+				buildingId: $stateParams.buildingId,
+				picType: '01030700',
+				picLocation: response.data,
+				picDescription: ''
+			}
+			$scope.planPicList.push(pic);
+			addBuildingPic(pic);
+		}
+
+		//配套图
+		$scope.supportingPicList = [];
+		$scope.supportingPicUploader = new FileUploader({
+			url: 'houseStyle/uploadStylePic',
+			removeAfterUpload: true
+		});
+		$scope.supportingPicUploader.onAfterAddingFile = onAfterAddingFile;
+		$scope.supportingPicUploader.onSuccessItem = function(item, response, status, headers) {
+			var pic = {
+				buildingId: $stateParams.buildingId,
+				picType: '01030500',
+				picLocation: response.data,
+				picDescription: ''
+			}
+			$scope.supportingPicList.push(pic);
+			addBuildingPic(pic);
+		}
+
+		//样板间
+		$scope.modelRoomPicList = [];
+		$scope.modelRoomPicUploader = new FileUploader({
+			url: 'houseStyle/uploadStylePic',
+			removeAfterUpload: true
+		});
+		//$scope.modelRoomPicUploader.removeAfterUpload = true;
+		$scope.modelRoomPicUploader.onAfterAddingFile = onAfterAddingFile;
+		$scope.modelRoomPicUploader.onSuccessItem = function(item, response, status, headers) {
+			var pic = {
+				buildingId: $stateParams.buildingId,
+				picType: '01030400',
+				picLocation: response.data,
+				picDescription: ''
+			}
+			$scope.modelRoomPicList.push(pic);
+			addBuildingPic(pic);
+		}
+
+		//公共方法
+    	$scope.deletePic = function(list, i) {
+    		if($scope.ifAddNewPicAndMap == true) {
+    			list.splice(i, 1);
+    			return ;
+    		}
+    		$http.get('building/deleteBuildingPic', {
+	    			params: {
+		    			bpId: list[i].bpId
+	    			}
+				})
+				.success(function(response) {
+					alert(response.data);
+				})
+				.error(function(data, status) {
+					alert('发生错误(提交时)');
+				});
+
+    		list.splice(i, 1);
+    	}
+    	function onAfterAddingFile(item) {
+			item.upload();
+		}
+		function addPicAndMapInfo() {
+			var buildingPicList = $scope.effectPicList;
+			buildingPicList = buildingPicList.concat($scope.realPicList);
+			buildingPicList = buildingPicList.concat($scope.planPicList);
+			buildingPicList = buildingPicList.concat($scope.supportingPicList);
+			buildingPicList = buildingPicList.concat($scope.modelRoomPicList);
+
+			$http.post('building/addSurround', {
+					buildingId: $stateParams.buildingId,
+					busstation: 'ttextbusstation',
+					school: 'ttextschool',
+					hospital: 'ttexthospital',
+					bank: 'ttextbank',
+					entertainment: 'ttextentertainment',
+					shopping: 'ttextshopping',
+					repast: 'ttextrepast',
+					exercise: 'ttextexercise',
+					list: buildingPicList
+				})
+				.success(function(response) {
+					alert(response.message);
+					$location.path('index/typeEnter/' + $stateParams.buildingId + '&0');
+				})
+				.error(function(data, status) {
+					alert('发生错误(提交时)');
+				});
+		}
+
+		function updatePicAndMapInfo() {//更新时候只需要更新位置与周边
+			$http.post('building/updateSurround', {
+					buildingId: $stateParams.buildingId,
+					busstation: 'busstationUpdate',
+					school: 'schoolUpdate',
+					hospital: 'hospitalUpdate',
+					bank: 'bankUpdate',
+					entertainment: 'entertainmentUpdate',
+					shopping: 'shoppingUpdate',
+					repast: 'repastUpdate',
+					exercise: 'exerciseUpdate',
+					list: null
+				})
+				.success(function(response) {
+					alert(response.message);
+					$location.path('index/typeEnter/' + $stateParams.buildingId + '&0');
+				})
+				.error(function(data, status) {
+					alert('发生错误(提交时)');
+				});
+		}
+
+		//获取图片和周边信息
+		$http.get('building/getSurround', {
+			params: {
+				buildingId: $stateParams.buildingId
+			}
+		})
+		.success(function(response) {
+			if(response.data.buildingId == null) {//之前没有录入过, 所以使用添加接口
+				$scope.submitPicAndMapInfo = addPicAndMapInfo;
+				$scope.ifAddNewPicAndMap = true;
+			}
+			else {//之前录入了
+				$scope.ifAddNewPicAndMap = false;
+				//点击保存
+				$scope.submitPicAndMapInfo = updatePicAndMapInfo;
+				angular.forEach(response.data.list, function(value, key) {
+					switch(value.picType) {
+						case '01030600':
+							$scope.effectPicList.push(value);
+							break;
+						case '01030100':
+							$scope.realPicList.push(value);
+							break;
+						case '01030700':
+							$scope.planPicList.push(value);
+							break;
+						case '01030500':
+							$scope.supportingPicList.push(value);
+							break;
+						case '01030400':
+							$scope.modelRoomPicList.push(value);
+							break;
+					}
+				});
+			}
+		})
+		.error(function(data, status) {
+			alert('发生错误(获取时)');
+		});
+
+		//追加图片
+		function addBuildingPic(onePic) {
+			if($scope.ifAddNewPicAndMap == true) {
+				return ;
+			}
+
+			$http.post('building/addBuildingPic', onePic)
+				.success(function(response) {
+					alert(response.data);
+				})
+				.error(function(data, status) {
+					alert('发生错误(追加图片)');
+				});
+		}
+
+    }]);

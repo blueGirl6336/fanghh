@@ -1,0 +1,112 @@
+<div class="content_area" ng-controller="typeAudit">
+	<div class="content_area_fullpage">
+		<div class="content_area_title">
+			<h2>发布新楼盘</h2>
+		</div>
+		<div class="content_main">
+			<div class="hint" ng-show="ifFail">
+				<p class="hint_text">审核不通过原因：{{typeInfo.auditNotPassReason}}</p>
+			</div>
+			<div class="inputArea">
+				<h3>户型信息</h3>
+				<form>
+					<div class="row">
+						<div class="form-item form-item-large">
+							<label>户型：<span class="justify"></span></label>
+							<div class="form-field">
+								{{typeInfo.style[0]}}室 {{typeInfo.style[1]}}厅 {{typeInfo.style[2]}}卫 {{typeInfo.houseStyleCode}}户型
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label>参考售价：<span class="justify"></span></label>
+							<div class="form-field">
+								{{typeInfo.referencePrice}}<span class="hasUnitInput_unit">元起</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label> 参考月供：<span class="justify"></span></label>
+							<div class="form-field">
+								{{typeInfo.referenceMonthlyPayments}}<span class="hasUnitInput_unit">元</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label> 首付：<span class="justify"></span></label>
+							<div class="form-field">
+								{{typeInfo.downPayment}}<span class="hasUnitInput_unit">元起</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label>面积：<span class="justify"></span></label>
+							<div class="form-field">
+								{{typeInfo.styleArea}}<span class="hasUnitInput_unit">平米</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-large">
+							<label>标签：<span class="justify"></span></label>
+							<div class="form-field">
+								{{typeInfo.styleDescription[0]}} {{typeInfo.styleDescription[1]}} {{typeInfo.styleDescription[2]}} {{typeInfo.styleDescription[3]}}
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-broad">
+							<label class="label-long">户型图：<span class="justify"></span></label>
+							<div class="form-field">
+								<img ng-src="./{{z}}" ng-repeat="z in typeInfo.stylePic" class="pic">	
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-broad">
+							<label>户型特色：</label>
+							<div class="form-field">
+								<img ng-src="./{{p}}" ng-repeat="p in typeInfo.specialitiesPic" class="pic">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-broad">
+							<label for="username">推荐理由：<span class="justify"></span></label>
+							<div class="form-field">
+								{{typeInfo.recommendReason}}
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-large">
+							<label>是否合作：<span class="justify"></span></label>
+							<div class="form-field">
+								{{typeInfo.isCooperated}}
+							</div>
+						</div>
+					</div>
+				</form>
+				<div class="button-area"  ng-show="buttonShow">
+					<button type="button" class="btn goback" ng-click="ifNotPass = true">审核不通过</button>
+					<button type="button" class="btn save-continue" ng-click="pass()">审核通过</button>
+				</div>
+			</div>
+			<div class="refuse-box" ng-show="ifNotPass">
+				<img src="./image/close_1.png" ng-click="ifNotPass = false">
+				<div class="refuse-body">
+					<div>审核不通过原因：</div>
+					<textarea rows="10" cols="50" ng-model="backMessage"></textarea>
+				</div>
+				<div class="button-area">
+					<button type="button" class="btn save-continue" ng-click="submitReason()">提交</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	

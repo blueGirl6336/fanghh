@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.RedpacketDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Redpacket">
+    <id column="packet_id" jdbcType="INTEGER" property="packetId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="deadline" jdbcType="TIMESTAMP" property="deadline" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="lowest_limit" jdbcType="DECIMAL" property="lowestLimit" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    packet_id, user_id, amount, deadline, status, lowest_limit
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.RedPacket
+    where packet_id = #{packetId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.RedPacket
+    where packet_id = #{packetId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Redpacket">
+    insert into dbo.RedPacket (packet_id, user_id, amount, 
+      deadline, status, lowest_limit
+      )
+    values (#{packetId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{amount,jdbcType=DECIMAL}, 
+      #{deadline,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{lowestLimit,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Redpacket">
+    insert into dbo.RedPacket
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="packetId != null">
+        packet_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="deadline != null">
+        deadline,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="lowestLimit != null">
+        lowest_limit,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="packetId != null">
+        #{packetId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="deadline != null">
+        #{deadline,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="lowestLimit != null">
+        #{lowestLimit,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Redpacket">
+    update dbo.RedPacket
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="deadline != null">
+        deadline = #{deadline,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="lowestLimit != null">
+        lowest_limit = #{lowestLimit,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where packet_id = #{packetId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Redpacket">
+    update dbo.RedPacket
+    set user_id = #{userId,jdbcType=INTEGER},
+      amount = #{amount,jdbcType=DECIMAL},
+      deadline = #{deadline,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      lowest_limit = #{lowestLimit,jdbcType=DECIMAL}
+    where packet_id = #{packetId,jdbcType=INTEGER}
+  </update>
+</mapper>

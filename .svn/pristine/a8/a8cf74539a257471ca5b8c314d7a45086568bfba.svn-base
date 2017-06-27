@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.PerferentialruleDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Perferentialrule">
+    <id column="rule_id" jdbcType="INTEGER" property="ruleId" />
+    <result column="activity_id" jdbcType="INTEGER" property="activityId" />
+    <result column="perferential_rule_type" jdbcType="VARCHAR" property="perferentialRuleType" />
+    <result column="discount_rate" jdbcType="VARCHAR" property="discountRate" />
+    <result column="reduced_price" jdbcType="DECIMAL" property="reducedPrice" />
+    <result column="perferential_description" jdbcType="VARCHAR" property="perferentialDescription" />
+    <result column="perferential_title" jdbcType="VARCHAR" property="perferentialTitle" />
+    <result column="is_used" jdbcType="BIT" property="isUsed" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    rule_id, activity_id, perferential_rule_type, discount_rate, reduced_price, perferential_description, perferential_title, is_used
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.PerferentialRule
+    where rule_id = #{ruleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.PerferentialRule
+    where rule_id = #{ruleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Perferentialrule">
+    insert into dbo.PerferentialRule (rule_id, activity_id, perferential_rule_type, 
+      discount_rate, reduced_price, perferential_description, perferential_title
+      )
+    values (#{ruleId,jdbcType=INTEGER}, #{activityId,jdbcType=INTEGER}, #{perferentialRuleType,jdbcType=VARCHAR}, 
+      #{discountRate,jdbcType=VARCHAR}, #{reducedPrice,jdbcType=DECIMAL}, #{perferentialDescription,jdbcType=VARCHAR}
+      , #{perferentialTitle,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Perferentialrule">
+    insert into dbo.PerferentialRule
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ruleId != null">
+        rule_id,
+      </if>
+      <if test="activityId != null">
+        activity_id,
+      </if>
+      <if test="perferentialRuleType != null">
+        perferential_rule_type,
+      </if>
+      <if test="discountRate != null">
+        discount_rate,
+      </if>
+      <if test="reducedPrice != null">
+        reduced_price,
+      </if>
+      <if test="perferentialDescription != null">
+        perferential_description,
+      </if>
+      <if test="perferentialTitle != null">
+        perferential_title,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ruleId != null">
+        #{ruleId,jdbcType=INTEGER},
+      </if>
+      <if test="activityId != null">
+        #{activityId,jdbcType=VARCHAR},
+      </if>
+      <if test="perferentialRuleType != null">
+        #{perferentialRuleType,jdbcType=VARCHAR},
+      </if>
+      <if test="discountRate != null">
+        #{discountRate,jdbcType=VARCHAR},
+      </if>
+      <if test="reducedPrice != null">
+        #{reducedPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="perferentialDescription != null">
+        #{perferentialDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="perferentialTitle != null">
+        #{perferentialTitle,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Perferentialrule">
+    update dbo.PerferentialRule
+    <set>
+      <if test="activityId != null">
+        activity_id = #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="perferentialRuleType != null">
+        perferential_rule_type = #{perferentialRuleType,jdbcType=VARCHAR},
+      </if>
+      <if test="discountRate != null">
+        discount_rate = #{discountRate,jdbcType=VARCHAR},
+      </if>
+      <if test="reducedPrice != null">
+        reduced_price = #{reducedPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="perferentialDescription != null">
+        perferential_description = #{perferentialDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="perferentialTitle != null">
+        perferential_title = #{perferentialTitle,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where rule_id = #{ruleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Perferentialrule">
+    update dbo.PerferentialRule
+    set activity_id = #{activityId,jdbcType=INTEGER},
+      perferential_rule_type = #{perferentialRuleType,jdbcType=VARCHAR},
+      discount_rate = #{discountRate,jdbcType=VARCHAR},
+      reduced_price = #{reducedPrice,jdbcType=DECIMAL},
+      perferential_description = #{perferentialDescription,jdbcType=VARCHAR},
+      perferential_title = #{perferentialTitle,jdbcType=VARCHAR}
+      
+    where rule_id = #{ruleId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectByActivityId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from dbo.PerferentialRule
+    where activity_id = #{activityId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectIdByHouseId" parameterType="java.lang.Integer" resultType = "java.lang.Integer">
+    select
+    phl_id
+    from dbo.PerferentialHouseList
+    where house_id = #{houseId,jdbcType=INTEGER}
+  </select>
+</mapper>

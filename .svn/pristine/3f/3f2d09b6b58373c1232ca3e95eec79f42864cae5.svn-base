@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.IntegrallevelDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Integrallevel">
+    <id column="il_id" jdbcType="INTEGER" property="ilId" />
+    <result column="user_level" jdbcType="INTEGER" property="userLevel" />
+    <result column="lowest_standard" jdbcType="INTEGER" property="lowestStandard" />
+    <result column="highest_standard" jdbcType="INTEGER" property="highestStandard" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    il_id, user_level, lowest_standard, highest_standard
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.IntegralLevel
+    where il_id = #{ilId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.IntegralLevel
+    where il_id = #{ilId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Integrallevel">
+    insert into dbo.IntegralLevel (il_id, user_level, lowest_standard, 
+      highest_standard)
+    values (#{ilId,jdbcType=INTEGER}, #{userLevel,jdbcType=INTEGER}, #{lowestStandard,jdbcType=INTEGER}, 
+      #{highestStandard,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Integrallevel">
+    insert into dbo.IntegralLevel
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ilId != null">
+        il_id,
+      </if>
+      <if test="userLevel != null">
+        user_level,
+      </if>
+      <if test="lowestStandard != null">
+        lowest_standard,
+      </if>
+      <if test="highestStandard != null">
+        highest_standard,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ilId != null">
+        #{ilId,jdbcType=INTEGER},
+      </if>
+      <if test="userLevel != null">
+        #{userLevel,jdbcType=INTEGER},
+      </if>
+      <if test="lowestStandard != null">
+        #{lowestStandard,jdbcType=INTEGER},
+      </if>
+      <if test="highestStandard != null">
+        #{highestStandard,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Integrallevel">
+    update dbo.IntegralLevel
+    <set>
+      <if test="userLevel != null">
+        user_level = #{userLevel,jdbcType=INTEGER},
+      </if>
+      <if test="lowestStandard != null">
+        lowest_standard = #{lowestStandard,jdbcType=INTEGER},
+      </if>
+      <if test="highestStandard != null">
+        highest_standard = #{highestStandard,jdbcType=INTEGER},
+      </if>
+    </set>
+    where il_id = #{ilId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Integrallevel">
+    update dbo.IntegralLevel
+    set user_level = #{userLevel,jdbcType=INTEGER},
+      lowest_standard = #{lowestStandard,jdbcType=INTEGER},
+      highest_standard = #{highestStandard,jdbcType=INTEGER}
+    where il_id = #{ilId,jdbcType=INTEGER}
+  </update>
+</mapper>

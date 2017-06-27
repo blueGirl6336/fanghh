@@ -1,0 +1,66 @@
+<div class="content" ng-controller="userAuthCtl">
+	<div class="inputArea form-item form-item-large content_area_head">
+		<img src="./image/search.png" class="img-search">
+		<span class="selectDistrict">搜索：用户名</span>
+		<input type="text" class="form-text shortText" name="">
+		<span class="selectDistrict">姓名：</span>
+		<input type="text" class="form-text shortText" name="">
+		<span class="selectDistrict">身份证号：</span>
+		<input type="text" class="form-text shortText" name="">
+		<button type="button" class="submit-file">查询</button>
+	</div>
+	
+	<div class="table_area">
+		<div class="table_head">
+			<div id="buildingManagement">实名认证</div>
+		</div>
+
+		<div class="table_content">
+			<table class="building_table">
+				<tbody>
+				<tr class="line0">
+					<td class="checkbox"></td>
+					<td class="building-name">用户名</td>
+					<td class="state">
+						姓名
+					</td>
+					<td class="tele">身份证号</td>
+					<td class="modify-date">
+						<span>证件照片</span>
+					</td>
+					<td class="operation" colspan="2">操作</td>
+				</tr>
+				<tr class="line1">
+					<td class="checkbox">
+						<input type="checkbox" name="tr-select">
+					</td>
+					<td class="building-name">name</td>
+					<td class="state">姓名</td>
+					<td class="tele">身份证号码</td>
+					<td class="modify-date">
+						<img src="../../image/point_1.png" class="sort-up">
+						<img src="../../image/point_2.png" class="sort-down">
+						</td>
+					<td class="operation1">通过</td>
+					<td class="operation2">不通过</td>
+				</tr>
+
+				<tr class="table-bottom">
+					<td class="checkbox-bottom">
+						<input type="checkbox" name="tr-select">全选
+					</td>
+					<td class="up-select">审核通过</td>
+					<td class="down-select">审核不通过</td>
+				</tr>
+			</tbody></table>
+
+			<div class="page-num">
+{{ pagesNum }}
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+
+</script>
+<script src="script.js"></script>
+</body>

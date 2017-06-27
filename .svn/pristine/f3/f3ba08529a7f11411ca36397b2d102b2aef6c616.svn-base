@@ -1,0 +1,51 @@
+/**
+ * 
+ */
+package hitwh.fanghh.service.impl;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import hitwh.fanghh.dao.UsersDao;
+import hitwh.fanghh.manager.LoginManager;
+import hitwh.fanghh.pojo.Users;
+import hitwh.fanghh.service.UserService;
+
+@Service
+public class UserServiceImpl implements UserService
+{
+	@Autowired
+	private LoginManager loginManager;
+
+	@Autowired
+	private HttpSession session;
+
+	@Autowired
+	private UsersDao usersDao;
+
+	@Override
+	public int loginWithUserName(String userName, String password)
+	{
+		int res = 0;
+		Users users = usersDao.selectByUserName(userName);
+		if (users != null && password != null)
+		{
+			if (password.equals(users.getPassword()))
+			{
+				res = loginManager.userRegister(users.getUserId().toString());
+				session.setAttribute("role", users.getRole());
+			}
+		}
+
+		return res;
+	}
+
+	@Override
+	public boolean logout()
+	{
+		return loginManager.userUnRegister();
+	}
+
+}

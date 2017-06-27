@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.CommissionruleDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Commissionrule">
+    <id column="rule_id" jdbcType="INTEGER" property="ruleId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="plate_proportional" jdbcType="DECIMAL" property="plateProportional" />
+    <result column="team_leader_proportion" jdbcType="DECIMAL" property="teamLeaderProportion" />
+    <result column="broker_leader_proportional" jdbcType="DECIMAL" property="brokerLeaderProportional" />
+    <result column="store_leader_proportion" jdbcType="DECIMAL" property="storeLeaderProportion" />
+    <result column="corporate_rule" jdbcType="VARCHAR" property="corporateRule" />
+    <result column="building_id" jdbcType="INTEGER" property="buildingId" />
+    <result column="rule_type" jdbcType="VARCHAR" property="ruleType" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="region_proportional" jdbcType="DECIMAL" property="regionProportional" />
+    <result column="developer_instructions" jdbcType="VARCHAR" property="developerInstructions" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    rule_id, create_time, plate_proportional, team_leader_proportion, broker_leader_proportional, 
+    store_leader_proportion, corporate_rule, building_id, rule_type, status, region_proportional, 
+    developer_instructions
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.CommissionRule
+    where rule_id = #{ruleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.CommissionRule
+    where rule_id = #{ruleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Commissionrule">
+    insert into dbo.CommissionRule (rule_id, create_time, plate_proportional, 
+      team_leader_proportion, broker_leader_proportional, 
+      store_leader_proportion, corporate_rule, building_id, 
+      rule_type, status, region_proportional, 
+      developer_instructions)
+    values (#{ruleId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{plateProportional,jdbcType=DECIMAL}, 
+      #{teamLeaderProportion,jdbcType=DECIMAL}, #{brokerLeaderProportional,jdbcType=DECIMAL}, 
+      #{storeLeaderProportion,jdbcType=DECIMAL}, #{corporateRule,jdbcType=VARCHAR}, #{buildingId,jdbcType=INTEGER}, 
+      #{ruleType,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{regionProportional,jdbcType=DECIMAL}, 
+      #{developerInstructions,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Commissionrule">
+    insert into dbo.CommissionRule
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ruleId != null">
+        rule_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="plateProportional != null">
+        plate_proportional,
+      </if>
+      <if test="teamLeaderProportion != null">
+        team_leader_proportion,
+      </if>
+      <if test="brokerLeaderProportional != null">
+        broker_leader_proportional,
+      </if>
+      <if test="storeLeaderProportion != null">
+        store_leader_proportion,
+      </if>
+      <if test="corporateRule != null">
+        corporate_rule,
+      </if>
+      <if test="buildingId != null">
+        building_id,
+      </if>
+      <if test="ruleType != null">
+        rule_type,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="regionProportional != null">
+        region_proportional,
+      </if>
+      <if test="developerInstructions != null">
+        developer_instructions,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ruleId != null">
+        #{ruleId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="plateProportional != null">
+        #{plateProportional,jdbcType=DECIMAL},
+      </if>
+      <if test="teamLeaderProportion != null">
+        #{teamLeaderProportion,jdbcType=DECIMAL},
+      </if>
+      <if test="brokerLeaderProportional != null">
+        #{brokerLeaderProportional,jdbcType=DECIMAL},
+      </if>
+      <if test="storeLeaderProportion != null">
+        #{storeLeaderProportion,jdbcType=DECIMAL},
+      </if>
+      <if test="corporateRule != null">
+        #{corporateRule,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingId != null">
+        #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="ruleType != null">
+        #{ruleType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="regionProportional != null">
+        #{regionProportional,jdbcType=DECIMAL},
+      </if>
+      <if test="developerInstructions != null">
+        #{developerInstructions,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Commissionrule">
+    update dbo.CommissionRule
+    <set>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="plateProportional != null">
+        plate_proportional = #{plateProportional,jdbcType=DECIMAL},
+      </if>
+      <if test="teamLeaderProportion != null">
+        team_leader_proportion = #{teamLeaderProportion,jdbcType=DECIMAL},
+      </if>
+      <if test="brokerLeaderProportional != null">
+        broker_leader_proportional = #{brokerLeaderProportional,jdbcType=DECIMAL},
+      </if>
+      <if test="storeLeaderProportion != null">
+        store_leader_proportion = #{storeLeaderProportion,jdbcType=DECIMAL},
+      </if>
+      <if test="corporateRule != null">
+        corporate_rule = #{corporateRule,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingId != null">
+        building_id = #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="ruleType != null">
+        rule_type = #{ruleType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="regionProportional != null">
+        region_proportional = #{regionProportional,jdbcType=DECIMAL},
+      </if>
+      <if test="developerInstructions != null">
+        developer_instructions = #{developerInstructions,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where rule_id = #{ruleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Commissionrule">
+    update dbo.CommissionRule
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      plate_proportional = #{plateProportional,jdbcType=DECIMAL},
+      team_leader_proportion = #{teamLeaderProportion,jdbcType=DECIMAL},
+      broker_leader_proportional = #{brokerLeaderProportional,jdbcType=DECIMAL},
+      store_leader_proportion = #{storeLeaderProportion,jdbcType=DECIMAL},
+      corporate_rule = #{corporateRule,jdbcType=VARCHAR},
+      building_id = #{buildingId,jdbcType=INTEGER},
+      rule_type = #{ruleType,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      region_proportional = #{regionProportional,jdbcType=DECIMAL},
+      developer_instructions = #{developerInstructions,jdbcType=VARCHAR}
+    where rule_id = #{ruleId,jdbcType=INTEGER}
+  </update>
+</mapper>

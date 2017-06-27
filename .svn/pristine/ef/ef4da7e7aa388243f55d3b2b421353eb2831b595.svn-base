@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.PushnewsDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Pushnews">
+    <id column="news_id" jdbcType="INTEGER" property="newsId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="news_type" jdbcType="VARCHAR" property="newsType" />
+    <result column="type_id" jdbcType="INTEGER" property="typeId" />
+    <result column="news_title" jdbcType="VARCHAR" property="newsTitle" />
+    <result column="news_content" jdbcType="VARCHAR" property="newsContent" />
+    <result column="send_time" jdbcType="TIMESTAMP" property="sendTime" />
+    <result column="news_status" jdbcType="VARCHAR" property="newsStatus" />
+    <result column="jump_id" jdbcType="VARCHAR" property="jumpId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    news_id, user_id, news_type, type_id, news_title, news_content, send_time, news_status, 
+    jump_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.PushNews
+    where news_id = #{newsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.PushNews
+    where news_id = #{newsId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Pushnews">
+    insert into dbo.PushNews (news_id, user_id, news_type, 
+      type_id, news_title, news_content, 
+      send_time, news_status, jump_id
+      )
+    values (#{newsId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{newsType,jdbcType=VARCHAR}, 
+      #{typeId,jdbcType=INTEGER}, #{newsTitle,jdbcType=VARCHAR}, #{newsContent,jdbcType=VARCHAR}, 
+      #{sendTime,jdbcType=TIMESTAMP}, #{newsStatus,jdbcType=VARCHAR}, #{jumpId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Pushnews">
+    insert into dbo.PushNews
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="newsId != null">
+        news_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="newsType != null">
+        news_type,
+      </if>
+      <if test="typeId != null">
+        type_id,
+      </if>
+      <if test="newsTitle != null">
+        news_title,
+      </if>
+      <if test="newsContent != null">
+        news_content,
+      </if>
+      <if test="sendTime != null">
+        send_time,
+      </if>
+      <if test="newsStatus != null">
+        news_status,
+      </if>
+      <if test="jumpId != null">
+        jump_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="newsId != null">
+        #{newsId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="newsType != null">
+        #{newsType,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null">
+        #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="newsTitle != null">
+        #{newsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="newsContent != null">
+        #{newsContent,jdbcType=VARCHAR},
+      </if>
+      <if test="sendTime != null">
+        #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="newsStatus != null">
+        #{newsStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="jumpId != null">
+        #{jumpId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Pushnews">
+    update dbo.PushNews
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="newsType != null">
+        news_type = #{newsType,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null">
+        type_id = #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="newsTitle != null">
+        news_title = #{newsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="newsContent != null">
+        news_content = #{newsContent,jdbcType=VARCHAR},
+      </if>
+      <if test="sendTime != null">
+        send_time = #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="newsStatus != null">
+        news_status = #{newsStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="jumpId != null">
+        jump_id = #{jumpId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where news_id = #{newsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Pushnews">
+    update dbo.PushNews
+    set user_id = #{userId,jdbcType=INTEGER},
+      news_type = #{newsType,jdbcType=VARCHAR},
+      type_id = #{typeId,jdbcType=INTEGER},
+      news_title = #{newsTitle,jdbcType=VARCHAR},
+      news_content = #{newsContent,jdbcType=VARCHAR},
+      send_time = #{sendTime,jdbcType=TIMESTAMP},
+      news_status = #{newsStatus,jdbcType=VARCHAR},
+      jump_id = #{jumpId,jdbcType=VARCHAR}
+    where news_id = #{newsId,jdbcType=INTEGER}
+  </update>
+</mapper>

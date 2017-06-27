@@ -1,0 +1,115 @@
+package hitwh.fanghh.service;
+
+import java.util.List;
+
+import hitwh.fanghh.bean.HouseBean;
+
+/**
+ * 房源管理相关类
+ *
+ * @ClassName: HouseService
+ * @Description: TODO
+ * @author: LY
+ * @date: 2016年11月16日 下午4:08:51
+ *
+ */
+public interface HouseService
+{
+	/**
+	 * 获取楼盘所有房源
+	 *
+	 * @Title: getHouseByBuildingId
+	 * @version:
+	 * @author: LY
+	 * 
+	 * @param buildingId楼盘id
+	 * @param pageMaxNum每页最大数量
+	 * @param pageNo页号
+	 * @return 房屋列表
+	 */
+	public List<HouseBean> getHouseByBuildingId(int buildingId, int pageMaxNum, int pageNo);
+
+	/**
+	 * 获取单个房源信息
+	 *
+	 * @Title: getHouseById
+	 * @version:
+	 * @author: LY
+	 * 
+	 * @param houseId
+	 * @return 房屋信息
+	 */
+	public HouseBean getHouseById(int houseId);
+
+	/**
+	 * 获取房屋列表页数
+	 *
+	 * @Title: getHousePageNumByBuildingId
+	 * @version:
+	 * @author: LY
+	 * 
+	 * @param buildingId楼盘id
+	 * @param pageMaxNum每页最大数量
+	 * @return
+	 */
+	public int getHousePageNumByBuildingId(int buildingId, int pageMaxNum);
+	
+	/**
+	 * 房源申请上架
+	 *
+	 * @Title: applicateHouseOnSaleByHouseId
+	 * @version:
+	 * @author: LY
+	 * 
+	 * @param houseId房源id
+	 * @return
+	 */
+	public int applicateHouseOnSaleByHouseId(int houseId , String houseApplicationStatus);
+	/**
+	 * 房源申请下架
+	 *
+	 * @Title: applicateHouseOffSaleByHouseId
+	 * @version:
+	 * @author: LY
+	 * 
+	 * @param houseId房源id
+	 * @return
+	 */
+	public int applicateHouseOffSaleByHouseId(int houseId , String houseApplicationStatus);
+	
+	/**
+	 * 房源审核上下架申请
+	 *
+	 * @Title: applicateHouseOffSaleByHouseId
+	 * @version:
+	 * @author: LY
+	 * 
+	 * @param houseId房源id
+	 * @return
+	 */
+	public int auditHouseApplicationByHouseId(int houseId , String auditStatus);
+	/**
+	 * 提交房源审核不通过原因
+	 *
+	 * @Title: giveAuditNotPassReason
+	 * @version:
+	 * @author: LY
+	 * 
+	 * @param houseId房源id
+	 * @param 审核不通过原因
+	 * @return
+	 */
+	public int giveAuditNotPassReason(int houseId , String auditNotPassReason);
+	/**
+	 * 获取房源审核不通过原因
+	 *
+	 * @Title: getAuditNotPassReason
+	 * @version:
+	 * @author: LY
+	 * 
+	 * @param houseId房源id
+	 * @return
+	 */
+	public String getAuditNotPassReason(int houseId);
+	
+}

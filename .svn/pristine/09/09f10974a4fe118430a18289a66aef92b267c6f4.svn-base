@@ -1,0 +1,18 @@
+
+package hitwh.fanghh.dao;
+
+import hitwh.fanghh.pojo.Pictalk;
+
+public interface PictalkDao {
+    int deleteByPrimaryKey(Integer ptId);
+
+    int insert(Pictalk record);
+
+    int insertSelective(Pictalk record);
+
+    Pictalk selectByPrimaryKey(Integer ptId);
+
+    int updateByPrimaryKeySelective(Pictalk record);
+
+    int updateByPrimaryKey(Pictalk record);
+}

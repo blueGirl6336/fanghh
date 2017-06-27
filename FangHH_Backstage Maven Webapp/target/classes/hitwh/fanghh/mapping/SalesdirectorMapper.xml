@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.SalesdirectorDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Salesdirector">
+    <id column="director_id" jdbcType="INTEGER" property="directorId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="rp_id" jdbcType="INTEGER" property="rpId" />
+    <result column="director_name" jdbcType="VARCHAR" property="directorName" />
+    <result column="director_idcard" jdbcType="VARCHAR" property="directorIdcard" />
+    <result column="is_agent" jdbcType="BIT" property="isAgent" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    director_id, user_id, rp_id, director_name, director_idcard, is_agent
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.SalesDirector
+    where director_id = #{directorId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.SalesDirector
+    where director_id = #{directorId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Salesdirector">
+    insert into dbo.SalesDirector (director_id, user_id, rp_id, 
+      director_name, director_idcard, is_agent
+      )
+    values (#{directorId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{rpId,jdbcType=INTEGER}, 
+      #{directorName,jdbcType=VARCHAR}, #{directorIdcard,jdbcType=VARCHAR}, #{isAgent,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Salesdirector">
+    insert into dbo.SalesDirector
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="directorId != null">
+        director_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="rpId != null">
+        rp_id,
+      </if>
+      <if test="directorName != null">
+        director_name,
+      </if>
+      <if test="directorIdcard != null">
+        director_idcard,
+      </if>
+      <if test="isAgent != null">
+        is_agent,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="directorId != null">
+        #{directorId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="rpId != null">
+        #{rpId,jdbcType=INTEGER},
+      </if>
+      <if test="directorName != null">
+        #{directorName,jdbcType=VARCHAR},
+      </if>
+      <if test="directorIdcard != null">
+        #{directorIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="isAgent != null">
+        #{isAgent,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Salesdirector">
+    update dbo.SalesDirector
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="rpId != null">
+        rp_id = #{rpId,jdbcType=INTEGER},
+      </if>
+      <if test="directorName != null">
+        director_name = #{directorName,jdbcType=VARCHAR},
+      </if>
+      <if test="directorIdcard != null">
+        director_idcard = #{directorIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="isAgent != null">
+        is_agent = #{isAgent,jdbcType=BIT},
+      </if>
+    </set>
+    where director_id = #{directorId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Salesdirector">
+    update dbo.SalesDirector
+    set user_id = #{userId,jdbcType=INTEGER},
+      rp_id = #{rpId,jdbcType=INTEGER},
+      director_name = #{directorName,jdbcType=VARCHAR},
+      director_idcard = #{directorIdcard,jdbcType=VARCHAR},
+      is_agent = #{isAgent,jdbcType=BIT}
+    where director_id = #{directorId,jdbcType=INTEGER}
+  </update>
+</mapper>

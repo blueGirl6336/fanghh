@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.RecommendorderDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Recommendorder">
+    <id column="ro_id" jdbcType="INTEGER" property="roId" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="customer_id" jdbcType="INTEGER" property="customerId" />
+    <result column="house_id" jdbcType="INTEGER" property="houseId" />
+    <result column="broker_id" jdbcType="INTEGER" property="brokerId" />
+    <result column="recommend_time" jdbcType="TIMESTAMP" property="recommendTime" />
+    <result column="area_demand" jdbcType="INTEGER" property="areaDemand" />
+    <result column="property_type" jdbcType="VARCHAR" property="propertyType" />
+    <result column="legal_duration" jdbcType="INTEGER" property="legalDuration" />
+    <result column="is_matched" jdbcType="BIT" property="isMatched" />
+    <result column="is_rel_agent" jdbcType="BIT" property="isRelAgent" />
+    <result column="is_checked" jdbcType="BIT" property="isChecked" />
+    <result column="is_distributed" jdbcType="BIT" property="isDistributed" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="building_id" jdbcType="INTEGER" property="buildingId" />
+    <result column="is_substitute" jdbcType="BIT" property="isSubstitute" />
+    <result column="is_company" jdbcType="BIT" property="isCompany" />
+    <result column="recom_status" jdbcType="VARCHAR" property="recomStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ro_id, order_id, customer_id, house_id, broker_id, recommend_time, area_demand, property_type, 
+    legal_duration, is_matched, is_rel_agent, is_checked, is_distributed, remark, building_id, 
+    is_substitute, is_company, recom_status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.RecommendOrder
+    where ro_id = #{roId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.RecommendOrder
+    where ro_id = #{roId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Recommendorder">
+    insert into dbo.RecommendOrder (ro_id, order_id, customer_id, 
+      house_id, broker_id, recommend_time, 
+      area_demand, property_type, legal_duration, 
+      is_matched, is_rel_agent, is_checked, 
+      is_distributed, remark, building_id, 
+      is_substitute, is_company, recom_status
+      )
+    values (#{roId,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}, #{customerId,jdbcType=INTEGER}, 
+      #{houseId,jdbcType=INTEGER}, #{brokerId,jdbcType=INTEGER}, #{recommendTime,jdbcType=TIMESTAMP}, 
+      #{areaDemand,jdbcType=INTEGER}, #{propertyType,jdbcType=VARCHAR}, #{legalDuration,jdbcType=INTEGER}, 
+      #{isMatched,jdbcType=BIT}, #{isRelAgent,jdbcType=BIT}, #{isChecked,jdbcType=BIT}, 
+      #{isDistributed,jdbcType=BIT}, #{remark,jdbcType=VARCHAR}, #{buildingId,jdbcType=INTEGER}, 
+      #{isSubstitute,jdbcType=BIT}, #{isCompany,jdbcType=BIT}, #{recomStatus,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Recommendorder">
+    insert into dbo.RecommendOrder
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roId != null">
+        ro_id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="houseId != null">
+        house_id,
+      </if>
+      <if test="brokerId != null">
+        broker_id,
+      </if>
+      <if test="recommendTime != null">
+        recommend_time,
+      </if>
+      <if test="areaDemand != null">
+        area_demand,
+      </if>
+      <if test="propertyType != null">
+        property_type,
+      </if>
+      <if test="legalDuration != null">
+        legal_duration,
+      </if>
+      <if test="isMatched != null">
+        is_matched,
+      </if>
+      <if test="isRelAgent != null">
+        is_rel_agent,
+      </if>
+      <if test="isChecked != null">
+        is_checked,
+      </if>
+      <if test="isDistributed != null">
+        is_distributed,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="buildingId != null">
+        building_id,
+      </if>
+      <if test="isSubstitute != null">
+        is_substitute,
+      </if>
+      <if test="isCompany != null">
+        is_company,
+      </if>
+      <if test="recomStatus != null">
+        recom_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roId != null">
+        #{roId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="houseId != null">
+        #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="brokerId != null">
+        #{brokerId,jdbcType=INTEGER},
+      </if>
+      <if test="recommendTime != null">
+        #{recommendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="areaDemand != null">
+        #{areaDemand,jdbcType=INTEGER},
+      </if>
+      <if test="propertyType != null">
+        #{propertyType,jdbcType=VARCHAR},
+      </if>
+      <if test="legalDuration != null">
+        #{legalDuration,jdbcType=INTEGER},
+      </if>
+      <if test="isMatched != null">
+        #{isMatched,jdbcType=BIT},
+      </if>
+      <if test="isRelAgent != null">
+        #{isRelAgent,jdbcType=BIT},
+      </if>
+      <if test="isChecked != null">
+        #{isChecked,jdbcType=BIT},
+      </if>
+      <if test="isDistributed != null">
+        #{isDistributed,jdbcType=BIT},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingId != null">
+        #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="isSubstitute != null">
+        #{isSubstitute,jdbcType=BIT},
+      </if>
+      <if test="isCompany != null">
+        #{isCompany,jdbcType=BIT},
+      </if>
+      <if test="recomStatus != null">
+        #{recomStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Recommendorder">
+    update dbo.RecommendOrder
+    <set>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="houseId != null">
+        house_id = #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="brokerId != null">
+        broker_id = #{brokerId,jdbcType=INTEGER},
+      </if>
+      <if test="recommendTime != null">
+        recommend_time = #{recommendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="areaDemand != null">
+        area_demand = #{areaDemand,jdbcType=INTEGER},
+      </if>
+      <if test="propertyType != null">
+        property_type = #{propertyType,jdbcType=VARCHAR},
+      </if>
+      <if test="legalDuration != null">
+        legal_duration = #{legalDuration,jdbcType=INTEGER},
+      </if>
+      <if test="isMatched != null">
+        is_matched = #{isMatched,jdbcType=BIT},
+      </if>
+      <if test="isRelAgent != null">
+        is_rel_agent = #{isRelAgent,jdbcType=BIT},
+      </if>
+      <if test="isChecked != null">
+        is_checked = #{isChecked,jdbcType=BIT},
+      </if>
+      <if test="isDistributed != null">
+        is_distributed = #{isDistributed,jdbcType=BIT},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingId != null">
+        building_id = #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="isSubstitute != null">
+        is_substitute = #{isSubstitute,jdbcType=BIT},
+      </if>
+      <if test="isCompany != null">
+        is_company = #{isCompany,jdbcType=BIT},
+      </if>
+      <if test="recomStatus != null">
+        recom_status = #{recomStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ro_id = #{roId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Recommendorder">
+    update dbo.RecommendOrder
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=INTEGER},
+      house_id = #{houseId,jdbcType=INTEGER},
+      broker_id = #{brokerId,jdbcType=INTEGER},
+      recommend_time = #{recommendTime,jdbcType=TIMESTAMP},
+      area_demand = #{areaDemand,jdbcType=INTEGER},
+      property_type = #{propertyType,jdbcType=VARCHAR},
+      legal_duration = #{legalDuration,jdbcType=INTEGER},
+      is_matched = #{isMatched,jdbcType=BIT},
+      is_rel_agent = #{isRelAgent,jdbcType=BIT},
+      is_checked = #{isChecked,jdbcType=BIT},
+      is_distributed = #{isDistributed,jdbcType=BIT},
+      remark = #{remark,jdbcType=VARCHAR},
+      building_id = #{buildingId,jdbcType=INTEGER},
+      is_substitute = #{isSubstitute,jdbcType=BIT},
+      is_company = #{isCompany,jdbcType=BIT},
+      recom_status = #{recomStatus,jdbcType=VARCHAR}
+    where ro_id = #{roId,jdbcType=INTEGER}
+  </update>
+</mapper>

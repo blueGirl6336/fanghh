@@ -1,0 +1,80 @@
+<link rel="stylesheet" href="./css/simplePopup.css">
+<link type="text/css" rel="stylesheet" href="./css/priceTrendDate.css" />
+
+<div class="price-trend-container" ng-controller="PriceTrendController as price">
+  <div class="content">
+    <p class="content_title">
+      威海华润湾九里
+      <img src="./image/fpzh.png" class="assign-account"></p>
+    <div class="content_area">
+      <!-- 模板 -->
+      <div ui-view="buildingPanel"></div>
+      <div class="content_main">
+        <div class="inputArea">
+          <form>
+            <div class="row">
+              <div class="form-item form-item-large">
+                <label>选择日期：</label>
+                <div class="form-field">
+                  <input id="pt-date" class="form-text hasBigUnitInput laydate-icon" def-laydate ng-model="price.recordTime">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-item form-item-middle">
+                <label>平均价格：</label>
+                <div class="form-field">
+                  <input type="number" class="form-text hasBigUnitInput" placeholder="" ng-model="price.averagePrice">
+                  <span class="hasUnitInput_unit">元/㎡</span>
+                </div>
+              </div>
+            </div>
+          </form>
+          <div class="row">
+            <div class="form-item form-item-large">
+              <div class="form-field add-field">
+                <button type="button" class="btn save-continue" ng-click="price.commit()">添加</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 编辑弹出框 begin -->
+      <div class="pop-up-cover"></div>
+      <div class="pop-up">
+        <div class="edit-trend-pop-up">
+          <span class="close-btn" ng-click="price.closePopup();">×</span>
+          <h2 class="pop-up-title">编辑房价趋势记录</h2>
+          <div class="separate-line"></div>
+
+          <div class="pop-up-form">
+            <div class="edit-trend-section">
+              <span class="form-title">选择日期</span>
+              <input id="price-trend-date" class="form-field" def-laydate ng-model="recordTime"></input>
+            </div>
+            <div class="edit-trend-section">
+              <span class="form-title">平均价格</span>
+              <input type="number" class="form-field" id="price-trend-edit-price"></input>
+            </div>
+            <button class="commit-btn" ng-click="price.edit()">保存</button>
+          </div>
+
+        </div>
+      </div>
+      <!-- 编辑弹出框 end -->
+      <table class="princple-table">
+        <tr class="line0">
+          <td class="time">记录时间</td>
+          <td class="average-price">均价</td>
+          <td class="operation" colspan="2">操作</td>
+        </tr>
+        <tr class="line1" ng-repeat="trend in price.allTrends" ng-class-odd="'line1'" ng-class-even="'line2'">
+          <td class="time">{{trend.udpateTime | date: "yyyy-MM-dd"}}</td>
+          <td class="average-price">{{trend.currentPrice}}/平方米</td>
+          <td class="operation1"><a ng-click="price.showEditPopup(trend)">修改</a></td>
+          <td class="operation2"><a ng-click="price.delete(trend.trendId)">删除</a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

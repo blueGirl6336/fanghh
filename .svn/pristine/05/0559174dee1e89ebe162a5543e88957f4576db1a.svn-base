@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hitwh.fanghh.dao.HomeconsultantDao">
+  <resultMap id="BaseResultMap" type="hitwh.fanghh.pojo.Homeconsultant">
+    <id column="consultant_id" jdbcType="INTEGER" property="consultantId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="building_id" jdbcType="INTEGER" property="buildingId" />
+    <result column="consultant_name" jdbcType="VARCHAR" property="consultantName" />
+    <result column="consultant_idcard" jdbcType="VARCHAR" property="consultantIdcard" />
+    <result column="is_agent" jdbcType="BIT" property="isAgent" />
+    <result column="is_stopped" jdbcType="BIT" property="isStopped" />
+    <result column="is_off" jdbcType="BIT" property="isOff" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    consultant_id, user_id, building_id, consultant_name, consultant_idcard, is_agent, 
+    is_stopped, is_off
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dbo.HomeConsultant
+    where consultant_id = #{consultantId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dbo.HomeConsultant
+    where consultant_id = #{consultantId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hitwh.fanghh.pojo.Homeconsultant">
+    insert into dbo.HomeConsultant (consultant_id, user_id, building_id, 
+      consultant_name, consultant_idcard, is_agent, 
+      is_stopped, is_off)
+    values (#{consultantId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{buildingId,jdbcType=INTEGER}, 
+      #{consultantName,jdbcType=VARCHAR}, #{consultantIdcard,jdbcType=VARCHAR}, #{isAgent,jdbcType=BIT}, 
+      #{isStopped,jdbcType=BIT}, #{isOff,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="hitwh.fanghh.pojo.Homeconsultant">
+    insert into dbo.HomeConsultant
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="consultantId != null">
+        consultant_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="buildingId != null">
+        building_id,
+      </if>
+      <if test="consultantName != null">
+        consultant_name,
+      </if>
+      <if test="consultantIdcard != null">
+        consultant_idcard,
+      </if>
+      <if test="isAgent != null">
+        is_agent,
+      </if>
+      <if test="isStopped != null">
+        is_stopped,
+      </if>
+      <if test="isOff != null">
+        is_off,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="consultantId != null">
+        #{consultantId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="buildingId != null">
+        #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="consultantName != null">
+        #{consultantName,jdbcType=VARCHAR},
+      </if>
+      <if test="consultantIdcard != null">
+        #{consultantIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="isAgent != null">
+        #{isAgent,jdbcType=BIT},
+      </if>
+      <if test="isStopped != null">
+        #{isStopped,jdbcType=BIT},
+      </if>
+      <if test="isOff != null">
+        #{isOff,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="hitwh.fanghh.pojo.Homeconsultant">
+    update dbo.HomeConsultant
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="buildingId != null">
+        building_id = #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="consultantName != null">
+        consultant_name = #{consultantName,jdbcType=VARCHAR},
+      </if>
+      <if test="consultantIdcard != null">
+        consultant_idcard = #{consultantIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="isAgent != null">
+        is_agent = #{isAgent,jdbcType=BIT},
+      </if>
+      <if test="isStopped != null">
+        is_stopped = #{isStopped,jdbcType=BIT},
+      </if>
+      <if test="isOff != null">
+        is_off = #{isOff,jdbcType=BIT},
+      </if>
+    </set>
+    where consultant_id = #{consultantId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="hitwh.fanghh.pojo.Homeconsultant">
+    update dbo.HomeConsultant
+    set user_id = #{userId,jdbcType=INTEGER},
+      building_id = #{buildingId,jdbcType=INTEGER},
+      consultant_name = #{consultantName,jdbcType=VARCHAR},
+      consultant_idcard = #{consultantIdcard,jdbcType=VARCHAR},
+      is_agent = #{isAgent,jdbcType=BIT},
+      is_stopped = #{isStopped,jdbcType=BIT},
+      is_off = #{isOff,jdbcType=BIT}
+    where consultant_id = #{consultantId,jdbcType=INTEGER}
+  </update>
+</mapper>

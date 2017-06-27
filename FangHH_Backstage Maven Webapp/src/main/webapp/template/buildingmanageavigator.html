@@ -1,0 +1,26 @@
+<div class="table_head">
+	<div ng-class="{'pageNow': nowpageid == 1, 'pageItem': nowpageid != 1}">
+		<a class="pageLink" ng-click="clickLink('listHouseManagement')">户型管理</a>
+	</div>
+	<div ng-class="{'pageNow': nowpageid == 2, 'pageItem': nowpageid != 2}">
+		<a class="pageLink" ng-click="clickLink('listSourceManagement')">房源管理</a>
+	</div>
+	<div ng-class="{'pageNow': nowpageid == 3, 'pageItem': nowpageid != 3}">
+		<a class="pageLink" ng-click="clickLink('pictureSubmit', true)">图片管理</a>
+	</div>
+	<div ng-class="{'pageNow': nowpageid == 4, 'pageItem': nowpageid != 4}">
+		<a class="pageLink" ng-click="clickLink('listDynamicManagement', true)">动态管理</a>
+	</div>
+	<div ng-class="{'pageNow': nowpageid == 5, 'pageItem': nowpageid != 5}">
+		<a class="pageLink" ng-click="clickLink('priceTrend', true)">房价走势</a>
+	</div>
+	<div ng-class="{'pageNow': nowpageid == 6, 'pageItem': nowpageid != 6}">
+		<a class="pageLink" ng-click="clickLink('picTalk', true)">看图说房</a>
+	</div>
+	<div ng-class="{'pageNow': nowpageid == 7, 'pageItem': nowpageid != 7}">
+		<a class="pageLink">佣金规则</a>
+	</div>
+	<div ng-class="{'pageNow': nowpageid == 8, 'pageItem': nowpageid != 8}">
+		<a class="pageLink">看房攻略</a>
+	</div>
+</div>

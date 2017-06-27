@@ -1,0 +1,166 @@
+<div class="content_area" ng-controller="houseEnter">
+	<div class="content_area_fullpage">
+		<div class="content_area_title">
+			<h2>发布新楼盘</h2>
+		</div>
+		<div class="content_main">
+			<div class="hint" ng-show="ifFail">
+				<p class="hint_text">审核不通过原因：{{auditNotPassReason}}</p>
+			</div>
+			<div class="inputArea">
+				<h3>房源信息</h3>
+				<form>
+					<div class="row">
+						<div class="form-item form-item-large">
+							<label><span class="requireMark">*</span>选择户型：<span class="justify"></span></label>
+							<div class="form-field">
+								<select class="form-text shortSelect" ng-model="x" value="x.styleId" ng-options="x.houseStyleCode for x in typeList">
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-large">
+							<label><span class="requireMark">*</span>房源楼号：<span class="justify"></span></label>
+							<div class="form-field">
+								<input type="text" class="form-text shortText" name="" ng-model="buildingNo">
+								<span>号楼</span>
+								<input type="text" class="form-text shortText" name="" ng-model="unit">
+								<span>单元</span>
+								<input type="text" class="form-text shortText" name="" ng-model="houseNum">
+								<span>室</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label><span class="requireMark">*</span> 参考售价：<span class="justify"></span></label>
+							<div class="form-field">
+								<input type="text" class="form-text hasBigUnitInput" ng-model="orginalPrice"><span class="hasUnitInput_unit">元</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label><span class="requireMark">*</span> 参考月供：<span class="justify"></span></label>
+							<div class="form-field">
+								<input type="text" class="form-text hasBigUnitInput" ng-model="monthlyPayment"><span class="hasUnitInput_unit">元</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label><span class="requireMark">*</span> 首付：<span class="justify"></span></label>
+							<div class="form-field">
+								<input type="text" class="form-text hasBigUnitInput" ng-model="downPayment"><span class="hasUnitInput_unit">元起</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-large">
+							<label><span class="requireMark">*</span>户型朝向：<span class="justify"></span></label>
+							<div class="form-field">
+								<select name="" id="" class="form-text shortSelect" ng-model="face">
+									<option value="01090100">南向</option>
+									<option value="01090200">东南</option>
+									<option value="01090300">东向</option>
+									<option value="01090400">西南</option>
+									<option value="01090500">北向</option>
+									<option value="01090800">西向</option>
+									<option value="01090600">东北</option>
+									<option value="01090700">西北</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-large">
+							<label><span class="requireMark">*</span>楼层：<span class="justify"></span></label>
+							<div class="form-field">
+								<input type="text" class="form-text shortText" ng-model="maxFloor">
+								<span>层/共</span>
+								<input type="text" class="form-text shortText" ng-model="floor">
+								<span>层</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label><span class="requireMark">*</span> 住房面积：<span class="justify"></span></label>
+							<div class="form-field">
+								<input type="text" class="form-text hasBigUnitInput" ng-model="area"><span class="hasUnitInput_unit">平米</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-large">
+							<label>装修：<span class="justify"></span></label>
+							<div class="form-field">
+								<select class="form-text shortSelect" ng-model="decoration">
+									<option value="01100100">毛坯</option>
+									<option value="01100200">简装</option>
+									<option value="01100300">精装</option>
+									<option value="01100400">豪华装修</option>
+									<option value="01100500">其他</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label class="label-long">储藏室面积：<span class="justify"></span></label>
+							<div class="form-field">
+								<input type="text" class="form-text hasBigUnitInput" ng-model="basementSquare"><span class="hasUnitInput_unit">平米</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label>车位：<span class="justify"></span></label>
+							<div class="form-field">
+								<input type="text" class="form-text hasBigUnitInput" ng-model="parkingLotPrice"><span class="hasUnitInput_unit">万元</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-middle">
+							<label>车库面积：<span class="justify"></span></label>
+							<div class="form-field">
+								<input type="text" class="form-text hasBigUnitInput" ng-model="parkingPlaceArea"><span class="hasUnitInput_unit">平米</span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-item form-item-large">
+							<label class="label-super">房源图片上传：</label>
+							<div class="form-field">
+							<label for="upload_effectPic" class="choose-file">选择文件</label>
+							<input type="file" id="upload_effectPic" nv-file-select uploader="effectpicuploader"/>
+							<br/>
+						</div>
+					</div>
+					<div class="picList">
+						<div class="picItem" ng-repeat="pic in effectPicUrl">
+							<img src=".{{ pic }}" class="pic">
+							<img src="./image/close_1.png" class="close-pic" ng-click="deletePic(effectPicUrl, $index)">
+						</div>
+					</div>
+				</div>
+					<div class="row">
+						<div class="form-item form-item-broad">
+							<label>推荐理由：<span class="justify"></span></label>
+							<div class="form-field">
+								<textarea class="form-text" ng-model="recommendReason"></textarea>
+							</div>
+						</div>
+					</div>
+				</form>
+				<div class="button-area">
+					<button type="button" class="btn goback" ng-click="continueAdd()" ng-show="ifNotUpdate">继续添加房源</button>
+					<button type="button" class="btn save-continue" ng-click="saveType()">保存</button>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</div>
